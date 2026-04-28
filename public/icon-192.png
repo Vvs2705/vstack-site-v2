@@ -1,0 +1,6 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="192" height="192" rx="32" fill="#1E2535"/>
+  <path d="M48 60L96 132L144 60" stroke="#F07028" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="96" cy="144" r="8" fill="#F07028"/>
+  <text x="96" y="170" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#F07028" text-anchor="middle">V STACK</text>
+</svg>

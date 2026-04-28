@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ─── Paleta Oficial V Stack ──────────────────────────────── */
+  --bg-primary:       #1E2535;
+  --bg-card:          #252D3D;
+  --bg-deep:          #1A2030;
+  --bg-overlay:       #161D2B;
+
+  --steel-dark:       #2D3748;
+  --steel-mid:        #4A5568;
+  --steel-light:      #64748B;
+
+  --accent:           #F07028;
+  --accent-light:     #FF8C42;
+  --accent-muted:     rgba(240, 112, 40, 0.12);
+  --accent-border:    rgba(240, 112, 40, 0.30);
+
+  --text-primary:     #F1F5F9;
+  --text-secondary:   #94A3B8;
+  --text-muted:       #64748B;
+
+  --border:           rgba(255, 255, 255, 0.07);
+  --border-strong:    rgba(255, 255, 255, 0.12);
+
+  --radius:           12px;
+  --radius-sm:        8px;
+  --radius-lg:        20px;
+
+  --font-display:     'Syne', sans-serif;
+  --font-body:        'DM Sans', sans-serif;
+  --font-mono:        'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+/* ─── Scrollbar customizada ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--steel-mid); border-radius: 3px; }
+
+/* ─── Utilitários V Stack ───────────────────────────────────── */
+@layer utilities {
+  .text-accent    { color: var(--accent); }
+  .bg-card        { background-color: var(--bg-card); }
+  .bg-deep        { background-color: var(--bg-deep); }
+  .border-vstack  { border-color: var(--border); }
+  .font-display   { font-family: var(--font-display); }
+  .font-mono      { font-family: var(--font-mono); }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .accent-glow {
+    box-shadow: 0 0 30px rgba(240, 112, 40, 0.15);
+  }
+
+  .card-vstack {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-weight: 500;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--accent-light); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-weight: 500;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent-border);
+    background: var(--accent-muted);
+  }
+}

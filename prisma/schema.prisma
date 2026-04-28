@@ -1,0 +1,172 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── LEADS (Formulário de contato) ───────────────────────────────────────────
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  company   String?
+  email     String
+  phone     String?
+  message   String
+  interest  String   // "automacao" | "ia" | "integracao" | "saas" | "outro"
+  source    String   @default("contato") // "contato" | "cotacao" | "dor" | "chat"
+  status    String   @default("novo")    // "novo" | "em_contato" | "qualificado" | "perdido" | "convertido"
+  notes     String?  // Notas internas do admin
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("leads")
+}
+
+// ─── COTAÇÕES ─────────────────────────────────────────────────────────────────
+model Cotacao {
+  id             String   @id @default(cuid())
+  // Dados da empresa
+  companyName    String
+  companySector  String
+  companySize    String   // "1-10" | "11-50" | "51-200" | "201+"
+  // Dados do contato
+  contactName    String
+  contactEmail   String
+  contactPhone   String?
+  contactRole    String?
+  // Dados do projeto
+  projectType    String[] // ["automacao", "ia", "integracao", "saas", "outro"]
+  projectBudget  String   // "ate-10k" | "10k-50k" | "50k-200k" | "200k+"
+  projectTimeline String  // "urgente" | "1-3meses" | "3-6meses" | "6meses+"
+  projectDescription String
+  currentTools   String?  // ERPs, sistemas atuais
+  mainChallenge  String
+  // Meta
+  status         String   @default("pendente") // "pendente" | "em_analise" | "proposta_enviada" | "fechado" | "cancelado"
+  estimatedValue Float?
+  adminNotes     String?
+  ipAddress      String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([contactEmail])
+  @@index([status])
+  @@index([createdAt])
+  @@map("cotacoes")
+}
+
+// ─── DORES DOS CLIENTES ───────────────────────────────────────────────────────
+model DorCliente {
+  id           String   @id @default(cuid())
+  // Identificação (opcional para anonimato)
+  name         String?
+  email        String?
+  company      String?
+  sector       String?
+  // A dor
+  title        String   // Título curto da dor
+  description  String   // Descrição completa do problema
+  impact       String   // Impacto no negócio (qualitativo)
+  urgency      String   // "baixa" | "media" | "alta" | "critica"
+  currentSolution String? // Como resolvem hoje (ou não resolvem)
+  // Meta
+  isAnonymous  Boolean  @default(false)
+  isPublic     Boolean  @default(false) // Se pode aparecer em cases
+  status       String   @default("novo") // "novo" | "em_analise" | "em_proposta" | "resolvido"
+  adminNotes   String?
+  ipAddress    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([status])
+  @@index([urgency])
+  @@index([createdAt])
+  @@map("dores_clientes")
+}
+
+// ─── CONVERSAS DO CHAT ────────────────────────────────────────────────────────
+model ChatSession {
+  id           String        @id @default(cuid())
+  sessionToken String        @unique
+  visitorName  String?
+  visitorEmail String?
+  ipAddress    String?
+  userAgent    String?
+  status       String        @default("ativo") // "ativo" | "encerrado" | "transferido"
+  leadId       String?       // Se gerou um lead
+  messages     ChatMessage[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([sessionToken])
+  @@index([visitorEmail])
+  @@index([createdAt])
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id        String      @id @default(cuid())
+  sessionId String
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role      String      // "user" | "assistant"
+  content   String
+  createdAt DateTime    @default(now())
+
+  @@index([sessionId])
+  @@map("chat_messages")
+}
+
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
+model FAQ {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  category  String   @default("geral") // "geral" | "contaflow" | "servicos" | "precos"
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([isActive])
+  @@map("faqs")
+}
+
+// ─── ADMIN USERS ──────────────────────────────────────────────────────────────
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("admin") // "admin" | "superadmin"
+  lastLoginAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admin_users")
+}
+
+// ─── AUDIT LOG ────────────────────────────────────────────────────────────────
+model AuditLog {
+  id         String   @id @default(cuid())
+  action     String   // "lead_created" | "cotacao_submitted" | "chat_started" etc
+  entityType String?  // "Lead" | "Cotacao" | "DorCliente" etc
+  entityId   String?
+  ipAddress  String?
+  userAgent  String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([action])
+  @@index([entityType])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
