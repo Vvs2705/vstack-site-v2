@@ -2,219 +2,92 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+
+const NAV_LINKS = [
+  { label: 'Soluções', href: '/solucoes' },
+  { label: 'ContaFlow', href: '/solucoes#contaflow' },
+  { label: 'Sobre', href: '/sobre' },
+  { label: 'FAQ', href: '/faq' },
+]
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [solucoesOpen, setSolucoesOpen] = useState(false)
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-[var(--bg-primary)]/95 backdrop-blur-md border-b border-[var(--border)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent)] accent-glow transition-transform group-hover:scale-110">
-              <span className="font-display text-xl font-bold text-white">V</span>
-            </div>
-            <div className="hidden sm:flex items-baseline gap-2">
-              <span className="font-display text-xl font-bold text-white">V-STACK</span>
-              <span className="font-display text-xl font-semibold text-[var(--accent)]">SOLUTIONS</span>
-            </div>
+          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
+            <svg className="h-8 w-8" viewBox="0 0 80 70" fill="none" aria-hidden="true">
+              <polygon points="0,0 20,0 40,40 60,0 80,0 40,70" fill="#2D3748" />
+              <polygon points="20,0 40,0 40,40" fill="#3D4B61" />
+              <polygon points="40,0 60,0 40,40" fill="#252D3D" />
+              <polygon points="34,36 40,48 46,36 40,40" fill="#F07028" />
+            </svg>
+            <span className="font-display text-[15px] font-bold tracking-[0.07em] text-[var(--text-primary)]">
+              V-STACK <span className="text-[var(--accent)]">SOLUTIONS</span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="/"
-              className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-            >
-              Home
-            </Link>
-
-            <Link
-              href="/sobre"
-              className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-            >
-              Sobre
-            </Link>
-
-            <div className="relative group">
-              <button
-                className="flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-                onMouseEnter={() => setSolucoesOpen(true)}
-                onMouseLeave={() => setSolucoesOpen(false)}
-              >
-                Soluções
-                <ChevronDown className="h-4 w-4" />
-              </button>
-
-              {solucoesOpen && (
-                <div
-                  className="absolute top-full left-0 mt-2 w-56 rounded-lg bg-[var(--bg-card)] border border-[var(--border-strong)] shadow-xl py-2"
-                  onMouseEnter={() => setSolucoesOpen(true)}
-                  onMouseLeave={() => setSolucoesOpen(false)}
+          {/* Desktop nav */}
+          <ul className="hidden md:flex items-center gap-7">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-[13px] font-medium tracking-[0.02em] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                 >
-                  <Link
-                    href="/solucoes#automacao"
-                    className="block px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-[var(--accent-muted)] hover:text-[var(--accent)] transition-colors"
-                  >
-                    Automação de Processos
-                  </Link>
-                  <Link
-                    href="/solucoes#ia"
-                    className="block px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-[var(--accent-muted)] hover:text-[var(--accent)] transition-colors"
-                  >
-                    Inteligência Artificial
-                  </Link>
-                  <Link
-                    href="/solucoes#integracao"
-                    className="block px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-[var(--accent-muted)] hover:text-[var(--accent)] transition-colors"
-                  >
-                    Integração de Sistemas
-                  </Link>
-                  <Link
-                    href="/solucoes#saas"
-                    className="block px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-[var(--accent-muted)] hover:text-[var(--accent)] transition-colors"
-                  >
-                    Desenvolvimento SaaS
-                  </Link>
-                  <div className="my-1 border-t border-[var(--border)]" />
-                  <Link
-                    href="/solucoes#contaflow"
-                    className="block px-4 py-2 text-sm text-[var(--accent)] hover:bg-[var(--accent-muted)] transition-colors font-medium"
-                  >
-                    ContaFlow
-                  </Link>
-                </div>
-              )}
-            </div>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-            <Link
-              href="/faq"
-              className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-            >
-              FAQ
-            </Link>
-
+          {/* CTA */}
+          <div className="hidden md:block">
             <Link
               href="/contato"
-              className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+              className="btn-primary px-5 py-2 text-[13px] font-medium"
             >
-              Contato
+              Fale conosco
             </Link>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-3">
-            <Link href="/envie-sua-dor" className="btn-secondary px-4 py-2 text-sm">
-              Envie Sua Dor
-            </Link>
-            <Link href="/cotacao" className="btn-primary px-4 py-2 text-sm">
-              Solicitar Cotação
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
+          {/* Mobile toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex items-center justify-center h-10 w-10 rounded-lg bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent)] transition-colors"
+            className="md:hidden flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)]"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg-card)]">
-          <div className="px-4 py-4 space-y-3">
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              className="block py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-            >
-              Home
-            </Link>
-
-            <Link
-              href="/sobre"
-              onClick={() => setIsOpen(false)}
-              className="block py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-            >
-              Sobre
-            </Link>
-
-            <div className="space-y-2">
-              <p className="py-2 text-sm font-medium text-[var(--text-primary)]">Soluções</p>
+          <div className="px-6 py-4 space-y-1">
+            {NAV_LINKS.map((link) => (
               <Link
-                href="/solucoes#automacao"
+                key={link.href}
+                href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block py-2 pl-4 text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+                className="block py-2.5 text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
               >
-                Automação de Processos
+                {link.label}
               </Link>
+            ))}
+            <div className="pt-3 border-t border-[var(--border)]">
               <Link
-                href="/solucoes#ia"
+                href="/contato"
                 onClick={() => setIsOpen(false)}
-                className="block py-2 pl-4 text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+                className="block btn-primary px-4 py-2.5 text-[13px] text-center font-medium"
               >
-                Inteligência Artificial
-              </Link>
-              <Link
-                href="/solucoes#integracao"
-                onClick={() => setIsOpen(false)}
-                className="block py-2 pl-4 text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-              >
-                Integração de Sistemas
-              </Link>
-              <Link
-                href="/solucoes#saas"
-                onClick={() => setIsOpen(false)}
-                className="block py-2 pl-4 text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-              >
-                Desenvolvimento SaaS
-              </Link>
-              <Link
-                href="/solucoes#contaflow"
-                onClick={() => setIsOpen(false)}
-                className="block py-2 pl-4 text-sm text-[var(--accent)] font-medium transition-colors"
-              >
-                ContaFlow
-              </Link>
-            </div>
-
-            <Link
-              href="/faq"
-              onClick={() => setIsOpen(false)}
-              className="block py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-            >
-              FAQ
-            </Link>
-
-            <Link
-              href="/contato"
-              onClick={() => setIsOpen(false)}
-              className="block py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
-            >
-              Contato
-            </Link>
-
-            <div className="pt-4 space-y-3 border-t border-[var(--border)]">
-              <Link
-                href="/envie-sua-dor"
-                onClick={() => setIsOpen(false)}
-                className="block btn-secondary px-4 py-3 text-sm text-center"
-              >
-                Envie Sua Dor
-              </Link>
-              <Link
-                href="/cotacao"
-                onClick={() => setIsOpen(false)}
-                className="block btn-primary px-4 py-3 text-sm text-center"
-              >
-                Solicitar Cotação
+                Fale conosco
               </Link>
             </div>
           </div>
