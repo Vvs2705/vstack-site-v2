@@ -3,7 +3,7 @@ import { z } from 'zod'
 export const ContatoSchema = z.object({
   name:     z.string().min(2, 'Nome muito curto').max(100).trim(),
   company:  z.string().max(100).trim().optional(),
-  email:    z.string().email('Email inválido').max(254).toLowerCase().trim(),
+  email:    z.string().email('Email inválido').max(254).trim().transform(s => s.toLowerCase()),
   phone:    z.string().max(20).optional(),
   message:  z.string().min(10, 'Mensagem muito curta').max(2000).trim(),
   interest: z.enum(['automacao', 'ia', 'integracao', 'saas', 'contaflow', 'outro']),
@@ -14,7 +14,7 @@ export const CotacaoSchema = z.object({
   companySector:      z.string().min(2).max(100).trim(),
   companySize:        z.enum(['1-10', '11-50', '51-200', '201+']),
   contactName:        z.string().min(2).max(100).trim(),
-  contactEmail:       z.string().email().max(254).toLowerCase().trim(),
+  contactEmail:       z.string().email().max(254).trim().transform(s => s.toLowerCase()),
   contactPhone:       z.string().max(20).optional(),
   contactRole:        z.string().max(100).optional(),
   projectType:        z.array(z.enum(['automacao', 'ia', 'integracao', 'saas', 'outro'])).min(1),
@@ -27,7 +27,7 @@ export const CotacaoSchema = z.object({
 
 export const DorSchema = z.object({
   name:            z.string().max(100).trim().optional(),
-  email:           z.string().email().max(254).toLowerCase().trim().optional(),
+  email:           z.string().email().max(254).trim().transform(s => s.toLowerCase()).optional(),
   company:         z.string().max(100).trim().optional(),
   sector:          z.string().max(100).trim().optional(),
   title:           z.string().min(5).max(200).trim(),

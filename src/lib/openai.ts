@@ -4,9 +4,9 @@ export const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 })
 
-export const VSTACK_SYSTEM_PROMPT = `Você é o assistente virtual da V Stack Solution, uma consultoria especializada em automação inteligente, desenvolvimento de sistemas e produtos SaaS.
+export const VSTACK_SYSTEM_PROMPT = `Você é o assistente virtual da V-STACK SOLUTIONS, uma consultoria especializada em automação inteligente, desenvolvimento de sistemas e produtos SaaS.
 
-SOBRE A V STACK:
+SOBRE A V-STACK SOLUTIONS:
 - Desenvolvemos sistemas sob medida, APIs enterprise e produtos SaaS
 - Especialidades: Automação de Processos, Inteligência Artificial, Integrações Enterprise, Produtos SaaS
 - Produto principal: ContaFlow (plataforma de automação financeira/contábil)

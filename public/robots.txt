@@ -1,15 +1,11 @@
 # *
 User-agent: *
 Allow: /
-
-# Disallow API routes
 Disallow: /api/
-
-# Disallow admin routes
 Disallow: /admin/
 
 # Host
-Host: https://vstack-solution.com.br
+Host: https://vstack-solutions.com.br
 
 # Sitemaps
-Sitemap: https://vstack-solution.com.br/sitemap.xml
+Sitemap: https://vstack-solutions.com.br/sitemap.xml

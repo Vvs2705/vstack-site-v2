@@ -7,7 +7,7 @@ import CotacaoForm from '@/components/forms/CotacaoForm'
 import { Shield, Clock, Award, HeadphonesIcon } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Solicitar Cotação | V Stack Solution',
+  title: 'Solicitar Cotação | V-STACK SOLUTIONS',
   description: 'Solicite uma cotação personalizada para seu projeto. Receba uma proposta detalhada em até 24 horas.',
 }
 

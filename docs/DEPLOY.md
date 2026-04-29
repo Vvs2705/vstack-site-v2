@@ -1,7 +1,7 @@
-# FASE 10 - Deploy Vercel - V Stack Solution
+# FASE 10 - Deploy Vercel - V-STACK SOLUTIONS
 
 ## 🎯 Objetivo
-Realizar o deploy completo do site V Stack Solution no Vercel, configurar o domínio vstack-solution.com.br e preparar o ambiente de produção.
+Realizar o deploy completo do site V-STACK SOLUTIONS no Vercel, configurar o domínio vstack-solutions.com.br e preparar o ambiente de produção.
 
 ---
 
@@ -12,7 +12,7 @@ Realizar o deploy completo do site V Stack Solution no Vercel, configurar o dom�
 #### Favicon
 - [ ] Criar `public/favicon.ico` (32x32px)
 - [ ] Formato: ICO
-- [ ] Cor base: #F07028 (laranja V Stack)
+- [ ] Cor base: #F07028 (laranja V-STACK)
 
 #### Apple Touch Icon
 - [ ] Criar `public/apple-touch-icon.png` (180x180px)
@@ -24,7 +24,7 @@ Realizar o deploy completo do site V Stack Solution no Vercel, configurar o dom�
 - [ ] Criar `public/icon-192.png` (192x192px)
 - [ ] Criar `public/icon-512.png` (512x512px)
 - [ ] Formato: PNG com transparência
-- [ ] Logo V Stack centralizado
+- [ ] Logo V-STACK centralizado
 
 #### Open Graph Image
 - [ ] Criar `public/og-image.png` (1200x630px)
@@ -56,7 +56,7 @@ Adicionar no Vercel Dashboard (Settings > Environment Variables):
 
 ```env
 # Site
-NEXT_PUBLIC_SITE_URL=https://vstack-solution.com.br
+NEXT_PUBLIC_SITE_URL=https://vstack-solutions.com.br
 
 # Database (PostgreSQL - Supabase/Neon/Railway)
 DATABASE_URL=postgresql://user:password@host:5432/vstack_db
@@ -70,7 +70,7 @@ OPENAI_API_KEY=sk-...
 
 # Email (Resend)
 RESEND_API_KEY=re_...
-RESEND_FROM_EMAIL=contato@vstack-solution.com.br
+RESEND_FROM_EMAIL=contato@vstack-solutions.com.br
 
 # Admin Auth
 ADMIN_JWT_SECRET=your_secure_secret_min_32_chars
@@ -89,8 +89,8 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 
 #### 3.1. Adicionar Domínio no Vercel
 1. [ ] Ir em Settings > Domains
-2. [ ] Adicionar: `vstack-solution.com.br`
-3. [ ] Adicionar: `www.vstack-solution.com.br`
+2. [ ] Adicionar: `vstack-solutions.com.br`
+3. [ ] Adicionar: `www.vstack-solutions.com.br`
 
 #### 3.2. Configurar DNS (Registro.br)
 Acessar o painel do Registro.br e adicionar:
@@ -154,7 +154,7 @@ npx prisma migrate deploy
 ### 6. Configuração do Email (Resend)
 
 1. [ ] Criar conta em https://resend.com
-2. [ ] Adicionar domínio: `vstack-solution.com.br`
+2. [ ] Adicionar domínio: `vstack-solutions.com.br`
 3. [ ] Configurar registros DNS (SPF, DKIM, DMARC)
 4. [ ] Verificar domínio
 5. [ ] Criar API Key
@@ -164,7 +164,7 @@ npx prisma migrate deploy
 ```
 TXT @ "v=spf1 include:_spf.resend.com ~all"
 TXT resend._domainkey [valor fornecido pelo Resend]
-TXT _dmarc "v=DMARC1; p=none; rua=mailto:dmarc@vstack-solution.com.br"
+TXT _dmarc "v=DMARC1; p=none; rua=mailto:dmarc@vstack-solutions.com.br"
 ```
 
 ---
@@ -178,13 +178,13 @@ TXT _dmarc "v=DMARC1; p=none; rua=mailto:dmarc@vstack-solution.com.br"
 4. [ ] Aguardar build completar (2-5 minutos)
 
 #### 7.2. Validações Pós-Deploy
-- [ ] Testar site: https://vstack-solution.com.br
+- [ ] Testar site: https://vstack-solutions.com.br
 - [ ] Testar todas as páginas (7 páginas)
 - [ ] Testar formulários (contato, cotação, dor)
 - [ ] Testar chat widget
-- [ ] Verificar sitemap: https://vstack-solution.com.br/sitemap.xml
-- [ ] Verificar robots.txt: https://vstack-solution.com.br/robots.txt
-- [ ] Testar manifest: https://vstack-solution.com.br/manifest.json
+- [ ] Verificar sitemap: https://vstack-solutions.com.br/sitemap.xml
+- [ ] Verificar robots.txt: https://vstack-solutions.com.br/robots.txt
+- [ ] Testar manifest: https://vstack-solutions.com.br/manifest.json
 
 #### 7.3. Testes de Performance
 - [ ] Google PageSpeed Insights: https://pagespeed.web.dev/
@@ -219,7 +219,7 @@ TXT _dmarc "v=DMARC1; p=none; rua=mailto:dmarc@vstack-solution.com.br"
 
 #### 8.3. Uptime Monitoring
 - [ ] Configurar UptimeRobot: https://uptimerobot.com/
-- [ ] Monitorar: https://vstack-solution.com.br
+- [ ] Monitorar: https://vstack-solutions.com.br
 - [ ] Alertas via email
 
 ---

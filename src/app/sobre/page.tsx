@@ -7,8 +7,8 @@ import CookieBanner from '@/components/CookieBanner'
 import { Target, Users, Rocket, Award, ArrowRight, CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Sobre Nós | V Stack Solution',
-  description: 'Conheça a V Stack Solution. Somos especialistas em transformação digital, automação e inteligência artificial para empresas.',
+  title: 'Sobre Nós | V-STACK SOLUTIONS',
+  description: 'Conheça a V-STACK SOLUTIONS. Somos especialistas em transformação digital, automação e inteligência artificial para empresas.',
 }
 
 export default function SobrePage() {
@@ -81,7 +81,7 @@ export default function SobrePage() {
                 </h2>
                 <div className="space-y-4 text-[var(--text-secondary)] leading-relaxed">
                   <p>
-                    A V Stack Solution nasceu da percepção de que muitas empresas enfrentam desafios operacionais 
+                    A V-STACK SOLUTIONS nasceu da percepção de que muitas empresas enfrentam desafios operacionais 
                     que poderiam ser resolvidos com tecnologia adequada. Fundada por especialistas em desenvolvimento 
                     de software e automação, começamos com o objetivo de democratizar o acesso a soluções tecnológicas 
                     de ponta.

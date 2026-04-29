@@ -1,4 +1,4 @@
-# SEO Configuration - V Stack Solution
+# SEO Configuration - V-STACK SOLUTIONS
 
 ## ✅ Configurações Implementadas
 
@@ -24,8 +24,8 @@
 ### 2. Metadata Global (layout.tsx)
 
 #### Configurações Principais
-- ✅ **metadataBase**: URL base do site (vstack-solution.com.br)
-- ✅ **title template**: "%s | V Stack Solution"
+- ✅ **metadataBase**: URL base do site (vstack-solutions.com.br)
+- ✅ **title template**: "%s | V-STACK SOLUTIONS"
 - ✅ **description**: Descrição completa dos serviços
 - ✅ **keywords**: 11 palavras-chave relevantes
 - ✅ **lang**: pt-BR
@@ -34,7 +34,7 @@
 #### Open Graph (Facebook/LinkedIn)
 - ✅ type: website
 - ✅ locale: pt_BR
-- ✅ siteName: V Stack Solution
+- ✅ siteName: V-STACK SOLUTIONS
 - ✅ images: og-image.png (1200x630)
 
 #### Twitter Card
@@ -53,13 +53,13 @@ Todas as páginas possuem metadata customizada:
 
 | Página | Title | Status |
 |--------|-------|--------|
-| Home | V Stack Solution - Transformação Digital com IA e Automação | ✅ (layout.tsx) |
-| Contato | Contato \| V Stack Solution | ✅ |
-| Cotação | Solicitar Cotação \| V Stack Solution | ✅ |
-| Soluções | Soluções \| V Stack Solution | ✅ |
-| Envie Sua Dor | Envie Sua Dor \| V Stack Solution | ✅ |
-| Sobre | Sobre Nós \| V Stack Solution | ✅ |
-| FAQ | Perguntas Frequentes (FAQ) \| V Stack Solution | ✅ (layout.tsx) |
+| Home | V-STACK SOLUTIONS - Transformação Digital com IA e Automação | ✅ (layout.tsx) |
+| Contato | Contato \| V-STACK SOLUTIONS | ✅ |
+| Cotação | Solicitar Cotação \| V-STACK SOLUTIONS | ✅ |
+| Soluções | Soluções \| V-STACK SOLUTIONS | ✅ |
+| Envie Sua Dor | Envie Sua Dor \| V-STACK SOLUTIONS | ✅ |
+| Sobre | Sobre Nós \| V-STACK SOLUTIONS | ✅ |
+| FAQ | Perguntas Frequentes (FAQ) \| V-STACK SOLUTIONS | ✅ (layout.tsx) |
 
 ### 4. Fontes Otimizadas
 
@@ -72,8 +72,8 @@ Todas as páginas possuem metadata customizada:
 ### 5. PWA (Progressive Web App)
 
 #### manifest.json
-- ✅ name: "V Stack Solution"
-- ✅ short_name: "V Stack"
+- ✅ name: "V-STACK SOLUTIONS"
+- ✅ short_name: "V-STACK"
 - ✅ theme_color: #1E2535
 - ✅ background_color: #1E2535
 - ✅ display: standalone
@@ -114,8 +114,8 @@ Todas as páginas possuem metadata customizada:
 3. [ ] Implementar Google Analytics no layout.tsx
 
 ### Validações
-- [ ] Testar sitemap: `https://vstack-solution.com.br/sitemap.xml`
-- [ ] Testar robots.txt: `https://vstack-solution.com.br/robots.txt`
+- [ ] Testar sitemap: `https://vstack-solutions.com.br/sitemap.xml`
+- [ ] Testar robots.txt: `https://vstack-solutions.com.br/robots.txt`
 - [ ] Validar Open Graph: https://developers.facebook.com/tools/debug/
 - [ ] Validar Twitter Card: https://cards-dev.twitter.com/validator
 - [ ] Testar performance: https://pagespeed.web.dev/
@@ -168,7 +168,7 @@ O script `postbuild` executa `next-sitemap` automaticamente, gerando:
 
 1. **Sitemap Dinâmico**: O sitemap é regenerado a cada build. Se adicionar novas páginas, elas serão incluídas automaticamente.
 
-2. **Metadata Template**: O template `%s | V Stack Solution` é aplicado automaticamente a todas as páginas que definem apenas o título.
+2. **Metadata Template**: O template `%s | V-STACK SOLUTIONS` é aplicado automaticamente a todas as páginas que definem apenas o título.
 
 3. **Open Graph Images**: Certifique-se de criar a imagem `og-image.png` com dimensões 1200x630px para melhor visualização em redes sociais.
 
@@ -179,7 +179,7 @@ O script `postbuild` executa `next-sitemap` automaticamente, gerando:
 ## 🎯 Próximos Passos (FASE 10 - Deploy)
 
 1. Deploy no Vercel
-2. Configurar domínio vstack-solution.com.br
+2. Configurar domínio vstack-solutions.com.br
 3. Configurar variáveis de ambiente
 4. Gerar e adicionar imagens (favicon, og-image, icons)
 5. Verificar no Google Search Console

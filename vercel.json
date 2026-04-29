@@ -5,7 +5,7 @@
   "framework": "nextjs",
   "regions": ["gru1"],
   "env": {
-    "NEXT_PUBLIC_SITE_URL": "https://vstack-solution.com.br"
+    "NEXT_PUBLIC_SITE_URL": "https://vstack-solutions.com.br"
   },
   "build": {
     "env": {

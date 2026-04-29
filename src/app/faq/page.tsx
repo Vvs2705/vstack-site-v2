@@ -13,7 +13,7 @@ const faqs = [
     category: 'Geral',
     questions: [
       {
-        q: 'O que é a V Stack Solution?',
+        q: 'O que é a V-STACK SOLUTIONS?',
         a: 'Somos uma empresa de tecnologia especializada em automação de processos, inteligência artificial, integração de sistemas e desenvolvimento SaaS. Ajudamos empresas a otimizar operações e aumentar eficiência através de soluções tecnológicas personalizadas.',
       },
       {

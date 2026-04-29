@@ -1,9 +1,9 @@
-# 🚀 Deploy Rápido - V Stack Solution
+# 🚀 Deploy Rápido - V-STACK SOLUTIONS
 
 ## Pré-requisitos
 - [ ] Conta no GitHub
 - [ ] Conta no Vercel (https://vercel.com)
-- [ ] Domínio vstack-solution.com.br já registrado
+- [ ] Domínio vstack-solutions.com.br já registrado
 
 ---
 
@@ -36,13 +36,13 @@ git push -u origin main
 Antes de fazer deploy, adicionar no Vercel:
 
 ```env
-NEXT_PUBLIC_SITE_URL=https://vstack-solution.com.br
+NEXT_PUBLIC_SITE_URL=https://vstack-solutions.com.br
 DATABASE_URL=postgresql://...
 UPSTASH_REDIS_REST_URL=https://...
 UPSTASH_REDIS_REST_TOKEN=...
 OPENAI_API_KEY=sk-...
 RESEND_API_KEY=re_...
-RESEND_FROM_EMAIL=contato@vstack-solution.com.br
+RESEND_FROM_EMAIL=contato@vstack-solutions.com.br
 ADMIN_JWT_SECRET=seu_secret_aqui_min_32_chars
 ```
 
@@ -57,7 +57,7 @@ ADMIN_JWT_SECRET=seu_secret_aqui_min_32_chars
 
 ### 3.1. No Vercel
 1. Ir em Settings > Domains
-2. Adicionar: `vstack-solution.com.br`
+2. Adicionar: `vstack-solutions.com.br`
 3. Copiar os registros DNS fornecidos
 
 ### 3.2. No Registro.br
@@ -108,15 +108,15 @@ Valor: cname.vercel-dns.com
 ## ✅ Passo 5: Validar Deploy
 
 ### Testar URLs:
-- [ ] https://vstack-solution.com.br
-- [ ] https://vstack-solution.com.br/contato
-- [ ] https://vstack-solution.com.br/cotacao
-- [ ] https://vstack-solution.com.br/solucoes
-- [ ] https://vstack-solution.com.br/sobre
-- [ ] https://vstack-solution.com.br/faq
-- [ ] https://vstack-solution.com.br/envie-sua-dor
-- [ ] https://vstack-solution.com.br/sitemap.xml
-- [ ] https://vstack-solution.com.br/robots.txt
+- [ ] https://vstack-solutions.com.br
+- [ ] https://vstack-solutions.com.br/contato
+- [ ] https://vstack-solutions.com.br/cotacao
+- [ ] https://vstack-solutions.com.br/solucoes
+- [ ] https://vstack-solutions.com.br/sobre
+- [ ] https://vstack-solutions.com.br/faq
+- [ ] https://vstack-solutions.com.br/envie-sua-dor
+- [ ] https://vstack-solutions.com.br/sitemap.xml
+- [ ] https://vstack-solutions.com.br/robots.txt
 
 ### Testar Funcionalidades:
 - [ ] Formulário de contato
@@ -132,7 +132,7 @@ Valor: cname.vercel-dns.com
 ### Google Search Console
 1. Adicionar propriedade: https://search.google.com/search-console
 2. Verificar domínio
-3. Enviar sitemap: `https://vstack-solution.com.br/sitemap.xml`
+3. Enviar sitemap: `https://vstack-solutions.com.br/sitemap.xml`
 4. Solicitar indexação das páginas principais
 
 ### Google Analytics (Opcional)

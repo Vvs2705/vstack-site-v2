@@ -87,7 +87,7 @@ Antes de fazer deploy, adicionar estas variáveis no Vercel:
 
 ```env
 # Obrigatórias para funcionar
-NEXT_PUBLIC_SITE_URL=https://vstack-solution.com.br
+NEXT_PUBLIC_SITE_URL=https://vstack-solutions.com.br
 
 # Banco de dados (criar depois)
 DATABASE_URL=postgresql://user:password@host:5432/db
@@ -101,7 +101,7 @@ OPENAI_API_KEY=sk-...
 
 # Email (criar depois)
 RESEND_API_KEY=re_...
-RESEND_FROM_EMAIL=contato@vstack-solution.com.br
+RESEND_FROM_EMAIL=contato@vstack-solutions.com.br
 
 # Admin (gerar secret seguro)
 ADMIN_JWT_SECRET=seu_secret_aqui_minimo_32_caracteres
@@ -117,8 +117,8 @@ ADMIN_JWT_EXPIRES_IN=7d
 
 #### 3.1. No Vercel
 1. Ir em Settings > Domains
-2. Adicionar: `vstack-solution.com.br`
-3. Adicionar: `www.vstack-solution.com.br`
+2. Adicionar: `vstack-solutions.com.br`
+3. Adicionar: `www.vstack-solutions.com.br`
 4. Copiar registros DNS fornecidos
 
 #### 3.2. No Registro.br
@@ -160,7 +160,7 @@ TTL: 3600
 
 #### 4.3. Email - Resend
 1. Criar conta: https://resend.com
-2. Adicionar domínio: `vstack-solution.com.br`
+2. Adicionar domínio: `vstack-solutions.com.br`
 3. Configurar DNS (SPF, DKIM, DMARC)
 4. Criar API Key
 5. Adicionar no Vercel
@@ -178,7 +178,7 @@ TTL: 3600
 - [ ] Sem erros no console
 
 ### Após Configurar Domínio
-- [ ] Site acessível em: `https://vstack-solution.com.br`
+- [ ] Site acessível em: `https://vstack-solutions.com.br`
 - [ ] Redirect de www funciona
 - [ ] SSL ativo (cadeado verde)
 - [ ] Sitemap acessível: `/sitemap.xml`

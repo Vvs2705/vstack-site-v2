@@ -14,9 +14,10 @@ export default function Footer() {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent)] accent-glow">
                 <span className="font-display text-xl font-bold text-white">V</span>
               </div>
-              <span className="font-display text-lg font-bold gradient-text">
-                V Stack Solution
-              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="font-display text-lg font-bold text-white">V-STACK</span>
+                <span className="font-display text-lg font-semibold text-[var(--accent)]">SOLUTIONS</span>
+              </div>
             </div>
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
               Transformamos desafios empresariais em soluções tecnológicas inovadoras através de
@@ -24,7 +25,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="https://linkedin.com/company/vstack-solution"
+                href="https://linkedin.com/company/vstack-solutions"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
@@ -33,7 +34,7 @@ export default function Footer() {
                 <Linkedin className="h-4 w-4" />
               </a>
               <a
-                href="https://github.com/vstack-solution"
+                href="https://github.com/vstack-solutions"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
@@ -42,7 +43,7 @@ export default function Footer() {
                 <Github className="h-4 w-4" />
               </a>
               <a
-                href="https://instagram.com/vstacksolution"
+                href="https://instagram.com/vstacksolutions"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
@@ -160,10 +161,10 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-[var(--accent)] flex-shrink-0 mt-0.5" />
                 <a
-                  href="mailto:contato@vstack-solution.com.br"
+                  href="mailto:contato@vstack-solutions.com.br"
                   className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
                 >
-                  contato@vstack-solution.com.br
+                  contato@vstack-solutions.com.br
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -190,7 +191,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-[var(--border)]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-[var(--text-muted)] text-center md:text-left">
-              © {currentYear} V Stack Solution. Todos os direitos reservados.
+              © {currentYear} V-STACK SOLUTIONS. Todos os direitos reservados.
             </p>
             <div className="flex items-center gap-6">
               <Link

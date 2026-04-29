@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Dados inválidos', details: parsed.error.flatten() },
+        { error: 'Dados inválidos', details: parsed.error.issues },
         { status: 400 }
       )
     }
@@ -53,11 +53,11 @@ export async function POST(request: NextRequest) {
     await resend.emails.send({
       from:    process.env.RESEND_FROM_EMAIL!,
       to:      data.email,
-      subject: 'Recebemos seu contato — V Stack Solution',
+      subject: 'Recebemos seu contato — V-STACK SOLUTIONS',
       html: `
         <h2>Olá, ${data.name}!</h2>
         <p>Recebemos seu contato e retornaremos em até <strong>24 horas úteis</strong>.</p>
-        <p>Equipe V Stack Solution</p>
+        <p>Equipe V-STACK SOLUTIONS</p>
       `,
     })
 

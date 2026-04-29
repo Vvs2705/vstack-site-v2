@@ -17,9 +17,10 @@ export default function Navbar() {
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent)] accent-glow transition-transform group-hover:scale-110">
               <span className="font-display text-xl font-bold text-white">V</span>
             </div>
-            <span className="font-display text-xl font-bold gradient-text hidden sm:block">
-              V Stack Solution
-            </span>
+            <div className="hidden sm:flex items-baseline gap-2">
+              <span className="font-display text-xl font-bold text-white">V-STACK</span>
+              <span className="font-display text-xl font-semibold text-[var(--accent)]">SOLUTIONS</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
