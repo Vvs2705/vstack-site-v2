@@ -43,7 +43,7 @@ export default function ChatWidget() {
         setMessages([
           {
             role: 'assistant',
-            content: 'Olá! Sou o assistente virtual da V Stack Solution. Como posso ajudá-lo hoje?',
+            content: 'Olá! Sou o assistente virtual da V-STACK SOLUTIONS. Como posso ajudá-lo hoje?',
             timestamp: new Date(),
           },
         ])
@@ -146,7 +146,7 @@ export default function ChatWidget() {
               </div>
               <div>
                 <h3 className="font-display text-base font-semibold text-white">
-                  V Stack Assistant
+                  V-STACK ASSISTANT
                 </h3>
                 <p className="text-xs text-white/80">Online agora</p>
               </div>

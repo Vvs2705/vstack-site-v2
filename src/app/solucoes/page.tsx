@@ -7,7 +7,7 @@ import CookieBanner from '@/components/CookieBanner'
 import { Zap, Brain, Link as LinkIcon, Code, ArrowRight, CheckCircle, DollarSign } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Soluções | V Stack Solution',
+  title: 'Soluções | V-STACK SOLUTIONS',
   description: 'Conheça nossas soluções em automação, IA, integração de sistemas e desenvolvimento SaaS. Transforme seu negócio com tecnologia.',
 }
 

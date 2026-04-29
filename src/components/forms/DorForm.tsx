@@ -52,7 +52,7 @@ export default function DorForm() {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {}
-        error.errors.forEach((err) => {
+        error.issues.forEach((err) => {
           if (err.path[0]) {
             fieldErrors[err.path[0] as string] = err.message
           }
@@ -342,7 +342,7 @@ export default function DorForm() {
       </button>
 
       <p className="text-xs text-center text-[var(--text-muted)]">
-        Ao enviar, você concorda que a V Stack Solution pode entrar em contato para discutir soluções.
+        Ao enviar, você concorda que a V-STACK SOLUTIONS pode entrar em contato para discutir soluções.
       </p>
     </form>
   )

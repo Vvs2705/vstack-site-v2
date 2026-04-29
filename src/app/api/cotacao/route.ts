@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Dados inválidos', details: parsed.error.flatten() },
+        { error: 'Dados inválidos', details: parsed.error.issues },
         { status: 400 }
       )
     }

@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  /* ─── Paleta Oficial V Stack ──────────────────────────────── */
+  /* ─── Paleta Oficial V-STACK ──────────────────────────────── */
   --bg-primary:       #1E2535;
   --bg-card:          #252D3D;
   --bg-deep:          #1A2030;
@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-track { background: var(--bg-deep); }
 ::-webkit-scrollbar-thumb { background: var(--steel-mid); border-radius: 3px; }
 
-/* ─── Utilitários V Stack ───────────────────────────────────── */
+/* ─── Utilitários V-STACK ───────────────────────────────────── */
 @layer utilities {
   .text-accent    { color: var(--accent); }
   .bg-card        { background-color: var(--bg-card); }

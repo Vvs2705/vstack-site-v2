@@ -20,13 +20,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://vstack-solution.com.br";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://vstack-solutions.com.br";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "V Stack Solution - Transformação Digital com IA e Automação",
-    template: "%s | V Stack Solution",
+    default: "V-STACK SOLUTIONS - Transformação Digital com IA e Automação",
+    template: "%s | V-STACK SOLUTIONS",
   },
   description:
     "Especialistas em desenvolvimento de software, automação inteligente, integração de sistemas e soluções SaaS. Transforme seu negócio com tecnologia de ponta e inteligência artificial.",
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     "RPA",
     "ContaFlow",
   ],
-  authors: [{ name: "V Stack Solution" }],
-  creator: "V Stack Solution",
-  publisher: "V Stack Solution",
+  authors: [{ name: "V-STACK SOLUTIONS" }],
+  creator: "V-STACK SOLUTIONS",
+  publisher: "V-STACK SOLUTIONS",
   formatDetection: {
     email: false,
     address: false,
@@ -55,8 +55,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: siteUrl,
-    siteName: "V Stack Solution",
-    title: "V Stack Solution - Transformação Digital com IA e Automação",
+    siteName: "V-STACK SOLUTIONS",
+    title: "V-STACK SOLUTIONS - Transformação Digital com IA e Automação",
     description:
       "Especialistas em desenvolvimento de software, automação inteligente, integração de sistemas e soluções SaaS.",
     images: [
@@ -64,13 +64,13 @@ export const metadata: Metadata = {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "V Stack Solution",
+        alt: "V-STACK SOLUTIONS",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "V Stack Solution - Transformação Digital com IA e Automação",
+    title: "V-STACK SOLUTIONS - Transformação Digital com IA e Automação",
     description:
       "Especialistas em desenvolvimento de software, automação inteligente, integração de sistemas e soluções SaaS.",
     images: [`${siteUrl}/og-image.png`],

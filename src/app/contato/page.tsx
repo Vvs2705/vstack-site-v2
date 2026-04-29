@@ -7,8 +7,8 @@ import ContatoForm from '@/components/forms/ContatoForm'
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Contato | V Stack Solution',
-  description: 'Entre em contato com a V Stack Solution. Estamos prontos para transformar seus desafios em soluções tecnológicas inovadoras.',
+  title: 'Contato | V-STACK SOLUTIONS',
+  description: 'Entre em contato com a V-STACK SOLUTIONS. Estamos prontos para transformar seus desafios em soluções tecnológicas inovadoras.',
 }
 
 export default function ContatoPage() {
@@ -56,10 +56,10 @@ export default function ContatoPage() {
                         Email
                       </h3>
                       <a
-                        href="mailto:contato@vstack-solution.com.br"
+                        href="mailto:contato@vstack-solutions.com.br"
                         className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
                       >
-                        contato@vstack-solution.com.br
+                        contato@vstack-solutions.com.br
                       </a>
                     </div>
                   </div>

@@ -7,7 +7,7 @@ import DorForm from '@/components/forms/DorForm'
 import { AlertCircle, Lightbulb, Target, TrendingUp } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Envie Sua Dor | V Stack Solution',
+  title: 'Envie Sua Dor | V-STACK SOLUTIONS',
   description: 'Compartilhe os desafios da sua empresa. Vamos analisar e propor soluções personalizadas para resolver seus problemas.',
 }
 
