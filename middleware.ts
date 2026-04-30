@@ -102,5 +102,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/api/:path*', '/admin/:path*'],
+  matcher: [
+    // Incluir rotas API e admin, mas excluir rotas do Builder.io
+    '/api/((?!enable-draft|disable-draft).*)',
+    '/admin/:path*'
+  ],
 }
