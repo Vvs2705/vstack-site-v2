@@ -40,6 +40,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# sensitive config files with credentials (never commit)
+CONFIGURACAO_VERCEL_FINAL.md
+VARIAVEIS_VERCEL.md
+COMMIT_E_PUSH.bat
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

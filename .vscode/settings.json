@@ -1,0 +1,5 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        ".\\SETUP_GIT_E_PUSH.bat": true
+    }
+}
