@@ -1,7 +1,12 @@
+import { LucideIcon } from 'lucide-react'
+import { Zap, Bot, Link2, Package } from 'lucide-react'
+import FeatureCard from '@/components/ui/FeatureCard'
+
 interface PillarItem {
-  icon: string
+  icon: LucideIcon
   title: string
   description: string
+  color: 'orange' | 'blue' | 'green' | 'purple'
 }
 
 interface PillarsSectionProps {
@@ -12,24 +17,28 @@ interface PillarsSectionProps {
 
 const DEFAULT_PILLARS: PillarItem[] = [
   {
-    icon: '⚡',
+    icon: Zap,
     title: 'Automação de Processos',
     description: 'Eliminamos trabalho repetitivo com fluxos inteligentes integrados ao seu stack atual.',
+    color: 'orange',
   },
   {
-    icon: '🤖',
+    icon: Bot,
     title: 'Inteligência Artificial',
     description: 'Agentes autônomos e LLMs aplicados a problemas reais de negócio com resultados mensuráveis.',
+    color: 'blue',
   },
   {
-    icon: '🔗',
+    icon: Link2,
     title: 'Integrações Enterprise',
     description: 'Conectamos ERPs, APIs financeiras e plataformas de comunicação sem atrito.',
+    color: 'green',
   },
   {
-    icon: '📦',
+    icon: Package,
     title: 'Produtos SaaS',
     description: 'Desenvolvemos produtos digitais do zero ao product-market fit com entregas ágeis.',
+    color: 'purple',
   },
 ]
 
@@ -49,34 +58,15 @@ export default function PillarsSection({
           </h2>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((pillar) => (
-            <div
+            <FeatureCard
               key={pillar.title}
-              className="group relative overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6 transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-1"
-              style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
-            >
-              {/* Gradient top on hover */}
-              <div
-                className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' }}
-              />
-              {/* Subtle hover glow */}
-              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                   style={{ background: 'radial-gradient(circle at 50% 0%, rgba(240,112,40,0.05), transparent 60%)' }} />
-
-              <div className="relative">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-muted)] border border-[var(--accent-border)] text-lg">
-                  {pillar.icon}
-                </div>
-                <h3 className="font-display text-sm font-bold text-[var(--text-1)] mb-2 leading-snug">
-                  {pillar.title}
-                </h3>
-                <p className="text-[13px] text-[var(--text-2)] leading-relaxed">
-                  {pillar.description}
-                </p>
-              </div>
-            </div>
+              icon={pillar.icon}
+              title={pillar.title}
+              description={pillar.description}
+              color={pillar.color}
+            />
           ))}
         </div>
       </div>
