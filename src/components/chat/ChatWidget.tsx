@@ -24,16 +24,6 @@ export default function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages])
-
-  useEffect(() => {
-    if (isOpen && !sessionToken) {
-      initSession()
-    }
-  }, [isOpen])
-
   const initSession = async () => {
     try {
       const res = await fetch('/api/chat', { method: 'GET' })
@@ -52,6 +42,16 @@ export default function ChatWidget() {
       console.error('Erro ao iniciar sessão:', error)
     }
   }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
+
+  useEffect(() => {
+    if (isOpen && !sessionToken) {
+      initSession()
+    }
+  }, [isOpen, sessionToken])
 
   const handleNameSubmit = (e: React.FormEvent) => {
     e.preventDefault()
