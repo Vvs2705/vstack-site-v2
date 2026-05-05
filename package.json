@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:builder": "concurrently \"next dev --port 3000\" \"npx ngrok http 3000\"",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "postbuild": "next-sitemap",
