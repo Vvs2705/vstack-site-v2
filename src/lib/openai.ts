@@ -1,7 +1,16 @@
 import OpenAI from 'openai'
 
-export const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
+let openaiInstance: OpenAI | undefined
+
+export const openai = new Proxy({} as OpenAI, {
+  get: (target, prop) => {
+    if (!openaiInstance) {
+      openaiInstance = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY!,
+      })
+    }
+    return (openaiInstance as any)[prop]
+  },
 })
 
 export const VSTACK_SYSTEM_PROMPT = `Você é o assistente virtual da V-STACK SOLUTIONS, uma consultoria especializada em automação inteligente, desenvolvimento de sistemas e produtos SaaS.
