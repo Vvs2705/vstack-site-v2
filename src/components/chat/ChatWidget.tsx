@@ -24,32 +24,38 @@ export default function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const initSession = async () => {
-    try {
-      const res = await fetch('/api/chat', { method: 'GET' })
-      const data = await res.json()
-      if (data.sessionToken) {
-        setSessionToken(data.sessionToken)
-        setMessages([
-          {
-            role: 'assistant',
-            content: 'Olá! Sou o assistente virtual da V-STACK SOLUTIONS. Como posso ajudá-lo hoje?',
-            timestamp: new Date(),
-          },
-        ])
-      }
-    } catch (error) {
-      console.error('Erro ao iniciar sessão:', error)
-    }
-  }
-
   useEffect(() => {
     scrollToBottom()
   }, [messages])
 
   useEffect(() => {
+    let isMounted = true
+    
+    const initializeSession = async () => {
+      try {
+        const res = await fetch('/api/chat', { method: 'GET' })
+        const data = await res.json()
+        if (isMounted && data.sessionToken) {
+          setSessionToken(data.sessionToken)
+          setMessages([
+            {
+              role: 'assistant',
+              content: 'Olá! Sou o assistente virtual da V-STACK SOLUTIONS. Como posso ajudá-lo hoje?',
+              timestamp: new Date(),
+            },
+          ])
+        }
+      } catch (error) {
+        console.error('Erro ao iniciar sessão:', error)
+      }
+    }
+
     if (isOpen && !sessionToken) {
-      initSession()
+      initializeSession()
+    }
+
+    return () => {
+      isMounted = false
     }
   }, [isOpen, sessionToken])
 
