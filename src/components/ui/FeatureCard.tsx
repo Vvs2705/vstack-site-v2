@@ -1,5 +1,6 @@
 import React from 'react'
 import { LucideIcon } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
 
 interface FeatureCardProps {
   icon: LucideIcon
@@ -24,15 +25,12 @@ export default function FeatureCard({
   const colors = colorMap[color]
 
   return (
-    <div
-      className={`group relative overflow-hidden rounded-xl border ${colors.border} ${colors.bg} p-6 transition-all duration-300 hover:border-[var(--border-hover)]`}
-    >
+    <Card className={`group relative overflow-hidden ${colors.border} ${colors.bg} transition-all duration-300 hover:border-[var(--border-hover)] hover:shadow-lg`}>
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{ background: `radial-gradient(circle at 50% 0%, ${colors.icon}10, transparent 60%)` }}
       />
-
-      <div className="relative">
+      <CardContent className="relative p-6">
         <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg ${colors.bg} border ${colors.border}`}>
           <Icon className={`h-6 w-6 ${colors.icon}`} />
         </div>
@@ -43,7 +41,7 @@ export default function FeatureCard({
         <p className="text-sm leading-relaxed text-[var(--text-2)]">
           {description}
         </p>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }

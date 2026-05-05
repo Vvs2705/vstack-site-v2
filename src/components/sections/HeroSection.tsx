@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import { ArrowRight, Zap, TrendingUp, Clock } from 'lucide-react'
+import { ArrowRight, Zap, TrendingUp, Clock, Sparkles } from 'lucide-react'
 import StatCard from '@/components/ui/StatCard'
+import { Button } from '@/components/ui/button'
 
 interface HeroSectionProps {
   badge?: string
@@ -75,24 +76,30 @@ export default function HeroSection({
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Link href={ctaPrimaryHref} className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold">
-                {ctaPrimaryLabel}
-                <ArrowRight className="h-4 w-4" />
+              <Link href={ctaPrimaryHref}>
+                <Button size="lg" className="gap-2 bg-gradient-to-r from-[var(--accent)] to-orange-600 hover:from-orange-600 hover:to-[var(--accent)] shadow-lg hover:shadow-xl transition-all duration-300">
+                  {ctaPrimaryLabel}
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
               </Link>
-              <Link href={ctaSecondaryHref} className="btn-secondary inline-flex items-center justify-center px-6 py-3 text-sm font-semibold">
-                {ctaSecondaryLabel}
+              <Link href={ctaSecondaryHref}>
+                <Button size="lg" variant="outline" className="border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)]/10">
+                  {ctaSecondaryLabel}
+                </Button>
               </Link>
             </div>
           </div>
 
           {/* Right — product card */}
-          <div className="relative">
-            {/* Glow behind card */}
-            <div className="pointer-events-none absolute inset-0 rounded-2xl"
-                 style={{ boxShadow: '0 0 80px rgba(240,112,40,0.12)' }} />
+          <div className="relative group">
+            {/* Multiple glow layers for depth */}
+            <div className="pointer-events-none absolute inset-0 rounded-2xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity"
+                 style={{ boxShadow: '0 0 60px rgba(240,112,40,0.25)' }} />
+            <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-50"
+                 style={{ boxShadow: '0 0 40px rgba(99,102,241,0.15)' }} />
 
-            <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6"
-                 style={{ boxShadow: '0 40px 120px rgba(240,112,40,0.15)' }}>
+            <div className="relative rounded-2xl border border-[var(--accent)]/30 bg-gradient-to-br from-[var(--bg-card)] to-[var(--bg-deep)] p-6 backdrop-blur-sm group-hover:border-[var(--accent)]/60 transition-all duration-500"
+                 style={{ boxShadow: '0 40px 120px rgba(240,112,40,0.2), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
               {/* Gradient top line */}
               <div className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl"
                    style={{ background: 'linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%)' }} />
