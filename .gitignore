@@ -50,3 +50,4 @@ COMMIT_E_PUSH.bat
 next-env.d.ts
 
 .vercel
+VERCEL_ENV_IMPORT.env
