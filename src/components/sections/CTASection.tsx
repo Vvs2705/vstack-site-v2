@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 interface CTASectionProps {
   headline?:           string
@@ -43,18 +44,16 @@ export default function CTASection({
           {description}
         </p>
         <div className="flex flex-col gap-3 sm:flex-row items-center justify-center">
-          <Link
-            href={ctaPrimaryHref}
-            className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold"
-          >
-            {ctaPrimaryLabel}
-            <ArrowRight className="h-4 w-4" />
+          <Link href={ctaPrimaryHref}>
+            <Button size="lg" className="gap-2 bg-gradient-to-r from-[var(--accent)] to-orange-600 hover:from-orange-600 hover:to-[var(--accent)] shadow-lg hover:shadow-xl transition-all duration-300">
+              {ctaPrimaryLabel}
+              <ArrowRight className="h-4 w-4" />
+            </Button>
           </Link>
-          <Link
-            href={ctaSecondaryHref}
-            className="btn-secondary inline-flex items-center px-7 py-3.5 text-sm font-semibold"
-          >
-            {ctaSecondaryLabel}
+          <Link href={ctaSecondaryHref}>
+            <Button size="lg" variant="outline" className="border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)]/10">
+              {ctaSecondaryLabel}
+            </Button>
           </Link>
         </div>
       </div>

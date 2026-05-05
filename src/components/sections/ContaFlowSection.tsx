@@ -1,4 +1,5 @@
 import { TrendingUp, TrendingDown } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
 import MetricBox from '@/components/ui/MetricBox'
 import MiniLineChart from '@/components/charts/MiniLineChart'
 import ProgressBar from '@/components/ui/ProgressBar'
@@ -67,70 +68,80 @@ export default function ContaFlowSection({
         </div>
 
         {/* Right — dashboard card */}
-        <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6"
-             style={{ boxShadow: '0 24px 60px rgba(0,0,0,0.10)' }}>
-          {/* Gradient top line */}
-          <div className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl"
-               style={{ background: 'linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%)' }} />
+        <div className="relative group">
+          {/* Multiple glow layers for depth */}
+          <div className="pointer-events-none absolute inset-0 rounded-2xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity"
+               style={{ boxShadow: '0 0 60px rgba(240,112,40,0.25)' }} />
+          <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-50"
+               style={{ boxShadow: '0 0 40px rgba(99,102,241,0.15)' }} />
 
-          {/* Status header */}
-          <div className="mb-6 flex items-center justify-between border-b border-[var(--border)] pb-4">
-            <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-xs text-[var(--text-3)] font-medium">
-                ContaFlow · Dashboard · Atualizado há 2 min
-              </span>
-            </div>
-          </div>
+          <Card className="relative border-[var(--border)] bg-gradient-to-br from-[var(--bg-card)] to-[var(--bg-deep)] group-hover:border-[var(--accent)]/60 transition-all duration-500 backdrop-blur-sm"
+                style={{ boxShadow: '0 40px 120px rgba(240,112,40,0.2), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
+            {/* Gradient top line */}
+            <div className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl"
+                 style={{ background: 'linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%)' }} />
 
-          {/* KPI Grid 2x2 */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <MetricBox
-              label="Entradas"
-              value={`R$ ${dashboardData.entradas.toLocaleString('pt-BR')}`}
-              icon={TrendingUp}
-              trend={{ direction: 'up', value: '+12%' }}
-              accent={false}
-            />
-            <MetricBox
-              label="Saídas"
-              value={`R$ ${dashboardData.saidas.toLocaleString('pt-BR')}`}
-              icon={TrendingDown}
-              trend={{ direction: 'down', value: '-5%' }}
-              accent={false}
-            />
-          </div>
+            <CardContent className="p-6">
+              {/* Status header */}
+              <div className="mb-6 flex items-center justify-between border-b border-[var(--border)] pb-4">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+                  <span className="text-xs text-[var(--text-3)] font-medium">
+                    ContaFlow · Dashboard · Atualizado há 2 min
+                  </span>
+                </div>
+              </div>
 
-          {/* Mini Chart */}
-          <div className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
-            <p className="text-xs text-[var(--text-3)] mb-3 uppercase tracking-widest">
-              Fluxo últimos 12 meses
-            </p>
-            <MiniLineChart data={dashboardData.chartData} />
-          </div>
+              {/* KPI Grid 2x2 */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <MetricBox
+                  label="Entradas"
+                  value={`R$ ${dashboardData.entradas.toLocaleString('pt-BR')}`}
+                  icon={TrendingUp}
+                  trend={{ direction: 'up', value: '+12%' }}
+                  accent={false}
+                />
+                <MetricBox
+                  label="Saídas"
+                  value={`R$ ${dashboardData.saidas.toLocaleString('pt-BR')}`}
+                  icon={TrendingDown}
+                  trend={{ direction: 'down', value: '-5%' }}
+                  accent={false}
+                />
+              </div>
 
-          {/* Progress */}
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-4 mb-4">
-            <ProgressBar
-              value={dashboardData.conciliacao}
-              max={250}
-              label="Conciliação automática"
-              showPercentage={false}
-              color="accent"
-            />
-          </div>
+              {/* Mini Chart */}
+              <div className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
+                <p className="text-xs text-[var(--text-3)] mb-3 uppercase tracking-widest">
+                  Fluxo últimos 12 meses
+                </p>
+                <MiniLineChart data={dashboardData.chartData} />
+              </div>
 
-          {/* Saldo destacado */}
-          <div className="rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] p-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-[var(--accent)] font-semibold uppercase tracking-wider">
-                Saldo Líquido
-              </span>
-              <span className="font-display text-2xl font-bold text-[var(--text-1)]">
-                R$ {dashboardData.saldo.toLocaleString('pt-BR')}
-              </span>
-            </div>
-          </div>
+              {/* Progress */}
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-4 mb-4">
+                <ProgressBar
+                  value={dashboardData.conciliacao}
+                  max={250}
+                  label="Conciliação automática"
+                  showPercentage={false}
+                  color="accent"
+                />
+              </div>
+
+              {/* Saldo destacado */}
+              <div className="rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] p-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-[var(--accent)] font-semibold uppercase tracking-wider">
+                    Saldo Líquido
+                  </span>
+                  <span className="font-display text-2xl font-bold text-[var(--text-1)]">
+                    R$ {dashboardData.saldo.toLocaleString('pt-BR')}
+                  </span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
