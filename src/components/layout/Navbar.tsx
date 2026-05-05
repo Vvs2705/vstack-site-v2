@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Menu, X, Sun, Moon } from 'lucide-react'
@@ -14,10 +14,8 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [mounted] = useState(true)
   const { theme, setTheme } = useTheme()
-
-  useEffect(() => { setMounted(true) }, [])
 
   const isDark = theme === 'dark'
 
