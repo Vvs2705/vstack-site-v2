@@ -27,13 +27,12 @@ const securityHeaders = [
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://cdn.builder.io",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.builder.io",
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: https: blob: https://cdn.builder.io https://*.builder.io",
-      "connect-src 'self' https://api.openai.com https://vitals.vercel-insights.com https://cdn.builder.io https://*.builder.io",
-      // Permitir que Builder.io carregue o site em iframe
-      "frame-ancestors 'self' https://*.builder.io https://builder.io https://preview.builder.codes",
+      "img-src 'self' data: https: blob:",
+      "connect-src 'self' https://api.openai.com https://vitals.vercel-insights.com",
+      "frame-ancestors 'self'",
     ].join('; '),
   },
 ]
