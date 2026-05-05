@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { ArrowRight, Zap } from 'lucide-react'
+import { ArrowRight, Zap, TrendingUp, Clock } from 'lucide-react'
+import StatCard from '@/components/ui/StatCard'
 
 interface HeroSectionProps {
   badge?: string
@@ -16,9 +17,9 @@ const BAR_HEIGHTS = ['40%', '65%', '40%', '100%', '65%', '100%', '65%', '25%', '
 const BAR_ACTIVE  = [false, false, false, true, true, true, true, false, false, true, true, true]
 
 const STATS = [
-  { value: '98%', label: 'precisão' },
-  { value: '-72h', label: 'fechamento' },
-  { value: '3×', label: 'produtividade' },
+  { value: '98', label: 'precisão', icon: Zap, trend: { direction: 'up' as const, value: '+5%' } },
+  { value: '-72h', label: 'fechamento', icon: Clock },
+  { value: '3×', label: 'produtividade', icon: TrendingUp, trend: { direction: 'up' as const, value: '+15%' } },
 ]
 
 export default function HeroSection({
@@ -60,12 +61,16 @@ export default function HeroSection({
             </p>
 
             {/* Stats */}
-            <div className="flex items-center gap-6">
+            <div className="grid grid-cols-3 gap-4 mb-8">
               {STATS.map((s) => (
-                <div key={s.label}>
-                  <p className="font-display text-2xl font-bold text-[var(--text-1)]">{s.value}</p>
-                  <p className="text-[11px] text-[var(--text-3)] uppercase tracking-wider">{s.label}</p>
-                </div>
+                <StatCard
+                  key={s.label}
+                  value={s.value}
+                  label={s.label}
+                  icon={s.icon}
+                  trend={s.trend}
+                  size="md"
+                />
               ))}
             </div>
 
@@ -87,7 +92,7 @@ export default function HeroSection({
                  style={{ boxShadow: '0 0 80px rgba(240,112,40,0.12)' }} />
 
             <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6"
-                 style={{ boxShadow: 'var(--shadow)' }}>
+                 style={{ boxShadow: '0 40px 120px rgba(240,112,40,0.15)' }}>
               {/* Gradient top line */}
               <div className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl"
                    style={{ background: 'linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%)' }} />
@@ -120,11 +125,11 @@ export default function HeroSection({
               </div>
 
               {/* Bar chart */}
-              <div className="flex items-end gap-1 h-12 mb-5">
+              <div className="flex items-end gap-1 h-12 mb-5 group cursor-pointer">
                 {BAR_HEIGHTS.map((h, i) => (
                   <div
                     key={i}
-                    className="flex-1 rounded-t-sm transition-all duration-300"
+                    className="flex-1 rounded-t-sm transition-all duration-300 group-hover:opacity-75 hover:!opacity-100"
                     style={{
                       height: h,
                       background: BAR_ACTIVE[i]

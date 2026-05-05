@@ -1,3 +1,8 @@
+import { TrendingUp, TrendingDown } from 'lucide-react'
+import MetricBox from '@/components/ui/MetricBox'
+import MiniLineChart from '@/components/charts/MiniLineChart'
+import ProgressBar from '@/components/ui/ProgressBar'
+
 interface ContaFlowSectionProps {
   eyebrow?: string
   badge?: string
@@ -8,6 +13,14 @@ interface ContaFlowSectionProps {
 
 const DEFAULT_FEATURES = 'Conciliação bancária automática,Integração com Open Banking BR,Relatórios e dashboards em tempo real,Alertas inteligentes e anomalias'
 
+const DEFAULT_DASHBOARD_DATA = {
+  entradas: 84200,
+  saidas: 31450,
+  conciliacao: 247,
+  saldo: 52750,
+  chartData: [45, 52, 38, 65, 48, 72, 58, 81, 64, 75, 82, 78],
+}
+
 export default function ContaFlowSection({
   eyebrow     = 'ContaFlow',
   badge       = 'ACESSO ANTECIPADO',
@@ -16,6 +29,7 @@ export default function ContaFlowSection({
   features    = DEFAULT_FEATURES,
 }: ContaFlowSectionProps) {
   const featureList = features.split(',').map((f) => f.trim()).filter(Boolean)
+  const dashboardData = DEFAULT_DASHBOARD_DATA
 
   return (
     <section className="py-16 sm:py-20 border-y border-[var(--border)] bg-[var(--bg-deep)]">
@@ -54,47 +68,67 @@ export default function ContaFlowSection({
 
         {/* Right — dashboard card */}
         <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-6"
-             style={{ boxShadow: 'var(--shadow-sm)' }}>
+             style={{ boxShadow: '0 24px 60px rgba(0,0,0,0.10)' }}>
           {/* Gradient top line */}
           <div className="absolute inset-x-0 top-0 h-[2px] rounded-t-2xl"
                style={{ background: 'linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%)' }} />
 
-          <div className="mb-5 flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-xs text-[var(--text-3)] font-medium">ContaFlow · Dashboard</span>
-          </div>
-
-          {/* KPI row */}
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
-              <span className="block text-[10px] uppercase tracking-widest text-[var(--text-3)] mb-1.5">Entradas</span>
-              <span className="font-display text-xl font-bold text-green-400">R$ 84.200</span>
-            </div>
-            <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
-              <span className="block text-[10px] uppercase tracking-widest text-[var(--text-3)] mb-1.5">Saídas</span>
-              <span className="font-display text-xl font-bold text-[var(--accent)]">R$ 31.450</span>
+          {/* Status header */}
+          <div className="mb-6 flex items-center justify-between border-b border-[var(--border)] pb-4">
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-xs text-[var(--text-3)] font-medium">
+                ContaFlow · Dashboard · Atualizado há 2 min
+              </span>
             </div>
           </div>
 
-          {/* Conciliação progress */}
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-4 mb-3">
-            <div className="mb-2.5 flex items-center justify-between text-xs text-[var(--text-3)]">
-              <span>Conciliação automática</span>
-              <span className="text-green-400 font-semibold">247/250 itens</span>
-            </div>
-            <div className="h-1.5 overflow-hidden rounded-full bg-[var(--border)]">
-              <div
-                className="h-full rounded-full"
-                style={{ width: '98.8%', background: 'linear-gradient(90deg, var(--accent), var(--accent-light))' }}
-              />
-            </div>
+          {/* KPI Grid 2x2 */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <MetricBox
+              label="Entradas"
+              value={`R$ ${dashboardData.entradas.toLocaleString('pt-BR')}`}
+              icon={TrendingUp}
+              trend={{ direction: 'up', value: '+12%' }}
+              accent={false}
+            />
+            <MetricBox
+              label="Saídas"
+              value={`R$ ${dashboardData.saidas.toLocaleString('pt-BR')}`}
+              icon={TrendingDown}
+              trend={{ direction: 'down', value: '-5%' }}
+              accent={false}
+            />
           </div>
 
-          {/* Saldo */}
+          {/* Mini Chart */}
+          <div className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
+            <p className="text-xs text-[var(--text-3)] mb-3 uppercase tracking-widest">
+              Fluxo últimos 12 meses
+            </p>
+            <MiniLineChart data={dashboardData.chartData} />
+          </div>
+
+          {/* Progress */}
+          <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-4 mb-4">
+            <ProgressBar
+              value={dashboardData.conciliacao}
+              max={250}
+              label="Conciliação automática"
+              showPercentage={false}
+              color="accent"
+            />
+          </div>
+
+          {/* Saldo destacado */}
           <div className="rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] p-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-[var(--accent)] font-semibold uppercase tracking-wider">Saldo Líquido</span>
-              <span className="font-display text-xl font-bold text-[var(--text-1)]">R$ 52.750</span>
+              <span className="text-xs text-[var(--accent)] font-semibold uppercase tracking-wider">
+                Saldo Líquido
+              </span>
+              <span className="font-display text-2xl font-bold text-[var(--text-1)]">
+                R$ {dashboardData.saldo.toLocaleString('pt-BR')}
+              </span>
             </div>
           </div>
         </div>
