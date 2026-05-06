@@ -1,0 +1,154 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="concilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3460;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a472a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#concilGrad)"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1920" height="80" fill="#16213e" stroke="#00ff88" stroke-width="2"/>
+  <text x="50" y="50" font-size="32" font-weight="bold" fill="#00ff88" font-family="Arial">Conciliação Automática de Contas</text>
+
+  <!-- Account selector -->
+  <rect x="50" y="100" width="400" height="50" fill="rgba(0, 255, 136, 0.1)" rx="4" stroke="#00ff88" stroke-width="1"/>
+  <text x="70" y="135" font-size="14" fill="#ffffff" font-family="Arial">Conta: Banco Central - Corrente (12345-6)</text>
+
+  <rect x="480" y="100" width="150" height="50" fill="transparent" rx="4" stroke="#00d4ff" stroke-width="1"/>
+  <text x="555" y="135" font-size="14" fill="#00d4ff" text-anchor="middle" font-family="Arial">🔄 Sincronizar</text>
+
+  <!-- Summary cards -->
+  <g>
+    <rect x="50" y="170" width="280" height="120" fill="rgba(0, 255, 136, 0.1)" rx="8" stroke="#00ff88" stroke-width="2"/>
+    <text x="190" y="200" font-size="14" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">Saldo do Banco</text>
+    <text x="190" y="240" font-size="36" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">R$ 45.230</text>
+    <text x="190" y="265" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Última sincronização: agora</text>
+  </g>
+
+  <g>
+    <rect x="360" y="170" width="280" height="120" fill="rgba(0, 212, 255, 0.1)" rx="8" stroke="#00d4ff" stroke-width="2"/>
+    <text x="500" y="200" font-size="14" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">Saldo Contábil</text>
+    <text x="500" y="240" font-size="36" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">R$ 44.980</text>
+    <text x="500" y="265" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Atualizado automaticamente</text>
+  </g>
+
+  <g>
+    <rect x="670" y="170" width="280" height="120" fill="rgba(255, 149, 0, 0.1)" rx="8" stroke="#ff9500" stroke-width="2"/>
+    <text x="810" y="200" font-size="14" fill="#ff9500" text-anchor="middle" font-family="Arial" font-weight="bold">Diferença Identificada</text>
+    <text x="810" y="240" font-size="36" fill="#ff9500" text-anchor="middle" font-family="Arial" font-weight="bold">R$ 250</text>
+    <text x="810" y="265" font-size="11" fill="#ff9500" text-anchor="middle" font-family="Arial">Investigando discrepância</text>
+  </g>
+
+  <g>
+    <rect x="980" y="170" width="280" height="120" fill="rgba(0, 255, 136, 0.1)" rx="8" stroke="#00ff88" stroke-width="1"/>
+    <text x="1120" y="200" font-size="14" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">Taxa de Precisão</text>
+    <text x="1120" y="240" font-size="36" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">98.1%</text>
+    <text x="1120" y="265" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Acima da meta</text>
+  </g>
+
+  <!-- Main conciliation table -->
+  <rect x="50" y="320" width="1820" height="700" fill="rgba(0, 212, 255, 0.05)" rx="8" stroke="#00d4ff" stroke-width="1"/>
+
+  <!-- Table header -->
+  <rect x="50" y="320" width="1820" height="50" fill="rgba(0, 212, 255, 0.15)"/>
+  <text x="80" y="355" font-size="14" fill="#00d4ff" font-family="Arial" font-weight="bold">Data</text>
+  <text x="180" y="355" font-size="14" fill="#00d4ff" font-family="Arial" font-weight="bold">Descrição</text>
+  <text x="700" y="355" font-size="14" fill="#00d4ff" font-family="Arial" font-weight="bold">Valor Banco</text>
+  <text x="950" y="355" font-size="14" fill="#00d4ff" font-family="Arial" font-weight="bold">Valor Sistema</text>
+  <text x="1250" y="355" font-size="14" fill="#00d4ff" font-family="Arial" font-weight="bold">Status</text>
+  <text x="1650" y="355" font-size="14" fill="#00d4ff" font-family="Arial" font-weight="bold">Ação</text>
+
+  <!-- Row 1 - Matched -->
+  <line x1="50" y1="380" x2="1870" y2="380" stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+  <text x="80" y="410" font-size="13" fill="#ffffff" font-family="Arial">05/05/26</text>
+  <text x="180" y="410" font-size="13" fill="#ffffff" font-family="Arial">Depósito Automático</text>
+  <text x="700" y="410" font-size="13" fill="#00ff88" font-family="Arial" font-weight="bold">+ R$ 8.500</text>
+  <text x="950" y="410" font-size="13" fill="#00ff88" font-family="Arial" font-weight="bold">+ R$ 8.500</text>
+  <circle cx="1330" cy="410" r="5" fill="#00ff88"/>
+  <text x="1330" y="415" font-size="10" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">✓</text>
+  <rect x="1620" y="390" width="80" height="30" fill="#00ff88" rx="3" opacity="0.2"/>
+  <text x="1660" y="410" font-size="11" fill="#00ff88" text-anchor="middle" font-family="Arial">Confirmar</text>
+
+  <!-- Row 2 - Matched -->
+  <line x1="50" y1="430" x2="1870" y2="430" stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+  <text x="80" y="460" font-size="13" fill="#ffffff" font-family="Arial">04/05/26</text>
+  <text x="180" y="460" font-size="13" fill="#ffffff" font-family="Arial">Transferência Enviada</text>
+  <text x="700" y="460" font-size="13" fill="#ff9500" font-family="Arial">- R$ 3.100</text>
+  <text x="950" y="460" font-size="13" fill="#ff9500" font-family="Arial">- R$ 3.100</text>
+  <circle cx="1330" cy="460" r="5" fill="#00ff88"/>
+  <text x="1330" y="465" font-size="10" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">✓</text>
+  <rect x="1620" y="440" width="80" height="30" fill="#00ff88" rx="3" opacity="0.2"/>
+  <text x="1660" y="460" font-size="11" fill="#00ff88" text-anchor="middle" font-family="Arial">Confirmar</text>
+
+  <!-- Row 3 - Discrepancy -->
+  <line x1="50" y1="480" x2="1870" y2="480" stroke="#ff9500" stroke-width="0.5" opacity="0.4"/>
+  <rect x="50" y="480" width="1820" height="50" fill="rgba(255, 149, 0, 0.08)"/>
+  <text x="80" y="510" font-size="13" fill="#ffffff" font-family="Arial">03/05/26</text>
+  <text x="180" y="510" font-size="13" fill="#ffffff" font-family="Arial">Cheque Compensado</text>
+  <text x="700" y="510" font-size="13" fill="#ff9500" font-family="Arial" font-weight="bold">- R$ 5.200</text>
+  <text x="950" y="510" font-size="13" fill="#ff6b6b" font-family="Arial" font-weight="bold">- R$ 4.950</text>
+  <circle cx="1330" cy="510" r="5" fill="#ff9500"/>
+  <text x="1330" y="515" font-size="10" fill="#ff9500" text-anchor="middle" font-family="Arial">!</text>
+  <rect x="1620" y="490" width="80" height="30" fill="#ff9500" rx="3" opacity="0.2"/>
+  <text x="1660" y="510" font-size="11" fill="#ff9500" text-anchor="middle" font-family="Arial">Revisar</text>
+
+  <!-- Row 4 - Matched -->
+  <line x1="50" y1="530" x2="1870" y2="530" stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+  <text x="80" y="560" font-size="13" fill="#ffffff" font-family="Arial">02/05/26</text>
+  <text x="180" y="560" font-size="13" fill="#ffffff" font-family="Arial">Pagamento Fornecedor</text>
+  <text x="700" y="560" font-size="13" fill="#ff6b6b" font-family="Arial">- R$ 12.300</text>
+  <text x="950" y="560" font-size="13" fill="#ff6b6b" font-family="Arial">- R$ 12.300</text>
+  <circle cx="1330" cy="560" r="5" fill="#00ff88"/>
+  <text x="1330" y="565" font-size="10" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">✓</text>
+  <rect x="1620" y="540" width="80" height="30" fill="#00ff88" rx="3" opacity="0.2"/>
+  <text x="1660" y="560" font-size="11" fill="#00ff88" text-anchor="middle" font-family="Arial">Confirmar</text>
+
+  <!-- Row 5 - Pending -->
+  <line x1="50" y1="580" x2="1870" y2="580" stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+  <text x="80" y="610" font-size="13" fill="#ffffff" font-family="Arial">01/05/26</text>
+  <text x="180" y="610" font-size="13" fill="#ffffff" font-family="Arial">DOC em Processamento</text>
+  <text x="700" y="610" font-size="13" fill="#00d4ff" font-family="Arial">+ R$ 2.800</text>
+  <text x="950" y="610" font-size="13" fill="#cccccc" font-family="Arial" opacity="0.6">-</text>
+  <circle cx="1330" cy="610" r="5" fill="#00d4ff"/>
+  <text x="1330" y="615" font-size="10" fill="#00d4ff" text-anchor="middle" font-family="Arial">⏳</text>
+  <rect x="1620" y="590" width="80" height="30" fill="#00d4ff" rx="3" opacity="0.2"/>
+  <text x="1660" y="610" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Aguardando</text>
+
+  <!-- Row 6 - Matched -->
+  <line x1="50" y1="630" x2="1870" y2="630" stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+  <text x="80" y="660" font-size="13" fill="#ffffff" font-family="Arial">30/04/26</text>
+  <text x="180" y="660" font-size="13" fill="#ffffff" font-family="Arial">Desconto em Cheque</text>
+  <text x="700" y="660" font-size="13" fill="#ff9500" font-family="Arial">- R$ 450</text>
+  <text x="950" y="660" font-size="13" fill="#ff9500" font-family="Arial">- R$ 450</text>
+  <circle cx="1330" cy="660" r="5" fill="#00ff88"/>
+  <text x="1330" y="665" font-size="10" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">✓</text>
+  <rect x="1620" y="640" width="80" height="30" fill="#00ff88" rx="3" opacity="0.2"/>
+  <text x="1660" y="660" font-size="11" fill="#00ff88" text-anchor="middle" font-family="Arial">Confirmar</text>
+
+  <!-- Row 7 - Matched -->
+  <line x1="50" y1="680" x2="1870" y2="680" stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+  <text x="80" y="710" font-size="13" fill="#ffffff" font-family="Arial">28/04/26</text>
+  <text x="180" y="710" font-size="13" fill="#ffffff" font-family="Arial">TED Recebido</text>
+  <text x="700" y="710" font-size="13" fill="#00ff88" font-family="Arial">+ R$ 15.800</text>
+  <text x="950" y="710" font-size="13" fill="#00ff88" font-family="Arial">+ R$ 15.800</text>
+  <circle cx="1330" cy="710" r="5" fill="#00ff88"/>
+  <text x="1330" y="715" font-size="10" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">✓</text>
+  <rect x="1620" y="690" width="80" height="30" fill="#00ff88" rx="3" opacity="0.2"/>
+  <text x="1660" y="710" font-size="11" fill="#00ff88" text-anchor="middle" font-family="Arial">Confirmar</text>
+
+  <!-- Summary row -->
+  <rect x="50" y="740" width="1820" height="50" fill="rgba(0, 255, 136, 0.1)" stroke="#00ff88" stroke-width="1"/>
+  <text x="80" y="770" font-size="13" fill="#00ff88" font-family="Arial" font-weight="bold">Resumo: 6 de 7 transações reconciliadas (85.7%) • 1 discrepância em revisão</text>
+
+  <!-- Action buttons -->
+  <rect x="1250" y="820" width="140" height="45" fill="#00ff88" rx="4" opacity="0.2" stroke="#00ff88" stroke-width="1"/>
+  <text x="1320" y="850" font-size="13" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">✓ Confirmar Tudo</text>
+
+  <rect x="1420" y="820" width="140" height="45" fill="transparent" rx="4" stroke="#00d4ff" stroke-width="1"/>
+  <text x="1490" y="850" font-size="13" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">📋 Exportar</text>
+
+  <rect x="1590" y="820" width="140" height="45" fill="transparent" rx="4" stroke="#ff9500" stroke-width="1"/>
+  <text x="1660" y="850" font-size="13" fill="#ff9500" text-anchor="middle" font-family="Arial" font-weight="bold">🔄 Sincronizar</text>
+</svg>

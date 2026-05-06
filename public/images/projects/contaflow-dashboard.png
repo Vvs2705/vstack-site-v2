@@ -1,0 +1,112 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dashGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3460;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a472a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#dashGrad)"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1920" height="80" fill="#16213e" stroke="#00d4ff" stroke-width="2"/>
+  <text x="50" y="50" font-size="32" font-weight="bold" fill="#00d4ff" font-family="Arial">ContaFlow Dashboard</text>
+
+  <!-- Sidebar -->
+  <rect x="0" y="80" width="280" height="1000" fill="#1a1a2e" stroke="#00d4ff" stroke-width="1"/>
+  <text x="140" y="130" font-size="16" font-weight="bold" fill="#00d4ff" text-anchor="middle" font-family="Arial">Menu</text>
+
+  <!-- Main content area -->
+  <rect x="300" y="100" width="1600" height="950" fill="rgba(0, 212, 255, 0.05)" rx="8"/>
+
+  <!-- KPI Cards -->
+  <g>
+    <rect x="320" y="120" width="360" height="140" fill="#00d4ff" rx="8" opacity="0.1" stroke="#00d4ff" stroke-width="2"/>
+    <text x="500" y="155" font-size="18" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">Saldo Atual</text>
+    <text x="500" y="210" font-size="40" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">R$ 125.430</text>
+  </g>
+
+  <g>
+    <rect x="720" y="120" width="360" height="140" fill="#00ff88" rx="8" opacity="0.1" stroke="#00ff88" stroke-width="2"/>
+    <text x="900" y="155" font-size="18" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">Receitas (Mês)</text>
+    <text x="900" y="210" font-size="40" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">R$ 45.800</text>
+  </g>
+
+  <g>
+    <rect x="1120" y="120" width="360" height="140" fill="#ff9500" rx="8" opacity="0.1" stroke="#ff9500" stroke-width="2"/>
+    <text x="1300" y="155" font-size="18" fill="#ff9500" text-anchor="middle" font-family="Arial" font-weight="bold">Despesas (Mês)</text>
+    <text x="1300" y="210" font-size="40" fill="#ff9500" text-anchor="middle" font-family="Arial" font-weight="bold">R$ 28.200</text>
+  </g>
+
+  <g>
+    <rect x="1520" y="120" width="360" height="140" fill="#ff6b6b" rx="8" opacity="0.1" stroke="#ff6b6b" stroke-width="2"/>
+    <text x="1700" y="155" font-size="18" fill="#ff6b6b" text-anchor="middle" font-family="Arial" font-weight="bold">Pendentes</text>
+    <text x="1700" y="210" font-size="40" fill="#ff6b6b" text-anchor="middle" font-family="Arial" font-weight="bold">12 itens</text>
+  </g>
+
+  <!-- Charts -->
+  <g>
+    <rect x="320" y="290" width="850" height="400" fill="rgba(0, 212, 255, 0.05)" rx="8" stroke="#00d4ff" stroke-width="1"/>
+    <text x="795" y="315" font-size="16" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">Fluxo de Caixa - Últimos 12 Meses</text>
+
+    <!-- Chart bars -->
+    <rect x="360" y="560" width="35" height="100" fill="#00d4ff" rx="2"/>
+    <rect x="410" y="540" width="35" height="120" fill="#00ff88" rx="2"/>
+    <rect x="460" y="520" width="35" height="140" fill="#00d4ff" rx="2"/>
+    <rect x="510" y="550" width="35" height="110" fill="#00ff88" rx="2"/>
+    <rect x="560" y="530" width="35" height="130" fill="#00d4ff" rx="2"/>
+    <rect x="610" y="510" width="35" height="150" fill="#00ff88" rx="2"/>
+    <rect x="660" y="540" width="35" height="120" fill="#00d4ff" rx="2"/>
+    <rect x="710" y="520" width="35" height="140" fill="#00ff88" rx="2"/>
+    <rect x="760" y="550" width="35" height="110" fill="#00d4ff" rx="2"/>
+    <rect x="810" y="530" width="35" height="130" fill="#00ff88" rx="2"/>
+    <rect x="860" y="510" width="35" height="150" fill="#00d4ff" rx="2"/>
+    <rect x="910" y="540" width="35" height="120" fill="#00ff88" rx="2"/>
+  </g>
+
+  <!-- Recent transactions table -->
+  <g>
+    <rect x="1200" y="290" width="680" height="400" fill="rgba(0, 212, 255, 0.05)" rx="8" stroke="#00d4ff" stroke-width="1"/>
+    <text x="1540" y="315" font-size="16" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">Transações Recentes</text>
+
+    <!-- Table header -->
+    <rect x="1200" y="330" width="680" height="40" fill="rgba(0, 212, 255, 0.1)"/>
+    <text x="1220" y="360" font-size="14" fill="#00d4ff" font-family="Arial" font-weight="bold">Data</text>
+    <text x="1320" y="360" font-size="14" fill="#00d4ff" font-family="Arial" font-weight="bold">Descrição</text>
+    <text x="1600" y="360" font-size="14" fill="#00d4ff" font-family="Arial" font-weight="bold">Valor</text>
+
+    <!-- Table rows -->
+    <line x1="1200" y1="380" x2="1880" y2="380" stroke="#00d4ff" stroke-width="0.5" opacity="0.3"/>
+    <text x="1220" y="405" font-size="12" fill="#ffffff" font-family="Arial">05/05/26</text>
+    <text x="1320" y="405" font-size="12" fill="#ffffff" font-family="Arial">Conta Corrente</text>
+    <text x="1600" y="405" font-size="12" fill="#00ff88" font-family="Arial">+ R$ 5.200</text>
+
+    <line x1="1200" y1="430" x2="1880" y2="430" stroke="#00d4ff" stroke-width="0.5" opacity="0.3"/>
+    <text x="1220" y="455" font-size="12" fill="#ffffff" font-family="Arial">04/05/26</text>
+    <text x="1320" y="455" font-size="12" fill="#ffffff" font-family="Arial">Transferência Enviada</text>
+    <text x="1600" y="455" font-size="12" fill="#ff9500" font-family="Arial">- R$ 3.100</text>
+
+    <line x1="1200" y1="480" x2="1880" y2="480" stroke="#00d4ff" stroke-width="0.5" opacity="0.3"/>
+    <text x="1220" y="505" font-size="12" fill="#ffffff" font-family="Arial">03/05/26</text>
+    <text x="1320" y="505" font-size="12" fill="#ffffff" font-family="Arial">Boleto Recebido</text>
+    <text x="1600" y="505" font-size="12" fill="#00ff88" font-family="Arial">+ R$ 8.500</text>
+
+    <line x1="1200" y1="530" x2="1880" y2="530" stroke="#00d4ff" stroke-width="0.5" opacity="0.3"/>
+    <text x="1220" y="555" font-size="12" fill="#ffffff" font-family="Arial">02/05/26</text>
+    <text x="1320" y="555" font-size="12" fill="#ffffff" font-family="Arial">Pagamento Fornecedor</text>
+    <text x="1600" y="555" font-size="12" fill="#ff6b6b" font-family="Arial">- R$ 12.300</text>
+
+    <line x1="1200" y1="580" x2="1880" y2="580" stroke="#00d4ff" stroke-width="0.5" opacity="0.3"/>
+    <text x="1220" y="605" font-size="12" fill="#ffffff" font-family="Arial">01/05/26</text>
+    <text x="1320" y="605" font-size="12" fill="#ffffff" font-family="Arial">Depósito Banco Central</text>
+    <text x="1600" y="605" font-size="12" fill="#00ff88" font-family="Arial">+ R$ 2.800</text>
+
+    <line x1="1200" y1="630" x2="1880" y2="630" stroke="#00d4ff" stroke-width="0.5" opacity="0.3"/>
+    <text x="1220" y="655" font-size="12" fill="#ffffff" font-family="Arial">30/04/26</text>
+    <text x="1320" y="655" font-size="12" fill="#ffffff" font-family="Arial">Desconto em Cheque</text>
+    <text x="1600" y="655" font-size="12" fill="#ff9500" font-family="Arial">- R$ 450</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="960" y="1050" font-size="12" fill="#00d4ff" text-anchor="middle" font-family="Arial" opacity="0.6">Powered by ContaFlow • Integração com Open Banking Brasil</text>
+</svg>

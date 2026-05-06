@@ -1,0 +1,125 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="reportGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3460;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a472a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#reportGrad)"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1920" height="80" fill="#16213e" stroke="#00d4ff" stroke-width="2"/>
+  <text x="50" y="50" font-size="32" font-weight="bold" fill="#00d4ff" font-family="Arial">Relatórios em Tempo Real</text>
+
+  <!-- Report selection tabs -->
+  <rect x="50" y="100" width="180" height="50" fill="#00d4ff" rx="4" opacity="0.2" stroke="#00d4ff" stroke-width="2"/>
+  <text x="140" y="135" font-size="16" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">Resumo</text>
+
+  <rect x="260" y="100" width="180" height="50" fill="transparent" rx="4" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+  <text x="350" y="135" font-size="16" fill="#00d4ff" text-anchor="middle" font-family="Arial">Fluxo Caixa</text>
+
+  <rect x="470" y="100" width="180" height="50" fill="transparent" rx="4" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+  <text x="560" y="135" font-size="16" fill="#00d4ff" text-anchor="middle" font-family="Arial">Projeções</text>
+
+  <!-- Monthly summary cards -->
+  <g>
+    <rect x="50" y="180" width="400" height="180" fill="rgba(0, 212, 255, 0.1)" rx="8" stroke="#00d4ff" stroke-width="1"/>
+    <text x="250" y="210" font-size="18" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">Maio 2026</text>
+
+    <text x="70" y="250" font-size="14" fill="#ffffff" font-family="Arial">Receita Bruta:</text>
+    <text x="380" y="250" font-size="14" fill="#00ff88" text-anchor="end" font-family="Arial" font-weight="bold">R$ 125.450</text>
+
+    <text x="70" y="285" font-size="14" fill="#ffffff" font-family="Arial">Despesas:</text>
+    <text x="380" y="285" font-size="14" fill="#ff9500" text-anchor="end" font-family="Arial" font-weight="bold">R$ 78.300</text>
+
+    <text x="70" y="320" font-size="14" fill="#ffffff" font-family="Arial">Lucro Líquido:</text>
+    <text x="380" y="320" font-size="16" fill="#00ff88" text-anchor="end" font-family="Arial" font-weight="bold">R$ 47.150</text>
+  </g>
+
+  <g>
+    <rect x="490" y="180" width="400" height="180" fill="rgba(0, 255, 136, 0.1)" rx="8" stroke="#00ff88" stroke-width="1"/>
+    <text x="690" y="210" font-size="18" fill="#00ff88" text-anchor="middle" font-family="Arial" font-weight="bold">Abril 2026</text>
+
+    <text x="510" y="250" font-size="14" fill="#ffffff" font-family="Arial">Receita Bruta:</text>
+    <text x="870" y="250" font-size="14" fill="#00ff88" text-anchor="end" font-family="Arial" font-weight="bold">R$ 118.900</text>
+
+    <text x="510" y="285" font-size="14" fill="#ffffff" font-family="Arial">Despesas:</text>
+    <text x="870" y="285" font-size="14" fill="#ff9500" text-anchor="end" font-family="Arial" font-weight="bold">R$ 75.200</text>
+
+    <text x="510" y="320" font-size="14" fill="#ffffff" font-family="Arial">Lucro Líquido:</text>
+    <text x="870" y="320" font-size="16" fill="#00ff88" text-anchor="end" font-family="Arial" font-weight="bold">R$ 43.700</text>
+  </g>
+
+  <g>
+    <rect x="930" y="180" width="400" height="180" fill="rgba(255, 149, 0, 0.1)" rx="8" stroke="#ff9500" stroke-width="1"/>
+    <text x="1130" y="210" font-size="18" fill="#ff9500" text-anchor="middle" font-family="Arial" font-weight="bold">Março 2026</text>
+
+    <text x="950" y="250" font-size="14" fill="#ffffff" font-family="Arial">Receita Bruta:</text>
+    <text x="1310" y="250" font-size="14" fill="#00ff88" text-anchor="end" font-family="Arial" font-weight="bold">R$ 132.200</text>
+
+    <text x="950" y="285" font-size="14" fill="#ffffff" font-family="Arial">Despesas:</text>
+    <text x="1310" y="285" font-size="14" fill="#ff9500" text-anchor="end" font-family="Arial" font-weight="bold">R$ 81.500</text>
+
+    <text x="950" y="320" font-size="14" fill="#ffffff" font-family="Arial">Lucro Líquido:</text>
+    <text x="1310" y="320" font-size="16" fill="#00ff88" text-anchor="end" font-family="Arial" font-weight="bold">R$ 50.700</text>
+  </g>
+
+  <!-- Large chart -->
+  <rect x="50" y="390" width="1820" height="540" fill="rgba(0, 212, 255, 0.05)" rx="8" stroke="#00d4ff" stroke-width="1"/>
+  <text x="960" y="420" font-size="18" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">Evolução do Resultado (Últimos 12 Meses)</text>
+
+  <!-- Chart axes -->
+  <line x1="100" y1="850" x2="1850" y2="850" stroke="#00d4ff" stroke-width="2"/>
+  <line x1="100" y1="450" x2="100" y2="850" stroke="#00d4ff" stroke-width="2"/>
+
+  <!-- Y-axis labels -->
+  <text x="80" y="860" font-size="12" fill="#00d4ff" text-anchor="end" font-family="Arial">R$ 0</text>
+  <text x="80" y="660" font-size="12" fill="#00d4ff" text-anchor="end" font-family="Arial">R$ 50k</text>
+  <text x="80" y="460" font-size="12" fill="#00d4ff" text-anchor="end" font-family="Arial">R$ 100k</text>
+
+  <!-- Gridlines -->
+  <line x1="100" y1="750" x2="1850" y2="750" stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="100" y1="650" x2="1850" y2="650" stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="100" y1="550" x2="1850" y2="550" stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- Chart line (earnings) -->
+  <polyline points="150,750 280,720 410,700 540,680 670,720 800,760 930,740 1060,680 1190,700 1320,720 1450,750 1580,780"
+    fill="none" stroke="#00ff88" stroke-width="3"/>
+
+  <!-- Chart area fill -->
+  <polygon points="150,750 280,720 410,700 540,680 670,720 800,760 930,740 1060,680 1190,700 1320,720 1450,750 1580,780 1580,850 150,850"
+    fill="#00ff88" opacity="0.15"/>
+
+  <!-- Data points -->
+  <circle cx="150" cy="750" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="280" cy="720" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="410" cy="700" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="540" cy="680" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="670" cy="720" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="800" cy="760" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="930" cy="740" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="1060" cy="680" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="1190" cy="700" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="1320" cy="720" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="1450" cy="750" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="1580" cy="780" r="5" fill="#00ff88" stroke="#ffffff" stroke-width="1"/>
+
+  <!-- X-axis labels -->
+  <text x="150" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Jun</text>
+  <text x="280" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Jul</text>
+  <text x="410" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Ago</text>
+  <text x="540" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Set</text>
+  <text x="670" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Out</text>
+  <text x="800" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Nov</text>
+  <text x="930" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Dez</text>
+  <text x="1060" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Jan</text>
+  <text x="1190" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Fev</text>
+  <text x="1320" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Mar</text>
+  <text x="1450" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Abr</text>
+  <text x="1580" y="880" font-size="11" fill="#00d4ff" text-anchor="middle" font-family="Arial">Mai</text>
+
+  <!-- Export button -->
+  <rect x="1650" y="410" width="180" height="50" fill="#00d4ff" rx="4" opacity="0.2" stroke="#00d4ff" stroke-width="1"/>
+  <text x="1740" y="442" font-size="14" fill="#00d4ff" text-anchor="middle" font-family="Arial" font-weight="bold">📥 Exportar PDF</text>
+</svg>
