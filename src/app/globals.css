@@ -16,7 +16,7 @@
   --bg-card:       #FFFFFF;
   --bg-overlay:    rgba(245,247,252,.96);
 
-  --accent:            oklch(0.97 0 0);
+  --accent:        #E05E18;
   --accent-light:  #F07028;
   --accent-muted:  rgba(224,94,24,.10);
   --accent-border: rgba(224,94,24,.28);
@@ -82,7 +82,7 @@
   --bg-card:       #131C2E;
   --bg-overlay:    rgba(13,20,34,.95);
 
-  --accent:            oklch(0.269 0 0);
+  --accent:        #F07028;
   --accent-light:  #FF8C48;
   --accent-muted:  rgba(240,112,40,.14);
   --accent-border: rgba(240,112,40,.30);

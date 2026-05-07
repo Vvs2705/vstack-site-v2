@@ -58,6 +58,26 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // ─── Proteção de rotas de cliente autenticado ─────────────────────────────
+  if (pathname.startsWith('/pedidos')) {
+    const token = request.cookies.get('vstack_session')?.value
+
+    if (!token) {
+      const loginUrl = new URL('/login', request.url)
+      loginUrl.searchParams.set('returnTo', pathname)
+      return NextResponse.redirect(loginUrl)
+    }
+
+    try {
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET!)
+      await jwtVerify(token, secret)
+    } catch {
+      const response = NextResponse.redirect(new URL('/login', request.url))
+      response.cookies.delete('vstack_session')
+      return response
+    }
+  }
+
   // ─── Proteção de rotas admin ──────────────────────────────────────────────
   if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
     const token = request.cookies.get('admin_token')?.value
@@ -105,6 +125,7 @@ export const config = {
   matcher: [
     // Incluir rotas API e admin, mas excluir rotas do Builder.io
     '/api/((?!enable-draft|disable-draft).*)',
-    '/admin/:path*'
+    '/admin/:path*',
+    '/pedidos/:path*',
   ],
 }
