@@ -44,6 +44,11 @@ yarn-error.log*
 CONFIGURACAO_VERCEL_FINAL.md
 VARIAVEIS_VERCEL.md
 COMMIT_E_PUSH.bat
+SETUP_GIT_E_PUSH.bat
+
+# internal AI-generated analysis docs (not for repo)
+PROMPT_REDESIGN_MULTI_PAGINA.md
+*.bat
 
 # typescript
 *.tsbuildinfo
