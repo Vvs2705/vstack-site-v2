@@ -5,8 +5,9 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ChatWidget from '@/components/chat/ChatWidget'
 import CookieBanner from '@/components/CookieBanner'
-import { ChevronDown, HelpCircle } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 const faqs = [
   {
@@ -100,24 +101,24 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="card-vstack">
+    <div className="border border-[var(--border)] rounded-[var(--radius-card)] bg-[var(--bg-card)] p-5 transition-colors hover:border-[var(--border-hover)]">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between text-left"
+        className="w-full flex items-center justify-between text-left gap-4"
       >
-        <span className="font-display font-semibold text-[var(--text-primary)] pr-4">
+        <span className="font-display text-[14px] font-semibold text-[var(--text-1)]">
           {question}
         </span>
         <ChevronDown
-          className={`h-5 w-5 text-[var(--accent)] flex-shrink-0 transition-transform ${
+          className={`h-4 w-4 text-[var(--accent)] flex-shrink-0 transition-transform duration-200 ${
             isOpen ? 'rotate-180' : ''
           }`}
         />
       </button>
       {isOpen && (
-        <div className="mt-4 pt-4 border-t border-[var(--border)] text-[var(--text-secondary)] leading-relaxed">
+        <p className="mt-3 pt-3 border-t border-[var(--border)] text-[13px] text-[var(--text-2)] leading-relaxed">
           {answer}
-        </div>
+        </p>
       )}
     </div>
   )
@@ -127,39 +128,35 @@ export default function FAQPage() {
   return (
     <>
       <Navbar />
-      
-      <main className="min-h-screen pt-16">
-        {/* Hero Section */}
-        <section className="bg-[var(--bg-primary)] py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto">
-              <div className="flex justify-center mb-6">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent)] accent-glow">
-                  <HelpCircle className="h-8 w-8 text-white" />
-                </div>
-              </div>
-              <h1 className="font-display text-5xl font-bold gradient-text mb-6">
-                Perguntas Frequentes
-              </h1>
-              <p className="text-xl text-[var(--text-secondary)]">
-                Encontre respostas para as dúvidas mais comuns sobre nossos serviços
-              </p>
-            </div>
+
+      <main className="min-h-screen pt-14 bg-[var(--bg)]">
+        {/* Page header */}
+        <section className="border-b border-[var(--border)] py-14 sm:py-16">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--accent)] font-medium mb-3">
+              Dúvidas
+            </p>
+            <h1 className="font-display text-[36px] sm:text-[44px] font-bold text-[var(--text-1)] leading-tight max-w-xl mb-4">
+              Perguntas frequentes
+            </h1>
+            <p className="text-[15px] text-[var(--text-2)] leading-relaxed max-w-xl">
+              Encontre respostas para as dúvidas mais comuns sobre nossos serviços e soluções.
+            </p>
           </div>
         </section>
 
         {/* FAQ Sections */}
-        <section className="py-20 bg-[var(--bg-card)]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="space-y-12">
-              {faqs.map((category, catIdx) => (
-                <div key={catIdx}>
-                  <h2 className="font-display text-3xl font-bold text-[var(--text-primary)] mb-6">
+        <section className="py-16 sm:py-20">
+          <div className="max-w-3xl mx-auto px-6 lg:px-8">
+            <div className="space-y-14">
+              {faqs.map((category) => (
+                <div key={category.category}>
+                  <h2 className="font-display text-[18px] font-bold text-[var(--text-1)] mb-5 pb-3 border-b border-[var(--border)]">
                     {category.category}
                   </h2>
-                  <div className="space-y-4">
-                    {category.questions.map((faq, faqIdx) => (
-                      <FAQItem key={faqIdx} question={faq.q} answer={faq.a} />
+                  <div className="space-y-3">
+                    {category.questions.map((faq) => (
+                      <FAQItem key={faq.q} question={faq.q} answer={faq.a} />
                     ))}
                   </div>
                 </div>
@@ -168,21 +165,22 @@ export default function FAQPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-[var(--bg-primary)]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="font-display text-4xl font-bold gradient-text mb-6">
-              Não Encontrou Sua Resposta?
+        {/* CTA */}
+        <section className="border-t border-[var(--border)] py-16 bg-[var(--bg-deep)]">
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+            <p className="eyebrow mb-3">Ainda com dúvidas?</p>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-1)] mb-3">
+              Nossa equipe responde em até 24 horas
             </h2>
-            <p className="text-xl text-[var(--text-secondary)] mb-8">
-              Nossa equipe está pronta para esclarecer todas as suas dúvidas
+            <p className="text-[14px] text-[var(--text-2)] mb-7 max-w-md mx-auto">
+              Não encontrou o que precisava? Fale diretamente com um especialista.
             </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contato" className="btn-primary px-8 py-4 text-lg font-semibold">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link href="/contato" className="btn-primary inline-flex items-center gap-2 px-6 py-3 text-[14px] font-semibold">
                 Fale Conosco
+                <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/cotacao" className="btn-secondary px-8 py-4 text-lg font-semibold">
+              <Link href="/cotacao" className="btn-outline inline-flex items-center px-6 py-3 text-[14px] font-semibold">
                 Solicitar Cotação
               </Link>
             </div>
