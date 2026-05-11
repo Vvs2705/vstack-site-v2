@@ -76,7 +76,7 @@ export default function TermosPage() {
               <p>
                 A V-STACK SOLUTIONS não se responsabiliza por danos indiretos, incidentais ou
                 consequentes resultantes do uso ou impossibilidade de uso do site. O site é
-                fornecido "como está", sem garantias expressas ou implícitas.
+                fornecido &quot;como está&quot;, sem garantias expressas ou implícitas.
               </p>
             </section>
 

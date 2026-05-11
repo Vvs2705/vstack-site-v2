@@ -3,13 +3,13 @@ import OpenAI from 'openai'
 let openaiInstance: OpenAI | undefined
 
 export const openai = new Proxy({} as OpenAI, {
-  get: (target, prop) => {
+  get: (_target, prop) => {
     if (!openaiInstance) {
       openaiInstance = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY!,
       })
     }
-    return (openaiInstance as any)[prop]
+    return Reflect.get(openaiInstance, prop, openaiInstance)
   },
 })
 

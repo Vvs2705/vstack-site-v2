@@ -41,8 +41,8 @@ export async function POST(request: NextRequest) {
         <h2>Nova dor de cliente recebida</h2>
         <p><strong>Urgência:</strong> ${URGENCY_LABELS[data.urgency]}</p>
         <p><strong>Título:</strong> ${data.title}</p>
-        ${data.company ? `<p><strong>Empresa:</strong> ${data.company} (${data.sector || '—'})</p>` : ''}
-        ${!data.isAnonymous ? `<p><strong>Contato:</strong> ${data.name} — ${data.email}</p>` : '<p><em>Enviado anonimamente</em></p>'}
+        ${data.company ?`<p><strong>Empresa:</strong> ${data.company} (${data.sector || '—'})</p>` : ''}
+        ${!data.isAnonymous ?`<p><strong>Contato:</strong> ${data.name} — ${data.email}</p>` : '<p><em>Enviado anonimamente</em></p>'}
         <h3>Descrição do Problema</h3>
         <blockquote>${data.description}</blockquote>
         <h3>Impacto no Negócio</h3>

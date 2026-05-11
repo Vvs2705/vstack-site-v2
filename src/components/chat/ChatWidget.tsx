@@ -168,7 +168,7 @@ export default function ChatWidget() {
 
           {/* Messages Area */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {showNameForm ? (
+            {showNameForm ?(
               <div className="flex flex-col items-center justify-center h-full space-y-4">
                 <div className="text-center">
                   <h4 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-2">
@@ -207,12 +207,12 @@ export default function ChatWidget() {
                 {messages.map((msg, idx) => (
                   <div
                     key={idx}
-                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${msg.role === 'user' ?'justify-end' : 'justify-start'}`}
                   >
                     <div
                       className={`max-w-[80%] rounded-2xl px-4 py-2 ${
                         msg.role === 'user'
-                          ? 'bg-[var(--accent)] text-white'
+                          ?'bg-[var(--accent)] text-white'
                           : 'bg-[var(--bg-deep)] text-[var(--text-primary)] border border-[var(--border)]'
                       }`}
                     >
@@ -221,7 +221,7 @@ export default function ChatWidget() {
                       </p>
                       <span
                         className={`mt-1 block text-xs ${
-                          msg.role === 'user' ? 'text-white/70' : 'text-[var(--text-muted)]'
+                          msg.role === 'user' ?'text-white/70' : 'text-[var(--text-muted)]'
                         }`}
                       >
                         {msg.timestamp.toLocaleTimeString('pt-BR', {
@@ -262,7 +262,7 @@ export default function ChatWidget() {
                   className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent)] text-white transition-colors hover:bg-[var(--accent-light)] disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-label="Enviar mensagem"
                 >
-                  {isLoading ? (
+                  {isLoading ?(
                     <Loader2 className="h-5 w-5 animate-spin" />
                   ) : (
                     <Send className="h-5 w-5" />

@@ -1,40 +1,38 @@
-import { Metadata } from 'next'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import ChatWidget from '@/components/chat/ChatWidget'
+import type { Metadata } from 'next'
+import { Clock, Mail, MapPin, MessageCircle } from 'lucide-react'
 import CookieBanner from '@/components/CookieBanner'
+import ChatWidget from '@/components/chat/ChatWidget'
 import ContatoForm from '@/components/forms/ContatoForm'
-import { Mail, Phone, MapPin, Clock } from 'lucide-react'
+import Footer from '@/components/layout/Footer'
+import Navbar from '@/components/layout/Navbar'
+import { Container, Section, Surface } from '@/components/primitives/Layout'
 
 export const metadata: Metadata = {
-  title: 'Contato | V-STACK SOLUTIONS',
-  description: 'Entre em contato com a V-STACK SOLUTIONS. Estamos prontos para transformar seus desafios em soluções tecnológicas inovadoras.',
+  title: 'Contato',
+  description:
+    'Fale com a V-STACK SOLUTIONS para discutir automação, IA, integrações ou desenvolvimento de sistemas sob medida para sua empresa.',
+  openGraph: {
+    title: 'Contato | V-STACK SOLUTIONS',
+    description: 'Converse com especialistas em automação, IA e sistemas sob medida.',
+  },
 }
 
 const CONTACT_ITEMS = [
   {
-    Icon: Mail,
+    icon: Mail,
     label: 'Email',
     value: 'contato@vstack-solutions.com.br',
     href: 'mailto:contato@vstack-solutions.com.br',
   },
   {
-    Icon: Phone,
-    label: 'Telefone',
-    value: '+55 (11) 99999-9999',
-    href: 'tel:+5511999999999',
-  },
-  {
-    Icon: MapPin,
+    icon: MapPin,
     label: 'Localização',
     value: 'São Paulo, SP · Brasil',
-    href: undefined,
   },
   {
-    Icon: Clock,
-    label: 'Atendimento',
-    value: 'Seg–Sex: 9h às 18h · Sáb: 9h às 13h',
-    href: undefined,
+    icon: Clock,
+    label: 'Retorno',
+    value: 'Até 24 horas úteis',
   },
 ]
 
@@ -43,67 +41,58 @@ export default function ContatoPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen pt-14 bg-[var(--bg)]">
-        {/* Page header */}
-        <section className="border-b border-[var(--border)] py-14 sm:py-16">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--accent)] font-medium mb-3">
-              Fale conosco
-            </p>
-            <h1 className="font-display text-[36px] sm:text-[44px] font-bold text-[var(--text-1)] leading-tight max-w-xl mb-4">
-              Entre em contato
-            </h1>
-            <p className="text-[15px] text-[var(--text-2)] leading-relaxed max-w-xl">
-              Estamos prontos para ouvir seus desafios e apresentar as melhores soluções para seu negócio.
-            </p>
-          </div>
-        </section>
+      <main className="min-h-screen bg-[var(--bg)] pt-16">
+        <Section spacing="xl" className="border-b border-[var(--border)]">
+          <Container>
+            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+              <div>
+                <p className="eyebrow mb-4">Contato</p>
+                <h1 className="font-display text-balance text-[38px] font-extrabold leading-tight tracking-[-0.025em] text-[var(--text-1)] sm:text-[56px]">
+                  Vamos entender o seu cenário antes de propor tecnologia.
+                </h1>
+              </div>
+              <p className="max-w-xl text-[16px] leading-8 text-[var(--text-2)]">
+                Use este canal para conversas iniciais, parcerias ou dúvidas. Se você já sabe o problema que quer resolver, o caminho mais rápido é solicitar um diagnóstico.
+              </p>
+            </div>
+          </Container>
+        </Section>
 
-        {/* Content */}
-        <section className="py-16 sm:py-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-
-              {/* Contact info */}
+        <Section>
+          <Container>
+            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
               <div className="space-y-4">
-                {CONTACT_ITEMS.map(({ Icon, label, value, href }) => (
-                  <div
-                    key={label}
-                    className="flex items-start gap-4 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-muted)] border border-[var(--accent-border)] flex-shrink-0">
-                      <Icon className="h-4 w-4 text-[var(--accent)]" />
+                {CONTACT_ITEMS.map(({ icon: Icon, label, value, href }) => (
+                  <Surface key={label} className="flex items-start gap-4 p-5">
+                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] text-[var(--accent)]">
+                      <Icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-[11px] uppercase tracking-[0.1em] text-[var(--text-3)] font-semibold mb-0.5">
-                        {label}
-                      </p>
-                      {href ? (
-                        <a href={href} className="text-[13px] text-[var(--text-2)] hover:text-[var(--accent)] transition-colors">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--text-3)]">{label}</p>
+                      {href ?(
+                        <a href={href} className="mt-1 block text-[14px] font-semibold text-[var(--text-1)] hover:text-[var(--accent)]">
                           {value}
                         </a>
                       ) : (
-                        <p className="text-[13px] text-[var(--text-2)]">{value}</p>
+                        <p className="mt-1 text-[14px] font-semibold text-[var(--text-1)]">{value}</p>
                       )}
                     </div>
-                  </div>
+                  </Surface>
                 ))}
 
-                <div className="rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] p-4 mt-2">
-                  <p className="text-[12px] font-semibold text-[var(--accent)] mb-1">Resposta garantida</p>
-                  <p className="text-[13px] text-[var(--text-2)] leading-relaxed">
-                    Respondemos todas as mensagens em até 24 horas úteis. Para urgências, use o chat online.
+                <Surface className="border-[var(--accent-border)] bg-[var(--accent-muted)] p-5">
+                  <MessageCircle className="mb-3 h-5 w-5 text-[var(--accent)]" />
+                  <h2 className="font-display text-lg font-bold text-[var(--text-1)]">Para uma resposta melhor</h2>
+                  <p className="mt-2 text-[14px] leading-7 text-[var(--text-2)]">
+                    Descreva qual processo trava, quais sistemas estão envolvidos e qual impacto isso gera hoje. Quanto mais contexto, mais preciso será o retorno.
                   </p>
-                </div>
+                </Surface>
               </div>
 
-              {/* Form */}
-              <div className="lg:col-span-2">
-                <ContatoForm />
-              </div>
+              <ContatoForm />
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
       </main>
 
       <Footer />

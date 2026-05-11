@@ -29,7 +29,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-2">
             <ChevronRight className="h-4 w-4 text-[var(--text-3)]" aria-hidden="true" />
-            {item.href ? (
+            {item.href ?(
               <Link
                 href={item.href}
                 className="text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors"

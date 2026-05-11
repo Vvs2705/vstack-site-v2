@@ -84,7 +84,7 @@ export default function ContaFlowSection() {
                       className="w-full rounded-t-md bg-[var(--accent-muted)]"
                       style={{
                         height: `${bar.height}%`,
-                        background: index === 5 ? 'linear-gradient(to top, var(--accent), var(--accent-light))' : undefined,
+                        background: index === 5 ?'linear-gradient(to top, var(--accent), var(--accent-light))' : undefined,
                       }}
                     />
                     <span className="text-[10px] text-[var(--text-3)]">{bar.label}</span>
@@ -103,7 +103,7 @@ function Stat({ title, value, detail, accent = false }: { title: string; value: 
   return (
     <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
       <p className="text-[12px] text-[var(--text-3)]">{title}</p>
-      <p className="mt-1 font-display text-xl font-bold" style={{ color: accent ? 'var(--accent)' : 'var(--text-1)' }}>
+      <p className="mt-1 font-display text-xl font-bold" style={{ color: accent ?'var(--accent)' : 'var(--text-1)' }}>
         {value}
       </p>
       <p className="mt-1 text-[11px] text-[var(--text-3)]">{detail}</p>

@@ -1,82 +1,80 @@
-import type { Metadata } from "next";
-import { Syne, DM_Sans, JetBrains_Mono, Geist } from "next/font/google";
-import "./globals.css";
-import ThemeProvider from "@/components/providers/ThemeProvider";
-import { cn } from "@/lib/utils";
+import type { Metadata } from 'next'
+import { DM_Sans, Geist, JetBrains_Mono, Syne } from 'next/font/google'
+import ThemeProvider from '@/components/providers/ThemeProvider'
+import { cn } from '@/lib/utils'
+import './globals.css'
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
 const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  display: "swap",
-});
+  variable: '--font-syne',
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
+  variable: '--font-dm-sans',
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
+  variable: '--font-jetbrains-mono',
+  subsets: ['latin'],
+  display: 'swap',
+})
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://vstack-solutions.com.br";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vstack-solutions.com.br'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "V-STACK SOLUTIONS - Transformação Digital com IA e Automação",
-    template: "%s | V-STACK SOLUTIONS",
+    default: 'V-STACK SOLUTIONS - Automação, IA e Sistemas Sob Medida',
+    template: '%s | V-STACK SOLUTIONS',
   },
   description:
-    "Especialistas em desenvolvimento de software, automação inteligente, integração de sistemas e soluções SaaS. Transforme seu negócio com tecnologia de ponta e inteligência artificial.",
+    'Automação de processos, agentes de IA, integrações e sistemas sob medida para empresas que precisam reduzir retrabalho, organizar a operação e escalar com tecnologia.',
   keywords: [
-    "desenvolvimento de software",
-    "automação inteligente",
-    "inteligência artificial",
-    "integração de sistemas",
-    "SaaS",
-    "transformação digital",
-    "consultoria tecnológica",
-    "API",
-    "chatbots",
-    "RPA",
-    "ContaFlow",
+    'desenvolvimento de software',
+    'automação de processos',
+    'inteligência artificial para empresas',
+    'integração de sistemas',
+    'sistemas sob medida',
+    'consultoria tecnológica',
+    'agentes de IA',
+    'automação financeira',
+    'ContaFlow',
   ],
-  authors: [{ name: "V-STACK SOLUTIONS" }],
-  creator: "V-STACK SOLUTIONS",
-  publisher: "V-STACK SOLUTIONS",
+  authors: [{ name: 'V-STACK SOLUTIONS' }],
+  creator: 'V-STACK SOLUTIONS',
+  publisher: 'V-STACK SOLUTIONS',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    type: "website",
-    locale: "pt_BR",
+    type: 'website',
+    locale: 'pt_BR',
     url: siteUrl,
-    siteName: "V-STACK SOLUTIONS",
-    title: "V-STACK SOLUTIONS - Transformação Digital com IA e Automação",
+    siteName: 'V-STACK SOLUTIONS',
+    title: 'V-STACK SOLUTIONS - Automação, IA e Sistemas Sob Medida',
     description:
-      "Especialistas em desenvolvimento de software, automação inteligente, integração de sistemas e soluções SaaS.",
+      'Automação de processos, agentes de IA, integrações e sistemas sob medida para empresas que precisam escalar com clareza operacional.',
     images: [
       {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "V-STACK SOLUTIONS",
+        alt: 'V-STACK SOLUTIONS',
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "V-STACK SOLUTIONS - Transformação Digital com IA e Automação",
+    card: 'summary_large_image',
+    title: 'V-STACK SOLUTIONS - Automação, IA e Sistemas Sob Medida',
     description:
-      "Especialistas em desenvolvimento de software, automação inteligente, integração de sistemas e soluções SaaS.",
+      'Automação de processos, agentes de IA, integrações e sistemas sob medida para empresas que precisam escalar com clareza operacional.',
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {
@@ -85,26 +83,32 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
   verification: {
-    google: "google-site-verification-code", // Substituir após verificação no Google Search Console
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html
       lang="pt-BR"
       suppressHydrationWarning
-      className={cn("h-full", "antialiased", syne.variable, dmSans.variable, jetbrainsMono.variable, "font-sans", geist.variable)}
+      className={cn(
+        'h-full antialiased font-sans',
+        syne.variable,
+        dmSans.variable,
+        jetbrainsMono.variable,
+        geist.variable
+      )}
     >
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -112,12 +116,9 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0D1422" />
       </head>
-      <body className="min-h-full flex flex-col">
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+      <body className="flex min-h-full flex-col">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
-// Build trigger

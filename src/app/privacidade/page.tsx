@@ -40,7 +40,7 @@ export default function PrivacidadePage() {
               <ul className="list-disc pl-6 space-y-2">
                 <li>Nome, email e telefone (formulários de contato e cotação)</li>
                 <li>Informações sobre sua empresa e projeto (formulário de cotação)</li>
-                <li>Descrição de problemas ou desafios (formulário "Envie Sua Dor")</li>
+                <li>Descrição de problemas ou desafios (formulário &quot;Envie Sua Dor&quot;)</li>
                 <li>Histórico de conversas com nosso assistente virtual</li>
                 <li>Dados de navegação (IP, user-agent) para segurança</li>
               </ul>

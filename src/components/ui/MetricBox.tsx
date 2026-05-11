@@ -20,7 +20,7 @@ export default function MetricBox({
     <div
       className={`rounded-xl border p-4 transition-all ${
         accent
-          ? 'border-[var(--accent-border)] bg-[var(--accent-muted)]'
+          ?'border-[var(--accent-border)] bg-[var(--accent-muted)]'
           : 'border-[var(--border)] bg-[var(--bg-deep)]'
       }`}
     >
@@ -37,7 +37,7 @@ export default function MetricBox({
         </span>
         {trend && (
           <span className="text-xs font-semibold text-green-400">
-            {trend.direction === 'up' ? '↑' : '↓'} {trend.value}
+            {trend.direction === 'up' ?'↑' : '↓'} {trend.value}
           </span>
         )}
       </div>

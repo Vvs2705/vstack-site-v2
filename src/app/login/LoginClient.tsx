@@ -23,7 +23,6 @@ export default function LoginClient() {
   // Already authenticated — redirect to orders
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
-      setIsRedirecting(true)
       window.location.replace('/pedidos')
     }
   }, [isAuthenticated, isLoading])
@@ -33,7 +32,7 @@ export default function LoginClient() {
     signInWithGoogle()
   }
 
-  if (isLoading || isRedirecting) {
+  if (isLoading || isAuthenticated || isRedirecting) {
     return (
       <div className="min-h-screen bg-[var(--bg)] flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">

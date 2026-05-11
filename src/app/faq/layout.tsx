@@ -1,11 +1,13 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Perguntas Frequentes (FAQ)',
-  description: 'Encontre respostas para as dúvidas mais comuns sobre nossos serviços de automação, IA, integração de sistemas e desenvolvimento SaaS.',
+  title: 'Perguntas Frequentes',
+  description:
+    'Dúvidas sobre automação de processos, agentes de IA, integrações, sistemas sob medida, investimento e implantação com a V-STACK SOLUTIONS.',
   openGraph: {
-    title: 'Perguntas Frequentes (FAQ) | V-STACK SOLUTIONS',
-    description: 'Encontre respostas para as dúvidas mais comuns sobre nossos serviços de automação, IA, integração de sistemas e desenvolvimento SaaS.',
+    title: 'Perguntas Frequentes | V-STACK SOLUTIONS',
+    description:
+      'Entenda como a V-STACK SOLUTIONS conduz diagnóstico, automação, IA, integração de sistemas e desenvolvimento sob medida.',
   },
 }
 
