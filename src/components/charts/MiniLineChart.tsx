@@ -46,6 +46,7 @@ export default function MiniLineChart({
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className={animated ? 'transition-all duration-500 ease-out' : undefined}
       />
 
       {normalized.map((y, i) => (

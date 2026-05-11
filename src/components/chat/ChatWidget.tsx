@@ -114,7 +114,7 @@ export default function ChatWidget() {
       } else {
         throw new Error(data.error || 'Erro ao enviar mensagem')
       }
-    } catch (error) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         {

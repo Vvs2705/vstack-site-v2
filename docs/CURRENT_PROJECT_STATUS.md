@@ -253,9 +253,22 @@ Antes de deploy:
 
 Depois:
 
-1. Corrigir lint legado em `src/lib/openai.ts`, `src/lib/redis.ts`, `src/lib/resend.ts` e paginas legais.
-2. Criar paginas SEO especificas por cluster: automacao, IA, integracoes, sistemas sob medida e ContaFlow.
-3. Criar documentacao de design system.
+1. Criar paginas SEO especificas por cluster: automacao, IA, integracoes, sistemas sob medida e ContaFlow.
+2. Criar documentacao de design system.
+3. Revisar detalhes de UX mobile do chat e area logada.
+
+## Status Tecnico Atual
+
+Etapa de seguranca e qualidade concluida:
+
+- `next` atualizado para `16.2.6`.
+- `eslint-config-next` atualizado para `16.2.6`.
+- `postcss` fixado via `overrides` em `8.5.10` para remover alerta de seguranca transitive.
+- Dependencias transitive `hono`, `ip-address` e `express-rate-limit` atualizadas pelo audit fix.
+- `npm audit` retorna zero vulnerabilidades.
+- `npm run lint` retorna zero erros e zero warnings.
+- `npm run build` passa com Next `16.2.6`.
+- Preview local validado em `/`, `/login` e `/faq`.
 
 ## Regra de Continuidade
 
