@@ -123,8 +123,8 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Incluir rotas API e admin, mas excluir rotas do Builder.io
-    '/api/((?!enable-draft|disable-draft).*)',
+    // Incluir rotas API, admin e pedidos
+    '/api/:path*',
     '/admin/:path*',
     '/pedidos/:path*',
   ],

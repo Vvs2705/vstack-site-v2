@@ -1,88 +1,54 @@
-interface PillarItem {
-  icon: string
-  title: string
-  description: string
-}
+import { Bot, Code2, Network, Workflow } from 'lucide-react'
+import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
 
-interface PillarsSectionProps {
-  sectionLabel?: string
-  headline?: string
-  pillars?: PillarItem[]
-}
-
-const DEFAULT_PILLARS: PillarItem[] = [
+const PILLARS = [
   {
-    icon: '⚡',
+    icon: Workflow,
     title: 'Automação de Processos',
-    description: 'Eliminamos tarefas manuais e repetitivas com fluxos inteligentes que trabalham 24/7 por você.',
+    description: 'Fluxos que reduzem trabalho manual, erro operacional e dependência de planilhas.',
   },
   {
-    icon: '🤖',
+    icon: Bot,
     title: 'Inteligência Artificial',
-    description: 'Modelos de IA integrados à sua operação — classificação, previsão, geração de conteúdo e análise.',
+    description: 'Agentes, classificação, análise e geração de conteúdo conectados ao seu processo real.',
   },
   {
-    icon: '🔗',
+    icon: Network,
     title: 'Integração de Sistemas',
-    description: 'Conectamos seus sistemas legados e plataformas SaaS em um ecossistema unificado e sem silos.',
+    description: 'APIs, ERPs, CRMs, bancos e ferramentas internas trabalhando no mesmo ecossistema.',
   },
   {
-    icon: '📦',
-    title: 'Desenvolvimento SaaS',
-    description: 'Produtos digitais completos — do MVP escalável à plataforma enterprise com arquitetura sólida.',
+    icon: Code2,
+    title: 'Produtos SaaS',
+    description: 'MVPs e plataformas escaláveis com arquitetura preparada para crescimento.',
   },
 ]
 
-export default function PillarsSection({
-  sectionLabel = 'Nossas Soluções',
-  headline     = 'O que construímos para você',
-  pillars      = DEFAULT_PILLARS,
-}: PillarsSectionProps) {
+export default function PillarsSection() {
   return (
-    <section className="py-16 sm:py-20 bg-[var(--bg)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Header — 2 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-end mb-12">
-          <div>
-            <p className="eyebrow mb-3">{sectionLabel}</p>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-[var(--text-1)] mb-0">
-              {headline}
-            </h2>
+    <Section spacing="lg">
+      <Container>
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <SectionHeader
+            eyebrow="Capacidades"
+            title="Quatro frentes para destravar a operação"
+            description="A entrega não começa pela tecnologia. Começa pelo diagnóstico do gargalo, pela clareza do processo e pela construção do que realmente muda o resultado."
+          />
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {PILLARS.map(({ icon: Icon, title, description }) => (
+              <Surface key={title} interactive className="group relative overflow-hidden p-6">
+                <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-[var(--accent)] to-transparent transition-transform duration-300 group-hover:scale-x-100" />
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] text-[var(--accent)]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="font-display text-lg font-bold text-[var(--text-1)]">{title}</h3>
+                <p className="mt-3 text-[14px] leading-7 text-[var(--text-2)]">{description}</p>
+              </Surface>
+            ))}
           </div>
-          <p className="text-[15px] text-[var(--text-2)] leading-relaxed max-w-md">
-            Cada solução é projetada para eliminar fricção, reduzir custo operacional e escalar junto com o seu negócio.
-          </p>
         </div>
-
-        {/* Cards grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {pillars.map((pillar) => (
-            <div
-              key={pillar.title}
-              className="relative overflow-hidden rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] p-7 cursor-default group transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(240,112,40,0.12)]"
-            >
-              {/* Radial gradient overlay on hover */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{ background: 'radial-gradient(circle at 50% 0%, var(--accent-muted), transparent 70%)' }}
-                aria-hidden="true"
-              />
-
-              {/* Icon */}
-              <div className="relative z-10 w-[46px] h-[46px] rounded-xl bg-[var(--accent-muted)] border border-[var(--accent-border)] flex items-center justify-center text-xl mb-5">
-                {pillar.icon}
-              </div>
-
-              <h3 className="relative z-10 font-display text-[15px] font-bold text-[var(--text-1)] mb-2">
-                {pillar.title}
-              </h3>
-              <p className="relative z-10 text-[13px] text-[var(--text-2)] leading-relaxed">
-                {pillar.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   )
 }

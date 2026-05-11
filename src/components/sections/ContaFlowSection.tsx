@@ -1,17 +1,14 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { Container, Section, Surface } from '@/components/primitives/Layout'
 
-interface ContaFlowSectionProps {
-  eyebrow?: string
-  badge?: string
-  headline?: string
-  description?: string
-  features?: string
-}
+const FEATURES = [
+  'Conciliação bancária automática',
+  'Integração com Open Banking BR',
+  'Dashboards executivos em tempo real',
+  'Alertas inteligentes de anomalia',
+]
 
-const DEFAULT_FEATURES = 'Conciliação bancária automática,Integração com Open Banking BR,Relatórios e dashboards em tempo real,Alertas inteligentes e anomalias'
-
-// Bar chart data — 7 bars, Mar (index 5) is the active/tallest
 const BAR_DATA = [
   { label: 'Out', height: 42 },
   { label: 'Nov', height: 58 },
@@ -21,155 +18,95 @@ const BAR_DATA = [
   { label: 'Mar', height: 100 },
   { label: 'Abr', height: 63 },
 ]
-const BAR_ACTIVE = 5
 
-export default function ContaFlowSection({
-  eyebrow     = 'ContaFlow',
-  badge       = 'ACESSO ANTECIPADO',
-  headline    = 'Automação financeira que fecha o mês no prazo',
-  description = 'Chega de planilhas manuais e conciliações que levam dias. O ContaFlow integra seus dados financeiros, automatiza lançamentos e gera relatórios em tempo real.',
-  features    = DEFAULT_FEATURES,
-}: ContaFlowSectionProps) {
-  const featureList = features.split(',').map((f) => f.trim()).filter(Boolean)
-
+export default function ContaFlowSection() {
   return (
-    <section className="py-16 sm:py-20 border-y border-[var(--border)] bg-[var(--bg-deep)]">
-      <div className="max-w-7xl mx-auto grid gap-14 lg:grid-cols-2 items-center px-6 lg:px-8">
+    <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
+      <Container>
+        <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <div className="mb-5 flex items-center gap-3">
+              <p className="eyebrow">ContaFlow</p>
+              <span className="rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] px-3 py-1 text-[10px] font-bold tracking-[0.14em] text-[var(--accent)]">
+                ACESSO ANTECIPADO
+              </span>
+            </div>
 
-        {/* Left */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-2.5">
-            <span className="font-display text-sm font-bold tracking-widest text-[var(--accent)] uppercase">
-              {eyebrow}
-            </span>
-            <span className="rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-[var(--accent)]">
-              {badge}
-            </span>
+            <h2 className="font-display text-balance text-3xl font-bold leading-tight text-[var(--text-1)] sm:text-4xl">
+              Automação financeira para fechar o mês sem apagar incêndio.
+            </h2>
+
+            <p className="mt-5 max-w-xl text-[15px] leading-8 text-[var(--text-2)]">
+              O ContaFlow conecta dados financeiros, automatiza lançamentos, identifica pendências e gera visibilidade para decisões rápidas.
+            </p>
+
+            <ul className="mt-8 grid gap-3">
+              {FEATURES.map((item) => (
+                <li key={item} className="flex items-center gap-3 text-[14px] text-[var(--text-2)]">
+                  <CheckCircle2 className="h-5 w-5 flex-none text-[var(--accent)]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <Link href="/cotacao" className="btn-primary mt-8 px-6 py-3.5 text-[14px]">
+              Quero acesso antecipado
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
-          <h2 className="font-display text-[28px] sm:text-3xl font-bold text-[var(--text-1)] leading-tight max-w-sm">
-            {headline}
-          </h2>
-
-          <p className="text-[14px] leading-relaxed text-[var(--text-2)] max-w-md">
-            {description}
-          </p>
-
-          <ul className="space-y-3">
-            {featureList.map((item) => (
-              <li key={item} className="flex items-center gap-3 text-[13px] text-[var(--text-2)]">
-                <span className="flex h-[20px] w-[20px] flex-shrink-0 items-center justify-center rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] text-[9px] font-bold text-[var(--accent)]">
-                  ✓
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          {/* CTA */}
-          <Link
-            href="/cotacao"
-            className="btn-primary inline-flex items-center gap-2 px-6 py-3 text-[14px] font-semibold"
-          >
-            Quero Acesso Antecipado
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
-
-        {/* Right — dashboard card */}
-        <div className="relative">
-          <div
-            className="border border-[var(--border)] rounded-[var(--radius-card)] bg-[var(--bg-card)] p-6 relative overflow-hidden"
-            style={{ boxShadow: 'var(--shadow)' }}
-          >
-            {/* Gradient top line */}
-            <div
-              className="absolute inset-x-0 top-0 h-[2px] opacity-70"
-              style={{ background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' }}
-              aria-hidden="true"
-            />
-
-            {/* Header */}
-            <div className="flex items-center justify-between mb-5 pb-4 border-b border-[var(--border)]">
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" aria-hidden="true" />
-                <span className="text-[12px] font-medium text-[var(--text-2)]">ContaFlow · Dashboard</span>
+          <Surface className="overflow-hidden p-5 sm:p-6">
+            <div className="flex items-center justify-between border-b border-[var(--border)] pb-5">
+              <div>
+                <p className="text-[12px] text-[var(--text-3)]">Dashboard executivo</p>
+                <h3 className="font-display text-xl font-bold text-[var(--text-1)]">Maio 2026</h3>
               </div>
-              <span className="text-[11px] text-[var(--text-3)]">Maio 2025</span>
+              <span className="rounded-full bg-[#22c55e]/10 px-3 py-1 text-[11px] font-bold text-[#22c55e]">
+                Operacional
+              </span>
             </div>
 
-            {/* Metrics 2x2 */}
-            <div className="grid grid-cols-2 gap-3 mb-5">
-              <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-3.5">
-                <p className="text-[11px] text-[var(--text-3)] mb-1">Entradas</p>
-                <p className="font-display text-[18px] font-bold" style={{ color: '#22C55E' }}>
-                  R$ 84.200
-                </p>
-                <p className="text-[10px] font-semibold mt-0.5" style={{ color: '#22C55E' }}>
-                  +12%
-                </p>
-              </div>
-              <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-3.5">
-                <p className="text-[11px] text-[var(--text-3)] mb-1">Saídas</p>
-                <p className="font-display text-[18px] font-bold text-[var(--accent)]">
-                  R$ 31.450
-                </p>
-                <p className="text-[10px] font-semibold text-[var(--accent)] mt-0.5">
-                  ↑4%
-                </p>
-              </div>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <Stat title="Entradas" value="R$ 84.200" detail="+12%" />
+              <Stat title="Saídas" value="R$ 31.450" detail="-4%" accent />
+              <Stat title="Pendências" value="3" detail="de 250" />
             </div>
 
-            {/* Conciliation progress */}
-            <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-3.5 mb-5">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[11px] text-[var(--text-3)]">247 / 250</span>
-                <span className="text-[11px] text-[var(--text-3)]">3 itens pendentes</span>
+            <div className="mt-6 rounded-2xl border border-[var(--border)] bg-[var(--bg-deep)] p-5">
+              <div className="mb-4 flex items-center justify-between">
+                <p className="text-[13px] font-semibold text-[var(--text-1)]">Receita mensal</p>
+                <p className="text-[12px] text-[var(--text-3)]">últimos 7 meses</p>
               </div>
-              <div className="h-1.5 w-full rounded-full bg-[var(--bg)] overflow-hidden">
-                <div
-                  className="h-full rounded-full"
-                  style={{
-                    width: '98.8%',
-                    background: 'linear-gradient(90deg, var(--accent), var(--accent-light))',
-                  }}
-                  role="progressbar"
-                  aria-valuenow={247}
-                  aria-valuemin={0}
-                  aria-valuemax={250}
-                />
-              </div>
-            </div>
-
-            {/* Bar chart */}
-            <div>
-              <p className="text-[11px] text-[var(--text-3)] mb-3">Receita Mensal</p>
-              <div className="flex items-end gap-1.5 h-16" aria-hidden="true">
-                {BAR_DATA.map((bar, i) => (
-                  <div
-                    key={bar.label}
-                    className="flex-1 rounded-t-[3px] transition-opacity duration-200"
-                    style={{
-                      height: `${bar.height}%`,
-                      background: i === BAR_ACTIVE
-                        ? 'linear-gradient(to top, var(--accent), var(--accent-light))'
-                        : 'var(--accent-muted)',
-                    }}
-                  />
-                ))}
-              </div>
-              <div className="flex items-center gap-1.5 mt-1.5" aria-hidden="true">
-                {BAR_DATA.map((bar) => (
-                  <div key={bar.label} className="flex-1 text-center text-[9px] text-[var(--text-3)]">
-                    {bar.label}
+              <div className="flex h-32 items-end gap-2">
+                {BAR_DATA.map((bar, index) => (
+                  <div key={bar.label} className="flex flex-1 flex-col items-center gap-2">
+                    <div
+                      className="w-full rounded-t-md bg-[var(--accent-muted)]"
+                      style={{
+                        height: `${bar.height}%`,
+                        background: index === 5 ? 'linear-gradient(to top, var(--accent), var(--accent-light))' : undefined,
+                      }}
+                    />
+                    <span className="text-[10px] text-[var(--text-3)]">{bar.label}</span>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
+          </Surface>
         </div>
+      </Container>
+    </Section>
+  )
+}
 
-      </div>
-    </section>
+function Stat({ title, value, detail, accent = false }: { title: string; value: string; detail: string; accent?: boolean }) {
+  return (
+    <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
+      <p className="text-[12px] text-[var(--text-3)]">{title}</p>
+      <p className="mt-1 font-display text-xl font-bold" style={{ color: accent ? 'var(--accent)' : 'var(--text-1)' }}>
+        {value}
+      </p>
+      <p className="mt-1 text-[11px] text-[var(--text-3)]">{detail}</p>
+    </div>
   )
 }

@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:builder": "concurrently \"next dev --port 3000\" \"npx ngrok http 3000\"",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
@@ -45,7 +44,6 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "prisma": "^5.22.0"

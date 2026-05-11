@@ -9,8 +9,10 @@ const securityHeaders = [
     key: 'Strict-Transport-Security',
     value: 'max-age=63072000; includeSubDomains; preload',
   },
-  // X-Frame-Options removido - conflita com frame-ancestors no CSP
-  // Builder.io precisa carregar o site em iframe
+  {
+    key: 'X-Frame-Options',
+    value: 'DENY',
+  },
   {
     key: 'X-Content-Type-Options',
     value: 'nosniff',
@@ -32,7 +34,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https: blob:",
       "connect-src 'self' https://api.openai.com https://vitals.vercel-insights.com",
-      "frame-ancestors 'self'",
+      "frame-ancestors 'none'",
     ].join('; '),
   },
 ]
@@ -40,6 +42,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  turbopack: {
+    root: process.cwd(),
+  },
   async headers() {
     return [
       {
