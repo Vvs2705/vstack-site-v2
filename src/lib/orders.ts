@@ -1,5 +1,5 @@
 import type { Order, OrderItem, OrderEvent } from '@prisma/client'
-import type { Order as OrderResponse, OrderStatus } from '@/lib/types/order'
+import type { Order as OrderResponse, OrderStatus, OrderStatusEvent } from '@/lib/types/order'
 import { ORDER_STATUS_LABELS } from '@/lib/types/order'
 
 type OrderWithRelations = Order & {
@@ -22,10 +22,10 @@ export function buildOrderResponse(order: OrderWithRelations): OrderResponse {
 
   const seenStatuses = new Set(order.events.map((e) => e.status as OrderStatus))
 
-  const timeline = STATUS_SEQUENCE.filter((s) => s !== 'cancelled').map((status, index) => {
+  const timeline: OrderStatusEvent[] = STATUS_SEQUENCE.map((status, index) => {
     const event = order.events.find((e) => e.status === status)
     const isCompleted = seenStatuses.has(status) || index < currentIndex
-    const isCurrent = status === currentStatus && currentStatus !== 'cancelled'
+    const isCurrent = status === currentStatus
 
     return {
       status,

@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[var(--bg)] pt-14">
+      <main className="min-h-screen bg-[var(--bg)] pt-16">
         {/* Accent line */}
         <div className="h-[2px] w-full bg-gradient-to-r from-[var(--accent)] to-transparent" />
 
