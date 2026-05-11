@@ -143,14 +143,7 @@ Mudancas principais:
 
 ### Textos quebrados corrigidos nos arquivos tocados
 
-Foi feita varredura por mojibake em arquivos tocados usando padroes como:
-
-```txt
-Ã
-â
-ð
-�
-```
+Foi feita varredura por sinais comuns de mojibake em arquivos tocados.
 
 Nos arquivos principais da Home/Navbar/Footer/sections nao restaram ocorrencias.
 
@@ -243,19 +236,26 @@ src/app/api/enable-draft/route.ts
 
 ## Proximo Passo Recomendado
 
+Status apos etapa de copy/SEO e paginas internas:
+
+- Home ja possui fundacao visual nova.
+- Paginas `/sobre`, `/solucoes`, `/contato`, `/cotacao`, `/envie-sua-dor` e `/faq` foram padronizadas.
+- Textos publicos foram reposicionados para diagnostico, automacao, IA, integracoes e sistemas sob medida.
+- Formularios publicos passaram a usar CTAs mais fortes: solicitar diagnostico, solicitar contato e enviar para analise.
+- Estrategia de SEO/copy registrada em `docs/SEO_COPY_STRATEGY.md`.
+
 Antes de deploy:
 
-1. Revisar visualmente a Home no navegador.
-2. Fazer commit das alteracoes.
-3. Fazer deploy na Vercel somente apos confirmacao.
+1. Rodar `npm run build`.
+2. Revisar visualmente as paginas principais no navegador.
+3. Fazer commit das alteracoes.
+4. Fazer deploy na Vercel somente apos confirmacao.
 
 Depois:
 
-1. Aplicar o mesmo sistema visual em `/sobre`.
-2. Aplicar em `/solucoes` e `/solucoes/contaflow`.
-3. Refatorar formularios (`contato`, `cotacao`, `envie-sua-dor`) para usar os primitives.
-4. Corrigir lint.
-5. Criar documentacao de design system.
+1. Corrigir lint legado em `src/lib/openai.ts`, `src/lib/redis.ts`, `src/lib/resend.ts` e paginas legais.
+2. Criar paginas SEO especificas por cluster: automacao, IA, integracoes, sistemas sob medida e ContaFlow.
+3. Criar documentacao de design system.
 
 ## Regra de Continuidade
 
@@ -268,4 +268,3 @@ Nao adicionar novas features ate concluir:
 - consistencia tipografica,
 - responsividade,
 - lint essencial.
-

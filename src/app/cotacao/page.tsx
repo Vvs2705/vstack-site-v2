@@ -1,21 +1,43 @@
-import { Metadata } from 'next'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import ChatWidget from '@/components/chat/ChatWidget'
+import type { Metadata } from 'next'
+import { ClipboardCheck, Clock, FileSearch, ShieldCheck } from 'lucide-react'
 import CookieBanner from '@/components/CookieBanner'
+import ChatWidget from '@/components/chat/ChatWidget'
 import CotacaoForm from '@/components/forms/CotacaoForm'
-import { Shield, Clock, Award, HeadphonesIcon } from 'lucide-react'
+import Footer from '@/components/layout/Footer'
+import Navbar from '@/components/layout/Navbar'
+import { Container, Section, Surface } from '@/components/primitives/Layout'
 
 export const metadata: Metadata = {
-  title: 'Solicitar Cotação | V-STACK SOLUTIONS',
-  description: 'Solicite uma cotação personalizada para seu projeto. Receba uma proposta detalhada em até 24 horas.',
+  title: 'Solicitar Diagnóstico',
+  description:
+    'Solicite um diagnóstico para automação, IA, integração de sistemas ou desenvolvimento sob medida. Receba uma análise inicial do caminho técnico recomendado.',
+  openGraph: {
+    title: 'Solicitar Diagnóstico | V-STACK SOLUTIONS',
+    description: 'Receba uma análise inicial para transformar seu desafio operacional em solução técnica.',
+  },
 }
 
 const BENEFITS = [
-  { Icon: Clock,           title: 'Resposta em 24h',      description: 'Proposta detalhada em até 1 dia útil' },
-  { Icon: Shield,          title: 'Sem Compromisso',       description: 'Cotação gratuita e sem obrigações' },
-  { Icon: Award,           title: 'Consultoria Inclusa',   description: 'Análise técnica do seu projeto' },
-  { Icon: HeadphonesIcon,  title: 'Suporte Dedicado',      description: 'Acompanhamento personalizado' },
+  {
+    icon: FileSearch,
+    title: 'Leitura técnica',
+    description: 'Entendemos escopo, integrações, riscos e impacto antes de estimar.',
+  },
+  {
+    icon: Clock,
+    title: 'Retorno objetivo',
+    description: 'Você recebe uma direção inicial em até 24 horas úteis.',
+  },
+  {
+    icon: ClipboardCheck,
+    title: 'Sem compromisso',
+    description: 'O diagnóstico inicial não exige contratação.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Confidencial',
+    description: 'Informações tratadas com discrição e foco técnico.',
+  },
 ]
 
 export default function CotacaoPage() {
@@ -23,47 +45,40 @@ export default function CotacaoPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen pt-14 bg-[var(--bg)]">
-        {/* Page header */}
-        <section className="border-b border-[var(--border)] py-14 sm:py-16">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--accent)] font-medium mb-3">
-              Proposta gratuita
-            </p>
-            <h1 className="font-display text-[36px] sm:text-[44px] font-bold text-[var(--text-1)] leading-tight max-w-xl mb-4">
-              Solicite uma cotação
-            </h1>
-            <p className="text-[15px] text-[var(--text-2)] leading-relaxed max-w-xl">
-              Preencha o formulário e receba uma proposta personalizada para seu projeto em até 24 horas.
-            </p>
-          </div>
-        </section>
+      <main className="min-h-screen bg-[var(--bg)] pt-16">
+        <Section spacing="xl" className="border-b border-[var(--border)]">
+          <Container>
+            <div className="max-w-3xl">
+              <p className="eyebrow mb-4">Diagnóstico técnico</p>
+              <h1 className="font-display text-balance text-[38px] font-extrabold leading-tight tracking-[-0.025em] text-[var(--text-1)] sm:text-[56px]">
+                Conte o desafio. Nós desenhamos o caminho possível.
+              </h1>
+              <p className="mt-6 max-w-2xl text-[16px] leading-8 text-[var(--text-2)]">
+                O formulário abaixo ajuda a separar o que precisa de automação, integração, IA ou sistema sob medida. A resposta não é genérica: parte do seu contexto.
+              </p>
+            </div>
+          </Container>
+        </Section>
 
-        {/* Benefits strip */}
-        <section className="border-b border-[var(--border)] bg-[var(--bg-deep)] py-8">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {BENEFITS.map(({ Icon, title, description }) => (
-                <div key={title} className="flex items-start gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--accent-muted)] border border-[var(--accent-border)] flex-shrink-0">
-                    <Icon className="h-4 w-4 text-[var(--accent)]" />
-                  </div>
-                  <div>
-                    <p className="text-[13px] font-semibold text-[var(--text-1)] mb-0.5">{title}</p>
-                    <p className="text-[12px] text-[var(--text-3)]">{description}</p>
-                  </div>
-                </div>
+        <Section tone="deep" spacing="md" className="border-b border-[var(--border)]">
+          <Container>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {BENEFITS.map(({ icon: Icon, title, description }) => (
+                <Surface key={title} className="p-5">
+                  <Icon className="mb-4 h-5 w-5 text-[var(--accent)]" />
+                  <h2 className="font-display text-base font-bold text-[var(--text-1)]">{title}</h2>
+                  <p className="mt-2 text-[13px] leading-6 text-[var(--text-2)]">{description}</p>
+                </Surface>
               ))}
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* Form */}
-        <section className="py-16 sm:py-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <Section>
+          <Container>
             <CotacaoForm />
-          </div>
-        </section>
+          </Container>
+        </Section>
       </main>
 
       <Footer />

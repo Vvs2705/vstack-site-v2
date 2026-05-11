@@ -32,8 +32,8 @@ export function useAuth(): AuthState & {
   signOut: () => Promise<void>
   refreshUser: () => Promise<void>
 } {
-  const [user, setUser] = useState<AuthUser | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState<AuthUser | null>(() => readStoredUser())
+  const [isLoading, setIsLoading] = useState(() => readStoredUser() !== null)
 
   // Hydrate from localStorage on mount
   useEffect(() => {
@@ -59,8 +59,6 @@ export function useAuth(): AuthState & {
           setUser(stored)
         })
         .finally(() => setIsLoading(false))
-    } else {
-      setIsLoading(false)
     }
   }, [])
 

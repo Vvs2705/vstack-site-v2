@@ -101,7 +101,7 @@ export default function HeroSection() {
                       className="flex-1 rounded-t-md bg-[var(--accent-muted)]"
                       style={{
                         height: `${height}%`,
-                        background: index === 5 ? 'linear-gradient(to top, var(--accent), var(--accent-light))' : undefined,
+                        background: index === 5 ?'linear-gradient(to top, var(--accent), var(--accent-light))' : undefined,
                       }}
                     />
                   ))}
@@ -128,7 +128,7 @@ function Metric({ title, value, tone }: { title: string; value: string; tone: 's
   return (
     <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
       <p className="text-[12px] text-[var(--text-3)]">{title}</p>
-      <p className="mt-1 font-display text-2xl font-bold" style={{ color: tone === 'success' ? '#22c55e' : 'var(--accent)' }}>
+      <p className="mt-1 font-display text-2xl font-bold" style={{ color: tone === 'success' ?'#22c55e' : 'var(--accent)' }}>
         {value}
       </p>
     </div>

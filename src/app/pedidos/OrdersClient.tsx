@@ -32,17 +32,21 @@ export default function OrdersClient({ user }: Props) {
     } catch (err) {
       setState({
         status: 'error',
-        message: err instanceof Error ? err.message : 'Erro desconhecido',
+        message: err instanceof Error ?err.message : 'Erro desconhecido',
       })
     }
   }, [])
 
   useEffect(() => {
-    fetchOrders(page)
+    const loadOrders = async () => {
+      await fetchOrders(page)
+    }
+
+    void loadOrders()
   }, [fetchOrders, page])
 
   const totalPages =
-    state.status === 'success' ? Math.ceil(state.data.total / state.data.pageSize) : 0
+    state.status === 'success' ?Math.ceil(state.data.total / state.data.pageSize) : 0
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -61,7 +65,7 @@ export default function OrdersClient({ user }: Props) {
           aria-label="Atualizar pedidos"
         >
           <RefreshCw
-            className={`h-4 w-4 ${state.status === 'loading' ? 'animate-spin' : ''}`}
+            className={`h-4 w-4 ${state.status === 'loading' ?'animate-spin' : ''}`}
           />
           Atualizar
         </button>

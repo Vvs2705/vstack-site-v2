@@ -1,194 +1,164 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import ChatWidget from '@/components/chat/ChatWidget'
+import { ArrowRight, CheckCircle2, Compass, Layers3, ShieldCheck, Target, Workflow } from 'lucide-react'
 import CookieBanner from '@/components/CookieBanner'
-import { Target, Users, Rocket, Award, ArrowRight, CheckCircle } from 'lucide-react'
+import ChatWidget from '@/components/chat/ChatWidget'
+import Footer from '@/components/layout/Footer'
+import Navbar from '@/components/layout/Navbar'
+import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
 
 export const metadata: Metadata = {
-  title: 'Sobre Nós | V-STACK SOLUTIONS',
-  description: 'Conheça a V-STACK SOLUTIONS. Somos especialistas em transformação digital, automação e inteligência artificial para empresas.',
+  title: 'Sobre',
+  description:
+    'Conheça a V-STACK SOLUTIONS: uma empresa de tecnologia focada em automação, IA, integrações e sistemas sob medida para operações que precisam escalar.',
+  openGraph: {
+    title: 'Sobre | V-STACK SOLUTIONS',
+    description:
+      'Tecnologia sob medida para reduzir retrabalho, integrar sistemas e transformar operação em vantagem competitiva.',
+  },
 }
+
+const PRINCIPLES = [
+  {
+    icon: Target,
+    title: 'Diagnóstico antes de tecnologia',
+    text: 'Entendemos gargalos, riscos e impacto financeiro antes de propor arquitetura ou ferramenta.',
+  },
+  {
+    icon: Layers3,
+    title: 'Construção modular',
+    text: 'Entregas em blocos evolutivos, com base técnica preparada para crescer sem virar dívida.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Operação confiável',
+    text: 'Segurança, rastreabilidade e manutenção fazem parte do projeto desde o primeiro desenho.',
+  },
+]
+
+const PROCESS = [
+  'Mapeamento do processo atual e pontos de perda',
+  'Definição do fluxo ideal, integrações e indicadores',
+  'Entrega incremental com validação do usuário real',
+  'Monitoramento, suporte e evolução contínua',
+]
 
 export default function SobrePage() {
   return (
     <>
       <Navbar />
 
-      <main className="min-h-screen pt-14 bg-[var(--bg)]">
-        {/* Page header */}
-        <section className="border-b border-[var(--border)] py-14 sm:py-16">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--accent)] font-medium mb-3">
-              Quem somos
-            </p>
-            <h1 className="font-display text-[36px] sm:text-[44px] font-bold text-[var(--text-1)] leading-tight max-w-xl mb-4">
-              Transformamos desafios em soluções
-            </h1>
-            <p className="text-[15px] text-[var(--text-2)] leading-relaxed max-w-xl">
-              Somos especialistas em automação, inteligência artificial e integração de sistemas.
-              Nossa missão é impulsionar a eficiência e inovação das empresas com tecnologia de ponta.
-            </p>
-          </div>
-        </section>
-
-        {/* Mission / Vision / Values */}
-        <section className="py-14 sm:py-16 border-b border-[var(--border)] bg-[var(--bg-deep)]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                {
-                  Icon: Target,
-                  title: 'Missão',
-                  description: 'Transformar processos complexos em soluções simples e eficientes, capacitando empresas a alcançarem seus objetivos com tecnologia.',
-                },
-                {
-                  Icon: Rocket,
-                  title: 'Visão',
-                  description: 'Ser referência em transformação digital no Brasil, reconhecida pela excelência técnica e impacto positivo nos negócios dos clientes.',
-                },
-                {
-                  Icon: Award,
-                  title: 'Valores',
-                  description: 'Inovação contínua, transparência, foco em resultados, excelência técnica e compromisso com o sucesso dos nossos clientes.',
-                },
-              ].map(({ Icon, title, description }) => (
-                <div key={title} className="rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] p-6">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-muted)] border border-[var(--accent-border)] mb-4">
-                    <Icon className="h-4 w-4 text-[var(--accent)]" />
-                  </div>
-                  <h3 className="font-display text-[15px] font-bold text-[var(--text-1)] mb-2">{title}</h3>
-                  <p className="text-[13px] text-[var(--text-2)] leading-relaxed">{description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Story + stats */}
-        <section className="py-14 sm:py-16">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <main className="min-h-screen bg-[var(--bg)] pt-16">
+        <Section spacing="xl" className="border-b border-[var(--border)]">
+          <Container>
+            <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
               <div>
-                <p className="eyebrow mb-3">Nossa história</p>
-                <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-1)] mb-5 leading-tight">
-                  De um problema real a uma solução escalável
-                </h2>
-                <div className="space-y-4 text-[14px] text-[var(--text-2)] leading-relaxed">
-                  <p>
-                    A V-STACK SOLUTIONS nasceu da percepção de que muitas empresas enfrentam desafios operacionais
-                    que poderiam ser resolvidos com tecnologia adequada. Fundada por especialistas em desenvolvimento
-                    de software e automação, começamos com o objetivo de democratizar o acesso a soluções tecnológicas de ponta.
-                  </p>
-                  <p>
-                    Desenvolvemos expertise em automação de processos, inteligência artificial e integração de sistemas.
-                    Trabalhamos com empresas de diversos setores, sempre com foco em entregar resultados mensuráveis.
-                  </p>
-                  <p>
-                    Hoje, somos reconhecidos pela qualidade técnica, agilidade na entrega e compromisso com o sucesso
-                    dos nossos clientes. Cada projeto é uma oportunidade de aplicar as melhores práticas e tecnologias
-                    mais recentes para resolver problemas reais.
-                  </p>
+                <p className="eyebrow mb-4">Quem somos</p>
+                <h1 className="font-display text-balance text-[38px] font-extrabold leading-tight tracking-[-0.025em] text-[var(--text-1)] sm:text-[54px]">
+                  Engenharia aplicada a problemas reais de operação.
+                </h1>
+                <p className="mt-6 max-w-xl text-[16px] leading-8 text-[var(--text-2)]">
+                  A V-STACK SOLUTIONS combina automação, inteligência artificial, integração de sistemas e desenvolvimento sob medida para empresas que querem menos retrabalho e mais controle operacional.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link href="/cotacao" className="btn-primary px-6 py-3.5 text-[14px]">
+                    Solicitar diagnóstico
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link href="/solucoes" className="btn-secondary px-6 py-3.5 text-[14px]">
+                    Ver soluções
+                  </Link>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { value: '150+', label: 'Projetos entregues' },
-                    { value: '80+',  label: 'Clientes ativos' },
-                    { value: '5+',   label: 'Anos de mercado' },
-                    { value: '98%',  label: 'Satisfação' },
-                  ].map(({ value, label }) => (
-                    <div key={label} className="rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] p-5 text-center">
-                      <span className="block font-display text-3xl font-bold text-[var(--accent)] mb-1">{value}</span>
-                      <span className="text-[12px] text-[var(--text-3)] uppercase tracking-[0.06em]">{label}</span>
+              <Surface className="p-6">
+                <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-[var(--accent)]">
+                  Nossa posição
+                </p>
+                <h2 className="mt-4 font-display text-2xl font-bold text-[var(--text-1)]">
+                  Não vendemos tecnologia genérica.
+                </h2>
+                <p className="mt-4 text-[15px] leading-8 text-[var(--text-2)]">
+                  Entramos onde processos dependem de planilha, retrabalho, conferência manual, sistemas que não conversam ou decisões tomadas sem dados confiáveis.
+                </p>
+                <div className="mt-6 grid gap-3">
+                  {PROCESS.map((item) => (
+                    <div key={item} className="flex items-center gap-3 text-[14px] text-[var(--text-2)]">
+                      <CheckCircle2 className="h-5 w-5 flex-none text-[var(--accent)]" />
+                      {item}
                     </div>
                   ))}
                 </div>
-
-                <div className="rounded-[var(--radius-card)] border border-[var(--accent-border)] bg-[var(--accent-muted)] p-5">
-                  <h3 className="font-display text-[14px] font-bold text-[var(--text-1)] mb-3">
-                    Nossos diferenciais
-                  </h3>
-                  <ul className="space-y-2.5">
-                    {[
-                      'Equipe técnica altamente qualificada',
-                      'Metodologia ágil e transparente',
-                      'Suporte contínuo pós-implementação',
-                      'Foco em ROI e resultados mensuráveis',
-                    ].map((item) => (
-                      <li key={item} className="flex items-center gap-2.5 text-[13px] text-[var(--text-2)]">
-                        <CheckCircle className="h-4 w-4 text-[var(--accent)] flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              </Surface>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* Team roles */}
-        <section className="py-14 sm:py-16 border-t border-[var(--border)] bg-[var(--bg-deep)]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <p className="eyebrow mb-3">Time</p>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-1)] mb-10 max-w-sm leading-tight">
-              Profissionais comprometidos com resultados
-            </h2>
+        <Section tone="deep">
+          <Container>
+            <SectionHeader
+              eyebrow="Como pensamos"
+              title="A estética do site precisa refletir a forma como entregamos: clareza, precisão e confiança."
+              description="Cada projeto nasce com uma pergunta simples: qual parte da operação precisa ficar mais clara, rápida ou previsível?"
+            />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                {
-                  Icon: Users,
-                  title: 'Desenvolvedores',
-                  description: 'Especialistas em múltiplas linguagens e frameworks, sempre atualizados com as últimas tecnologias.',
-                },
-                {
-                  Icon: Target,
-                  title: 'Arquitetos de Soluções',
-                  description: 'Profissionais que projetam sistemas escaláveis, seguros e alinhados aos objetivos de negócio.',
-                },
-                {
-                  Icon: Award,
-                  title: 'Consultores',
-                  description: 'Especialistas em processos que identificam oportunidades e propõem melhorias estratégicas.',
-                },
-              ].map(({ Icon, title, description }) => (
-                <div key={title} className="rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] p-6">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-muted)] border border-[var(--accent-border)] mb-4">
-                    <Icon className="h-4 w-4 text-[var(--accent)]" />
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {PRINCIPLES.map(({ icon: Icon, title, text }) => (
+                <Surface key={title} interactive className="p-6">
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] text-[var(--accent)]">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="font-display text-[14px] font-semibold text-[var(--text-1)] mb-2">{title}</h3>
-                  <p className="text-[13px] text-[var(--text-2)] leading-relaxed">{description}</p>
-                </div>
+                  <h3 className="font-display text-lg font-bold text-[var(--text-1)]">{title}</h3>
+                  <p className="mt-3 text-[14px] leading-7 text-[var(--text-2)]">{text}</p>
+                </Surface>
               ))}
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* CTA */}
-        <section className="py-14 sm:py-16">
-          <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-1)] mb-3 leading-tight">
-              Vamos trabalhar juntos?
-            </h2>
-            <p className="text-[14px] text-[var(--text-2)] mb-7 max-w-md mx-auto">
-              Descubra como podemos ajudar sua empresa a alcançar novos patamares com tecnologia.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href="/cotacao" className="btn-primary inline-flex items-center gap-2 px-6 py-3 text-[14px] font-semibold">
-                Solicitar Cotação
+        <Section>
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+              <SectionHeader
+                eyebrow="Para quem"
+                title="Empresas que sentem a operação crescer mais rápido que os processos."
+                description="O melhor cliente para a V-STACK não procura apenas uma tela bonita. Procura ganhar controle, velocidade e previsibilidade."
+              />
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  'Times financeiros que fecham o mês no limite',
+                  'Operações com múltiplos sistemas desconectados',
+                  'Empresas com tarefas repetitivas e alto volume manual',
+                  'Negócios que precisam transformar conhecimento interno em software',
+                ].map((item) => (
+                  <Surface key={item} className="flex items-start gap-3 p-4">
+                    <Compass className="mt-0.5 h-5 w-5 flex-none text-[var(--accent)]" />
+                    <p className="text-[14px] leading-6 text-[var(--text-2)]">{item}</p>
+                  </Surface>
+                ))}
+              </div>
+            </div>
+          </Container>
+        </Section>
+
+        <Section tone="deep" className="border-t border-[var(--border)]">
+          <Container size="md">
+            <div className="text-center">
+              <Workflow className="mx-auto mb-5 h-10 w-10 text-[var(--accent)]" />
+              <h2 className="font-display text-3xl font-bold text-[var(--text-1)]">
+                Quer saber se faz sentido automatizar agora?
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-[15px] leading-8 text-[var(--text-2)]">
+                Conte o cenário atual. Nós ajudamos a separar o que deve virar automação, integração, sistema ou apenas melhoria de processo.
+              </p>
+              <Link href="/envie-sua-dor" className="btn-primary mt-8 px-7 py-3.5 text-[14px]">
+                Enviar minha dor
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/contato" className="btn-outline inline-flex items-center px-6 py-3 text-[14px] font-semibold">
-                Fale Conosco
-              </Link>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
       </main>
 
       <Footer />

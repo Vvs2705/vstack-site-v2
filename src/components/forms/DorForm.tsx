@@ -23,7 +23,7 @@ export default function DorForm() {
     isAnonymous: false,
   })
 
-  const updateField = (field: keyof DorInput, value: any) => {
+  const updateField = <K extends keyof DorInput>(field: K, value: DorInput[K]) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
     setErrors((prev) => ({ ...prev, [field]: '' }))
   }
@@ -75,10 +75,10 @@ export default function DorForm() {
           </div>
         </div>
         <h2 className="font-display text-3xl font-bold gradient-text">
-          Dor Recebida com Sucesso!
+          Dor recebida
         </h2>
         <p className="text-[var(--text-secondary)] text-lg">
-          Obrigado por compartilhar seu desafio. Nossa equipe analisará e entrará em contato em breve.
+          Obrigado por descrever o problema. Vamos analisar impacto, urgência e caminhos possíveis.
         </p>
         {!formData.isAnonymous && formData.email && (
           <p className="text-sm text-[var(--text-muted)]">
@@ -103,7 +103,7 @@ export default function DorForm() {
           }}
           className="btn-secondary px-6 py-3"
         >
-          Enviar Outra Dor
+          Enviar outra dor
         </button>
       </div>
     )
@@ -115,11 +115,11 @@ export default function DorForm() {
         <AlertCircle className="h-6 w-6 text-[var(--accent)] flex-shrink-0 mt-0.5" />
         <div>
           <h3 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-1">
-            Compartilhe Sua Dor
+            Descreva a dor da operação
           </h3>
           <p className="text-sm text-[var(--text-secondary)]">
-            Conte-nos sobre os desafios que sua empresa enfrenta. Podemos ajudá-lo a encontrar soluções.
-            Você pode enviar anonimamente se preferir.
+            Quanto mais claro for o problema, mais rápido conseguimos identificar se vale automatizar,
+            integrar sistemas ou criar uma solução sob medida.
           </p>
         </div>
       </div>
@@ -221,7 +221,7 @@ export default function DorForm() {
 
         <div>
           <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
-            Título da Dor * (mínimo 5 caracteres)
+            Título da dor * (mínimo 5 caracteres)
           </label>
           <input
             type="text"
@@ -238,7 +238,7 @@ export default function DorForm() {
 
         <div>
           <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
-            Descrição Detalhada * (mínimo 30 caracteres)
+            Descrição detalhada * (mínimo 30 caracteres)
           </label>
           <textarea
             value={formData.description}
@@ -262,7 +262,7 @@ export default function DorForm() {
             onChange={(e) => updateField('impact', e.target.value)}
             rows={3}
             className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none resize-none"
-            placeholder="Como isso afeta sua empresa? (custos, tempo, produtividade...)"
+            placeholder="Como isso afeta sua empresa?(custos, tempo, produtividade...)"
             required
           />
           {errors.impact && (
@@ -272,14 +272,14 @@ export default function DorForm() {
 
         <div>
           <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
-            Nível de Urgência *
+            Nível de urgência *
           </label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { value: 'baixa', label: 'Baixa', color: 'bg-blue-500/10 border-blue-500/30 text-blue-400' },
-              { value: 'media', label: 'Média', color: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400' },
-              { value: 'alta', label: 'Alta', color: 'bg-orange-500/10 border-orange-500/30 text-orange-400' },
-              { value: 'critica', label: 'Crítica', color: 'bg-red-500/10 border-red-500/30 text-red-400' },
+              { value: 'baixa' as const, label: 'Baixa', color: 'bg-blue-500/10 border-blue-500/30 text-blue-400' },
+              { value: 'media' as const, label: 'Média', color: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400' },
+              { value: 'alta' as const, label: 'Alta', color: 'bg-orange-500/10 border-orange-500/30 text-orange-400' },
+              { value: 'critica' as const, label: 'Crítica', color: 'bg-red-500/10 border-red-500/30 text-red-400' },
             ].map((option) => (
               <button
                 key={option.value}
@@ -287,7 +287,7 @@ export default function DorForm() {
                 onClick={() => updateField('urgency', option.value)}
                 className={`rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
                   formData.urgency === option.value
-                    ? option.color
+                    ?option.color
                     : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-secondary)] hover:border-[var(--accent-border)]'
                 }`}
               >
@@ -309,7 +309,7 @@ export default function DorForm() {
             onChange={(e) => updateField('currentSolution', e.target.value)}
             rows={3}
             className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none resize-none"
-            placeholder="Como você lida com isso hoje? Por que não é suficiente?"
+            placeholder="Como você lida com isso hoje?Por que não é suficiente?"
           />
           {errors.currentSolution && (
             <p className="mt-1 text-sm text-red-400">{errors.currentSolution}</p>
@@ -328,14 +328,14 @@ export default function DorForm() {
         disabled={isSubmitting}
         className="w-full btn-primary px-6 py-4 text-base font-semibold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isSubmitting ? (
+        {isSubmitting ?(
           <>
             <Loader2 className="h-5 w-5 animate-spin" />
             Enviando...
           </>
         ) : (
           <>
-            Enviar Dor
+            Enviar para análise
             <AlertCircle className="h-5 w-5" />
           </>
         )}

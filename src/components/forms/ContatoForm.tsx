@@ -5,6 +5,8 @@ import { Send, Check, Loader2 } from 'lucide-react'
 import { ContatoSchema, type ContatoInput } from '@/lib/validations'
 import { z } from 'zod'
 
+type ContactInterest = ContatoInput['interest']
+
 export default function ContatoForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
@@ -19,7 +21,7 @@ export default function ContatoForm() {
     interest: undefined,
   })
 
-  const updateField = (field: keyof ContatoInput, value: any) => {
+  const updateField = <K extends keyof ContatoInput>(field: K, value: ContatoInput[K]) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
     setErrors((prev) => ({ ...prev, [field]: '' }))
   }
@@ -71,10 +73,10 @@ export default function ContatoForm() {
           </div>
         </div>
         <h2 className="font-display text-3xl font-bold gradient-text">
-          Mensagem Enviada!
+          Diagnóstico solicitado
         </h2>
         <p className="text-[var(--text-secondary)] text-lg">
-          Obrigado pelo contato! Nossa equipe responderá em até 24 horas úteis.
+          Recebemos sua mensagem. Nossa equipe vai avaliar o contexto e responder em até 24 horas úteis.
         </p>
         <p className="text-sm text-[var(--text-muted)]">
           Enviamos uma confirmação para <strong>{formData.email}</strong>
@@ -93,7 +95,7 @@ export default function ContatoForm() {
           }}
           className="btn-secondary px-6 py-3"
         >
-          Enviar Nova Mensagem
+          Enviar nova mensagem
         </button>
       </div>
     )
@@ -103,10 +105,10 @@ export default function ContatoForm() {
     <form onSubmit={handleSubmit} className="card-vstack max-w-2xl mx-auto space-y-6">
       <div>
         <h3 className="font-display text-2xl font-bold text-[var(--text-primary)] mb-2">
-          Entre em Contato
+          Fale com um especialista
         </h3>
         <p className="text-[var(--text-secondary)]">
-          Preencha o formulário abaixo e entraremos em contato em breve.
+          Descreva o cenário da sua empresa para iniciarmos com uma conversa objetiva.
         </p>
       </div>
 
@@ -187,7 +189,7 @@ export default function ContatoForm() {
           </label>
           <select
             value={formData.interest || ''}
-            onChange={(e) => updateField('interest', e.target.value)}
+            onChange={(e) => updateField('interest', e.target.value as ContactInterest)}
             className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
             required
           >
@@ -233,14 +235,14 @@ export default function ContatoForm() {
         disabled={isSubmitting}
         className="w-full btn-primary px-6 py-4 text-base font-semibold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isSubmitting ? (
+        {isSubmitting ?(
           <>
             <Loader2 className="h-5 w-5 animate-spin" />
             Enviando...
           </>
         ) : (
           <>
-            Enviar Mensagem
+            Solicitar contato
             <Send className="h-5 w-5" />
           </>
         )}

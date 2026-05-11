@@ -1,18 +1,21 @@
-﻿import { Metadata } from 'next'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import ChatWidget from '@/components/chat/ChatWidget'
+import type { Metadata } from 'next'
 import CookieBanner from '@/components/CookieBanner'
-import SolutionsGridSection from '@/components/sections/SolutionsGridSection'
+import ChatWidget from '@/components/chat/ChatWidget'
+import Footer from '@/components/layout/Footer'
+import Navbar from '@/components/layout/Navbar'
 import CTASection from '@/components/sections/CTASection'
+import SolutionsGridSection from '@/components/sections/SolutionsGridSection'
+import { Container, Section } from '@/components/primitives/Layout'
 
 export const metadata: Metadata = {
-  title: 'Soluções | V-STACK SOLUTIONS',
-  description: 'Projetos e case studies desenvolvidos pela V-STACK SOLUTIONS. Conheça nossas soluções em automação, IA e integração de sistemas.',
-  keywords: ['portfólio', 'projetos', 'case studies', 'ContaFlow', 'automação financeira', 'SaaS'],
+  title: 'Soluções',
+  description:
+    'Automação de processos, agentes de IA, integração de sistemas e desenvolvimento sob medida para empresas que precisam escalar com menos retrabalho.',
+  keywords: ['automação de processos', 'agentes de IA', 'integração de sistemas', 'sistemas sob medida', 'ContaFlow'],
   openGraph: {
     title: 'Soluções | V-STACK SOLUTIONS',
-    description: 'Projetos e case studies desenvolvidos pela V-STACK SOLUTIONS',
+    description:
+      'Tecnologia aplicada para reduzir retrabalho, integrar sistemas e criar operações mais previsíveis.',
     type: 'website',
   },
 }
@@ -22,21 +25,29 @@ export default function SolucoesPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[var(--bg)] pt-14">
-        <div className="h-[2px] w-full bg-gradient-to-r from-[var(--accent)] to-transparent" />
+      <main className="min-h-screen bg-[var(--bg)] pt-16">
+        <Section spacing="xl" className="border-b border-[var(--border)]">
+          <Container>
+            <div className="max-w-3xl">
+              <p className="eyebrow mb-4">O que entregamos</p>
+              <h1 className="font-display text-balance text-[38px] font-extrabold leading-tight tracking-[-0.025em] text-[var(--text-1)] sm:text-[56px]">
+                Soluções para tirar a operação do improviso.
+              </h1>
+              <p className="mt-6 max-w-2xl text-[16px] leading-8 text-[var(--text-2)]">
+                Atuamos onde há retrabalho, sistemas desconectados, dados pouco confiáveis e decisões lentas. O objetivo é simples: transformar processo em software útil.
+              </p>
+            </div>
+          </Container>
+        </Section>
 
-        <SolutionsGridSection
-          eyebrow="Portfólio"
-          headline="Projetos e Case Studies"
-          description="Conheça as soluções que desenvolvemos para resolver desafios reais de empresas como a sua. Do conceito à implementação, cada projeto é uma história de transformação digital."
-        />
+        <SolutionsGridSection />
 
         <CTASection
-          headline="Viu algo interessante?"
-          description="Converse com nossa equipe e descubra como podemos criar uma solução customizada para o seu negócio."
-          ctaPrimaryLabel="Solicitar Cotação Gratuita"
+          headline="Qual parte da sua operação mais trava hoje?"
+          description="Envie o contexto. Nós ajudamos a identificar se o melhor caminho é automação, IA, integração, produto interno ou uma combinação dos quatro."
+          ctaPrimaryLabel="Solicitar diagnóstico"
           ctaPrimaryHref="/cotacao"
-          ctaSecondaryLabel="Envie Sua Dor"
+          ctaSecondaryLabel="Enviar minha dor"
           ctaSecondaryHref="/envie-sua-dor"
         />
       </main>

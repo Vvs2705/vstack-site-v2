@@ -35,7 +35,7 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 className={`text-[13px] font-semibold transition-colors ${
-                  link.accent ? 'text-[var(--accent)] hover:text-[var(--accent-light)]' : 'text-[var(--text-2)] hover:text-[var(--text-1)]'
+                  link.accent ?'text-[var(--accent)] hover:text-[var(--accent-light)]' : 'text-[var(--text-2)] hover:text-[var(--text-1)]'
                 }`}
               >
                 {link.label}
@@ -46,7 +46,7 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           {!isLoading && (
-            isAuthenticated && user ? (
+            isAuthenticated && user ?(
               <UserMenu
                 user={user}
                 isOpen={isUserMenuOpen}
@@ -76,7 +76,7 @@ export default function Navbar() {
           aria-label="Abrir menu"
           aria-expanded={isOpen}
         >
-          {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          {isOpen ?<X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </div>
 
@@ -126,7 +126,7 @@ function UserMenu({ user, isOpen, onToggle, onClose, onSignOut }: UserMenuProps)
         aria-expanded={isOpen}
         aria-haspopup="menu"
       >
-        {user.image ? (
+        {user.image ?(
           <Image src={user.image} alt={user.name} width={24} height={24} className="rounded-full object-cover" />
         ) : (
           <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--accent-muted)] text-[10px] font-bold text-[var(--accent)]">

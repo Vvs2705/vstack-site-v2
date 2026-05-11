@@ -13,9 +13,8 @@ import {
   ExternalLink,
   Github,
   BookOpen,
-  CheckCircle
 } from 'lucide-react'
-import { projects, getProjectBySlug, type ProjectData } from '@/lib/projects'
+import { projects, getProjectBySlug } from '@/lib/projects'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ChatWidget from '@/components/chat/ChatWidget'
@@ -37,7 +36,7 @@ type IconName = keyof typeof iconMap
 
 function getIconComponent(iconName: string): React.ReactNode {
   const Icon = iconMap[iconName as IconName]
-  return Icon ? <Icon className="w-6 h-6" /> : null
+  return Icon ?<Icon className="w-6 h-6" /> : null
 }
 
 export async function generateStaticParams() {

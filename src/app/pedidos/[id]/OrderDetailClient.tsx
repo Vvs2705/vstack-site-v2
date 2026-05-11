@@ -12,7 +12,7 @@ interface Props {
   user: AuthUser
 }
 
-export default function OrderDetailClient({ order, user: _user }: Props) {
+export default function OrderDetailClient({ order }: Props) {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Back link */}
@@ -212,7 +212,7 @@ function StatusTimeline({
             {!isLast && (
               <div
                 className={`absolute left-4 top-8 bottom-0 w-px ${
-                  event.isCompleted ? 'bg-[var(--accent)]' : 'bg-[var(--border)]'
+                  event.isCompleted ?'bg-[var(--accent)]' : 'bg-[var(--border)]'
                 }`}
                 aria-hidden="true"
               />
@@ -228,15 +228,15 @@ function StatusTimeline({
             </div>
 
             {/* Content */}
-            <div className={`pb-6 ${isLast ? '' : ''}`}>
+            <div className={`pb-6 ${isLast ?'' : ''}`}>
               <p
                 className={`text-[13px] font-semibold ${
                   event.isCurrent
-                    ? isCancelled
-                      ? 'text-red-600'
+                    ?isCancelled
+                      ?'text-red-600'
                       : 'text-[var(--accent)]'
                     : event.isCompleted
-                    ? 'text-[var(--text-1)]'
+                    ?'text-[var(--text-1)]'
                     : 'text-[var(--text-3)]'
                 }`}
               >
@@ -245,7 +245,7 @@ function StatusTimeline({
               <p
                 className={`text-[12px] mt-0.5 ${
                   event.isCompleted || event.isCurrent
-                    ? 'text-[var(--text-2)]'
+                    ?'text-[var(--text-2)]'
                     : 'text-[var(--text-3)]'
                 }`}
               >

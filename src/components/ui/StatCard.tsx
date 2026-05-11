@@ -52,7 +52,7 @@ export default function StatCard({
 
         {trend && (
           <span className={`text-xs font-semibold ${trend.color || 'text-green-400'}`}>
-            {trend.direction === 'up' ? '↑' : '↓'} {trend.value}
+            {trend.direction === 'up' ?'↑' : '↓'} {trend.value}
           </span>
         )}
       </div>

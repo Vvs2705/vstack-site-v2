@@ -6,6 +6,10 @@ import { CotacaoSchema, type CotacaoInput } from '@/lib/validations'
 import { z } from 'zod'
 
 type Step = 1 | 2 | 3 | 4
+type CompanySize = CotacaoInput['companySize']
+type ProjectBudget = CotacaoInput['projectBudget']
+type ProjectTimeline = CotacaoInput['projectTimeline']
+type ProjectType = CotacaoInput['projectType'][number]
 
 export default function CotacaoForm() {
   const [step, setStep] = useState<Step>(1)
@@ -29,16 +33,16 @@ export default function CotacaoForm() {
     mainChallenge: '',
   })
 
-  const updateField = (field: keyof CotacaoInput, value: any) => {
+  const updateField = <K extends keyof CotacaoInput>(field: K, value: CotacaoInput[K]) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
     setErrors((prev) => ({ ...prev, [field]: '' }))
   }
 
-  const toggleProjectType = (type: string) => {
+  const toggleProjectType = (type: ProjectType) => {
     const current = formData.projectType || []
-    const updated = current.includes(type as any)
-      ? current.filter((t) => t !== type)
-      : [...current, type as any]
+    const updated = current.includes(type)
+      ?current.filter((t) => t !== type)
+      : [...current, type]
     updateField('projectType', updated)
   }
 
@@ -133,18 +137,18 @@ export default function CotacaoForm() {
           <div
             className={`flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-semibold transition-all ${
               s < step
-                ? 'bg-[var(--accent)] text-white'
+                ?'bg-[var(--accent)] text-white'
                 : s === step
-                ? 'bg-[var(--accent)] text-white scale-110'
+                ?'bg-[var(--accent)] text-white scale-110'
                 : 'bg-[var(--bg-deep)] text-[var(--text-muted)] border border-[var(--border)]'
             }`}
           >
-            {s < step ? <Check className="h-5 w-5" /> : s}
+            {s < step ?<Check className="h-5 w-5" /> : s}
           </div>
           {s < 3 && (
             <div
               className={`h-1 w-12 transition-all ${
-                s < step ? 'bg-[var(--accent)]' : 'bg-[var(--border)]'
+                s < step ?'bg-[var(--accent)]' : 'bg-[var(--border)]'
               }`}
             />
           )}
@@ -162,10 +166,10 @@ export default function CotacaoForm() {
           </div>
         </div>
         <h2 className="font-display text-3xl font-bold gradient-text">
-          Cotação Enviada com Sucesso!
+          Diagnóstico solicitado
         </h2>
         <p className="text-[var(--text-secondary)] text-lg">
-          Recebemos sua solicitação e nossa equipe entrará em contato em até 24 horas úteis.
+          Recebemos as informações iniciais e vamos retornar com uma análise objetiva do próximo passo.
         </p>
         <p className="text-sm text-[var(--text-muted)]">
           Enviamos uma confirmação para <strong>{formData.contactEmail}</strong>
@@ -192,7 +196,7 @@ export default function CotacaoForm() {
           }}
           className="btn-secondary px-6 py-3"
         >
-          Nova Cotação
+          Solicitar novo diagnóstico
         </button>
       </div>
     )
@@ -207,10 +211,10 @@ export default function CotacaoForm() {
         <div className="space-y-6">
           <div>
             <h3 className="font-display text-2xl font-bold text-[var(--text-primary)] mb-2">
-              Informações da Empresa
+              Contexto da empresa
             </h3>
             <p className="text-[var(--text-secondary)]">
-              Conte-nos sobre sua organização
+              Precisamos entender tamanho, setor e rotina antes de sugerir solução.
             </p>
           </div>
 
@@ -253,10 +257,10 @@ export default function CotacaoForm() {
               </label>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { value: '1-10', label: '1-10 funcionários' },
-                  { value: '11-50', label: '11-50 funcionários' },
-                  { value: '51-200', label: '51-200 funcionários' },
-                  { value: '201+', label: '201+ funcionários' },
+                  { value: '1-10' as CompanySize, label: '1-10 funcionários' },
+                  { value: '11-50' as CompanySize, label: '11-50 funcionários' },
+                  { value: '51-200' as CompanySize, label: '51-200 funcionários' },
+                  { value: '201+' as CompanySize, label: '201+ funcionários' },
                 ].map((option) => (
                   <button
                     key={option.value}
@@ -264,7 +268,7 @@ export default function CotacaoForm() {
                     onClick={() => updateField('companySize', option.value)}
                     className={`rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
                       formData.companySize === option.value
-                        ? 'border-[var(--accent)] bg-[var(--accent-muted)] text-[var(--accent)]'
+                        ?'border-[var(--accent)] bg-[var(--accent-muted)] text-[var(--accent)]'
                         : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-secondary)] hover:border-[var(--accent-border)]'
                     }`}
                   >
@@ -280,7 +284,7 @@ export default function CotacaoForm() {
 
           <div className="flex justify-end">
             <button onClick={handleNext} className="btn-primary px-6 py-3 flex items-center gap-2">
-              Próximo
+              Continuar
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
@@ -365,7 +369,7 @@ export default function CotacaoForm() {
               Voltar
             </button>
             <button onClick={handleNext} className="btn-primary px-6 py-3 flex items-center gap-2">
-              Próximo
+              Continuar
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
@@ -391,19 +395,19 @@ export default function CotacaoForm() {
               </label>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { value: 'automacao', label: 'Automação' },
-                  { value: 'ia', label: 'Inteligência Artificial' },
-                  { value: 'integracao', label: 'Integração de Sistemas' },
-                  { value: 'saas', label: 'Desenvolvimento SaaS' },
-                  { value: 'outro', label: 'Outro' },
+                  { value: 'automacao' as ProjectType, label: 'Automação' },
+                  { value: 'ia' as ProjectType, label: 'Agente de IA' },
+                  { value: 'integracao' as ProjectType, label: 'Integração de sistemas' },
+                  { value: 'saas' as ProjectType, label: 'Sistema sob medida' },
+                  { value: 'outro' as ProjectType, label: 'Ainda não sei' },
                 ].map((option) => (
                   <button
                     key={option.value}
                     type="button"
                     onClick={() => toggleProjectType(option.value)}
                     className={`rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
-                      formData.projectType?.includes(option.value as any)
-                        ? 'border-[var(--accent)] bg-[var(--accent-muted)] text-[var(--accent)]'
+                      formData.projectType?.includes(option.value)
+                        ?'border-[var(--accent)] bg-[var(--accent-muted)] text-[var(--accent)]'
                         : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-secondary)] hover:border-[var(--accent-border)]'
                     }`}
                   >
@@ -423,7 +427,7 @@ export default function CotacaoForm() {
                 </label>
                 <select
                   value={formData.projectBudget || ''}
-                  onChange={(e) => updateField('projectBudget', e.target.value)}
+                  onChange={(e) => updateField('projectBudget', e.target.value as ProjectBudget)}
                   className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
                 >
                   <option value="">Selecione...</option>
@@ -443,7 +447,7 @@ export default function CotacaoForm() {
                 </label>
                 <select
                   value={formData.projectTimeline || ''}
-                  onChange={(e) => updateField('projectTimeline', e.target.value)}
+                  onChange={(e) => updateField('projectTimeline', e.target.value as ProjectTimeline)}
                   className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
                 >
                   <option value="">Selecione...</option>
@@ -520,14 +524,14 @@ export default function CotacaoForm() {
               disabled={isSubmitting}
               className="btn-primary px-6 py-3 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? (
+              {isSubmitting ?(
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
                   Enviando...
                 </>
               ) : (
                 <>
-                  Enviar Cotação
+                  Solicitar diagnóstico
                   <Check className="h-5 w-5" />
                 </>
               )}
