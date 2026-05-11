@@ -1,4 +1,4 @@
-import type { Order, OrderItem, OrderEvent } from '@prisma/client'
+import type { Order, OrderEvent, OrderItem } from '@prisma/client'
 import type { Order as OrderResponse, OrderStatus, OrderStatusEvent } from '@/lib/types/order'
 import { ORDER_STATUS_LABELS } from '@/lib/types/order'
 
@@ -20,10 +20,10 @@ export function buildOrderResponse(order: OrderWithRelations): OrderResponse {
   const currentStatus = order.status as OrderStatus
   const currentIndex = STATUS_SEQUENCE.indexOf(currentStatus)
 
-  const seenStatuses = new Set(order.events.map((e) => e.status as OrderStatus))
+  const seenStatuses = new Set(order.events.map((event) => event.status as OrderStatus))
 
   const timeline: OrderStatusEvent[] = STATUS_SEQUENCE.map((status, index) => {
-    const event = order.events.find((e) => e.status === status)
+    const event = order.events.find((orderEvent) => orderEvent.status === status)
     const isCompleted = seenStatuses.has(status) || index < currentIndex
     const isCurrent = status === currentStatus
 
@@ -37,12 +37,11 @@ export function buildOrderResponse(order: OrderWithRelations): OrderResponse {
     }
   })
 
-  // Add cancelled step if applicable
   if (currentStatus === 'cancelled') {
-    const cancelEvent = order.events.find((e) => e.status === 'cancelled')
+    const cancelEvent = order.events.find((event) => event.status === 'cancelled')
     timeline.push({
       status: 'cancelled',
-      label: ORDER_STATUS_LABELS['cancelled'],
+      label: ORDER_STATUS_LABELS.cancelled,
       description: cancelEvent?.description ?? 'Pedido cancelado.',
       timestamp: cancelEvent?.createdAt.toISOString() ?? order.updatedAt.toISOString(),
       isCompleted: true,

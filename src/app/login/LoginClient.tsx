@@ -20,7 +20,7 @@ export default function LoginClient() {
   const errorKey = searchParams.get('error')
   const errorMessage = errorKey ? (ERROR_MESSAGES[errorKey] ?? 'Erro desconhecido.') : null
 
-  // Already authenticated — redirect to orders
+  // Already authenticated - redirect to orders.
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
       window.location.replace('/pedidos')
@@ -34,22 +34,21 @@ export default function LoginClient() {
 
   if (isLoading || isAuthenticated || isRedirecting) {
     return (
-      <div className="min-h-screen bg-[var(--bg)] flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-[var(--bg)]">
         <div className="flex flex-col items-center gap-3">
           <div
-            className="h-8 w-8 rounded-full border-2 border-[var(--accent)] border-t-transparent animate-spin"
+            className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--accent)] border-t-transparent"
             aria-label="Carregando"
           />
-          <p className="text-[13px] text-[var(--text-3)]">Carregando…</p>
+          <p className="text-[13px] text-[var(--text-3)]">Carregando...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] flex flex-col items-center justify-center px-4">
-      {/* Logo */}
-      <Link href="/" className="flex items-center gap-2.5 mb-10 group">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[var(--bg)] px-4">
+      <Link href="/" className="group mb-10 flex items-center gap-2.5">
         <svg
           className="h-9 w-9 transition-transform group-hover:scale-105"
           viewBox="0 0 80 70"
@@ -66,35 +65,31 @@ export default function LoginClient() {
         </span>
       </Link>
 
-      {/* Card */}
-      <div className="w-full max-w-sm bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl p-8 shadow-[var(--shadow-sm)]">
-        <div className="text-center mb-8">
-          <h1 className="font-display text-xl font-bold text-[var(--text-1)] mb-2">
+      <div className="w-full max-w-sm rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-8 shadow-[var(--shadow-sm)]">
+        <div className="mb-8 text-center">
+          <h1 className="mb-2 font-display text-xl font-bold text-[var(--text-1)]">
             Acesse sua conta
           </h1>
-          <p className="text-[13px] text-[var(--text-2)] leading-relaxed">
+          <p className="text-[13px] leading-relaxed text-[var(--text-2)]">
             Acompanhe seus pedidos e projetos em andamento.
           </p>
         </div>
 
-        {/* Error banner */}
         {errorMessage && (
           <div
             role="alert"
-            className="mb-6 px-4 py-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-[13px]"
+            className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-700"
           >
             {errorMessage}
           </div>
         )}
 
-        {/* Google button */}
         <button
           onClick={handleGoogleSignIn}
           disabled={isRedirecting}
-          className="w-full flex items-center justify-center gap-3 h-11 px-4 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent-border)] hover:bg-[var(--accent-muted)] transition-colors text-[13px] font-medium text-[var(--text-1)] disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex h-11 w-full items-center justify-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] px-4 text-[13px] font-medium text-[var(--text-1)] transition-colors hover:border-[var(--accent-border)] hover:bg-[var(--accent-muted)] disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Entrar com Google"
         >
-          {/* Google icon */}
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
             <path
               fill="#4285F4"
@@ -116,7 +111,7 @@ export default function LoginClient() {
           Continuar com Google
         </button>
 
-        <p className="mt-6 text-center text-[12px] text-[var(--text-3)] leading-relaxed">
+        <p className="mt-6 text-center text-[12px] leading-relaxed text-[var(--text-3)]">
           Ao entrar, você concorda com nossa{' '}
           <Link href="/privacidade" className="text-[var(--accent)] hover:underline">
             Política de Privacidade
@@ -125,10 +120,9 @@ export default function LoginClient() {
         </p>
       </div>
 
-      {/* Back link */}
       <Link
         href="/"
-        className="mt-6 text-[13px] text-[var(--text-3)] hover:text-[var(--text-2)] transition-colors"
+        className="mt-6 text-[13px] text-[var(--text-3)] transition-colors hover:text-[var(--text-2)]"
       >
         ← Voltar ao site
       </Link>
