@@ -5,8 +5,10 @@ import CookieBanner from '@/components/CookieBanner'
 import ChatWidget from '@/components/chat/ChatWidget'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
+import JsonLd from '@/components/seo/JsonLd'
 import { Container, Section } from '@/components/primitives/Layout'
 import { articles, getArticle } from '@/lib/articles'
+import { articleJsonLd } from '@/lib/structured-data'
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>
@@ -28,6 +30,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     title: article.title,
     description: article.description,
     keywords: [article.category, 'V-STACK SOLUTIONS', 'automação', 'inteligência artificial'],
+    alternates: {
+      canonical: `/conteudos/${article.slug}`,
+    },
     openGraph: {
       title: `${article.title} | V-STACK SOLUTIONS`,
       description: article.description,
@@ -51,6 +56,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">
+        <JsonLd data={articleJsonLd(article)} />
+
         <Section spacing="xl" className="border-b border-[var(--border)]">
           <Container size="lg">
             <Link href="/conteudos" className="text-[13px] font-semibold text-[var(--accent)] hover:text-[var(--accent-light)]">

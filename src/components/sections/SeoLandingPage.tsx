@@ -4,8 +4,10 @@ import CookieBanner from '@/components/CookieBanner'
 import ChatWidget from '@/components/chat/ChatWidget'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
+import JsonLd from '@/components/seo/JsonLd'
 import CTASection from '@/components/sections/CTASection'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
+import { serviceJsonLd } from '@/lib/structured-data'
 import type { SeoServicePage } from '@/lib/seo-service-pages'
 
 interface SeoLandingPageProps {
@@ -13,29 +15,12 @@ interface SeoLandingPageProps {
 }
 
 export default function SeoLandingPage({ page }: SeoLandingPageProps) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: page.eyebrow,
-    provider: {
-      '@type': 'Organization',
-      name: 'V-STACK SOLUTIONS',
-      url: 'https://vstack-solutions.com.br',
-    },
-    description: page.metaDescription,
-    areaServed: 'BR',
-    serviceType: page.eyebrow,
-  }
-
   return (
     <>
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={serviceJsonLd(page)} />
 
         <Section spacing="xl" className="border-b border-[var(--border)]">
           <Container>
