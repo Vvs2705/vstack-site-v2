@@ -270,6 +270,35 @@ Etapa de seguranca e qualidade concluida:
 - `npm run build` passa com Next `16.2.6`.
 - Preview local validado em `/`, `/login` e `/faq`.
 
+## Etapa SEO Programatica
+
+Novas paginas de fundo de funil criadas e linkadas:
+
+- `/automacao-de-processos`
+- `/agentes-de-ia`
+- `/integracao-de-sistemas`
+- `/sistemas-sob-medida`
+- `/contaflow`
+
+Cada pagina inclui:
+
+- metadata propria,
+- canonical,
+- JSON-LD de `Service`,
+- dores de cliente,
+- resultados esperados,
+- processo de diagnostico,
+- CTA para diagnostico e envio da dor.
+
+Documentacao adicionada:
+
+- `docs/DESIGN_SYSTEM.md`
+
+UX ajustada:
+
+- Chat responsivo para mobile usando `100dvh` e largura fluida.
+- Footer atualizado com links internos para as novas paginas SEO.
+
 ## Regra de Continuidade
 
 Nao voltar para Builder.io.
