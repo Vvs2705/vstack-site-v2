@@ -9,25 +9,25 @@ const SERVICES = [
     icon: Workflow,
     title: 'Automação de processos',
     description: 'Transforme tarefas repetitivas em fluxos monitoráveis que reduzem erro e liberam tempo do time.',
-    href: '/cotacao?interest=automacao',
+    href: '/automacao-de-processos',
   },
   {
     icon: Bot,
     title: 'Agentes de IA aplicados',
     description: 'Use IA para classificar, responder, analisar e apoiar decisões dentro do processo real da empresa.',
-    href: '/cotacao?interest=ia',
+    href: '/agentes-de-ia',
   },
   {
     icon: Network,
     title: 'Integração de sistemas',
     description: 'Conecte ERPs, CRMs, bancos, APIs e ferramentas internas sem depender de retrabalho manual.',
-    href: '/cotacao?interest=integracao',
+    href: '/integracao-de-sistemas',
   },
   {
     icon: Code2,
     title: 'Sistemas sob medida',
     description: 'Construa plataformas, portais e produtos SaaS com arquitetura preparada para evolução.',
-    href: '/cotacao?interest=saas',
+    href: '/sistemas-sob-medida',
   },
 ]
 
@@ -52,7 +52,7 @@ export default function SolutionsGridSection() {
                   <h3 className="font-display text-lg font-bold text-[var(--text-1)]">{title}</h3>
                   <p className="mt-3 text-[14px] leading-7 text-[var(--text-2)]">{description}</p>
                   <Link href={href} className="mt-5 inline-flex items-center gap-2 text-[13px] font-bold text-[var(--accent)]">
-                    Conversar sobre isso
+                    Ver guia da solução
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Surface>
@@ -72,7 +72,7 @@ export default function SolutionsGridSection() {
             className="mb-10"
           />
 
-          {projects.length > 0 ?(
+          {projects.length > 0 ? (
             <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-1">
               {projects.map((project) => (
                 <ProjectCard key={project.slug} {...project} />
@@ -83,6 +83,13 @@ export default function SolutionsGridSection() {
               <p className="text-[14px] text-[var(--text-2)]">Novos cases serão publicados em breve.</p>
             </Surface>
           )}
+
+          <div className="mt-8 text-center">
+            <Link href="/contaflow" className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">
+              Ver página do ContaFlow
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </Container>
       </Section>
     </>

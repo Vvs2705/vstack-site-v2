@@ -4,14 +4,16 @@ import VStackLogo from '@/components/brand/VStackLogo'
 import { Container } from '@/components/primitives/Layout'
 
 const SOLUTIONS = [
-  { label: 'Automação', href: '/solucoes#automacao' },
-  { label: 'Inteligência Artificial', href: '/solucoes#ia' },
-  { label: 'Integrações', href: '/solucoes#integracao' },
-  { label: 'ContaFlow', href: '/solucoes/contaflow' },
+  { label: 'Automação de processos', href: '/automacao-de-processos' },
+  { label: 'Agentes de IA', href: '/agentes-de-ia' },
+  { label: 'Integração de sistemas', href: '/integracao-de-sistemas' },
+  { label: 'Sistemas sob medida', href: '/sistemas-sob-medida' },
+  { label: 'ContaFlow', href: '/contaflow' },
 ]
 
 const COMPANY = [
   { label: 'Sobre', href: '/sobre' },
+  { label: 'Soluções', href: '/solucoes' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contato', href: '/contato' },
   { label: 'Cotação', href: '/cotacao' },
@@ -29,7 +31,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--bg-deep)]">
       <Container>
-        <div className="grid gap-10 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
+        <div className="grid gap-10 py-12 md:grid-cols-[1.2fr_1fr_0.8fr_1fr]">
           <div>
             <Link href="/" className="inline-flex items-center">
               <VStackLogo />
