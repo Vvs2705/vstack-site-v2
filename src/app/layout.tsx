@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { DM_Sans, Geist, JetBrains_Mono, Syne } from 'next/font/google'
 import VercelAnalytics from '@/components/analytics/VercelAnalytics'
 import ThemeProvider from '@/components/providers/ThemeProvider'
+import JsonLd from '@/components/seo/JsonLd'
+import { organizationJsonLd, websiteJsonLd } from '@/lib/structured-data'
 import { cn } from '@/lib/utils'
 import './globals.css'
 
@@ -118,6 +120,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#0D1422" />
       </head>
       <body className="flex min-h-full flex-col">
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <ThemeProvider>{children}</ThemeProvider>
         <VercelAnalytics />
       </body>
