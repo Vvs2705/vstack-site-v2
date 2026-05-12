@@ -14,6 +14,7 @@ const SOLUTIONS = [
 const COMPANY = [
   { label: 'Sobre', href: '/sobre' },
   { label: 'Soluções', href: '/solucoes' },
+  { label: 'Conteúdos', href: '/conteudos' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contato', href: '/contato' },
   { label: 'Cotação', href: '/cotacao' },

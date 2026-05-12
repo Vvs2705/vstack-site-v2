@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { resend } from '@/lib/resend'
 import { DorSchema } from '@/lib/validations'
 import { sanitizeObject, extractIp } from '@/lib/security'
+import { trackConversion } from '@/lib/analytics'
 
 export const runtime = 'nodejs'
 
@@ -55,6 +56,13 @@ export async function POST(request: NextRequest) {
 
     await prisma.auditLog.create({
       data: { action: 'dor_submitted', entityType: 'DorCliente', entityId: dor.id, ipAddress: ip },
+    })
+
+    await trackConversion('pain_form_submitted', {
+      form: 'envie-sua-dor',
+      urgency: data.urgency,
+      anonymous: data.isAnonymous,
+      hasCompany: Boolean(data.company),
     })
 
     return NextResponse.json({ success: true, id: dor.id }, { status: 201 })

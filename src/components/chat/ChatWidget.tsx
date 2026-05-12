@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Loader2, MessageCircle, Send, X } from 'lucide-react'
+import { track } from '@vercel/analytics'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -68,6 +69,9 @@ export default function ChatWidget() {
     event.preventDefault()
     if (!visitorName.trim()) return
 
+    track('chat_lead_started', {
+      hasEmail: Boolean(visitorEmail.trim()),
+    })
     setShowNameForm(false)
     setMessages((prev) => [
       ...prev,
@@ -121,6 +125,7 @@ export default function ChatWidget() {
           timestamp: new Date(),
         },
       ])
+      track('chat_message_sent')
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -139,7 +144,10 @@ export default function ChatWidget() {
     <>
       {!isOpen && (
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            track('chat_opened')
+            setIsOpen(true)
+          }}
           className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--accent)] text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl sm:bottom-6 sm:right-6"
           aria-label="Abrir chat"
         >

@@ -10,6 +10,7 @@ import VStackLogo from '@/components/brand/VStackLogo'
 const NAV_LINKS = [
   { label: 'Soluções', href: '/solucoes' },
   { label: 'ContaFlow', href: '/solucoes/contaflow', accent: true },
+  { label: 'Conteúdos', href: '/conteudos' },
   { label: 'Sobre', href: '/sobre' },
   { label: 'FAQ', href: '/faq' },
 ]
