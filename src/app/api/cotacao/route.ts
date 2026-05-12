@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { resend } from '@/lib/resend'
 import { CotacaoSchema } from '@/lib/validations'
 import { sanitizeObject, extractIp } from '@/lib/security'
+import { trackConversion } from '@/lib/analytics'
 
 export const runtime = 'nodejs'
 
@@ -70,6 +71,14 @@ export async function POST(request: NextRequest) {
 
     await prisma.auditLog.create({
       data: { action: 'cotacao_submitted', entityType: 'Cotacao', entityId: cotacao.id, ipAddress: ip },
+    })
+
+    await trackConversion('quote_form_submitted', {
+      form: 'cotacao',
+      companySize: data.companySize,
+      projectBudget: data.projectBudget,
+      projectTimeline: data.projectTimeline,
+      projectTypeCount: data.projectType.length,
     })
 
     return NextResponse.json({ success: true, id: cotacao.id }, { status: 201 })

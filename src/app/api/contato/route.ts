@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { resend } from '@/lib/resend'
 import { ContatoSchema } from '@/lib/validations'
 import { sanitizeObject, extractIp } from '@/lib/security'
+import { trackConversion } from '@/lib/analytics'
 
 export const runtime = 'nodejs'
 
@@ -64,6 +65,13 @@ export async function POST(request: NextRequest) {
     // Audit log
     await prisma.auditLog.create({
       data: { action: 'lead_created', entityType: 'Lead', entityId: lead.id, ipAddress: ip },
+    })
+
+    await trackConversion('lead_form_submitted', {
+      form: 'contato',
+      interest: data.interest,
+      hasCompany: Boolean(data.company),
+      hasPhone: Boolean(data.phone),
     })
 
     return NextResponse.json({ success: true, id: lead.id }, { status: 201 })
