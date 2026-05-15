@@ -75,10 +75,10 @@ export default function ContatoForm() {
         <h2 className="font-display text-3xl font-bold gradient-text">
           Diagnóstico solicitado
         </h2>
-        <p className="text-[var(--text-secondary)] text-lg">
+        <p className="text-[var(--text-2)] text-lg">
           Recebemos sua mensagem. Nossa equipe vai avaliar o contexto e responder em até 24 horas úteis.
         </p>
-        <p className="text-sm text-[var(--text-muted)]">
+        <p className="text-sm text-[var(--text-3)]">
           Enviamos uma confirmação para <strong>{formData.email}</strong>
         </p>
         <button
@@ -104,10 +104,10 @@ export default function ContatoForm() {
   return (
     <form onSubmit={handleSubmit} className="card-vstack max-w-2xl mx-auto space-y-6">
       <div>
-        <h3 className="font-display text-2xl font-bold text-[var(--text-primary)] mb-2">
+        <h3 className="font-display text-2xl font-bold text-[var(--text-1)] mb-2">
           Fale com um especialista
         </h3>
-        <p className="text-[var(--text-secondary)]">
+        <p className="text-[var(--text-2)]">
           Descreva o cenário da sua empresa para iniciarmos com uma conversa objetiva.
         </p>
       </div>
@@ -115,14 +115,14 @@ export default function ContatoForm() {
       <div className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+            <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
               Nome Completo *
             </label>
             <input
               type="text"
               value={formData.name}
               onChange={(e) => updateField('name', e.target.value)}
-              className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+              className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
               placeholder="Seu nome"
               required
             />
@@ -132,14 +132,14 @@ export default function ContatoForm() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+            <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
               Empresa
             </label>
             <input
               type="text"
               value={formData.company}
               onChange={(e) => updateField('company', e.target.value)}
-              className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+              className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
               placeholder="Nome da empresa"
             />
             {errors.company && (
@@ -150,14 +150,14 @@ export default function ContatoForm() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+            <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
               Email *
             </label>
             <input
               type="email"
               value={formData.email}
               onChange={(e) => updateField('email', e.target.value)}
-              className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+              className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
               placeholder="seu@email.com"
               required
             />
@@ -167,14 +167,14 @@ export default function ContatoForm() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+            <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
               Telefone
             </label>
             <input
               type="tel"
               value={formData.phone}
               onChange={(e) => updateField('phone', e.target.value)}
-              className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+              className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
               placeholder="(11) 99999-9999"
             />
             {errors.phone && (
@@ -184,13 +184,13 @@ export default function ContatoForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
             Interesse *
           </label>
           <select
             value={formData.interest || ''}
             onChange={(e) => updateField('interest', e.target.value as ContactInterest)}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
             required
           >
             <option value="">Selecione uma opção...</option>
@@ -207,14 +207,14 @@ export default function ContatoForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
             Mensagem * (mínimo 10 caracteres)
           </label>
           <textarea
             value={formData.message}
             onChange={(e) => updateField('message', e.target.value)}
             rows={6}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none resize-none"
+            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
             placeholder="Conte-nos sobre o que você precisa..."
             required
           />
@@ -248,7 +248,7 @@ export default function ContatoForm() {
         )}
       </button>
 
-      <p className="text-xs text-center text-[var(--text-muted)]">
+      <p className="text-xs text-center text-[var(--text-3)]">
         Ao enviar, você concorda com nossa política de privacidade e termos de uso.
       </p>
     </form>
