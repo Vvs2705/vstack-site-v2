@@ -227,6 +227,10 @@ h6 {
     box-shadow: var(--shadow-sm);
   }
 
+  .accent-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
   .eyebrow {
     font-size: 0.7rem;
     font-weight: 800;

@@ -140,7 +140,7 @@ export default function CotacaoForm() {
                 ?'bg-[var(--accent)] text-white'
                 : s === step
                 ?'bg-[var(--accent)] text-white scale-110'
-                : 'bg-[var(--bg-deep)] text-[var(--text-muted)] border border-[var(--border)]'
+                : 'bg-[var(--bg-deep)] text-[var(--text-3)] border border-[var(--border)]'
             }`}
           >
             {s < step ?<Check className="h-5 w-5" /> : s}
@@ -168,10 +168,10 @@ export default function CotacaoForm() {
         <h2 className="font-display text-3xl font-bold gradient-text">
           Diagnóstico solicitado
         </h2>
-        <p className="text-[var(--text-secondary)] text-lg">
+        <p className="text-[var(--text-2)] text-lg">
           Recebemos as informações iniciais e vamos retornar com uma análise objetiva do próximo passo.
         </p>
-        <p className="text-sm text-[var(--text-muted)]">
+        <p className="text-sm text-[var(--text-3)]">
           Enviamos uma confirmação para <strong>{formData.contactEmail}</strong>
         </p>
         <button
@@ -210,24 +210,24 @@ export default function CotacaoForm() {
       {step === 1 && (
         <div className="space-y-6">
           <div>
-            <h3 className="font-display text-2xl font-bold text-[var(--text-primary)] mb-2">
+            <h3 className="font-display text-2xl font-bold text-[var(--text-1)] mb-2">
               Contexto da empresa
             </h3>
-            <p className="text-[var(--text-secondary)]">
+            <p className="text-[var(--text-2)]">
               Precisamos entender tamanho, setor e rotina antes de sugerir solução.
             </p>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Nome da Empresa *
               </label>
               <input
                 type="text"
                 value={formData.companyName}
                 onChange={(e) => updateField('companyName', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Ex: Acme Corporation"
               />
               {errors.companyName && (
@@ -236,14 +236,14 @@ export default function CotacaoForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Setor de Atuação *
               </label>
               <input
                 type="text"
                 value={formData.companySector}
                 onChange={(e) => updateField('companySector', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Ex: Tecnologia, Varejo, Saúde..."
               />
               {errors.companySector && (
@@ -252,7 +252,7 @@ export default function CotacaoForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Porte da Empresa *
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -269,7 +269,7 @@ export default function CotacaoForm() {
                     className={`rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
                       formData.companySize === option.value
                         ?'border-[var(--accent)] bg-[var(--accent-muted)] text-[var(--accent)]'
-                        : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-secondary)] hover:border-[var(--accent-border)]'
+                        : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-2)] hover:border-[var(--accent-border)]'
                     }`}
                   >
                     {option.label}
@@ -295,24 +295,24 @@ export default function CotacaoForm() {
       {step === 2 && (
         <div className="space-y-6">
           <div>
-            <h3 className="font-display text-2xl font-bold text-[var(--text-primary)] mb-2">
+            <h3 className="font-display text-2xl font-bold text-[var(--text-1)] mb-2">
               Dados de Contato
             </h3>
-            <p className="text-[var(--text-secondary)]">
+            <p className="text-[var(--text-2)]">
               Como podemos entrar em contato com você?
             </p>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Nome Completo *
               </label>
               <input
                 type="text"
                 value={formData.contactName}
                 onChange={(e) => updateField('contactName', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Seu nome"
               />
               {errors.contactName && (
@@ -321,14 +321,14 @@ export default function CotacaoForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Email Corporativo *
               </label>
               <input
                 type="email"
                 value={formData.contactEmail}
                 onChange={(e) => updateField('contactEmail', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="seu@email.com"
               />
               {errors.contactEmail && (
@@ -337,27 +337,27 @@ export default function CotacaoForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Telefone
               </label>
               <input
                 type="tel"
                 value={formData.contactPhone}
                 onChange={(e) => updateField('contactPhone', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="(11) 99999-9999"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Cargo
               </label>
               <input
                 type="text"
                 value={formData.contactRole}
                 onChange={(e) => updateField('contactRole', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Ex: CTO, Gerente de TI..."
               />
             </div>
@@ -380,17 +380,17 @@ export default function CotacaoForm() {
       {step === 3 && (
         <div className="space-y-6">
           <div>
-            <h3 className="font-display text-2xl font-bold text-[var(--text-primary)] mb-2">
+            <h3 className="font-display text-2xl font-bold text-[var(--text-1)] mb-2">
               Detalhes do Projeto
             </h3>
-            <p className="text-[var(--text-secondary)]">
+            <p className="text-[var(--text-2)]">
               Conte-nos sobre o que você precisa
             </p>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Tipo de Projeto * (selecione um ou mais)
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -408,7 +408,7 @@ export default function CotacaoForm() {
                     className={`rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
                       formData.projectType?.includes(option.value)
                         ?'border-[var(--accent)] bg-[var(--accent-muted)] text-[var(--accent)]'
-                        : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-secondary)] hover:border-[var(--accent-border)]'
+                        : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-2)] hover:border-[var(--accent-border)]'
                     }`}
                   >
                     {option.label}
@@ -422,13 +422,13 @@ export default function CotacaoForm() {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+                <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                   Orçamento Estimado *
                 </label>
                 <select
                   value={formData.projectBudget || ''}
                   onChange={(e) => updateField('projectBudget', e.target.value as ProjectBudget)}
-                  className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                  className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 >
                   <option value="">Selecione...</option>
                   <option value="ate-10k">Até R$ 10.000</option>
@@ -442,13 +442,13 @@ export default function CotacaoForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+                <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                   Prazo Desejado *
                 </label>
                 <select
                   value={formData.projectTimeline || ''}
                   onChange={(e) => updateField('projectTimeline', e.target.value as ProjectTimeline)}
-                  className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                  className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 >
                   <option value="">Selecione...</option>
                   <option value="urgente">Urgente (até 1 mês)</option>
@@ -463,14 +463,14 @@ export default function CotacaoForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Descrição do Projeto * (mínimo 20 caracteres)
               </label>
               <textarea
                 value={formData.projectDescription}
                 onChange={(e) => updateField('projectDescription', e.target.value)}
                 rows={4}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none resize-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
                 placeholder="Descreva o que você precisa..."
               />
               {errors.projectDescription && (
@@ -479,27 +479,27 @@ export default function CotacaoForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Ferramentas Atuais
               </label>
               <input
                 type="text"
                 value={formData.currentTools}
                 onChange={(e) => updateField('currentTools', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Ex: Salesforce, SAP, Google Workspace..."
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Principal Desafio * (mínimo 10 caracteres)
               </label>
               <textarea
                 value={formData.mainChallenge}
                 onChange={(e) => updateField('mainChallenge', e.target.value)}
                 rows={3}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none resize-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
                 placeholder="Qual o maior desafio que você enfrenta hoje?"
               />
               {errors.mainChallenge && (
