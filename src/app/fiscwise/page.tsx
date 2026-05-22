@@ -127,6 +127,45 @@ const PROCESS_STEPS = [
   },
 ]
 
+const EARLY_ACCESS_BENEFITS = [
+  {
+    icon: Zap,
+    title: 'Implementação assistida sem custo',
+    description:
+      'Nossa equipe configura o FiscWise junto com o seu time financeiro — sem cobrar taxa de onboarding.',
+  },
+  {
+    icon: Shield,
+    title: 'Condições de fundador',
+    description:
+      'As primeiras empresas entram com preço de fundador — travado enquanto o produto cresce.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Acesso direto ao produto',
+    description:
+      'Você sugere funcionalidades, vê o roadmap e participa de sessões de feedback com o time de produto.',
+  },
+  {
+    icon: CheckCircle2,
+    title: 'Onboarding em até 5 dias',
+    description:
+      'Operacional rápido: da conexão bancária ao primeiro dashboard executivo em menos de uma semana.',
+  },
+  {
+    icon: Clock,
+    title: 'Sem contrato de longo prazo',
+    description:
+      'Cancele quando quiser. Acreditamos que você fica porque o produto entrega — não porque assinou um contrato.',
+  },
+  {
+    icon: AlertCircle,
+    title: 'Vagas limitadas',
+    description:
+      'Estamos crescendo de forma controlada para garantir qualidade de suporte. As vagas fecham assim que a capacidade for atingida.',
+  },
+]
+
 export default function FiscWisePage() {
   return (
     <>
@@ -176,7 +215,8 @@ export default function FiscWisePage() {
               </div>
 
               {/* 3D Dashboard preview */}
-              <FiscWise3DMockupClient />
+              {/* splineUrl: obter a URL pública do Spline em spline.design → Share → Embed */}
+              <FiscWise3DMockupClient splineUrl="https://my.spline.design/fxJ4v4P0T5bM5xXG" />
             </div>
           </Container>
         </section>
@@ -230,64 +270,34 @@ export default function FiscWisePage() {
           </Container>
         </Section>
 
-        {/* Pricing */}
+        {/* Early Access Benefits */}
         <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
           <Container>
             <div className="mb-12 text-center">
-              <p className="eyebrow mb-4">Investimento</p>
+              <p className="eyebrow mb-4">Por que entrar agora</p>
               <h2 className="font-display text-balance text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
-                Transparente e sem pegadinha.
+                As primeiras empresas constroem o produto junto com a gente.
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-[var(--text-2)]">
-                Sem taxa de implementação, sem contrato mínimo. Escolha o plano que faz sentido para sua empresa agora.
+                O acesso antecipado não é só entrar antes — é entrar com condições que não estarão disponíveis depois.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  nome: 'Básico',
-                  preco: 'R$ 499',
-                  periodo: '/mês',
-                  features: ['Conciliação automática', 'Até 5 contas bancárias', 'Dashboard básico', 'Suporte por email'],
-                },
-                {
-                  nome: 'Pro',
-                  preco: 'R$ 1.299',
-                  periodo: '/mês',
-                  destaque: true,
-                  features: ['Tudo do Básico', 'Até 20 contas bancárias', 'Alertas inteligentes', 'Relatórios customizados', 'Suporte prioritário', 'API de integração'],
-                },
-                {
-                  nome: 'Enterprise',
-                  preco: 'Sob consulta',
-                  periodo: '',
-                  features: ['Plano personalizado', 'Múltiplas subsidiárias', 'Integrações customizadas', 'Gestor dedicado', 'SLA garantido'],
-                },
-              ].map((plan) => (
-                <Surface key={plan.nome} className={`p-6 ${plan.destaque ? 'ring-2 ring-[var(--accent)]' : ''}`}>
-                  {plan.destaque && (
-                    <div className="mb-4 inline-block rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[var(--accent)]">
-                      Mais popular
-                    </div>
-                  )}
-                  <h3 className="font-display text-xl font-bold text-[var(--text-1)]">{plan.nome}</h3>
-                  <div className="mt-3">
-                    <span className="font-display text-3xl font-bold text-[var(--text-1)]">{plan.preco}</span>
-                    {plan.periodo && <span className="text-[14px] text-[var(--text-2)]">{plan.periodo}</span>}
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {EARLY_ACCESS_BENEFITS.map(({ icon: Icon, title, description }) => (
+                <Surface key={title} className="p-6">
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] text-[var(--accent)]">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <ul className="mt-6 space-y-2">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-[13px] text-[var(--text-2)]">
-                        <CheckCircle2 className="h-4 w-4 flex-none text-[var(--accent)]" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="/cotacao?produto=fiscwise" className={`mt-6 block w-full rounded-lg px-4 py-2.5 text-center text-[14px] font-semibold transition ${plan.destaque ? 'btn-primary' : 'btn-secondary'}`}>
-                    Começar agora
-                  </Link>
+                  <h3 className="mb-2 font-display text-[15px] font-bold text-[var(--text-1)]">{title}</h3>
+                  <p className="text-[13px] leading-6 text-[var(--text-2)]">{description}</p>
                 </Surface>
               ))}
+            </div>
+            <div className="mt-10 text-center">
+              <Link href="/cotacao?produto=fiscwise" className="btn-primary px-7 py-3.5 text-[14px]">
+                Garantir minha vaga no early access
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </Container>
         </Section>
