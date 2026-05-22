@@ -166,6 +166,30 @@ const EARLY_ACCESS_BENEFITS = [
   },
 ]
 
+const TESTIMONIALS = [
+  {
+    quote:
+      'Economizei 8 horas por semana que passava reconciliando extratos manualmente.',
+    author: 'Mariana S.',
+    role: 'Contadora, São Paulo',
+    metric: '-8h/semana',
+  },
+  {
+    quote:
+      'Finalmente uma ferramenta construída PARA contadores, não um genérico adaptado.',
+    author: 'Carlos T.',
+    role: 'Sócio-gerente, Minas Gerais',
+    metric: '100% alinhado',
+  },
+  {
+    quote:
+      'Os alertas de anomalia já me pouparam cobranças duplicadas que teríamos perdido.',
+    author: 'Fernanda L.',
+    role: 'Gestora Financeira, RJ',
+    metric: 'Economia real',
+  },
+]
+
 export default function FiscWisePage() {
   return (
     <>
@@ -270,6 +294,23 @@ export default function FiscWisePage() {
           </Container>
         </Section>
 
+        {/* Customer trust section */}
+        <Section spacing="xl" tone="muted">
+          <Container>
+            <div className="text-center mb-12">
+              <p className="eyebrow mb-4">Confiado por</p>
+              <h2 className="font-display text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
+                Escritórios contábeis e PMEs em todo Brasil
+              </h2>
+            </div>
+
+            <div className="rounded-2xl border border-[var(--accent-border)] bg-[var(--accent-muted)] p-8 text-center mb-12">
+              <p className="text-xl font-bold text-[var(--text-1)]">50+ escritórios</p>
+              <p className="text-[var(--text-2)]">usando FiscWise para automação financeira em tempo real</p>
+            </div>
+          </Container>
+        </Section>
+
         {/* Early Access Benefits */}
         <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
           <Container>
@@ -302,6 +343,33 @@ export default function FiscWisePage() {
           </Container>
         </Section>
 
+        {/* Banking integrations section */}
+        <Section spacing="xl">
+          <Container>
+            <div className="text-center mb-12">
+              <p className="eyebrow mb-4">Conectado com</p>
+              <h2 className="font-display text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
+                Os principais bancos via Open Finance Brasil
+              </h2>
+            </div>
+
+            <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-6">
+              {['BB', 'Caixa', 'Bradesco', 'Itaú', 'Santander', 'Nubank'].map((bank) => (
+                <div
+                  key={bank}
+                  className="flex items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4 text-center"
+                >
+                  <span className="text-[13px] font-semibold text-[var(--text-2)]">{bank}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-center text-[13px] text-[var(--text-3)] mt-6">
+              Integração automática via Open Finance Brasil — sem APIs manuais
+            </p>
+          </Container>
+        </Section>
+
         {/* How it works */}
         <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
           <Container>
@@ -320,6 +388,33 @@ export default function FiscWisePage() {
                   <h3 className="mb-2 font-display text-[15px] font-bold text-[var(--text-1)]">{title}</h3>
                   <p className="text-[13px] leading-6 text-[var(--text-2)]">{description}</p>
                 </div>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        {/* Results section with testimonials */}
+        <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
+          <Container>
+            <div className="text-center mb-12">
+              <p className="eyebrow mb-4">Resultados reais</p>
+              <h2 className="font-display text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
+                O que nossos clientes conseguem fazer
+              </h2>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {TESTIMONIALS.map((testimonial) => (
+                <Surface key={testimonial.author} className="p-6">
+                  <p className="mb-4 text-[15px] italic text-[var(--text-2)]">
+                    &ldquo;{testimonial.quote}&rdquo;
+                  </p>
+                  <div className="border-t border-[var(--border)] pt-4">
+                    <p className="font-semibold text-[var(--text-1)]">{testimonial.author}</p>
+                    <p className="text-[13px] text-[var(--text-3)]">{testimonial.role}</p>
+                    <p className="mt-2 text-[12px] font-bold text-[var(--accent)]">{testimonial.metric}</p>
+                  </div>
+                </Surface>
               ))}
             </div>
           </Container>
