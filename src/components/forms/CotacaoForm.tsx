@@ -399,6 +399,7 @@ export default function CotacaoForm() {
                   { value: 'ia' as ProjectType, label: 'Agente de IA' },
                   { value: 'integracao' as ProjectType, label: 'Integração de sistemas' },
                   { value: 'saas' as ProjectType, label: 'Sistema sob medida' },
+                  { value: 'fiscwise' as ProjectType, label: 'FiscWise (Gestão Financeira)' },
                   { value: 'outro' as ProjectType, label: 'Ainda não sei' },
                 ].map((option) => (
                   <button
