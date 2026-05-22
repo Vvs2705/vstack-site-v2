@@ -49,7 +49,7 @@ export default function ContaFlowSection() {
               ))}
             </ul>
 
-            <Link href="/fiscwise" className="btn-primary mt-8 px-6 py-3.5 text-[14px]">
+            <Link href="/fiscwise" className="btn-primary mt-8 inline-flex min-h-[44px] px-6 py-3 text-[14px]">
               Ver como o FiscWise funciona
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -66,7 +66,7 @@ export default function ContaFlowSection() {
               </span>
             </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <div className="mt-5 grid grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:grid-cols-3">
               <Stat title="Entradas" value="R$ 84.200" detail="+12%" />
               <Stat title="Saídas" value="R$ 31.450" detail="-4%" accent />
               <Stat title="Pendências" value="3" detail="de 250" />

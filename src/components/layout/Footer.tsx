@@ -32,7 +32,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--bg-deep)]">
       <Container>
-        <div className="grid gap-10 py-12 md:grid-cols-[1.2fr_1fr_0.8fr_1fr]">
+        <div className="grid gap-10 py-12 sm:grid-cols-2 md:grid-cols-[1.2fr_1fr_0.8fr_1fr]" role="contentinfo">
           <div>
             <Link href="/" className="inline-flex items-center">
               <VStackLogo />
@@ -48,7 +48,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-3)] transition-colors hover:border-[var(--accent-border)] hover:text-[var(--accent)]"
+                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-3)] transition-colors hover:border-[var(--accent-border)] hover:text-[var(--accent)]"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -62,9 +62,9 @@ export default function Footer() {
           <div>
             <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--text-3)]">Contato</p>
             <div className="space-y-3 text-[14px] text-[var(--text-2)]">
-              <a href="mailto:vinicius@vstack-solutions.com.br" className="flex items-center gap-3 transition-colors hover:text-[var(--text-1)]">
-                <Mail className="h-4 w-4 text-[var(--accent)]" />
-                vinicius@vstack-solutions.com.br
+              <a href="mailto:vinicius@vstack-solutions.com.br" className="flex items-start gap-3 transition-colors hover:text-[var(--text-1)]">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                <span className="break-all">vinicius@vstack-solutions.com.br</span>
               </a>
               <a href="https://wa.me/5511973358775" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--text-1)]">
                 <Phone className="h-4 w-4 text-[var(--accent)]" />

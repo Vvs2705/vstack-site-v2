@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { ArrowRight, CheckCircle2, Compass, Layers3, ShieldCheck, Target, Workflow } from 'lucide-react'
-import CookieBanner from '@/components/CookieBanner'
-import ChatWidget from '@/components/chat/ChatWidget'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
+
+// Lazy-load heavy below-fold sections
+const OriginStorySection = dynamic(() => import('@/components/sections/OriginStorySection'))
+const TeamSection = dynamic(() => import('@/components/sections/TeamSection'))
 
 export const metadata: Metadata = {
   title: 'Sobre',
@@ -142,6 +145,10 @@ export default function SobrePage() {
           </Container>
         </Section>
 
+        <OriginStorySection />
+
+        <TeamSection />
+
         <Section tone="deep" className="border-t border-[var(--border)]">
           <Container size="md">
             <div className="text-center">
@@ -162,8 +169,6 @@ export default function SobrePage() {
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }

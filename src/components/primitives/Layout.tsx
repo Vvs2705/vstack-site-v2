@@ -73,9 +73,12 @@ export function SectionHeader({
   )
 }
 
-interface SurfaceProps extends ComponentPropsWithoutRef<'div'> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface SurfaceProps extends Record<string, any> {
   as?: ElementType
   interactive?: boolean
+  className?: string
+  children?: ReactNode
 }
 
 export function Surface({ as, interactive = false, className, ...props }: SurfaceProps) {

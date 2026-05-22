@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Menu, X, Package, LogOut, ChevronDown } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import VStackLogo from '@/components/brand/VStackLogo'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 
 const NAV_LINKS = [
   { label: 'Soluções', href: '/solucoes' },
@@ -63,6 +64,7 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-3 md:flex">
+          <ThemeToggle />
           {!isLoading && (
             isAuthenticated && user ?(
               <UserMenu
@@ -76,11 +78,11 @@ export default function Navbar() {
               <>
                 <button
                   onClick={signInWithGoogle}
-                  className="text-[13px] font-semibold text-[var(--text-2)] transition-colors hover:text-[var(--text-1)]"
+                  className="flex h-11 items-center px-3 text-[13px] font-semibold text-[var(--text-2)] transition-colors hover:text-[var(--text-1)]"
                 >
                   Entrar
                 </button>
-                <Link href="/cotacao" className="btn-primary px-5 py-2.5 text-[13px]">
+                <Link href="/cotacao" className="btn-primary min-h-[44px] px-5 py-2.5 text-[13px]">
                   Solicitar diagnóstico
                 </Link>
               </>
@@ -88,14 +90,17 @@ export default function Navbar() {
           )}
         </div>
 
-        <button
-          onClick={() => setIsOpen((value) => !value)}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-1)] md:hidden"
-          aria-label="Abrir menu"
-          aria-expanded={isOpen}
-        >
-          {isOpen ?<X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen((value) => !value)}
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-1)]"
+            aria-label="Abrir menu"
+            aria-expanded={isOpen}
+          >
+            {isOpen ?<X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
+        </div>
       </div>
 
       {isOpen && (
@@ -109,7 +114,7 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => setIsOpen(false)}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`block rounded-xl px-3 py-3 text-[14px] font-semibold transition-colors ${
+                  className={`flex min-h-[44px] items-center rounded-xl px-3 py-3 text-[14px] font-semibold transition-colors ${
                     isActive
                       ? 'bg-[var(--accent-muted)] text-[var(--accent)]'
                       : 'text-[var(--text-2)] hover:bg-[var(--accent-muted)] hover:text-[var(--accent)]'
@@ -120,10 +125,10 @@ export default function Navbar() {
               )
             })}
             <div className="grid gap-2 border-t border-[var(--border)] pt-4">
-              <Link href="/envie-sua-dor" onClick={() => setIsOpen(false)} className="btn-outline px-4 py-3 text-[14px]">
+              <Link href="/envie-sua-dor" onClick={() => setIsOpen(false)} className="btn-outline min-h-[44px] px-4 py-3 text-[14px]">
                 Enviar minha dor
               </Link>
-              <Link href="/cotacao" onClick={() => setIsOpen(false)} className="btn-primary px-4 py-3 text-[14px]">
+              <Link href="/cotacao" onClick={() => setIsOpen(false)} className="btn-primary min-h-[44px] px-4 py-3 text-[14px]">
                 Solicitar diagnóstico
               </Link>
             </div>
@@ -147,7 +152,7 @@ function UserMenu({ user, isOpen, onToggle, onClose, onSignOut }: UserMenuProps)
     <div className="relative">
       <button
         onClick={onToggle}
-        className="flex h-9 items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] px-2.5 transition-colors hover:border-[var(--accent-border)]"
+        className="flex h-11 items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] px-2.5 transition-colors hover:border-[var(--accent-border)]"
         aria-label="Menu do usuário"
         aria-expanded={isOpen}
         aria-haspopup="menu"

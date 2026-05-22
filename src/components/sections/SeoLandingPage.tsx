@@ -1,13 +1,12 @@
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
-import CookieBanner from '@/components/CookieBanner'
-import ChatWidget from '@/components/chat/ChatWidget'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import JsonLd from '@/components/seo/JsonLd'
 import CTASection from '@/components/sections/CTASection'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
 import { serviceJsonLd } from '@/lib/structured-data'
+import { caseStudies } from '@/lib/case-studies'
 import type { SeoServicePage } from '@/lib/seo-service-pages'
 
 interface SeoLandingPageProps {
@@ -110,6 +109,56 @@ export default function SeoLandingPage({ page }: SeoLandingPageProps) {
           </Container>
         </Section>
 
+        {(() => {
+          const relatedCase = Object.values(caseStudies).find(
+            (c) => c.relatedService === page.slug
+          )
+          return relatedCase ? (
+            <Section tone="deep" className="border-y border-[var(--border)]">
+              <Container>
+                <SectionHeader
+                  eyebrow="Resultado Real"
+                  title={`Como ${relatedCase.company} alcançou ${relatedCase.results[0].improvement}`}
+                  description={relatedCase.challenge}
+                  align="center"
+                  className="mb-10"
+                />
+
+                <div className="grid gap-6 md:grid-cols-3">
+                  {relatedCase.results.slice(0, 3).map((result, index) => (
+                    <Surface key={index} className="p-6">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)] mb-4">
+                        {result.metric}
+                      </p>
+                      <div className="space-y-2">
+                        <div>
+                          <p className="text-[10px] text-[var(--text-3)] mb-1">Antes</p>
+                          <p className="font-display text-sm font-bold text-[var(--text-2)]">
+                            {result.before}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-[var(--text-3)] mb-1">Depois</p>
+                          <p className="font-display text-sm font-bold text-[var(--accent)]">
+                            {result.after}
+                          </p>
+                        </div>
+                      </div>
+                    </Surface>
+                  ))}
+                </div>
+
+                <div className="mt-10 text-center">
+                  <Link href={`/cases/${relatedCase.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">
+                    Ler case completo de {relatedCase.company}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </Container>
+            </Section>
+          ) : null
+        })()}
+
         <CTASection
           headline="Quer saber se este é o caminho certo?"
           description="Envie o contexto da operação. Nós avaliamos prioridade, impacto e o primeiro passo mais seguro para transformar a dor em solução."
@@ -121,8 +170,6 @@ export default function SeoLandingPage({ page }: SeoLandingPageProps) {
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }

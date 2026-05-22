@@ -17,8 +17,6 @@ import {
 import { projects, getProjectBySlug } from '@/lib/projects'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import ChatWidget from '@/components/chat/ChatWidget'
-import CookieBanner from '@/components/CookieBanner'
 import Breadcrumb from '@/components/ui/Breadcrumb'
 import ProjectDetailHero from '@/components/sections/ProjectDetailHero'
 import CTASection from '@/components/sections/CTASection'
@@ -284,8 +282,6 @@ export default function ProjectDetailPage(
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }

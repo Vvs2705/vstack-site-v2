@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import { Lightbulb, LockKeyhole, Target, TrendingUp } from 'lucide-react'
-import CookieBanner from '@/components/CookieBanner'
-import ChatWidget from '@/components/chat/ChatWidget'
 import DorForm from '@/components/forms/DorForm'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
@@ -90,8 +88,6 @@ export default function EnvieSuaDorPage() {
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }

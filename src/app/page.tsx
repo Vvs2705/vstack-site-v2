@@ -1,12 +1,31 @@
+import dynamic from 'next/dynamic'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import ChatWidget from '@/components/chat/ChatWidget'
-import CookieBanner from '@/components/CookieBanner'
 import HeroSection from '@/components/sections/HeroSection'
 import TechStripSection from '@/components/sections/TechStripSection'
-import PillarsSection from '@/components/sections/PillarsSection'
-import ContaFlowSection from '@/components/sections/ContaFlowSection'
-import CTASection from '@/components/sections/CTASection'
+
+// Lazy-load sections below the fold to improve initial LCP
+const PillarsSection = dynamic(() => import('@/components/sections/PillarsSection'), {
+  loading: () => <SectionSkeleton />,
+})
+const IntegrationsSection = dynamic(() => import('@/components/sections/IntegrationsSection'), {
+  loading: () => <SectionSkeleton />,
+})
+const ContaFlowSection = dynamic(() => import('@/components/sections/ContaFlowSection'))
+const FAQSection = dynamic(() => import('@/components/sections/FAQSection'))
+const CTASection = dynamic(() => import('@/components/sections/CTASection'))
+
+function SectionSkeleton() {
+  return (
+    <div className="py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="h-8 w-48 rounded-lg bg-[var(--border)] animate-pulse mb-6" />
+        <div className="h-4 w-full max-w-lg rounded bg-[var(--border)] animate-pulse mb-3" />
+        <div className="h-4 w-full max-w-md rounded bg-[var(--border)] animate-pulse" />
+      </div>
+    </div>
+  )
+}
 
 export default function Home() {
   return (
@@ -20,13 +39,13 @@ export default function Home() {
         <HeroSection />
         <TechStripSection />
         <PillarsSection />
+        <IntegrationsSection />
         <ContaFlowSection />
+        <FAQSection limit={6} showFilter={false} />
         <CTASection />
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }
