@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Soluções',
   description:
     'Automação de processos, agentes de IA, integração de sistemas e desenvolvimento sob medida para empresas que precisam escalar com menos retrabalho.',
-  keywords: ['automação de processos', 'agentes de IA', 'integração de sistemas', 'sistemas sob medida', 'ContaFlow'],
+  keywords: ['automação de processos', 'agentes de IA', 'integração de sistemas', 'sistemas sob medida', 'FiscWise'],
   openGraph: {
     title: 'Soluções | V-STACK SOLUTIONS',
     description:

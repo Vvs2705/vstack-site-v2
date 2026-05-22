@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     'consultoria tecnológica',
     'agentes de IA',
     'automação financeira',
-    'ContaFlow',
+    'FiscWise',
   ],
   authors: [{ name: 'V-STACK SOLUTIONS' }],
   creator: 'V-STACK SOLUTIONS',

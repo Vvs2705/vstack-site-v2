@@ -66,7 +66,7 @@ export default function SolutionsGridSection() {
         <Container>
           <SectionHeader
             eyebrow="Produto em destaque"
-            title="ContaFlow: automação financeira para fechar o mês com previsibilidade."
+            title="FiscWise: automação financeira para fechar o mês com previsibilidade."
             description="A primeira frente de produto da V-STACK: conciliação bancária, relatórios e alertas para operações financeiras que precisam sair da planilha."
             align="center"
             className="mb-10"
@@ -85,8 +85,8 @@ export default function SolutionsGridSection() {
           )}
 
           <div className="mt-8 text-center">
-            <Link href="/contaflow" className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">
-              Ver página do ContaFlow
+            <Link href="/fiscwise" className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">
+              Conhecer o FiscWise
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
