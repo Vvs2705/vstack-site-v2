@@ -74,8 +74,7 @@ function IntegrationBadge({ integration }: BadgeProps) {
 
 // ─── Category Filter ──────────────────────────────────────────────────────────
 
-const ALL_KEY = 'all' as const
-type FilterKey = typeof ALL_KEY | IntegrationCategory
+type FilterKey = 'all' | IntegrationCategory
 
 const FILTER_TABS: { key: FilterKey; label: string }[] = [
   { key: 'all', label: 'Todos' },

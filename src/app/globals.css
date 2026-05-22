@@ -11,23 +11,23 @@
   --bg-card: #ffffff;
   --bg-overlay: rgba(246, 247, 251, 0.92);
 
-  --accent: #00b4d8;
-  --accent-light: #00d4ff;
-  --accent-soft: #7fe0ff;
-  --accent-muted: rgba(0, 180, 216, 0.1);
-  --accent-border: rgba(0, 180, 216, 0.28);
+  --accent: #e05e18;
+  --accent-light: #f07028;
+  --accent-soft: #ffb270;
+  --accent-muted: rgba(224, 94, 24, 0.1);
+  --accent-border: rgba(224, 94, 24, 0.28);
 
-  --text-1: #0d1422;
+  --text-1: #101522;
   --text-2: #526071;
   --text-3: #8b96a8;
 
-  --border: rgba(13, 20, 34, 0.1);
-  --border-strong: rgba(13, 20, 34, 0.16);
-  --border-hover: rgba(0, 180, 216, 0.42);
+  --border: rgba(16, 21, 34, 0.1);
+  --border-strong: rgba(16, 21, 34, 0.16);
+  --border-hover: rgba(224, 94, 24, 0.42);
 
-  --shadow-sm: 0 12px 32px rgba(13, 20, 34, 0.08);
-  --shadow: 0 28px 80px rgba(13, 20, 34, 0.14);
-  --shadow-glow: 0 22px 70px rgba(0, 180, 216, 0.18);
+  --shadow-sm: 0 12px 32px rgba(16, 21, 34, 0.08);
+  --shadow: 0 28px 80px rgba(16, 21, 34, 0.14);
+  --shadow-glow: 0 22px 70px rgba(224, 94, 24, 0.18);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -82,11 +82,11 @@
   --bg-card: #121b2c;
   --bg-overlay: rgba(13, 20, 34, 0.88);
 
-  --accent: #00b4d8;
-  --accent-light: #00d4ff;
-  --accent-soft: #7fe0ff;
-  --accent-muted: rgba(0, 180, 216, 0.14);
-  --accent-border: rgba(0, 180, 216, 0.32);
+  --accent: #f07028;
+  --accent-light: #ff8c48;
+  --accent-soft: #ffb270;
+  --accent-muted: rgba(240, 112, 40, 0.14);
+  --accent-border: rgba(240, 112, 40, 0.32);
 
   --text-1: #eef2ff;
   --text-2: #a7b1c4;
@@ -94,11 +94,11 @@
 
   --border: rgba(238, 242, 255, 0.1);
   --border-strong: rgba(238, 242, 255, 0.16);
-  --border-hover: rgba(0, 180, 216, 0.45);
+  --border-hover: rgba(240, 112, 40, 0.45);
 
   --shadow-sm: 0 12px 32px rgba(0, 0, 0, 0.3);
   --shadow: 0 30px 90px rgba(0, 0, 0, 0.48);
-  --shadow-glow: 0 26px 90px rgba(0, 180, 216, 0.18);
+  --shadow-glow: 0 26px 90px rgba(240, 112, 40, 0.18);
 
   --nav-blur: rgba(13, 20, 34, 0.84);
 
@@ -140,7 +140,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 20% -10%, rgba(0, 180, 216, 0.09), transparent 28rem),
+    radial-gradient(circle at 20% -10%, rgba(224, 94, 24, 0.08), transparent 28rem),
     radial-gradient(circle at 100% 20%, rgba(45, 55, 72, 0.1), transparent 30rem),
     var(--bg);
   color: var(--text-1);
@@ -154,7 +154,7 @@ body {
 
 .dark body {
   background:
-    radial-gradient(circle at 20% -10%, rgba(0, 180, 216, 0.07), transparent 28rem),
+    radial-gradient(circle at 20% -10%, rgba(240, 112, 40, 0.06), transparent 28rem),
     radial-gradient(circle at 100% 20%, rgba(0, 0, 0, 0.3), transparent 30rem),
     var(--bg);
 }

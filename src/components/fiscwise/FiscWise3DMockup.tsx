@@ -12,10 +12,7 @@ export default function FiscWise3DMockup({ splineUrl }: FiscWise3DMockupProps) {
   const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
-    if (!splineUrl) {
-      setIsLoaded(true)
-      return
-    }
+    if (!splineUrl) return
 
     const script = document.createElement('script')
     script.type = 'module'
