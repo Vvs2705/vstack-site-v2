@@ -4,7 +4,13 @@ import type { ReactNode } from 'react'
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
   return (
-    <NextThemesProvider attribute="class" defaultTheme="system" enableSystem storageKey="vstack-theme">
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem
+      storageKey="vstack-theme"
+      disableTransitionOnChange
+    >
       {children}
     </NextThemesProvider>
   )

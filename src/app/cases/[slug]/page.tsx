@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Container, Surface } from '@/components/primitives/Layout'
 import { getCaseStudy } from '@/lib/case-studies'
 import type { CaseStudySlug } from '@/lib/case-studies'
@@ -179,7 +179,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
                 <blockquote className="mb-6">
                   <p className="font-display text-lg leading-8 text-[var(--text-1)]">
-                    "{caseStudy.testimonial.quote}"
+                    &quot;{caseStudy.testimonial.quote}&quot;
                   </p>
                 </blockquote>
 

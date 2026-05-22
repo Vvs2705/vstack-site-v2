@@ -1,11 +1,8 @@
 import type { Metadata } from 'next'
 import { DM_Sans, Geist, JetBrains_Mono, Syne } from 'next/font/google'
 import VercelAnalytics from '@/components/analytics/VercelAnalytics'
-import ClientWidgets from '@/components/providers/ClientWidgets'
-import PageTransition from '@/components/providers/PageTransition'
-import ThemeProvider from '@/components/providers/ThemeProvider'
+import RootLayoutWrapper from '@/components/providers/RootLayoutWrapper'
 import JsonLd from '@/components/seo/JsonLd'
-import { ToastContainer } from '@/components/ui/Toast'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/structured-data'
 import { cn } from '@/lib/utils'
 import './globals.css'
@@ -124,13 +121,9 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-full flex-col">
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
-        <ThemeProvider>
-          <PageTransition>
-            {children}
-          </PageTransition>
-          <ToastContainer />
-          <ClientWidgets />
-        </ThemeProvider>
+        <RootLayoutWrapper>
+          {children}
+        </RootLayoutWrapper>
         <VercelAnalytics />
       </body>
     </html>
