@@ -26,7 +26,7 @@ export default function ContaFlowSection() {
         <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <div className="mb-5 flex items-center gap-3">
-              <p className="eyebrow">ContaFlow</p>
+              <p className="eyebrow">FiscWise</p>
               <span className="rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] px-3 py-1 text-[10px] font-bold tracking-[0.14em] text-[var(--accent)]">
                 ACESSO ANTECIPADO
               </span>
@@ -37,7 +37,7 @@ export default function ContaFlowSection() {
             </h2>
 
             <p className="mt-5 max-w-xl text-[15px] leading-8 text-[var(--text-2)]">
-              O ContaFlow conecta dados financeiros, automatiza lançamentos, identifica pendências e gera visibilidade para decisões rápidas.
+              O FiscWise conecta dados financeiros, automatiza lançamentos, identifica pendências e gera visibilidade para decisões rápidas.
             </p>
 
             <ul className="mt-8 grid gap-3">
@@ -49,8 +49,8 @@ export default function ContaFlowSection() {
               ))}
             </ul>
 
-            <Link href="/cotacao" className="btn-primary mt-8 px-6 py-3.5 text-[14px]">
-              Quero acesso antecipado
+            <Link href="/fiscwise" className="btn-primary mt-8 px-6 py-3.5 text-[14px]">
+              Conhecer o FiscWise
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

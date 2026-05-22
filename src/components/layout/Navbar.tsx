@@ -3,13 +3,14 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { Menu, X, Package, LogOut, ChevronDown } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import VStackLogo from '@/components/brand/VStackLogo'
 
 const NAV_LINKS = [
   { label: 'Soluções', href: '/solucoes' },
-  { label: 'ContaFlow', href: '/solucoes/contaflow', accent: true },
+  { label: 'FiscWise', href: '/fiscwise', accent: true },
   { label: 'Conteúdos', href: '/conteudos' },
   { label: 'Sobre', href: '/sobre' },
   { label: 'FAQ', href: '/faq' },
@@ -19,6 +20,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
   const { user, isAuthenticated, isLoading, signInWithGoogle, signOut } = useAuth()
+  const pathname = usePathname()
 
   return (
     <nav
@@ -31,18 +33,33 @@ export default function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className={`text-[13px] font-semibold transition-colors ${
-                  link.accent ?'text-[var(--accent)] hover:text-[var(--accent-light)]' : 'text-[var(--text-2)] hover:text-[var(--text-1)]'
-                }`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`group relative pb-1 text-[13px] font-semibold transition-colors duration-200 ${
+                    link.accent
+                      ? isActive
+                        ? 'text-[var(--accent)]'
+                        : 'text-[var(--accent)] hover:text-[var(--accent-light)]'
+                      : isActive
+                        ? 'text-[var(--text-1)]'
+                        : 'text-[var(--text-2)] hover:text-[var(--text-1)]'
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute bottom-0 left-0 h-[2px] rounded-full bg-[var(--accent)] transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </Link>
+              </li>
+            )
+          })}
         </ul>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -84,16 +101,24 @@ export default function Navbar() {
       {isOpen && (
         <div className="border-t border-[var(--border)] bg-[var(--bg-card)] px-5 py-5 md:hidden">
           <div className="mx-auto max-w-7xl space-y-2">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="block rounded-xl px-3 py-3 text-[14px] font-semibold text-[var(--text-2)] hover:bg-[var(--accent-muted)] hover:text-[var(--accent)]"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`block rounded-xl px-3 py-3 text-[14px] font-semibold transition-colors ${
+                    isActive
+                      ? 'bg-[var(--accent-muted)] text-[var(--accent)]'
+                      : 'text-[var(--text-2)] hover:bg-[var(--accent-muted)] hover:text-[var(--accent)]'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
             <div className="grid gap-2 border-t border-[var(--border)] pt-4">
               <Link href="/envie-sua-dor" onClick={() => setIsOpen(false)} className="btn-outline px-4 py-3 text-[14px]">
                 Enviar minha dor

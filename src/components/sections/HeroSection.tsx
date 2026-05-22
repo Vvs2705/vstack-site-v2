@@ -64,7 +64,7 @@ export default function HeroSection() {
 
               <div className="mb-6 flex items-center justify-between border-b border-[var(--border)] pb-5">
                 <div>
-                  <p className="text-[12px] font-semibold text-[var(--text-3)]">ContaFlow</p>
+                  <p className="text-[12px] font-semibold text-[var(--text-3)]">FiscWise</p>
                   <h2 className="font-display text-xl font-bold text-[var(--text-1)]">
                     Operação financeira em tempo real
                   </h2>
