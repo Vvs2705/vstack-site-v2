@@ -3,10 +3,10 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Container, Section, Surface } from '@/components/primitives/Layout'
 
 const FEATURES = [
-  'Conciliação bancária automática',
-  'Integração com Open Banking BR',
-  'Dashboards executivos em tempo real',
-  'Alertas inteligentes de anomalia',
+  'Conciliação bancária automática — zero planilha, zero retrabalho',
+  'Open Banking BR integrado nativamente',
+  'Dashboard executivo em tempo real para decisões rápidas',
+  'Alertas de anomalia antes que o problema vire crise',
 ]
 
 const BAR_DATA = [
@@ -33,11 +33,11 @@ export default function ContaFlowSection() {
             </div>
 
             <h2 className="font-display text-balance text-3xl font-bold leading-tight text-[var(--text-1)] sm:text-4xl">
-              Automação financeira para fechar o mês sem apagar incêndio.
+              Chega de passar o final do mês caçando lançamento e reconciliando na mão.
             </h2>
 
             <p className="mt-5 max-w-xl text-[15px] leading-8 text-[var(--text-2)]">
-              O FiscWise conecta dados financeiros, automatiza lançamentos, identifica pendências e gera visibilidade para decisões rápidas.
+              O FiscWise automatiza toda a operação financeira da sua empresa — da conciliação bancária ao relatório executivo — para que o fechamento mensal deixe de ser uma maratona de 72 horas e vire um processo previsível.
             </p>
 
             <ul className="mt-8 grid gap-3">
@@ -50,7 +50,7 @@ export default function ContaFlowSection() {
             </ul>
 
             <Link href="/fiscwise" className="btn-primary mt-8 px-6 py-3.5 text-[14px]">
-              Conhecer o FiscWise
+              Ver como o FiscWise funciona
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
