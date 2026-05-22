@@ -5,22 +5,22 @@ const PILLARS = [
   {
     icon: Workflow,
     title: 'Automação de Processos',
-    description: 'Fluxos que reduzem trabalho manual, erro operacional e dependência de planilhas.',
+    description: 'Você para de depender de planilha, tarefa manual e retrabalho. Seu time ganha horas por semana e o processo roda com consistência — mesmo quando ninguém está olhando.',
   },
   {
     icon: Bot,
     title: 'Inteligência Artificial',
-    description: 'Agentes, classificação, análise e geração de conteúdo conectados ao seu processo real.',
+    description: 'Seu negócio para de desperdiçar dados que já tem. Agentes de IA classificam, analisam e tomam decisões de rotina para você — integrados ao processo real, não a um chatbot genérico.',
   },
   {
     icon: Network,
     title: 'Integração de Sistemas',
-    description: 'APIs, ERPs, CRMs, bancos e ferramentas internas trabalhando no mesmo ecossistema.',
+    description: 'Seus sistemas param de viver em mundos separados. ERP, CRM, banco e ferramentas internas passam a falar a mesma língua — sem exportação manual, sem dados desatualizados.',
   },
   {
     icon: Code2,
     title: 'Produtos SaaS',
-    description: 'MVPs e plataformas escaláveis com arquitetura preparada para crescimento.',
+    description: 'Você para de adaptar seu negócio a software de prateleira que não serve. Construímos exatamente o que a sua operação precisa, com arquitetura que aguenta crescer junto com você.',
   },
 ]
 
@@ -30,9 +30,9 @@ export default function PillarsSection() {
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <SectionHeader
-            eyebrow="Capacidades"
-            title="Quatro frentes para destravar a operação"
-            description="A entrega não começa pela tecnologia. Começa pelo diagnóstico do gargalo, pela clareza do processo e pela construção do que realmente muda o resultado."
+            eyebrow="O que resolvemos"
+            title="Cada entrega começa por um gargalo real"
+            description="Não vendemos tecnologia por tecnologia. Identificamos onde sua operação trava, propõe a solução mais direta e entregamos o que realmente muda o resultado — sem enrolação."
           />
 
           <div className="grid gap-4 sm:grid-cols-2">

@@ -3,9 +3,9 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Container, Surface } from '@/components/primitives/Layout'
 
 const STATS = [
-  { value: '98%', label: 'precisão operacional' },
-  { value: '-72h', label: 'no fechamento mensal' },
-  { value: '24/7', label: 'automação ativa' },
+  { value: '98%', label: 'de precisão nos processos automatizados' },
+  { value: '-72h', label: 'a menos no fechamento mensal' },
+  { value: '24/7', label: 'operando sem intervenção humana' },
 ]
 
 const BAR_HEIGHTS = [42, 58, 36, 70, 52, 100, 64]
@@ -23,24 +23,24 @@ export default function HeroSection() {
           <div className="max-w-2xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)]">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-              Automação, IA e sistemas sob medida
+              Para PMEs que precisam crescer sem contratar mais gente
             </div>
 
             <h1 className="max-w-2xl font-display text-balance text-[34px] font-extrabold leading-[1.08] tracking-[-0.025em] text-[var(--text-1)] sm:text-[52px] lg:text-[58px]">
-              Automação inteligente para operações escaláveis.
+              Seu time ainda perde horas em tarefas que deveriam ser automáticas.
             </h1>
 
             <p className="mt-6 max-w-xl text-pretty text-[16px] leading-8 text-[var(--text-2)]">
-              A V-STACK SOLUTIONS cria automações, integrações e produtos digitais para transformar processos travados em uma operação clara, escalável e mensurável.
+              A V-STACK elimina os gargalos que travam sua operação — planilhas que não conversam, fechamentos que viram maratona, integrações quebradas — e entrega automações e sistemas que trabalham enquanto seu time foca no que importa.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/cotacao" className="btn-primary px-6 py-3.5 text-[14px]">
-                Solicitar diagnóstico
+                Quero um diagnóstico gratuito
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="/solucoes" className="btn-secondary px-6 py-3.5 text-[14px]">
-                Ver soluções
+                Ver o que resolvemos
               </Link>
             </div>
 
