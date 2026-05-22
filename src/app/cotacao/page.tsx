@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import { ClipboardCheck, Clock, FileSearch, ShieldCheck } from 'lucide-react'
-import CookieBanner from '@/components/CookieBanner'
-import ChatWidget from '@/components/chat/ChatWidget'
 import CotacaoForm from '@/components/forms/CotacaoForm'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
@@ -82,8 +80,6 @@ export default function CotacaoPage() {
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }

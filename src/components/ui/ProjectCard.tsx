@@ -3,6 +3,10 @@ import Image from 'next/image'
 import type { ProjectData } from '@/lib/projects'
 import { ExternalLink } from 'lucide-react'
 
+// 1x1 transparent pixel as blur placeholder — avoids layout shift while image loads
+const BLUR_DATA_URL =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
+
 type ProjectCardProps = ProjectData
 
 const statusConfig = {
@@ -38,6 +42,8 @@ export default function ProjectCard({
             src={thumbnail}
             alt={`Preview do projeto ${title}`}
             fill
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />

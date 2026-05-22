@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import { Clock, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
-import CookieBanner from '@/components/CookieBanner'
-import ChatWidget from '@/components/chat/ChatWidget'
 import ContatoForm from '@/components/forms/ContatoForm'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
@@ -102,8 +100,6 @@ export default function ContatoPage() {
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }

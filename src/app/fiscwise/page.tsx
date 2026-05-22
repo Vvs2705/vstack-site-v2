@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2, AlertCircle, BarChart3, Zap, Shield, Clock } from 'lucide-react'
+import { ArrowRight, AlertCircle, BarChart3, Zap, Shield, Clock, CheckCircle2 } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import ChatWidget from '@/components/chat/ChatWidget'
-import CookieBanner from '@/components/CookieBanner'
+import FiscWise3DMockupClient from '@/components/fiscwise/FiscWise3DMockupClient'
 import CTASection from '@/components/sections/CTASection'
 import { Container, Section, Surface } from '@/components/primitives/Layout'
 import JsonLd from '@/components/seo/JsonLd'
@@ -128,16 +127,6 @@ const PROCESS_STEPS = [
   },
 ]
 
-const BAR_DATA = [
-  { label: 'Out', height: 42 },
-  { label: 'Nov', height: 58 },
-  { label: 'Dez', height: 35 },
-  { label: 'Jan', height: 70 },
-  { label: 'Fev', height: 52 },
-  { label: 'Mar', height: 100 },
-  { label: 'Abr', height: 63 },
-]
-
 export default function FiscWisePage() {
   return (
     <>
@@ -161,8 +150,8 @@ export default function FiscWisePage() {
                   Acesso antecipado aberto
                 </div>
 
-                <h1 className="font-display text-balance text-[34px] font-extrabold leading-[1.08] tracking-[-0.025em] text-[var(--text-1)] sm:text-[52px]">
-                  Feche o mês financeiro em horas, não em dias.
+                <h1 className="font-display text-balance leading-[1.08] tracking-[-0.025em] text-[var(--text-1)]">
+                  Feche o mês financeiro em 1 dia.<br/>Não em 5.
                 </h1>
 
                 <p className="mt-6 max-w-xl text-pretty text-[16px] leading-8 text-[var(--text-2)]">
@@ -179,81 +168,15 @@ export default function FiscWisePage() {
                   </Link>
                 </div>
 
-                <div className="mt-10 grid max-w-xl grid-cols-3 gap-4">
+                <div className="mt-10 grid max-w-xl grid-cols-1 gap-4 sm:grid-cols-3">
                   <Stat value="98%" label="precisão na conciliação" />
                   <Stat value="-72h" label="no fechamento mensal" />
                   <Stat value="24/7" label="monitoramento ativo" />
                 </div>
               </div>
 
-              {/* Dashboard preview */}
-              <Surface className="relative overflow-hidden p-5 sm:p-6">
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent" />
-
-                <div className="flex items-center justify-between border-b border-[var(--border)] pb-5">
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--text-3)]">FiscWise</p>
-                    <h2 className="font-display text-xl font-bold text-[var(--text-1)]">
-                      Dashboard Executivo
-                    </h2>
-                  </div>
-                  <span className="rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-[10px] font-bold text-green-500">
-                    AO VIVO
-                  </span>
-                </div>
-
-                <div className="mt-5 grid grid-cols-3 gap-3">
-                  <DashStat title="Entradas" value="R$ 84,2k" positive />
-                  <DashStat title="Saídas" value="R$ 31,4k" />
-                  <DashStat title="Pendências" value="3" neutral />
-                </div>
-
-                <div className="mt-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
-                  <div className="mb-3 flex items-center justify-between text-[12px]">
-                    <span className="text-[var(--text-2)]">Conciliação automática</span>
-                    <strong className="text-[var(--text-1)]">247 / 250</strong>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-[var(--bg-card)]">
-                    <div className="h-full w-[98%] rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)]" />
-                  </div>
-                  <p className="mt-2 text-[11px] text-[var(--text-3)]">3 transações aguardando validação manual</p>
-                </div>
-
-                <div className="mt-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <p className="text-[12px] font-semibold text-[var(--text-1)]">Receita mensal</p>
-                    <p className="text-[11px] text-[var(--text-3)]">últimos 7 meses</p>
-                  </div>
-                  <div className="flex h-20 items-end gap-1.5">
-                    {BAR_DATA.map((bar, i) => (
-                      <div key={bar.label} className="flex flex-1 flex-col items-center gap-1">
-                        <div
-                          className="w-full rounded-t-md bg-[var(--accent-muted)]"
-                          style={{
-                            height: `${bar.height}%`,
-                            background:
-                              i === 5
-                                ? 'linear-gradient(to top, var(--accent), var(--accent-light))'
-                                : undefined,
-                          }}
-                        />
-                        <span className="text-[9px] text-[var(--text-3)]">{bar.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-4 space-y-2">
-                  {['Open Banking conectado', 'Alertas de anomalia ativos', 'Relatório executivo gerado'].map(
-                    (item) => (
-                      <div key={item} className="flex items-center gap-2 text-[12px] text-[var(--text-2)]">
-                        <CheckCircle2 className="h-3.5 w-3.5 flex-none text-[var(--accent)]" />
-                        {item}
-                      </div>
-                    )
-                  )}
-                </div>
-              </Surface>
+              {/* 3D Dashboard preview */}
+              <FiscWise3DMockupClient />
             </div>
           </Container>
         </section>
@@ -301,6 +224,68 @@ export default function FiscWisePage() {
                   </span>
                   <h3 className="mb-2 font-display text-[16px] font-bold text-[var(--text-1)]">{title}</h3>
                   <p className="text-[13px] leading-6 text-[var(--text-2)]">{description}</p>
+                </Surface>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        {/* Pricing */}
+        <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
+          <Container>
+            <div className="mb-12 text-center">
+              <p className="eyebrow mb-4">Investimento</p>
+              <h2 className="font-display text-balance text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
+                Transparente e sem pegadinha.
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-[var(--text-2)]">
+                Sem taxa de implementação, sem contrato mínimo. Escolha o plano que faz sentido para sua empresa agora.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  nome: 'Básico',
+                  preco: 'R$ 499',
+                  periodo: '/mês',
+                  features: ['Conciliação automática', 'Até 5 contas bancárias', 'Dashboard básico', 'Suporte por email'],
+                },
+                {
+                  nome: 'Pro',
+                  preco: 'R$ 1.299',
+                  periodo: '/mês',
+                  destaque: true,
+                  features: ['Tudo do Básico', 'Até 20 contas bancárias', 'Alertas inteligentes', 'Relatórios customizados', 'Suporte prioritário', 'API de integração'],
+                },
+                {
+                  nome: 'Enterprise',
+                  preco: 'Sob consulta',
+                  periodo: '',
+                  features: ['Plano personalizado', 'Múltiplas subsidiárias', 'Integrações customizadas', 'Gestor dedicado', 'SLA garantido'],
+                },
+              ].map((plan) => (
+                <Surface key={plan.nome} className={`p-6 ${plan.destaque ? 'ring-2 ring-[var(--accent)]' : ''}`}>
+                  {plan.destaque && (
+                    <div className="mb-4 inline-block rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[var(--accent)]">
+                      Mais popular
+                    </div>
+                  )}
+                  <h3 className="font-display text-xl font-bold text-[var(--text-1)]">{plan.nome}</h3>
+                  <div className="mt-3">
+                    <span className="font-display text-3xl font-bold text-[var(--text-1)]">{plan.preco}</span>
+                    {plan.periodo && <span className="text-[14px] text-[var(--text-2)]">{plan.periodo}</span>}
+                  </div>
+                  <ul className="mt-6 space-y-2">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2 text-[13px] text-[var(--text-2)]">
+                        <CheckCircle2 className="h-4 w-4 flex-none text-[var(--accent)]" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href="/cotacao?produto=fiscwise" className={`mt-6 block w-full rounded-lg px-4 py-2.5 text-center text-[14px] font-semibold transition ${plan.destaque ? 'btn-primary' : 'btn-secondary'}`}>
+                    Começar agora
+                  </Link>
                 </Surface>
               ))}
             </div>
@@ -377,39 +362,16 @@ export default function FiscWisePage() {
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }
 
 function Stat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="border-l border-[var(--border)] pl-4 first:border-l-0 first:pl-0">
+    <div className="border-t border-[var(--border)] pt-4 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-4 first:border-t-0 first:pt-0 sm:first:border-l-0 sm:first:pl-0">
       <strong className="block font-display text-2xl font-bold text-[var(--text-1)]">{value}</strong>
       <span className="mt-1 block text-[11px] leading-4 text-[var(--text-3)]">{label}</span>
     </div>
   )
 }
 
-function DashStat({
-  title,
-  value,
-  positive,
-  neutral,
-}: {
-  title: string
-  value: string
-  positive?: boolean
-  neutral?: boolean
-}) {
-  const color = positive ? '#22c55e' : neutral ? 'var(--text-1)' : 'var(--accent)'
-  return (
-    <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-deep)] p-3">
-      <p className="text-[11px] text-[var(--text-3)]">{title}</p>
-      <p className="mt-1 font-display text-lg font-bold" style={{ color }}>
-        {value}
-      </p>
-    </div>
-  )
-}

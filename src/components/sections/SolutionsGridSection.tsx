@@ -1,95 +1,131 @@
+'use client'
+
 import Link from 'next/link'
-import { ArrowRight, Bot, Code2, Network, Workflow } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { projects } from '@/lib/projects'
 import ProjectCard from '@/components/ui/ProjectCard'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
-
-const SERVICES = [
-  {
-    icon: Workflow,
-    title: 'Automação de processos',
-    description: 'Transforme tarefas repetitivas em fluxos monitoráveis que reduzem erro e liberam tempo do time.',
-    href: '/automacao-de-processos',
-  },
-  {
-    icon: Bot,
-    title: 'Agentes de IA aplicados',
-    description: 'Use IA para classificar, responder, analisar e apoiar decisões dentro do processo real da empresa.',
-    href: '/agentes-de-ia',
-  },
-  {
-    icon: Network,
-    title: 'Integração de sistemas',
-    description: 'Conecte ERPs, CRMs, bancos, APIs e ferramentas internas sem depender de retrabalho manual.',
-    href: '/integracao-de-sistemas',
-  },
-  {
-    icon: Code2,
-    title: 'Sistemas sob medida',
-    description: 'Construa plataformas, portais e produtos SaaS com arquitetura preparada para evolução.',
-    href: '/sistemas-sob-medida',
-  },
-]
+import { FadeInUp, StaggerContainer, StaggerItem } from '@/components/animations'
 
 export default function SolutionsGridSection() {
   return (
     <>
       <Section>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <FadeInUp>
             <SectionHeader
-              eyebrow="Soluções"
-              title="Escolha tecnologia pelo problema que ela resolve."
-              description="Nosso trabalho é organizar a operação, integrar dados e criar sistemas que deixam o crescimento menos dependente de esforço manual."
+              eyebrow="Cases"
+              title="Empresas que já transformaram operação com V-STACK."
+              description="De 5 dias para 1 hora. De 20h para 1h. De 8% de erro para 0,2%. Histórias reais com números reais."
+              align="center"
+              className="mb-10"
             />
+          </FadeInUp>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {SERVICES.map(({ icon: Icon, title, description, href }) => (
-                <Surface key={title} interactive className="p-6">
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] text-[var(--accent)]">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-[var(--text-1)]">{title}</h3>
-                  <p className="mt-3 text-[14px] leading-7 text-[var(--text-2)]">{description}</p>
-                  <Link href={href} className="mt-5 inline-flex items-center gap-2 text-[13px] font-bold text-[var(--accent)]">
-                    Ver guia da solução
+          <StaggerContainer className="grid gap-6 md:grid-cols-3" delay={0.05}>
+            <StaggerItem>
+              <Link href="/cases/logtech" className="block h-full">
+                <Surface className="h-full p-6 hover:border-[var(--accent-border)] transition-colors group">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)] mb-2">Logística</p>
+                  <h3 className="font-display text-xl font-bold text-[var(--text-1)] mb-3 group-hover:text-[var(--accent)] transition-colors">
+                    LogTech
+                  </h3>
+                  <p className="text-[13px] leading-6 text-[var(--text-2)] mb-4">
+                    15h semanais de digitação manual reduziram para 30 minutos
+                  </p>
+                  <p className="font-display text-sm font-bold text-[var(--accent)] mb-4">-87% em tempo</p>
+                  <div className="flex items-center gap-2 text-[13px] font-semibold text-[var(--accent)] group-hover:gap-3 transition-all">
+                    Ler case
                     <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  </div>
                 </Surface>
-              ))}
+              </Link>
+            </StaggerItem>
+
+            <StaggerItem>
+              <Link href="/cases/mediservice" className="block h-full">
+                <Surface className="h-full p-6 hover:border-[var(--accent-border)] transition-colors group">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)] mb-2">Saúde</p>
+                  <h3 className="font-display text-xl font-bold text-[var(--text-1)] mb-3 group-hover:text-[var(--accent)] transition-colors">
+                    MediServe
+                  </h3>
+                  <p className="text-[13px] leading-6 text-[var(--text-2)] mb-4">
+                    20h por semana de resposta manual caíram para 1h de revisão
+                  </p>
+                  <p className="font-display text-sm font-bold text-[var(--accent)] mb-4">-95% em tempo</p>
+                  <div className="flex items-center gap-2 text-[13px] font-semibold text-[var(--accent)] group-hover:gap-3 transition-all">
+                    Ler case
+                    <ArrowRight className="h-4 w-4" />
+                  </div>
+                </Surface>
+              </Link>
+            </StaggerItem>
+
+            <StaggerItem>
+              <Link href="/cases/finflow" className="block h-full">
+                <Surface className="h-full p-6 hover:border-[var(--accent-border)] transition-colors group">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)] mb-2">Fintech</p>
+                  <h3 className="font-display text-xl font-bold text-[var(--text-1)] mb-3 group-hover:text-[var(--accent)] transition-colors">
+                    FinFlow
+                  </h3>
+                  <p className="text-[13px] leading-6 text-[var(--text-2)] mb-4">
+                    5 dias de reconciliação manual agora é 1 hora de validação
+                  </p>
+                  <p className="font-display text-sm font-bold text-[var(--accent)] mb-4">-98% em retrabalho</p>
+                  <div className="flex items-center gap-2 text-[13px] font-semibold text-[var(--accent)] group-hover:gap-3 transition-all">
+                    Ler case
+                    <ArrowRight className="h-4 w-4" />
+                  </div>
+                </Surface>
+              </Link>
+            </StaggerItem>
+          </StaggerContainer>
+
+          <FadeInUp delay={0.2}>
+            <div className="mt-8 text-center">
+              <Link href="/cases" className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">
+                Ver todos os cases
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
-          </div>
+          </FadeInUp>
         </Container>
       </Section>
 
       <Section tone="deep" className="border-y border-[var(--border)]">
         <Container>
-          <SectionHeader
-            eyebrow="Produto em destaque"
-            title="FiscWise: automação financeira para fechar o mês com previsibilidade."
-            description="A primeira frente de produto da V-STACK: conciliação bancária, relatórios e alertas para operações financeiras que precisam sair da planilha."
-            align="center"
-            className="mb-10"
-          />
+          <FadeInUp>
+            <SectionHeader
+              eyebrow="Produto em destaque"
+              title="FiscWise: automação financeira para fechar o mês com previsibilidade."
+              description="A primeira frente de produto da V-STACK: conciliação bancária, relatórios e alertas para operações financeiras que precisam sair da planilha."
+              align="center"
+              className="mb-10"
+            />
+          </FadeInUp>
 
-          {projects.length > 0 ? (
-            <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-1">
-              {projects.map((project) => (
-                <ProjectCard key={project.slug} {...project} />
-              ))}
+          <FadeInUp delay={0.1}>
+            {projects.length > 0 ? (
+              <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-1">
+                {projects.map((project) => (
+                  <ProjectCard key={project.slug} {...project} />
+                ))}
+              </div>
+            ) : (
+              <Surface className="p-8 text-center">
+                <p className="text-[14px] text-[var(--text-2)]">Novos cases serão publicados em breve.</p>
+              </Surface>
+            )}
+          </FadeInUp>
+
+          <FadeInUp delay={0.2}>
+            <div className="mt-8 text-center">
+              <Link href="/fiscwise" className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">
+                Conhecer o FiscWise
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
-          ) : (
-            <Surface className="p-8 text-center">
-              <p className="text-[14px] text-[var(--text-2)]">Novos cases serão publicados em breve.</p>
-            </Surface>
-          )}
-
-          <div className="mt-8 text-center">
-            <Link href="/fiscwise" className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)]">
-              Conhecer o FiscWise
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+          </FadeInUp>
         </Container>
       </Section>
     </>

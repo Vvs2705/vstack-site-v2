@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import CookieBanner from '@/components/CookieBanner'
-import ChatWidget from '@/components/chat/ChatWidget'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import { Container, Section } from '@/components/primitives/Layout'
@@ -73,8 +71,6 @@ export default function ConteudosPage() {
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }

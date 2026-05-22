@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
-import CookieBanner from '@/components/CookieBanner'
-import ChatWidget from '@/components/chat/ChatWidget'
+import dynamic from 'next/dynamic'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
-import CTASection from '@/components/sections/CTASection'
-import SolutionsGridSection from '@/components/sections/SolutionsGridSection'
+import SolucoesHero from '@/components/sections/SolucoesHero'
 import { Container, Section } from '@/components/primitives/Layout'
+
+// Lazy-load heavy sections below the fold
+const SolutionsDetailedSection = dynamic(() => import('@/components/sections/SolutionsDetailedSection'))
+const SolutionsGridSection = dynamic(() => import('@/components/sections/SolutionsGridSection'))
+const CTASection = dynamic(() => import('@/components/sections/CTASection'))
 
 export const metadata: Metadata = {
   title: 'Soluções',
@@ -26,21 +29,15 @@ export default function SolucoesPage() {
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">
-        <Section spacing="xl" className="border-b border-[var(--border)]">
+        <SolucoesHero />
+
+        <SolutionsDetailedSection />
+
+        <Section className="border-t border-[var(--border)]">
           <Container>
-            <div className="max-w-3xl">
-              <p className="eyebrow mb-4">O que entregamos</p>
-              <h1 className="font-display text-balance text-[38px] font-extrabold leading-tight tracking-[-0.025em] text-[var(--text-1)] sm:text-[56px]">
-                Soluções para tirar a operação do improviso.
-              </h1>
-              <p className="mt-6 max-w-2xl text-[16px] leading-8 text-[var(--text-2)]">
-                Atuamos onde há retrabalho, sistemas desconectados, dados pouco confiáveis e decisões lentas. O objetivo é simples: transformar processo em software útil.
-              </p>
-            </div>
+            <SolutionsGridSection />
           </Container>
         </Section>
-
-        <SolutionsGridSection />
 
         <CTASection
           headline="Qual parte da sua operação mais trava hoje?"
@@ -53,8 +50,6 @@ export default function SolucoesPage() {
       </main>
 
       <Footer />
-      <ChatWidget />
-      <CookieBanner />
     </>
   )
 }
