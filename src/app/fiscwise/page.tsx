@@ -7,16 +7,54 @@ import ChatWidget from '@/components/chat/ChatWidget'
 import CookieBanner from '@/components/CookieBanner'
 import CTASection from '@/components/sections/CTASection'
 import { Container, Section, Surface } from '@/components/primitives/Layout'
+import JsonLd from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'FiscWise — Automação financeira para fechar o mês sem apagar incêndio',
+  title: 'FiscWise | Automação Financeira para PMEs — V-STACK SOLUTIONS',
   description:
-    'FiscWise conecta dados financeiros, automatiza conciliação bancária e entrega dashboards em tempo real para empresas que precisam de controle financeiro de verdade.',
+    'Automação financeira com conciliação bancária automática, Open Banking e dashboards executivos em tempo real. Feche o mês em horas, não em dias.',
   openGraph: {
-    title: 'FiscWise | Automação Financeira Inteligente',
+    title: 'FiscWise | Automação Financeira para PMEs — V-STACK SOLUTIONS',
     description:
-      'Conciliação automática, Open Banking, dashboards executivos e alertas de anomalia. Feche o mês em horas, não em dias.',
+      'Automação financeira com conciliação bancária automática, Open Banking e dashboards executivos em tempo real. Feche o mês em horas, não em dias.',
+    url: 'https://vstack-solutions.com.br/fiscwise',
+    type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FiscWise | Automação Financeira para PMEs — V-STACK SOLUTIONS',
+    description:
+      'Automação financeira com conciliação bancária automática, Open Banking e dashboards executivos em tempo real.',
+  },
+}
+
+const fiscwiseJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'FiscWise',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'Plataforma de automação financeira para PMEs brasileiras. Conciliação bancária automática, dashboards executivos e alertas de anomalia em tempo real.',
+  url: 'https://vstack-solutions.com.br/fiscwise',
+  provider: {
+    '@type': 'Organization',
+    name: 'V-STACK SOLUTIONS',
+    url: 'https://vstack-solutions.com.br',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'BRL',
+    description: 'Acesso antecipado gratuito — vagas limitadas',
+  },
+  featureList: [
+    'Conciliação bancária automática',
+    'Integração com Open Banking BR',
+    'Dashboards executivos em tempo real',
+    'Alertas inteligentes de anomalia',
+    'Automação de lançamentos financeiros',
+  ],
 }
 
 const PAIN_POINTS = [
@@ -103,6 +141,7 @@ const BAR_DATA = [
 export default function FiscWisePage() {
   return (
     <>
+      <JsonLd data={fiscwiseJsonLd} />
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">
