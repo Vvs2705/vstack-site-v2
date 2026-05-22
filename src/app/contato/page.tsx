@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Clock, Mail, MapPin, MessageCircle } from 'lucide-react'
+import { Clock, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import CookieBanner from '@/components/CookieBanner'
 import ChatWidget from '@/components/chat/ChatWidget'
 import ContatoForm from '@/components/forms/ContatoForm'
@@ -21,8 +21,14 @@ const CONTACT_ITEMS = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'contato@vstack-solutions.com.br',
-    href: 'mailto:contato@vstack-solutions.com.br',
+    value: 'vinicius@vstack-solutions.com.br',
+    href: 'mailto:vinicius@vstack-solutions.com.br',
+  },
+  {
+    icon: Phone,
+    label: 'WhatsApp',
+    value: '(11) 97335-8775',
+    href: 'https://wa.me/5511973358775',
   },
   {
     icon: MapPin,

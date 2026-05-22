@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Github, Instagram, Linkedin, Mail, MapPin } from 'lucide-react'
+import { Github, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 import VStackLogo from '@/components/brand/VStackLogo'
 import { Container } from '@/components/primitives/Layout'
 
@@ -8,7 +8,7 @@ const SOLUTIONS = [
   { label: 'Agentes de IA', href: '/agentes-de-ia' },
   { label: 'Integração de sistemas', href: '/integracao-de-sistemas' },
   { label: 'Sistemas sob medida', href: '/sistemas-sob-medida' },
-  { label: 'ContaFlow', href: '/contaflow' },
+  { label: 'FiscWise', href: '/fiscwise' },
 ]
 
 const COMPANY = [
@@ -62,9 +62,13 @@ export default function Footer() {
           <div>
             <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--text-3)]">Contato</p>
             <div className="space-y-3 text-[14px] text-[var(--text-2)]">
-              <a href="mailto:contato@vstack-solutions.com.br" className="flex items-center gap-3 transition-colors hover:text-[var(--text-1)]">
+              <a href="mailto:vinicius@vstack-solutions.com.br" className="flex items-center gap-3 transition-colors hover:text-[var(--text-1)]">
                 <Mail className="h-4 w-4 text-[var(--accent)]" />
-                contato@vstack-solutions.com.br
+                vinicius@vstack-solutions.com.br
+              </a>
+              <a href="https://wa.me/5511973358775" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--text-1)]">
+                <Phone className="h-4 w-4 text-[var(--accent)]" />
+                (11) 97335-8775
               </a>
               <p className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 text-[var(--accent)]" />
