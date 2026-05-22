@@ -111,8 +111,8 @@ export default function PrivacidadePage() {
                   Entre em contato
                 </Link>{' '}
                 ou escreva para{' '}
-                <a href="mailto:contato@vstack-solutions.com.br" className="text-[var(--accent)] hover:underline">
-                  contato@vstack-solutions.com.br
+                <a href="mailto:vinicius@vstack-solutions.com.br" className="text-[var(--accent)] hover:underline">
+                  vinicius@vstack-solutions.com.br
                 </a>
               </p>
             </section>

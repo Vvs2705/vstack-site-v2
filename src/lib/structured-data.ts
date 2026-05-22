@@ -12,7 +12,8 @@ export function organizationJsonLd() {
     url: siteUrl,
     logo: `${siteUrl}/icon-512.png`,
     image: `${siteUrl}/og-image.png`,
-    email: 'contato@vstack-solutions.com.br',
+    email: 'vinicius@vstack-solutions.com.br',
+    telephone: '+55-11-97335-8775',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'São Paulo',
