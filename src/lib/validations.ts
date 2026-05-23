@@ -45,7 +45,44 @@ export const ChatMessageSchema = z.object({
   visitorEmail: z.string().email().optional(),
 })
 
+export const SimulateRegimeSchema = z.object({
+  revenue: z.number().min(1, 'Receita deve ser maior que zero').max(100_000_000),
+  sector: z.string().min(2, 'Setor obrigatório').max(100),
+  employee_count: z.number().int().min(0).max(10_000),
+  current_regime: z.enum(['simples_nacional', 'lucro_presumido', 'lucro_real']).optional(),
+})
+
+export const SimulateIcmsSchema = z.object({
+  state_origin: z.string().length(2, 'UF de origem inválida').toUpperCase(),
+  state_destination: z.string().length(2, 'UF de destino inválida').toUpperCase(),
+  product_value: z.number().min(0.01, 'Valor deve ser maior que zero'),
+  ncm_code: z.string().max(10).optional(),
+})
+
+export const FiscalChatSchema = z.object({
+  message: z.string().min(1, 'Mensagem obrigatória').max(1000).trim(),
+  context: z
+    .object({
+      revenue: z.number().optional(),
+      sector: z.string().optional(),
+      regime: z.enum(['simples_nacional', 'lucro_presumido', 'lucro_real']).optional(),
+    })
+    .optional(),
+  history: z
+    .array(
+      z.object({
+        role: z.enum(['user', 'assistant']),
+        content: z.string(),
+      })
+    )
+    .max(20)
+    .optional(),
+})
+
 export type ContatoInput = z.infer<typeof ContatoSchema>
 export type CotacaoInput = z.infer<typeof CotacaoSchema>
 export type DorInput = z.infer<typeof DorSchema>
 export type ChatInput = z.infer<typeof ChatMessageSchema>
+export type SimulateRegimeInput = z.infer<typeof SimulateRegimeSchema>
+export type SimulateIcmsInput = z.infer<typeof SimulateIcmsSchema>
+export type FiscalChatInput = z.infer<typeof FiscalChatSchema>
