@@ -4,9 +4,14 @@ import { ArrowRight, AlertCircle, BarChart3, Zap, Shield, Clock, CheckCircle2 } 
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import FiscWise3DMockupClient from '@/components/fiscwise/FiscWise3DMockupClient'
+import FiscWiseFAQSection from '@/components/fiscwise/FiscWiseFAQSection'
+import FiscWiseComparisonSection from '@/components/fiscwise/FiscWiseComparisonSection'
+import { FiscalCalculatorSection } from '@/components/fiscwise/FiscalCalculatorSection'
 import CTASection from '@/components/sections/CTASection'
-import { Container, Section, Surface } from '@/components/primitives/Layout'
+import { Container, Section, Surface, SectionHeader } from '@/components/primitives/Layout'
 import JsonLd from '@/components/seo/JsonLd'
+import { FISCWISE_FAQ, COMPETITOR_COMPARISON } from '@/lib/fiscwise-faq'
+import type { PlanGating } from '@/lib/types/calculator'
 
 export const metadata: Metadata = {
   title: 'FiscWise | Automação Financeira para PMEs — V-STACK SOLUTIONS',
@@ -189,6 +194,17 @@ const TESTIMONIALS = [
     metric: 'Economia real',
   },
 ]
+
+// Gating padrão para visitantes não autenticados: plano FREE
+// Em produção, substituir pela leitura do plano real do usuário autenticado
+const DEFAULT_GATING: PlanGating = {
+  plan: 'FREE',
+  canUseAI: false,
+  canExportPDF: false,
+  canSeeFiscalBenefits: false,
+  monthlyMessagesLimit: null,
+  messagesUsed: 0,
+}
 
 export default function FiscWisePage() {
   return (
@@ -416,6 +432,34 @@ export default function FiscWisePage() {
                   </div>
                 </Surface>
               ))}
+            </div>
+          </Container>
+        </Section>
+
+        {/* Seção: Por Que Escolher FiscWise */}
+        <Section tone="default" spacing="lg">
+          <Container>
+            <SectionHeader
+              eyebrow="Diferenciais"
+              title="Por que escolher FiscWise"
+              description="Construído especialmente para contadores e gestores financeiros. Sem compromissos, sem fricção, sem surpresas."
+            />
+            <FiscWiseComparisonSection comparisons={COMPETITOR_COMPARISON} />
+          </Container>
+        </Section>
+
+        {/* Seção: FAQ */}
+        <Section tone="muted" spacing="lg">
+          <Container>
+            <div className="max-w-3xl mx-auto">
+              <SectionHeader
+                eyebrow="Dúvidas"
+                title="Perguntas frequentes"
+                description="Tudo que você precisa saber sobre como começar a usar FiscWise."
+              />
+              <div className="mt-10">
+                <FiscWiseFAQSection faqs={FISCWISE_FAQ} />
+              </div>
             </div>
           </Container>
         </Section>
