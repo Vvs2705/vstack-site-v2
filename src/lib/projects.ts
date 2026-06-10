@@ -25,10 +25,10 @@ export interface ProjectData {
 
 export const projects: ProjectData[] = [
   {
-    slug: 'contaflow',
-    title: 'ContaFlow',
+    slug: 'fiscwise',
+    title: 'FiscWise',
     description: 'Automação financeira para fechar o mês com menos retrabalho e mais controle.',
-    thumbnail: '/images/projects/contaflow-thumb.png',
+    thumbnail: '/images/projects/fiscwise-thumb.png',
     status: 'active',
     tags: ['FastAPI', 'PostgreSQL', 'React', 'Open Banking', 'TypeScript', 'Tailwind'],
 
@@ -36,7 +36,7 @@ export const projects: ProjectData[] = [
       'Empresas de pequeno e médio porte ainda fecham o mês com planilhas, conferências manuais e informações espalhadas em vários sistemas. Isso gera atraso, erro humano e pouca visibilidade para decisões financeiras.',
 
     solution:
-      'ContaFlow centraliza dados financeiros, automatiza conciliação, organiza lançamentos e entrega indicadores em tempo real. O objetivo é reduzir o esforço operacional e dar clareza para gestores e equipes contábeis.',
+      'O FiscWise centraliza dados financeiros, automatiza conciliação, organiza lançamentos e entrega indicadores em tempo real. O objetivo é reduzir o esforço operacional e dar clareza para gestores e equipes contábeis.',
 
     features: [
       {
@@ -78,10 +78,10 @@ export const projects: ProjectData[] = [
     ],
 
     screenshots: [
-      '/images/projects/contaflow-dashboard.png',
-      '/images/projects/contaflow-reports.png',
-      '/images/projects/contaflow-alerts.png',
-      '/images/projects/contaflow-conciliation.png',
+      '/images/projects/fiscwise-dashboard.png',
+      '/images/projects/fiscwise-reports.png',
+      '/images/projects/fiscwise-alerts.png',
+      '/images/projects/fiscwise-conciliation.png',
     ],
 
     metrics: {
@@ -93,7 +93,7 @@ export const projects: ProjectData[] = [
 
     links: {
       demo: 'https://demo.contabilidadeflow.com.br',
-      docs: '/docs/contaflow',
+      docs: '/fiscwise',
     },
   },
 ]

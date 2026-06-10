@@ -6,7 +6,7 @@ export const ContatoSchema = z.object({
   email: z.string().email('Email inválido').max(254).trim().transform((value) => value.toLowerCase()),
   phone: z.string().max(20).optional(),
   message: z.string().min(10, 'Mensagem muito curta').max(2000).trim(),
-  interest: z.enum(['automacao', 'ia', 'integracao', 'saas', 'contaflow', 'outro']),
+  interest: z.enum(['automacao', 'ia', 'integracao', 'saas', 'fiscwise', 'outro']),
 })
 
 export const CotacaoSchema = z.object({
