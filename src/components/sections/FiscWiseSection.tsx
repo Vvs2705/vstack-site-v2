@@ -19,7 +19,7 @@ const BAR_DATA = [
   { label: 'Abr', height: 63 },
 ]
 
-export default function ContaFlowSection() {
+export default function FiscWiseSection() {
   return (
     <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
       <Container>

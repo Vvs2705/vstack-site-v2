@@ -67,6 +67,9 @@ const nextConfig: NextConfig = {
         destination: 'https://www.vstack-solutions.com.br/:path*',
         permanent: true,
       },
+      // ContaFlow foi renomeado para FiscWise — redireciona rotas antigas
+      { source: '/contaflow', destination: '/fiscwise', permanent: true },
+      { source: '/solucoes/contaflow', destination: '/fiscwise', permanent: true },
     ]
   },
 }

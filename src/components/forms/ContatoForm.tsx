@@ -198,7 +198,7 @@ export default function ContatoForm() {
             <option value="ia">Inteligência Artificial</option>
             <option value="integracao">Integração de Sistemas</option>
             <option value="saas">Desenvolvimento SaaS</option>
-            <option value="contaflow">FiscWise (Gestão Contábil e Financeira)</option>
+            <option value="fiscwise">FiscWise (Gestão Contábil e Financeira)</option>
             <option value="outro">Outro</option>
           </select>
           {errors.interest && (

@@ -125,7 +125,7 @@ Páginas futuras recomendadas:
 - `/desenvolvimento-saas`
 - `/portal-interno`
 
-### Cluster 5: ContaFlow
+### Cluster 5: FiscWise
 
 Palavras-chave:
 
@@ -137,7 +137,7 @@ Palavras-chave:
 
 Páginas futuras recomendadas:
 
-- `/contaflow`
+- `/fiscwise`
 - `/automacao-financeira`
 - `/conciliacao-bancaria-automatica`
 

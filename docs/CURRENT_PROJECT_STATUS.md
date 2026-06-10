@@ -126,7 +126,7 @@ src/components/layout/Footer.tsx
 src/components/sections/HeroSection.tsx
 src/components/sections/TechStripSection.tsx
 src/components/sections/PillarsSection.tsx
-src/components/sections/ContaFlowSection.tsx
+src/components/sections/FiscWiseSection.tsx
 src/components/sections/CTASection.tsx
 ```
 
@@ -135,7 +135,7 @@ Mudancas principais:
 - Navbar simplificada e mais premium.
 - Footer reorganizado e menos ruidoso.
 - Hero refeito com narrativa mais clara.
-- Dashboard/preview do ContaFlow mais limpo.
+- Dashboard/preview do FiscWise mais limpo.
 - Cards de capacidades menos genericos.
 - Tech strip sem emojis quebrados.
 - CTA final mais forte.
@@ -166,7 +166,7 @@ Rotas geradas com sucesso, incluindo:
 - `/`
 - `/sobre`
 - `/solucoes`
-- `/solucoes/contaflow`
+- `/fiscwise`
 - `/contato`
 - `/cotacao`
 - `/envie-sua-dor`
@@ -220,7 +220,7 @@ src/components/layout/Footer.tsx
 src/components/layout/Navbar.tsx
 src/components/primitives/Layout.tsx
 src/components/sections/CTASection.tsx
-src/components/sections/ContaFlowSection.tsx
+src/components/sections/FiscWiseSection.tsx
 src/components/sections/HeroSection.tsx
 src/components/sections/PillarsSection.tsx
 src/components/sections/TechStripSection.tsx
@@ -253,7 +253,7 @@ Antes de deploy:
 
 Depois:
 
-1. Criar paginas SEO especificas por cluster: automacao, IA, integracoes, sistemas sob medida e ContaFlow.
+1. Criar paginas SEO especificas por cluster: automacao, IA, integracoes, sistemas sob medida e FiscWise.
 2. Criar documentacao de design system.
 3. Revisar detalhes de UX mobile do chat e area logada.
 
@@ -278,7 +278,7 @@ Novas paginas de fundo de funil criadas e linkadas:
 - `/agentes-de-ia`
 - `/integracao-de-sistemas`
 - `/sistemas-sob-medida`
-- `/contaflow`
+- `/fiscwise`
 
 Cada pagina inclui:
 

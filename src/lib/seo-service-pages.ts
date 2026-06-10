@@ -5,7 +5,6 @@ export type SeoServiceSlug =
   | 'agentes-de-ia'
   | 'integracao-de-sistemas'
   | 'sistemas-sob-medida'
-  | 'contaflow'
 
 export interface SeoServicePage {
   slug: SeoServiceSlug
@@ -150,38 +149,6 @@ export const seoServicePages: Record<SeoServiceSlug, SeoServicePage> = {
       'Vale quando a operação tem regra própria, alto volume de transação ou custo de erro é tão alto que improviso é risco real.',
     primaryCta: 'Planejar sistema sob medida',
     secondaryCta: 'Enviar ideia ou dor',
-  },
-  contaflow: {
-    slug: 'contaflow',
-    eyebrow: 'ContaFlow',
-    title: 'ContaFlow: automação financeira para fechar o mês com previsibilidade.',
-    description:
-      'Uma frente de produto da V-STACK para organizar conciliação, lançamentos, relatórios e alertas financeiros em operações que precisam sair da planilha.',
-    metaDescription:
-      'ContaFlow é uma solução de automação financeira para PMEs com conciliação, relatórios, alertas e controle operacional.',
-    keywords: ['ContaFlow', 'automação financeira', 'conciliação bancária automática'],
-    painPoints: [
-      'Fechamento financeiro atrasando por conferência manual.',
-      'Contas a pagar, receber e fluxo de caixa espalhados.',
-      'Conciliação bancária consumindo horas da equipe.',
-      'Gestor sem visão confiável para decidir rápido.',
-    ],
-    outcomes: [
-      'Rotinas financeiras centralizadas e acompanháveis.',
-      'Menos conferência manual no fechamento.',
-      'Relatórios e alertas para decisões mais rápidas.',
-      'Base preparada para integração bancária e contábil.',
-    ],
-    process: [
-      'Entendemos a rotina financeira e os controles atuais.',
-      'Mapeamos dados, bancos, relatórios e pontos críticos.',
-      'Configuramos fluxos de automação e indicadores prioritários.',
-      'Ajustamos a operação com base no fechamento real.',
-    ],
-    proof:
-      'O financeiro precisa de controle antes de escala. O ContaFlow organiza o fluxo para reduzir atraso, erro e dependência de planilha.',
-    primaryCta: 'Conhecer ContaFlow',
-    secondaryCta: 'Enviar dor financeira',
   },
 }
 

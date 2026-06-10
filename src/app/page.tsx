@@ -11,7 +11,7 @@ const PillarsSection = dynamic(() => import('@/components/sections/PillarsSectio
 const IntegrationsSection = dynamic(() => import('@/components/sections/IntegrationsSection'), {
   loading: () => <SectionSkeleton />,
 })
-const ContaFlowSection = dynamic(() => import('@/components/sections/ContaFlowSection'))
+const FiscWiseSection = dynamic(() => import('@/components/sections/FiscWiseSection'))
 const FAQSection = dynamic(() => import('@/components/sections/FAQSection'))
 const CTASection = dynamic(() => import('@/components/sections/CTASection'))
 
@@ -40,7 +40,7 @@ export default function Home() {
         <TechStripSection />
         <PillarsSection />
         <IntegrationsSection />
-        <ContaFlowSection />
+        <FiscWiseSection />
         <FAQSection limit={6} showFilter={false} />
         <CTASection />
       </main>

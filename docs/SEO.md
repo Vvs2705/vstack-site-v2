@@ -162,7 +162,7 @@ O script `postbuild` executa `next-sitemap` automaticamente, gerando:
 8. API
 9. chatbots
 10. RPA
-11. ContaFlow
+11. FiscWise
 
 ## 📝 Notas Importantes
 
