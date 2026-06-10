@@ -1,12 +1,19 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Container, Surface } from '@/components/primitives/Layout'
-import { getCaseStudy } from '@/lib/case-studies'
+import { caseStudies, getCaseStudy } from '@/lib/case-studies'
 import type { CaseStudySlug } from '@/lib/case-studies'
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const caseStudy = getCaseStudy(params.slug as CaseStudySlug)
+export function generateStaticParams() {
+  return Object.keys(caseStudies).map((slug) => ({ slug }))
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const caseStudy = getCaseStudy(slug as CaseStudySlug)
+  if (!caseStudy) return { title: 'Case não encontrado | V-STACK' }
 
   return {
     title: `${caseStudy.company} - Case de Estudo | V-STACK`,
@@ -19,8 +26,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const caseStudy = getCaseStudy(params.slug as CaseStudySlug)
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const caseStudy = getCaseStudy(slug as CaseStudySlug)
+  if (!caseStudy) notFound()
 
   return (
     <main>

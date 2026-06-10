@@ -60,6 +60,13 @@ const nextConfig: NextConfig = {
         destination: '/admin/dashboard',
         permanent: false,
       },
+      // Host canônico: non-www -> www (301)
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'vstack-solutions.com.br' }],
+        destination: 'https://www.vstack-solutions.com.br/:path*',
+        permanent: true,
+      },
     ]
   },
 }

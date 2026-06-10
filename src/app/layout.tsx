@@ -27,16 +27,19 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vstack-solutions.com.br'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vstack-solutions.com.br'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: './',
+  },
   title: {
     default: 'V-STACK SOLUTIONS - Automação, IA e Sistemas Sob Medida',
     template: '%s | V-STACK SOLUTIONS',
   },
   description:
-    'Automação de processos, agentes de IA, integrações e sistemas sob medida para empresas que precisam reduzir retrabalho, organizar a operação e escalar com tecnologia.',
+    'Automação de processos, agentes de IA, integrações e sistemas sob medida para reduzir retrabalho, organizar a operação e escalar com tecnologia.',
   keywords: [
     'desenvolvimento de software',
     'automação de processos',

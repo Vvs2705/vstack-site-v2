@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import FAQSection from '@/components/sections/FAQSection'
 import { Container, Section } from '@/components/primitives/Layout'
+import { FAQ } from '@/lib/faq'
 
 export const metadata = {
   title: 'Perguntas Frequentes | V-STACK SOLUTIONS',
@@ -11,9 +12,26 @@ export const metadata = {
     'Respostas diretas sobre diagnóstico, automação, IA, integrações e desenvolvimento sob medida para empresas que precisam resolver problemas reais.',
 }
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+}
+
 export default function FAQPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-14">
