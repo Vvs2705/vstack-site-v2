@@ -14,19 +14,19 @@ import { FISCWISE_FAQ, COMPETITOR_COMPARISON } from '@/lib/fiscwise-faq'
 import type { PlanGating } from '@/lib/types/calculator'
 
 export const metadata: Metadata = {
-  title: 'FiscWise | Automação Financeira para PMEs — V-STACK SOLUTIONS',
+  title: 'FiscWise — Automação Financeira para PMEs | V-STACK',
   description:
     'Automação financeira com conciliação bancária automática, Open Banking e dashboards executivos em tempo real. Feche o mês em horas, não em dias.',
   openGraph: {
-    title: 'FiscWise | Automação Financeira para PMEs — V-STACK SOLUTIONS',
+    title: 'FiscWise — Automação Financeira para PMEs | V-STACK',
     description:
       'Automação financeira com conciliação bancária automática, Open Banking e dashboards executivos em tempo real. Feche o mês em horas, não em dias.',
-    url: 'https://vstack-solutions.com.br/fiscwise',
+    url: 'https://www.vstack-solutions.com.br/fiscwise',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FiscWise | Automação Financeira para PMEs — V-STACK SOLUTIONS',
+    title: 'FiscWise — Automação Financeira para PMEs | V-STACK',
     description:
       'Automação financeira com conciliação bancária automática, Open Banking e dashboards executivos em tempo real.',
   },

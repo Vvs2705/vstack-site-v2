@@ -1,7 +1,7 @@
 import type { Article } from '@/lib/articles'
 import type { SeoServicePage } from '@/lib/seo-service-pages'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vstack-solutions.com.br'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vstack-solutions.com.br'
 
 export function organizationJsonLd() {
   return {

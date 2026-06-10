@@ -5,7 +5,7 @@ Disallow: /api/
 Disallow: /admin/
 
 # Host
-Host: https://vstack-solutions.com.br
+Host: https://www.vstack-solutions.com.br
 
 # Sitemaps
-Sitemap: https://vstack-solutions.com.br/sitemap.xml
+Sitemap: https://www.vstack-solutions.com.br/sitemap.xml
