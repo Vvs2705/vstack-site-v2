@@ -16,13 +16,13 @@ export default function CookiesPage() {
           <h1 className="font-display text-4xl font-bold gradient-text mb-4">
             Política de Cookies
           </h1>
-          <p className="text-[var(--text-secondary)] mb-12">
+          <p className="text-[var(--text-2)] mb-12">
             Última atualização: abril de 2026
           </p>
 
-          <div className="space-y-10 text-[var(--text-secondary)] leading-relaxed">
+          <div className="space-y-10 text-[var(--text-2)] leading-relaxed">
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 O que são cookies?
               </h2>
               <p>
@@ -33,13 +33,13 @@ export default function CookiesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 Cookies que utilizamos
               </h2>
 
               <div className="space-y-6">
                 <div className="card-vstack p-6 rounded-lg">
-                  <h3 className="font-semibold text-[var(--text-primary)] mb-2">
+                  <h3 className="font-semibold text-[var(--text-1)] mb-2">
                     Cookies Essenciais
                   </h3>
                   <p className="text-sm mb-3">
@@ -48,9 +48,9 @@ export default function CookiesPage() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-[var(--border)]">
-                        <th className="text-left py-2 pr-4 font-medium text-[var(--text-primary)]">Nome</th>
-                        <th className="text-left py-2 pr-4 font-medium text-[var(--text-primary)]">Finalidade</th>
-                        <th className="text-left py-2 font-medium text-[var(--text-primary)]">Duração</th>
+                        <th className="text-left py-2 pr-4 font-medium text-[var(--text-1)]">Nome</th>
+                        <th className="text-left py-2 pr-4 font-medium text-[var(--text-1)]">Finalidade</th>
+                        <th className="text-left py-2 font-medium text-[var(--text-1)]">Duração</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -69,7 +69,7 @@ export default function CookiesPage() {
                 </div>
 
                 <div className="card-vstack p-6 rounded-lg">
-                  <h3 className="font-semibold text-[var(--text-primary)] mb-2">
+                  <h3 className="font-semibold text-[var(--text-1)] mb-2">
                     Cookies de Analytics (opcionais)
                   </h3>
                   <p className="text-sm mb-3">
@@ -78,9 +78,9 @@ export default function CookiesPage() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-[var(--border)]">
-                        <th className="text-left py-2 pr-4 font-medium text-[var(--text-primary)]">Serviço</th>
-                        <th className="text-left py-2 pr-4 font-medium text-[var(--text-primary)]">Finalidade</th>
-                        <th className="text-left py-2 font-medium text-[var(--text-primary)]">Política</th>
+                        <th className="text-left py-2 pr-4 font-medium text-[var(--text-1)]">Serviço</th>
+                        <th className="text-left py-2 pr-4 font-medium text-[var(--text-1)]">Finalidade</th>
+                        <th className="text-left py-2 font-medium text-[var(--text-1)]">Política</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -100,21 +100,21 @@ export default function CookiesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 Como gerenciar cookies
               </h2>
               <p className="mb-3">Você pode controlar os cookies de várias formas:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>
-                  <strong className="text-[var(--text-primary)]">Banner do site:</strong>{' '}
+                  <strong className="text-[var(--text-1)]">Banner do site:</strong>{' '}
                   Ao entrar no site, você pode aceitar todos ou apenas os essenciais
                 </li>
                 <li>
-                  <strong className="text-[var(--text-primary)]">Navegador:</strong>{' '}
+                  <strong className="text-[var(--text-1)]">Navegador:</strong>{' '}
                   A maioria dos navegadores permite bloquear ou excluir cookies nas configurações
                 </li>
                 <li>
-                  <strong className="text-[var(--text-primary)]">Google Analytics:</strong>{' '}
+                  <strong className="text-[var(--text-1)]">Google Analytics:</strong>{' '}
                   Use o{' '}
                   <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">
                     opt-out do Google
@@ -124,7 +124,7 @@ export default function CookiesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 Dúvidas
               </h2>
               <p>

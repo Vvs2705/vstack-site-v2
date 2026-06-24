@@ -8,6 +8,38 @@ import { Container, Section } from '@/components/primitives/Layout'
 import { articles, getArticle } from '@/lib/articles'
 import { articleJsonLd } from '@/lib/structured-data'
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vstack-solutions.com.br'
+
+// Breadcrumb definido localmente (Home › Conteúdos › {artigo}) para não acoplar
+// esta página a um helper compartilhado.
+function buildBreadcrumbJsonLd(article: { title: string; slug: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Início',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Conteúdos',
+        item: `${SITE_URL}/conteudos`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: `${SITE_URL}/conteudos/${article.slug}`,
+      },
+    ],
+  }
+}
+
 interface ArticlePageProps {
   params: Promise<{ slug: string }>
 }
@@ -55,12 +87,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">
         <JsonLd data={articleJsonLd(article)} />
+        <JsonLd data={buildBreadcrumbJsonLd(article)} />
 
         <Section spacing="xl" className="border-b border-[var(--border)]">
           <Container size="lg">
-            <Link href="/conteudos" className="text-[13px] font-semibold text-[var(--accent)] hover:text-[var(--accent-light)]">
-              Conteúdos
-            </Link>
+            <nav aria-label="Trilha de navegação" className="flex flex-wrap items-center gap-2 text-[13px] font-semibold">
+              <Link href="/" className="text-[var(--text-3)] hover:text-[var(--accent)]">
+                Início
+              </Link>
+              <span aria-hidden className="text-[var(--text-3)]">›</span>
+              <Link href="/conteudos" className="text-[var(--accent)] hover:text-[var(--accent-light)]">
+                Conteúdos
+              </Link>
+              <span aria-hidden className="text-[var(--text-3)]">›</span>
+              <span className="text-[var(--text-3)]">{article.title}</span>
+            </nav>
             <p className="eyebrow mt-6">{article.category} · {article.readingTime}</p>
             <h1 className="mt-4 max-w-4xl font-display text-balance text-[36px] font-extrabold leading-tight tracking-[-0.025em] text-[var(--text-1)] sm:text-[54px]">
               {article.title}

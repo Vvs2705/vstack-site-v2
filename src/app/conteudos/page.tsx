@@ -2,8 +2,33 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
+import JsonLd from '@/components/seo/JsonLd'
 import { Container, Section } from '@/components/primitives/Layout'
 import { articles } from '@/lib/articles'
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vstack-solutions.com.br'
+
+// Breadcrumb (Início › Conteúdos) definido localmente para não acoplar a página
+// a um helper compartilhado.
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Início',
+      item: SITE_URL,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Conteúdos',
+      item: `${SITE_URL}/conteudos`,
+    },
+  ],
+}
 
 export const metadata: Metadata = {
   title: 'Conteúdos sobre automação, IA e sistemas',
@@ -30,9 +55,18 @@ export default function ConteudosPage() {
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">
+        <JsonLd data={breadcrumbJsonLd} />
+
         <Section spacing="xl" className="border-b border-[var(--border)]">
           <Container>
             <div className="max-w-3xl">
+              <nav aria-label="Trilha de navegação" className="mb-6 flex flex-wrap items-center gap-2 text-[13px] font-semibold">
+                <Link href="/" className="text-[var(--text-3)] hover:text-[var(--accent)]">
+                  Início
+                </Link>
+                <span aria-hidden className="text-[var(--text-3)]">›</span>
+                <span className="text-[var(--text-3)]">Conteúdos</span>
+              </nav>
               <p className="eyebrow mb-4">Conteúdos</p>
               <h1 className="font-display text-balance text-[38px] font-extrabold leading-tight tracking-[-0.025em] text-[var(--text-1)] sm:text-[56px]">
                 Decisões melhores antes de contratar tecnologia.

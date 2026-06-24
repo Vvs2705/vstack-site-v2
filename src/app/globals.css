@@ -38,6 +38,12 @@
   --nav-blur: rgba(246, 247, 251, 0.86);
 
   --bg-primary: var(--bg);
+
+  /*
+   * DEPRECATED text aliases — use --text-1 / --text-2 / --text-3 instead.
+   * Kept active only because src/components/chat/ChatWidget.tsx still
+   * references them. Once that file is migrated, remove these three lines.
+   */
   --text-primary: var(--text-1);
   --text-secondary: var(--text-2);
   --text-muted: var(--text-3);

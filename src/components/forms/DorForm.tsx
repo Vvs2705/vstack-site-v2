@@ -77,11 +77,11 @@ export default function DorForm() {
         <h2 className="font-display text-3xl font-bold gradient-text">
           Dor recebida
         </h2>
-        <p className="text-[var(--text-secondary)] text-lg">
+        <p className="text-[var(--text-2)] text-lg">
           Obrigado por descrever o problema. Vamos analisar impacto, urgência e caminhos possíveis.
         </p>
         {!formData.isAnonymous && formData.email && (
-          <p className="text-sm text-[var(--text-muted)]">
+          <p className="text-sm text-[var(--text-3)]">
             Enviamos uma confirmação para <strong>{formData.email}</strong>
           </p>
         )}
@@ -114,10 +114,10 @@ export default function DorForm() {
       <div className="flex items-start gap-4 p-4 rounded-lg bg-[var(--accent-muted)] border border-[var(--accent-border)]">
         <AlertCircle className="h-6 w-6 text-[var(--accent)] flex-shrink-0 mt-0.5" />
         <div>
-          <h3 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-1">
+          <h3 className="font-display text-lg font-semibold text-[var(--text-1)] mb-1">
             Descreva a dor da operação
           </h3>
-          <p className="text-sm text-[var(--text-secondary)]">
+          <p className="text-sm text-[var(--text-2)]">
             Quanto mais claro for o problema, mais rápido conseguimos identificar se vale automatizar,
             integrar sistemas ou criar uma solução sob medida.
           </p>
@@ -133,7 +133,7 @@ export default function DorForm() {
           onChange={(e) => updateField('isAnonymous', e.target.checked)}
           className="h-5 w-5 rounded border-[var(--border)] bg-[var(--bg-card)] text-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-0"
         />
-        <label htmlFor="isAnonymous" className="text-sm font-medium text-[var(--text-primary)] cursor-pointer">
+        <label htmlFor="isAnonymous" className="text-sm font-medium text-[var(--text-1)] cursor-pointer">
           Enviar anonimamente (seus dados não serão compartilhados)
         </label>
       </div>
@@ -141,20 +141,20 @@ export default function DorForm() {
       {/* Contact Info (optional if anonymous) */}
       {!formData.isAnonymous && (
         <div className="space-y-4">
-          <h4 className="font-display text-lg font-semibold text-[var(--text-primary)]">
+          <h4 className="font-display text-lg font-semibold text-[var(--text-1)]">
             Informações de Contato (Opcional)
           </h4>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Seu Nome
               </label>
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => updateField('name', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Nome completo"
               />
               {errors.name && (
@@ -163,14 +163,14 @@ export default function DorForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Email
               </label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => updateField('email', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="seu@email.com"
               />
               {errors.email && (
@@ -179,14 +179,14 @@ export default function DorForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Empresa
               </label>
               <input
                 type="text"
                 value={formData.company}
                 onChange={(e) => updateField('company', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Nome da empresa"
               />
               {errors.company && (
@@ -195,14 +195,14 @@ export default function DorForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Setor
               </label>
               <input
                 type="text"
                 value={formData.sector}
                 onChange={(e) => updateField('sector', e.target.value)}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Ex: Tecnologia, Varejo..."
               />
               {errors.sector && (
@@ -215,19 +215,19 @@ export default function DorForm() {
 
       {/* Pain Point Details */}
       <div className="space-y-4">
-        <h4 className="font-display text-lg font-semibold text-[var(--text-primary)]">
+        <h4 className="font-display text-lg font-semibold text-[var(--text-1)]">
           Detalhes da Dor *
         </h4>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
             Título da dor * (mínimo 5 caracteres)
           </label>
           <input
             type="text"
             value={formData.title}
             onChange={(e) => updateField('title', e.target.value)}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none"
+            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
             placeholder="Ex: Processos manuais consomem muito tempo"
             required
           />
@@ -237,14 +237,14 @@ export default function DorForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
             Descrição detalhada * (mínimo 30 caracteres)
           </label>
           <textarea
             value={formData.description}
             onChange={(e) => updateField('description', e.target.value)}
             rows={5}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none resize-none"
+            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
             placeholder="Descreva em detalhes o problema que você enfrenta..."
             required
           />
@@ -254,14 +254,14 @@ export default function DorForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
             Impacto no Negócio * (mínimo 10 caracteres)
           </label>
           <textarea
             value={formData.impact}
             onChange={(e) => updateField('impact', e.target.value)}
             rows={3}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none resize-none"
+            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
             placeholder="Como isso afeta sua empresa?(custos, tempo, produtividade...)"
             required
           />
@@ -271,7 +271,7 @@ export default function DorForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
             Nível de urgência *
           </label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -288,7 +288,7 @@ export default function DorForm() {
                 className={`rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
                   formData.urgency === option.value
                     ?option.color
-                    : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-secondary)] hover:border-[var(--accent-border)]'
+                    : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-2)] hover:border-[var(--accent-border)]'
                 }`}
               >
                 {option.label}
@@ -301,14 +301,14 @@ export default function DorForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--text-primary)] mb-2">
+          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
             Solução Atual (se houver)
           </label>
           <textarea
             value={formData.currentSolution}
             onChange={(e) => updateField('currentSolution', e.target.value)}
             rows={3}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-primary)] focus:border-[var(--accent)] focus:outline-none resize-none"
+            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
             placeholder="Como você lida com isso hoje?Por que não é suficiente?"
           />
           {errors.currentSolution && (
@@ -341,7 +341,7 @@ export default function DorForm() {
         )}
       </button>
 
-      <p className="text-xs text-center text-[var(--text-muted)]">
+      <p className="text-xs text-center text-[var(--text-3)]">
         Ao enviar, você concorda que a V-STACK SOLUTIONS pode entrar em contato para discutir soluções.
       </p>
     </form>

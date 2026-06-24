@@ -16,13 +16,13 @@ export default function TermosPage() {
           <h1 className="font-display text-4xl font-bold gradient-text mb-4">
             Termos de Uso
           </h1>
-          <p className="text-[var(--text-secondary)] mb-12">
+          <p className="text-[var(--text-2)] mb-12">
             Última atualização: abril de 2026
           </p>
 
-          <div className="space-y-10 text-[var(--text-secondary)] leading-relaxed">
+          <div className="space-y-10 text-[var(--text-2)] leading-relaxed">
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 1. Aceitação dos Termos
               </h2>
               <p>
@@ -33,7 +33,7 @@ export default function TermosPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 2. Uso do Site
               </h2>
               <p className="mb-3">Você concorda em usar este site apenas para fins legais e de acordo com estes termos. É proibido:</p>
@@ -47,7 +47,7 @@ export default function TermosPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 3. Propriedade Intelectual
               </h2>
               <p>
@@ -58,7 +58,7 @@ export default function TermosPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 4. Assistente Virtual
               </h2>
               <p>
@@ -70,7 +70,7 @@ export default function TermosPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 5. Limitação de Responsabilidade
               </h2>
               <p>
@@ -81,7 +81,7 @@ export default function TermosPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 6. Modificações
               </h2>
               <p>
@@ -92,7 +92,7 @@ export default function TermosPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 7. Lei Aplicável
               </h2>
               <p>
@@ -102,7 +102,7 @@ export default function TermosPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 8. Contato
               </h2>
               <p>

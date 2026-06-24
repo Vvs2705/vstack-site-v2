@@ -4,6 +4,8 @@ import dynamic from 'next/dynamic'
 import { ArrowRight, CheckCircle2, Compass, Layers3, ShieldCheck, Target, Workflow } from 'lucide-react'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
+import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbList } from '@/lib/structured-data'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
 
 // Lazy-load heavy below-fold sections
@@ -46,9 +48,15 @@ const PROCESS = [
   'Monitoramento, suporte e evolução contínua',
 ]
 
+const breadcrumbJsonLd = breadcrumbList([
+  { name: 'Início', url: '/' },
+  { name: 'Sobre', url: '/sobre' },
+])
+
 export default function SobrePage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">

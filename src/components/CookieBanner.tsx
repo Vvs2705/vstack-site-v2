@@ -37,7 +37,7 @@ export default function CookieBanner() {
         <div className="card-vstack relative shadow-2xl !p-4 sm:!p-6">
           <button
             onClick={handleReject}
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] text-[var(--text-2)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
             aria-label="Fechar"
           >
             <X className="h-4 w-4" />
@@ -50,10 +50,10 @@ export default function CookieBanner() {
 
             <div className="flex-1 space-y-3">
               <div>
-                <h3 className="font-display text-base sm:text-lg font-semibold text-[var(--text-primary)] mb-1">
+                <h3 className="font-display text-base sm:text-lg font-semibold text-[var(--text-1)] mb-1">
                   Cookies e Privacidade
                 </h3>
-                <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[var(--text-2)] leading-relaxed">
                   Usamos cookies essenciais e analíticos, conforme a{' '}
                   <Link href="/privacidade" className="text-[var(--accent)] hover:underline">
                     LGPD
@@ -61,7 +61,7 @@ export default function CookieBanner() {
                   .{' '}
                   <Link
                     href="/cookies"
-                    className="text-[var(--text-secondary)] underline hover:text-[var(--accent)] transition-colors"
+                    className="text-[var(--text-2)] underline hover:text-[var(--accent)] transition-colors"
                   >
                     Gerenciar preferências
                   </Link>

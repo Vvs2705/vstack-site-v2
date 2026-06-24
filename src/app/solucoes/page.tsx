@@ -3,6 +3,8 @@ import dynamic from 'next/dynamic'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import SolucoesHero from '@/components/sections/SolucoesHero'
+import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbList } from '@/lib/structured-data'
 import { Container, Section } from '@/components/primitives/Layout'
 
 // Lazy-load heavy sections below the fold
@@ -23,9 +25,15 @@ export const metadata: Metadata = {
   },
 }
 
+const breadcrumbJsonLd = breadcrumbList([
+  { name: 'Início', url: '/' },
+  { name: 'Soluções', url: '/solucoes' },
+])
+
 export default function SolucoesPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">

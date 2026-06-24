@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Container, Surface } from '@/components/primitives/Layout'
+import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbList } from '@/lib/structured-data'
 import { caseStudies, getCaseStudy } from '@/lib/case-studies'
 import type { CaseStudySlug } from '@/lib/case-studies'
 
@@ -31,8 +33,15 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const caseStudy = getCaseStudy(slug as CaseStudySlug)
   if (!caseStudy) notFound()
 
+  const breadcrumbJsonLd = breadcrumbList([
+    { name: 'Início', url: '/' },
+    { name: 'Cases', url: '/cases' },
+    { name: caseStudy.company, url: `/cases/${caseStudy.slug}` },
+  ])
+
   return (
     <main>
+      <JsonLd data={breadcrumbJsonLd} />
       <section className="pt-20 pb-12 sm:pt-32 sm:pb-16">
         <Container>
           <Link href="/solucoes" className="mb-8 inline-flex items-center gap-2 text-sm text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors">
