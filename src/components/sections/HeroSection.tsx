@@ -51,7 +51,7 @@ export default function HeroSection() {
 
           {/* Subheading - the solution promise */}
           <motion.p
-            className="mt-6 max-w-3xl text-pretty text-lg leading-8 text-[var(--text-2)]"
+            className="mt-6 max-w-3xl text-pretty text-lg font-medium leading-8 text-[var(--text-2)]"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.16 }}

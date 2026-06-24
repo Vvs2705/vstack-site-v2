@@ -16,13 +16,13 @@ export default function PrivacidadePage() {
           <h1 className="font-display text-4xl font-bold gradient-text mb-4">
             Política de Privacidade
           </h1>
-          <p className="text-[var(--text-secondary)] mb-12">
+          <p className="text-[var(--text-2)] mb-12">
             Última atualização: abril de 2026
           </p>
 
-          <div className="space-y-10 text-[var(--text-secondary)] leading-relaxed">
+          <div className="space-y-10 text-[var(--text-2)] leading-relaxed">
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 1. Quem somos
               </h2>
               <p>
@@ -33,7 +33,7 @@ export default function PrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 2. Dados que coletamos
               </h2>
               <p className="mb-3">Coletamos apenas os dados necessários para prestar nossos serviços:</p>
@@ -47,7 +47,7 @@ export default function PrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 3. Como usamos seus dados
               </h2>
               <ul className="list-disc pl-6 space-y-2">
@@ -59,7 +59,7 @@ export default function PrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 4. Compartilhamento de dados
               </h2>
               <p>
@@ -71,7 +71,7 @@ export default function PrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 5. Seus direitos (LGPD)
               </h2>
               <p className="mb-3">Conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018), você tem direito a:</p>
@@ -91,7 +91,7 @@ export default function PrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 6. Segurança
               </h2>
               <p>
@@ -102,7 +102,7 @@ export default function PrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-4">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-1)] mb-4">
                 7. Contato
               </h2>
               <p>

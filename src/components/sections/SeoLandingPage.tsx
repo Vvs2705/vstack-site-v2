@@ -11,9 +11,15 @@ import type { SeoServicePage } from '@/lib/seo-service-pages'
 
 interface SeoLandingPageProps {
   page: SeoServicePage
+  /**
+   * Conteúdo opcional renderizado DENTRO do <main>, após o conteúdo da landing
+   * e ANTES do <Footer>. Slot retrocompatível: quando omitido, a landing
+   * renderiza exatamente como antes.
+   */
+  afterContent?: React.ReactNode
 }
 
-export default function SeoLandingPage({ page }: SeoLandingPageProps) {
+export default function SeoLandingPage({ page, afterContent }: SeoLandingPageProps) {
   return (
     <>
       <Navbar />
@@ -167,6 +173,8 @@ export default function SeoLandingPage({ page }: SeoLandingPageProps) {
           ctaSecondaryLabel={page.secondaryCta}
           ctaSecondaryHref="/envie-sua-dor"
         />
+
+        {afterContent}
       </main>
 
       <Footer />

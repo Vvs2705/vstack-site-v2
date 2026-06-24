@@ -10,6 +10,7 @@ import { FiscalCalculatorSection } from '@/components/fiscwise/FiscalCalculatorS
 import CTASection from '@/components/sections/CTASection'
 import { Container, Section, Surface, SectionHeader } from '@/components/primitives/Layout'
 import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbList } from '@/lib/structured-data'
 import { FISCWISE_FAQ, COMPETITOR_COMPARISON } from '@/lib/fiscwise-faq'
 import type { PlanGating } from '@/lib/types/calculator'
 
@@ -206,10 +207,16 @@ const DEFAULT_GATING: PlanGating = {
   messagesUsed: 0,
 }
 
+const breadcrumbJsonLd = breadcrumbList([
+  { name: 'Início', url: '/' },
+  { name: 'FiscWise', url: '/fiscwise' },
+])
+
 export default function FiscWisePage() {
   return (
     <>
       <JsonLd data={fiscwiseJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">
