@@ -1,35 +1,51 @@
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import Link from 'next/link'
-import { ArrowRight, AlertCircle, BarChart3, Zap, Shield, Clock, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, Layers, ShieldAlert, CalendarClock, CheckCircle2, Shield, Lock } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import FiscWise3DMockupClient from '@/components/fiscwise/FiscWise3DMockupClient'
 import FiscWiseFAQSection from '@/components/fiscwise/FiscWiseFAQSection'
 import FiscWiseComparisonSection from '@/components/fiscwise/FiscWiseComparisonSection'
-import { FiscalCalculatorSection } from '@/components/fiscwise/FiscalCalculatorSection'
 import CTASection from '@/components/sections/CTASection'
 import { Container, Section, Surface, SectionHeader } from '@/components/primitives/Layout'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbList } from '@/lib/structured-data'
 import { FISCWISE_FAQ, COMPETITOR_COMPARISON } from '@/lib/fiscwise-faq'
-import type { PlanGating } from '@/lib/types/calculator'
+
+const APP_URL = 'https://www.fiscwise.com.br'
+const SITE_URL = 'https://www.vstack-solutions.com.br'
+
+const META_TITLE = 'Sistema para escritório de contabilidade com IA — FiscWise'
+const META_DESCRIPTION =
+  'FiscWise: o sistema que unifica a operação do escritório de contabilidade — cofre de certificados digitais A1/A3, NFS-e, obrigações fiscais, guias e honorários, com IA. Plano gratuito.'
 
 export const metadata: Metadata = {
-  title: 'FiscWise — Automação Financeira para PMEs | V-STACK',
-  description:
-    'Automação financeira com conciliação bancária automática, Open Banking e dashboards executivos em tempo real. Feche o mês em horas, não em dias.',
+  title: { absolute: META_TITLE },
+  description: META_DESCRIPTION,
+  keywords: [
+    'sistema para escritório de contabilidade',
+    'software para contador',
+    'sistema de gestão contábil',
+    'emissão de NFS-e',
+    'gestão de certificados digitais',
+    'cofre de certificados digitais',
+    'controle de obrigações fiscais',
+    'calendário de obrigações acessórias',
+    'cobrança de honorários contábeis',
+    'portal do cliente contabilidade',
+  ],
+  alternates: { canonical: `${SITE_URL}/fiscwise` },
   openGraph: {
-    title: 'FiscWise — Automação Financeira para PMEs | V-STACK',
-    description:
-      'Automação financeira com conciliação bancária automática, Open Banking e dashboards executivos em tempo real. Feche o mês em horas, não em dias.',
-    url: 'https://www.vstack-solutions.com.br/fiscwise',
+    title: META_TITLE,
+    description: META_DESCRIPTION,
+    url: `${SITE_URL}/fiscwise`,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FiscWise — Automação Financeira para PMEs | V-STACK',
-    description:
-      'Automação financeira com conciliação bancária automática, Open Banking e dashboards executivos em tempo real.',
+    title: META_TITLE,
+    description: META_DESCRIPTION,
   },
 }
 
@@ -40,171 +56,42 @@ const fiscwiseJsonLd = {
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
   description:
-    'Plataforma de automação financeira para PMEs brasileiras. Conciliação bancária automática, dashboards executivos e alertas de anomalia em tempo real.',
-  url: 'https://vstack-solutions.com.br/fiscwise',
+    'Sistema de gestão para escritórios de contabilidade: cofre de certificados digitais A1/A3, emissão de NFS-e, calendário de obrigações fiscais, guias DAS/DARF/GPS/ISS, cobrança de honorários, portal do cliente e IA fiscal.',
+  url: `${SITE_URL}/fiscwise`,
   provider: {
     '@type': 'Organization',
     name: 'V-STACK SOLUTIONS',
-    url: 'https://vstack-solutions.com.br',
+    url: SITE_URL,
   },
   offers: {
     '@type': 'Offer',
     price: '0',
     priceCurrency: 'BRL',
-    description: 'Acesso antecipado gratuito — vagas limitadas',
+    description: 'Plano gratuito para começar — sem cartão de crédito',
   },
   featureList: [
-    'Conciliação bancária automática',
-    'Integração com Open Banking BR',
-    'Dashboards executivos em tempo real',
-    'Alertas inteligentes de anomalia',
-    'Automação de lançamentos financeiros',
+    'Cofre de certificados digitais A1/A3 com alerta de validade',
+    'Emissão de NFS-e multi-município',
+    'Calendário de obrigações fiscais por regime, CNAE e município',
+    'Controle de guias DAS, DARF, GPS e ISS',
+    'Integração com e-CAC / Receita Federal',
+    'Portal do cliente self-service',
+    'Cobrança de honorários com régua no WhatsApp',
+    'IA fiscal com masking de dados (LGPD)',
   ],
 }
 
-const PAIN_POINTS = [
-  {
-    icon: Clock,
-    title: 'Fechamento que demora dias',
-    description:
-      'Sua equipe passa 3 a 5 dias todo mês reconciliando extratos, conferindo planilhas e caçando lançamentos errados.',
-  },
-  {
-    icon: AlertCircle,
-    title: 'Anomalias detectadas tarde demais',
-    description:
-      'Cobranças duplicadas, pagamentos errados e pendências aparecem semanas depois — quando o prejuízo já aconteceu.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Decisões sem visibilidade real',
-    description:
-      'Os relatórios chegam atrasados, formatados para contabilidade, não para gestão. Você toma decisão olhando para o passado.',
-  },
-]
-
-const FEATURES = [
-  {
-    title: 'Conciliação bancária automática',
-    description:
-      'Importa extratos via Open Banking BR e reconcilia transações automaticamente. O que levava dias acontece em minutos.',
-    highlight: 'Open Banking BR nativo',
-  },
-  {
-    title: 'Alertas inteligentes de anomalia',
-    description:
-      'Detecta cobranças duplicadas, pagamentos fora do padrão e pendências críticas em tempo real — antes de virar problema.',
-    highlight: 'Detecção proativa',
-  },
-  {
-    title: 'Dashboards executivos ao vivo',
-    description:
-      'Fluxo de caixa, DRE gerencial, receitas vs saídas — em formato de decisão, não de relatório contábil.',
-    highlight: 'Para gestores, não contadores',
-  },
-  {
-    title: 'Automação de lançamentos',
-    description:
-      'Categoriza transações, cria regras de lançamento e elimina o trabalho manual repetitivo do time financeiro.',
-    highlight: 'Menos erro humano',
-  },
-]
-
-const PROCESS_STEPS = [
-  {
-    step: '01',
-    title: 'Conectamos suas contas',
-    description: 'Integração com Open Banking BR ou importação de extratos. Sem planilhas manuais.',
-  },
-  {
-    step: '02',
-    title: 'Mapeamos suas regras',
-    description: 'Configuramos as categorias, centros de custo e padrões específicos da sua operação.',
-  },
-  {
-    step: '03',
-    title: 'Automação entra em operação',
-    description: 'Conciliação, lançamentos e alertas rodam automaticamente. Seu time só valida exceções.',
-  },
-  {
-    step: '04',
-    title: 'Dashboard sempre atualizado',
-    description: 'Relatórios executivos disponíveis a qualquer hora, sem esperar o fechamento do mês.',
-  },
-]
-
-const EARLY_ACCESS_BENEFITS = [
-  {
-    icon: Zap,
-    title: 'Implementação assistida sem custo',
-    description:
-      'Nossa equipe configura o FiscWise junto com o seu time financeiro — sem cobrar taxa de onboarding.',
-  },
-  {
-    icon: Shield,
-    title: 'Condições de fundador',
-    description:
-      'As primeiras empresas entram com preço de fundador — travado enquanto o produto cresce.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Acesso direto ao produto',
-    description:
-      'Você sugere funcionalidades, vê o roadmap e participa de sessões de feedback com o time de produto.',
-  },
-  {
-    icon: CheckCircle2,
-    title: 'Onboarding em até 5 dias',
-    description:
-      'Operacional rápido: da conexão bancária ao primeiro dashboard executivo em menos de uma semana.',
-  },
-  {
-    icon: Clock,
-    title: 'Sem contrato de longo prazo',
-    description:
-      'Cancele quando quiser. Acreditamos que você fica porque o produto entrega — não porque assinou um contrato.',
-  },
-  {
-    icon: AlertCircle,
-    title: 'Vagas limitadas',
-    description:
-      'Estamos crescendo de forma controlada para garantir qualidade de suporte. As vagas fecham assim que a capacidade for atingida.',
-  },
-]
-
-const TESTIMONIALS = [
-  {
-    quote:
-      'Economizei 8 horas por semana que passava reconciliando extratos manualmente.',
-    author: 'Mariana S.',
-    role: 'Contadora, São Paulo',
-    metric: '-8h/semana',
-  },
-  {
-    quote:
-      'Finalmente uma ferramenta construída PARA contadores, não um genérico adaptado.',
-    author: 'Carlos T.',
-    role: 'Sócio-gerente, Minas Gerais',
-    metric: '100% alinhado',
-  },
-  {
-    quote:
-      'Os alertas de anomalia já me pouparam cobranças duplicadas que teríamos perdido.',
-    author: 'Fernanda L.',
-    role: 'Gestora Financeira, RJ',
-    metric: 'Economia real',
-  },
-]
-
-// Gating padrão para visitantes não autenticados: plano FREE
-// Em produção, substituir pela leitura do plano real do usuário autenticado
-const DEFAULT_GATING: PlanGating = {
-  plan: 'FREE',
-  canUseAI: false,
-  canExportPDF: false,
-  canSeeFiscalBenefits: false,
-  monthlyMessagesLimit: null,
-  messagesUsed: 0,
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FISCWISE_FAQ.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer.replace(/\n\n/g, ' '),
+    },
+  })),
 }
 
 const breadcrumbJsonLd = breadcrumbList([
@@ -212,10 +99,152 @@ const breadcrumbJsonLd = breadcrumbList([
   { name: 'FiscWise', url: '/fiscwise' },
 ])
 
+const PAIN_POINTS = [
+  {
+    icon: Layers,
+    title: 'Quatro sistemas, quatro mensalidades',
+    description:
+      'ERP contábil, cofre de certificado, automação fiscal e cobrança — cada um numa aba, com dados que não conversam e custos que se somam todo mês.',
+  },
+  {
+    icon: ShieldAlert,
+    title: 'Certificado que vence sem aviso',
+    description:
+      'Numa carteira grande vence cerca de um certificado por dia. Um A1 expirado trava a emissão de notas — e você costuma descobrir quando o cliente liga.',
+  },
+  {
+    icon: CalendarClock,
+    title: 'Prazos fiscais espalhados',
+    description:
+      'Obrigações em planilha, vencimentos no papel e o risco de multa por uma entrega perdida no meio de dezenas de clientes e regimes diferentes.',
+  },
+]
+
+const FEATURES = [
+  {
+    title: 'Motor de obrigações fiscais',
+    description:
+      'Calendarização automática por regime tributário, CNAE, estado e município, com checklist de documentos e alertas de prazo para toda a carteira.',
+    highlight: 'Por regime e município',
+  },
+  {
+    title: 'Cofre de certificados A1/A3',
+    description:
+      'Armazenamento criptografado dos certificados digitais com alerta de validade (30 e 15 dias) e trilha de auditoria de quem usou, quando e onde.',
+    highlight: 'Alerta de validade',
+  },
+  {
+    title: 'Emissão de NFS-e',
+    description:
+      'Emita, cancele e baixe NFS-e de forma centralizada — com ou sem a NFS-e Nacional, em qualquer município, sem alternar entre portais.',
+    highlight: 'Multi-município',
+  },
+  {
+    title: 'Guias DAS, DARF, GPS e ISS',
+    description:
+      'Registro e acompanhamento das guias de impostos por cliente, com status de pagamento e pendências visíveis em tempo real na carteira inteira.',
+    highlight: 'Controle de pagamento',
+  },
+  {
+    title: 'e-CAC e Receita integrados',
+    description:
+      'Consulta de situação fiscal, procurações eletrônicas e caixa postal da Receita — acompanhamento fiscal de cada cliente sem sair do sistema.',
+    highlight: 'Situação fiscal',
+  },
+  {
+    title: 'Portal do cliente',
+    description:
+      'Área self-service por cliente: envia documentos, baixa notas e acompanha guias — reduzindo o vai-e-volta e o backlog do escritório.',
+    highlight: 'Self-service',
+  },
+  {
+    title: 'Honorários e cobrança',
+    description:
+      'Controle de honorários e inadimplência com régua de cobrança automática pelo WhatsApp, o canal onde o cliente realmente responde.',
+    highlight: 'Régua no WhatsApp',
+  },
+  {
+    title: 'IA fiscal operacional',
+    description:
+      'Leitura e classificação de documentos, recomendação de regime e priorização das obrigações do dia — com masking de CPF/CNPJ por padrão (LGPD).',
+    highlight: 'Com masking LGPD',
+  },
+]
+
+const PROCESS_STEPS = [
+  {
+    step: '01',
+    title: 'Cadastre o escritório e os clientes',
+    description: 'Importe a carteira de clientes em lote e configure os usuários da sua equipe.',
+  },
+  {
+    step: '02',
+    title: 'Suba os certificados no cofre',
+    description: 'Os certificados A1/A3 entram no cofre criptografado e o monitoramento de validade começa na hora.',
+  },
+  {
+    step: '03',
+    title: 'Configure regimes e obrigações',
+    description: 'O motor calendariza as obrigações de cada cliente conforme regime, CNAE e município.',
+  },
+  {
+    step: '04',
+    title: 'Opere no piloto automático',
+    description: 'Prazos, guias, NFS-e e honorários com alertas e IA. Sua equipe foca nas exceções, não na rotina.',
+  },
+]
+
+const PLANS = [
+  {
+    name: 'Gratuito',
+    price: 'R$ 0',
+    period: '/mês',
+    description: 'Para começar e testar com a carteira inicial.',
+    features: [
+      'Calendário de obrigações fiscais',
+      'Controle de guias (DAS/DARF/GPS/ISS)',
+      'Cofre de certificados (limite inicial)',
+      'Cadastro de clientes',
+    ],
+    cta: 'Criar conta grátis',
+    href: APP_URL,
+  },
+  {
+    name: 'Profissional',
+    price: 'sob consulta',
+    description: 'Para escritórios em crescimento que querem tudo num lugar só.',
+    features: [
+      'Clientes ilimitados',
+      'Emissão de NFS-e multi-município',
+      'Portal do cliente',
+      'IA fiscal',
+      'Cobrança de honorários (WhatsApp)',
+    ],
+    highlighted: true,
+    cta: 'Falar com especialista',
+    href: '/cotacao?produto=fiscwise',
+  },
+  {
+    name: 'Escritório',
+    price: 'sob consulta',
+    description: 'Para alto volume e operações de BPO fiscal/contábil.',
+    features: [
+      'Multiusuário com permissões finas',
+      'Importação em lote',
+      'Relatórios de produtividade',
+      'Onboarding assistido',
+      'Suporte dedicado',
+    ],
+    cta: 'Falar com especialista',
+    href: '/cotacao?produto=fiscwise',
+  },
+]
+
 export default function FiscWisePage() {
   return (
     <>
       <JsonLd data={fiscwiseJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
       <Navbar />
 
@@ -233,36 +262,36 @@ export default function FiscWisePage() {
               <div className="max-w-2xl">
                 <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)]">
                   <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--accent)]" />
-                  Acesso antecipado aberto
+                  Plataforma em operação · feita para contadores
                 </div>
 
-                <h1 className="font-display text-balance leading-[1.08] tracking-[-0.025em] text-[var(--text-1)]">
-                  Feche o mês financeiro em 1 dia.<br/>Não em 5.
+                <h1 className="font-display text-balance text-4xl font-bold leading-[1.08] tracking-[-0.025em] text-[var(--text-1)] sm:text-5xl">
+                  Toda a operação do seu escritório de contabilidade em um só sistema.
                 </h1>
 
                 <p className="mt-6 max-w-xl text-pretty text-[16px] leading-8 text-[var(--text-2)]">
-                  FiscWise automatiza conciliação bancária, detecta anomalias em tempo real e entrega dashboards executivos para quem precisa tomar decisão — não para quem faz contabilidade.
+                  O FiscWise reúne certificados digitais, emissão de NFS-e, obrigações fiscais, guias e cobrança de
+                  honorários numa só plataforma — com IA que antecipa prazos e pendências. Um sistema no lugar de quatro.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Link href="/cotacao?produto=fiscwise" className="btn-primary px-6 py-3.5 text-[14px]">
-                    Quero acesso antecipado
+                  <a href={APP_URL} target="_blank" rel="noopener" className="btn-primary px-6 py-3.5 text-[14px]">
+                    Criar conta grátis
                     <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Link href="/contato" className="btn-secondary px-6 py-3.5 text-[14px]">
+                  </a>
+                  <Link href="/cotacao?produto=fiscwise" className="btn-outline px-6 py-3.5 text-[14px]">
                     Falar com especialista
                   </Link>
                 </div>
 
                 <div className="mt-10 grid max-w-xl grid-cols-1 gap-4 sm:grid-cols-3">
-                  <Stat value="98%" label="precisão na conciliação" />
-                  <Stat value="-72h" label="no fechamento mensal" />
-                  <Stat value="24/7" label="monitoramento ativo" />
+                  <Stat value="4 → 1" label="ferramentas numa só plataforma" />
+                  <Stat value="A1/A3" label="cofre com alerta de validade" />
+                  <Stat value="NFS-e" label="em qualquer município" />
                 </div>
               </div>
 
-              {/* 3D Dashboard preview */}
-              {/* splineUrl: obter a URL pública do Spline em spline.design → Share → Embed */}
+              {/* 3D mockup */}
               <FiscWise3DMockupClient splineUrl="https://my.spline.design/fxJ4v4P0T5bM5xXG" />
             </div>
           </Container>
@@ -274,7 +303,7 @@ export default function FiscWisePage() {
             <div className="mb-12 text-center">
               <p className="eyebrow mb-4">O problema</p>
               <h2 className="font-display text-balance text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
-                O fechamento financeiro não precisa ser assim.
+                A operação do contador virou uma colcha de retalhos.
               </h2>
             </div>
             <div className="grid gap-6 md:grid-cols-3">
@@ -297,10 +326,10 @@ export default function FiscWisePage() {
             <div className="mb-12 text-center">
               <p className="eyebrow mb-4">O que o FiscWise faz</p>
               <h2 className="font-display text-balance text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
-                Automação que resolve o trabalho real do time financeiro.
+                Tudo o que um escritório de contabilidade precisa, num lugar só.
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-[var(--text-2)]">
-                Cada funcionalidade foi desenhada para eliminar uma tarefa manual específica — não para adicionar mais uma ferramenta no processo.
+                Cada módulo elimina uma ferramenta avulsa do seu dia a dia — do cofre de certificados à cobrança de honorários.
               </p>
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
@@ -317,89 +346,13 @@ export default function FiscWisePage() {
           </Container>
         </Section>
 
-        {/* Customer trust section */}
-        <Section spacing="xl" tone="muted">
-          <Container>
-            <div className="text-center mb-12">
-              <p className="eyebrow mb-4">Confiado por</p>
-              <h2 className="font-display text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
-                Escritórios contábeis e PMEs em todo Brasil
-              </h2>
-            </div>
-
-            <div className="rounded-2xl border border-[var(--accent-border)] bg-[var(--accent-muted)] p-8 text-center mb-12">
-              <p className="text-xl font-bold text-[var(--text-1)]">50+ escritórios</p>
-              <p className="text-[var(--text-2)]">usando FiscWise para automação financeira em tempo real</p>
-            </div>
-          </Container>
-        </Section>
-
-        {/* Early Access Benefits */}
-        <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
-          <Container>
-            <div className="mb-12 text-center">
-              <p className="eyebrow mb-4">Por que entrar agora</p>
-              <h2 className="font-display text-balance text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
-                As primeiras empresas constroem o produto junto com a gente.
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-[var(--text-2)]">
-                O acesso antecipado não é só entrar antes — é entrar com condições que não estarão disponíveis depois.
-              </p>
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {EARLY_ACCESS_BENEFITS.map(({ icon: Icon, title, description }) => (
-                <Surface key={title} className="p-6">
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--accent-border)] bg-[var(--accent-muted)] text-[var(--accent)]">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mb-2 font-display text-[15px] font-bold text-[var(--text-1)]">{title}</h3>
-                  <p className="text-[13px] leading-6 text-[var(--text-2)]">{description}</p>
-                </Surface>
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <Link href="/cotacao?produto=fiscwise" className="btn-primary px-7 py-3.5 text-[14px]">
-                Garantir minha vaga no early access
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </Container>
-        </Section>
-
-        {/* Banking integrations section */}
-        <Section spacing="xl">
-          <Container>
-            <div className="text-center mb-12">
-              <p className="eyebrow mb-4">Conectado com</p>
-              <h2 className="font-display text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
-                Os principais bancos via Open Finance Brasil
-              </h2>
-            </div>
-
-            <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-6">
-              {['BB', 'Caixa', 'Bradesco', 'Itaú', 'Santander', 'Nubank'].map((bank) => (
-                <div
-                  key={bank}
-                  className="flex items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4 text-center"
-                >
-                  <span className="text-[13px] font-semibold text-[var(--text-2)]">{bank}</span>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-center text-[13px] text-[var(--text-3)] mt-6">
-              Integração automática via Open Finance Brasil — sem APIs manuais
-            </p>
-          </Container>
-        </Section>
-
         {/* How it works */}
         <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
           <Container>
             <div className="mb-12 text-center">
               <p className="eyebrow mb-4">Como funciona</p>
               <h2 className="font-display text-balance text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
-                Operacional em menos de uma semana.
+                Operacional em poucos dias — não em meses.
               </h2>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -416,53 +369,105 @@ export default function FiscWisePage() {
           </Container>
         </Section>
 
-        {/* Results section with testimonials */}
-        <Section tone="deep" spacing="xl" className="border-y border-[var(--border)]">
-          <Container>
-            <div className="text-center mb-12">
-              <p className="eyebrow mb-4">Resultados reais</p>
-              <h2 className="font-display text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
-                O que nossos clientes conseguem fazer
-              </h2>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {TESTIMONIALS.map((testimonial) => (
-                <Surface key={testimonial.author} className="p-6">
-                  <p className="mb-4 text-[15px] italic text-[var(--text-2)]">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </p>
-                  <div className="border-t border-[var(--border)] pt-4">
-                    <p className="font-semibold text-[var(--text-1)]">{testimonial.author}</p>
-                    <p className="text-[13px] text-[var(--text-3)]">{testimonial.role}</p>
-                    <p className="mt-2 text-[12px] font-bold text-[var(--accent)]">{testimonial.metric}</p>
-                  </div>
-                </Surface>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        {/* Seção: Por Que Escolher FiscWise */}
+        {/* Diferenciais competitivos */}
         <Section tone="default" spacing="lg">
           <Container>
             <SectionHeader
-              eyebrow="Diferenciais"
-              title="Por que escolher FiscWise"
-              description="Construído especialmente para contadores e gestores financeiros. Sem compromissos, sem fricção, sem surpresas."
+              eyebrow="Por que o FiscWise"
+              title="Um sistema no lugar de quatro"
+              description="Enquanto ERPs contábeis são pesados, e os cofres de certificado e a automação fiscal são produtos avulsos, o FiscWise entrega o conjunto completo — com a simplicidade e o preço de quem nasceu na nuvem."
             />
             <FiscWiseComparisonSection comparisons={COMPETITOR_COMPARISON} />
           </Container>
         </Section>
 
-        {/* Seção: FAQ */}
-        <Section tone="muted" spacing="lg">
+        {/* Planos */}
+        <Section tone="muted" spacing="xl" className="border-y border-[var(--border)]">
           <Container>
-            <div className="max-w-3xl mx-auto">
+            <div className="mb-12 text-center">
+              <p className="eyebrow mb-4">Planos</p>
+              <h2 className="font-display text-balance text-3xl font-bold text-[var(--text-1)] sm:text-4xl">
+                Preço fixo e previsível, sem taxa por nota.
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-[var(--text-2)]">
+                Comece no plano gratuito. Os planos pagos não cobram por NF-e emitida nem por guia processada — quanto mais a carteira cresce, mais barato fica por cliente.
+              </p>
+            </div>
+            <div className="grid gap-5 lg:grid-cols-3">
+              {PLANS.map((plan) => (
+                <Surface
+                  key={plan.name}
+                  className="flex flex-col p-7"
+                  style={plan.highlighted ? { borderColor: 'var(--accent)', boxShadow: '0 0 0 1px var(--accent)' } : undefined}
+                >
+                  {plan.highlighted && (
+                    <span className="mb-3 inline-flex w-fit rounded-full bg-[var(--accent)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white">
+                      Mais escolhido
+                    </span>
+                  )}
+                  <h3 className="font-display text-xl font-bold text-[var(--text-1)]">{plan.name}</h3>
+                  <p className="mt-1 text-[13px] leading-6 text-[var(--text-2)]">{plan.description}</p>
+                  <div className="mt-5 flex items-baseline gap-1">
+                    <span className="font-display text-3xl font-black text-[var(--text-1)]">{plan.price}</span>
+                    {plan.period && <span className="text-[13px] text-[var(--text-3)]">{plan.period}</span>}
+                  </div>
+                  <ul className="mt-5 grid flex-1 gap-2.5">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2.5 text-[13px] leading-6 text-[var(--text-2)]">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <CtaLink href={plan.href} highlighted={plan.highlighted}>
+                    {plan.cta}
+                  </CtaLink>
+                </Surface>
+              ))}
+            </div>
+            <p className="mx-auto mt-6 max-w-2xl text-center text-[12px] leading-6 text-[var(--text-3)]">
+              Os valores dos planos pagos são definidos conforme o porte da carteira. Fale com a gente para uma proposta sob medida.
+            </p>
+          </Container>
+        </Section>
+
+        {/* Segurança / LGPD */}
+        <Section spacing="xl">
+          <Container size="md">
+            <Surface className="p-8 sm:p-12">
+              <Shield className="mb-5 h-10 w-10 text-[var(--accent)]" />
+              <h2 className="font-display text-balance text-2xl font-bold text-[var(--text-1)] sm:text-3xl">
+                Segurança e LGPD não são opcionais.
+              </h2>
+              <p className="mt-4 max-w-2xl text-[15px] leading-8 text-[var(--text-2)]">
+                Os dados dos seus clientes ficam isolados por escritório no nível do banco (Row-Level Security), com
+                criptografia em trânsito e em repouso e acesso por menor privilégio.
+              </p>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                {[
+                  { icon: Lock, text: 'Criptografia em trânsito (TLS) e em repouso' },
+                  { icon: Shield, text: 'Isolamento multi-tenant por escritório (RLS)' },
+                  { icon: CheckCircle2, text: 'Masking de CPF/CNPJ na IA, conforme a LGPD' },
+                  { icon: CheckCircle2, text: 'Exclusão de dados e auditoria de acessos' },
+                ].map(({ icon: Icon, text }) => (
+                  <li key={text} className="flex items-start gap-2.5 text-[13px] leading-6 text-[var(--text-1)]">
+                    <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                    {text}
+                  </li>
+                ))}
+              </ul>
+            </Surface>
+          </Container>
+        </Section>
+
+        {/* FAQ (AEO) */}
+        <Section tone="muted" spacing="lg" className="border-t border-[var(--border)]">
+          <Container>
+            <div className="mx-auto max-w-3xl">
               <SectionHeader
-                eyebrow="Dúvidas"
-                title="Perguntas frequentes"
-                description="Tudo que você precisa saber sobre como começar a usar FiscWise."
+                eyebrow="Perguntas frequentes"
+                title="O que contadores perguntam sobre o FiscWise"
+                description="Respostas diretas sobre certificados, NFS-e, obrigações, preço e segurança."
               />
               <div className="mt-10">
                 <FiscWiseFAQSection faqs={FISCWISE_FAQ} />
@@ -471,47 +476,11 @@ export default function FiscWisePage() {
           </Container>
         </Section>
 
-        {/* Trust block */}
-        <Section spacing="xl">
-          <Container size="md">
-            <Surface className="p-8 text-center sm:p-12">
-              <Shield className="mx-auto mb-5 h-10 w-10 text-[var(--accent)]" />
-              <h2 className="font-display text-balance text-2xl font-bold text-[var(--text-1)] sm:text-3xl">
-                Acesso antecipado — vagas limitadas
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl text-[15px] leading-8 text-[var(--text-2)]">
-                O FiscWise está em fase de acesso antecipado. As primeiras empresas entram com condições especiais de implementação e participam diretamente do desenvolvimento do produto.
-              </p>
-              <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link href="/cotacao?produto=fiscwise" className="btn-primary px-7 py-3.5 text-[14px]">
-                  Garantir minha vaga
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link href="/contato" className="btn-outline px-7 py-3.5 text-[14px]">
-                  Tenho dúvidas
-                </Link>
-              </div>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
-                {[
-                  { icon: CheckCircle2, text: 'Implementação assistida' },
-                  { icon: Zap, text: 'Onboarding em até 5 dias' },
-                  { icon: Shield, text: 'Dados 100% seguros' },
-                ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-2 text-[13px] text-[var(--text-2)]">
-                    <Icon className="h-4 w-4 text-[var(--accent)]" />
-                    {text}
-                  </div>
-                ))}
-              </div>
-            </Surface>
-          </Container>
-        </Section>
-
         <CTASection
-          headline="Pronto para ver o FiscWise em ação?"
-          description="Mostre a situação atual do fechamento financeiro da sua empresa. Em 24 horas retornamos com um diagnóstico objetivo e os próximos passos."
-          ctaPrimaryLabel="Solicitar acesso antecipado"
-          ctaPrimaryHref="/cotacao?produto=fiscwise"
+          headline="Pronto para unificar a operação do seu escritório?"
+          description="Crie sua conta gratuita em minutos ou fale com um especialista para migrar sua carteira para o FiscWise."
+          ctaPrimaryLabel="Criar conta grátis"
+          ctaPrimaryHref={APP_URL}
           ctaSecondaryLabel="Falar pelo WhatsApp"
           ctaSecondaryHref="https://wa.me/5511973358775"
         />
@@ -531,3 +500,30 @@ function Stat({ value, label }: { value: string; label: string }) {
   )
 }
 
+function CtaLink({
+  href,
+  highlighted,
+  children,
+}: {
+  href: string
+  highlighted?: boolean
+  children: ReactNode
+}) {
+  const className = `mt-6 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 text-[13px] font-semibold transition ${
+    highlighted
+      ? 'bg-[var(--accent)] text-white hover:opacity-90'
+      : 'border border-[var(--border-strong)] text-[var(--text-1)] hover:border-[var(--border-hover)]'
+  }`
+  if (href.startsWith('http')) {
+    return (
+      <a href={href} target="_blank" rel="noopener" className={className}>
+        {children}
+      </a>
+    )
+  }
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  )
+}

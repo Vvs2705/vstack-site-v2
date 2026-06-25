@@ -6,6 +6,8 @@ export interface FiscWiseFAQItem {
   /**
    * Plain text answer. Paragraphs are separated by "\n\n" so consumers can
    * split on double-newline for multi-paragraph rendering.
+   * A primeira frase responde a pergunta de forma direta (AEO/GEO: trecho
+   * citável por IA), depois elabora.
    */
   answer: string
 }
@@ -17,92 +19,130 @@ export interface CompetitorDifferential {
   icon?: string
 }
 
-// ─── FAQ data ─────────────────────────────────────────────────────────────────
+// ─── FAQ data (AEO/GEO — perguntas reais que contadores fazem a IA/Google) ──────
+// Fiel ao produto real: central fiscal para escritórios de contabilidade.
+// NÃO menciona Open Banking/conciliação bancária (não existe no produto).
 
 export const FISCWISE_FAQ: FiscWiseFAQItem[] = [
   {
-    id: 'faq-migracao',
-    question:
-      'Já uso Omie, ContaAzul ou Contabilizei. A migração é complicada?',
+    id: 'faq-o-que-e',
+    question: 'O que é o FiscWise?',
     answer:
-      'Não. Oferecemos suporte completo no processo de migração: nossa equipe faz o mapeamento das entidades (clientes, planos, histórico financeiro), valida os dados antes da importação e executa testes de integridade após a carga.\n\nO tempo médio de migração é de 2 a 3 dias úteis, dependendo do volume de clientes e da API de origem. Durante todo o período você mantém acesso ao sistema anterior — não há janela de downtime para a sua operação.',
+      'O FiscWise é um sistema de gestão para escritórios de contabilidade que unifica, em uma só plataforma, o controle de clientes, certificados digitais, emissão de NFS-e, calendário de obrigações fiscais, guias (DAS, DARF, GPS, ISS), cobrança de honorários e portal do cliente — com inteligência artificial aplicada à rotina fiscal.\n\nNa prática, ele substitui a colcha de retalhos de quatro ou cinco ferramentas avulsas que o contador costuma manter, reduzindo retrabalho, custo somado de mensalidades e risco de perder um prazo.',
   },
   {
-    id: 'faq-regime-tributario',
-    question:
-      'O FiscWise funciona com todos os regimes tributários brasileiros?',
+    id: 'faq-para-quem',
+    question: 'Para quem é o FiscWise?',
     answer:
-      'Sim. O FiscWise é compatível com Simples Nacional, Lucro Presumido, Lucro Real e MEI. O dashboard adapta automaticamente os relatórios, indicadores e alertas conforme o regime tributário configurado para cada cliente.\n\nPara escritórios com carteira diversa — por exemplo, MEIs e empresas no Lucro Real na mesma base — a visão consolidada ainda funciona de forma unificada, sem necessidade de telas separadas.',
+      'Para contadores autônomos, escritórios de contabilidade e operações de BPO fiscal/contábil que precisam gerenciar muitos clientes (CNPJs) ao mesmo tempo.\n\nO sistema é multiempresa por natureza: cada cliente da sua carteira tem seu próprio perfil de regime tributário, obrigações, certificados e documentos, com isolamento total entre escritórios.',
   },
   {
-    id: 'faq-open-finance',
-    question: 'Como funciona a integração bancária?',
+    id: 'faq-certificados',
+    question: 'Como o FiscWise controla certificados digitais que estão vencendo?',
     answer:
-      'Por meio do Open Finance Brasil, o padrão regulado pelo Banco Central. Você conecta a conta bancária do cliente uma única vez, e o FiscWise passa a receber automaticamente o extrato, conciliar lançamentos e identificar divergências.\n\nNão há importação manual de OFX, sem planilha de transações e sem acesso a credenciais bancárias. A autenticação segue o fluxo OAuth 2.0 exigido pelo Bacen, com consentimento explícito do titular da conta.',
+      'O FiscWise tem um cofre de certificados digitais A1/A3 com monitoramento automático de validade: você é avisado com 30 e 15 dias de antecedência antes de cada vencimento, com trilha de auditoria de quando e por quem cada certificado foi usado.\n\nEm uma carteira de algumas centenas de clientes, vence aproximadamente um certificado por dia — e um A1 expirado trava a emissão de notas. O cofre elimina esse risco sem você precisar de uma planilha paralela.',
   },
   {
-    id: 'faq-suporte',
-    question: 'Qual suporte e documentação estão disponíveis?',
+    id: 'faq-nfse-municipios',
+    question: 'O FiscWise emite NFS-e em vários municípios?',
     answer:
-      'O FiscWise oferece base de conhecimento completa com artigos, vídeos curtos e guias de configuração acessíveis direto no painel. Para dúvidas pontuais, o suporte via chat responde em até 4 horas úteis.\n\nClientes nos planos Profissional e Escritório contam com onboarding assistido: uma sessão de 1h com um especialista para configurar regimes, honorários e integrações bancárias. Para migrações de outros sistemas, alocamos um técnico dedicado até a carteira estar operacional.',
+      'Sim. O FiscWise emite NFS-e de forma centralizada, com cancelamento e geração de PDF/XML, independentemente de o município já ter aderido ou não ao ambiente da NFS-e Nacional.\n\nIsso resolve uma dor concreta de 2026: parte dos municípios ainda está fora do padrão Nacional e o emissor nacional tem apresentado instabilidade. Você emite no mesmo lugar, sem alternar entre portais municipais.',
   },
   {
-    id: 'faq-limite-clientes',
-    question: 'Existe limite de clientes ou empresas que posso gerenciar?',
+    id: 'faq-obrigacoes',
+    question: 'Como funciona o calendário de obrigações fiscais?',
     answer:
-      'Não existe limite técnico no número de CNPJs ou CPFs cadastrados. Os planos são diferenciados por funcionalidades e nível de suporte — não por quantidade de clientes.\n\nEscritórios com carteiras grandes (acima de 200 empresas) têm acesso a importação em lote, filtros avançados por regime e relatórios de produtividade por analista responsável, funcionalidades pensadas especificamente para operações de alto volume.',
+      'O FiscWise tem um motor de obrigações que calendariza automaticamente as entregas de cada cliente conforme o regime tributário (Simples Nacional, Lucro Presumido, Lucro Real, MEI), o CNAE, o estado e o município.\n\nVocê recebe alertas de prazo, acompanha um checklist de documentos por obrigação e tem visão consolidada do que está pendente em toda a carteira — em vez de uma planilha manual de vencimentos.',
   },
   {
-    id: 'faq-preco',
-    question: 'Como o FiscWise se compara em preço com os concorrentes?',
+    id: 'faq-guias',
+    question: 'O FiscWise automatiza o controle de DAS, DARF, GPS e ISS?',
     answer:
-      'O FiscWise adota modelo de preço fixo mensal, sem taxa por transação e sem cobrança por volume de notas emitidas ou de extratos processados. Você sabe exatamente quanto paga todo mês, independente do quanto a operação cresce.\n\nFerrramentas concorrentes frequentemente cobram por NF-e emitida, por número de boletos ou por transação de cobrança. Esse modelo variável penaliza exatamente os escritórios que crescem. Nossa filosofia é ser parceiro do crescimento, não um custo que sobe junto com ele.',
+      'Sim. O sistema registra e acompanha as guias de impostos (DAS, DARF, GPS, ISS) de cada cliente, com status de pagamento (pendente/pago) e histórico.\n\nAssim você sabe, em tempo real, quais guias ainda não foram quitadas em toda a carteira, sem precisar conferir cliente por cliente.',
   },
   {
-    id: 'faq-onboarding',
-    question: 'Quanto tempo leva para o escritório estar 100% operacional?',
+    id: 'faq-honorarios',
+    question: 'Dá para cobrar os honorários dos clientes automaticamente?',
     answer:
-      'Para escritórios novos, sem migração de outro sistema, o tempo médio para estar operacional é de 1 dia útil: configuração do perfil, cadastro dos clientes e ativação das integrações bancárias.\n\nPara escritórios que migram de outro sistema, o prazo é de 2 a 5 dias úteis, a depender do volume de histórico a importar. Após o onboarding, a equipe de suporte acompanha os primeiros 30 dias para garantir que todos os fluxos estejam funcionando como esperado.',
+      'Sim. O FiscWise controla os honorários e a inadimplência da carteira e integra uma régua de cobrança pelo WhatsApp, o canal onde o cliente realmente responde.\n\nVocê para de gastar horas por mês enviando lembretes manuais e reduz a inadimplência sem precisar de um sistema de cobrança separado.',
+  },
+  {
+    id: 'faq-portal-cliente',
+    question: 'Existe um portal do cliente para o escritório de contabilidade?',
+    answer:
+      'Sim. Cada cliente do seu escritório recebe acesso a um portal próprio, por convite (magic link), onde pode enviar documentos, baixar notas e acompanhar suas guias — tudo self-service.\n\nIsso reduz o vai-e-volta de e-mails e WhatsApp e diminui o backlog do escritório, porque o cliente resolve sozinho o que antes virava tarefa para a sua equipe.',
+  },
+  {
+    id: 'faq-ia',
+    question: 'Como a inteligência artificial ajuda na rotina contábil?',
+    answer:
+      'A IA do FiscWise lê e classifica documentos fiscais, recomenda o enquadramento tributário e ajuda a priorizar as obrigações do dia — funcionando como um assistente que antecipa prazos e pendências.\n\nTodo o processamento aplica masking de CPF/CNPJ antes de enviar qualquer dado ao modelo, em conformidade com a LGPD.',
+  },
+  {
+    id: 'faq-regimes',
+    question: 'O FiscWise funciona com todos os regimes tributários?',
+    answer:
+      'Sim. O FiscWise é compatível com Simples Nacional, Lucro Presumido, Lucro Real e MEI. As obrigações, os alertas e os cálculos se adaptam automaticamente ao regime configurado para cada cliente.\n\nPara escritórios com carteira diversa — MEIs e empresas no Lucro Real na mesma base — a visão consolidada continua unificada, sem telas separadas.',
+  },
+  {
+    id: 'faq-precos',
+    question: 'Quanto custa o FiscWise? Como são os planos?',
+    answer:
+      'O FiscWise trabalha com preço fixo mensal por plano (Gratuito, Profissional e Escritório), sem taxa por nota emitida nem por guia processada — você sabe exatamente quanto paga, mesmo quando a carteira cresce.\n\nMuitos concorrentes cobram por NF-e emitida ou por transação de cobrança, modelo que penaliza justamente quem cresce. Há um plano gratuito para começar e testar sem compromisso.',
   },
   {
     id: 'faq-seguranca',
-    question: 'Quão seguro é o FiscWise? Existe compliance com LGPD?',
+    question: 'O FiscWise é seguro e está em conformidade com a LGPD?',
     answer:
-      'Toda a infraestrutura opera em nuvem com criptografia em trânsito (TLS 1.3) e em repouso (AES-256). O acesso aos dados segue o princípio de menor privilégio: cada usuário enxerga apenas os clientes e módulos que seu perfil autoriza.\n\nO FiscWise está em conformidade com a LGPD: mantemos contrato de tratamento de dados (DPA) disponível para assinatura, realizamos exclusão permanente de dados mediante solicitação e oferecemos auditoria completa de acessos por usuário. Backups automáticos são realizados a cada 6 horas com retenção de 90 dias.',
+      'Sim. A plataforma é multi-tenant com isolamento rígido por escritório (Row-Level Security no banco), criptografia em trânsito e em repouso, e princípio de menor privilégio — cada usuário enxerga apenas os clientes e módulos que seu perfil autoriza.\n\nEm conformidade com a LGPD, a IA aplica masking de CPF/CNPJ, há exclusão permanente de dados mediante solicitação e auditoria de acessos por usuário.',
+  },
+  {
+    id: 'faq-migracao',
+    question: 'Já uso outro sistema. A migração para o FiscWise é complicada?',
+    answer:
+      'Não. A equipe acompanha o mapeamento das entidades (clientes, certificados, obrigações), valida os dados antes da importação e roda testes de integridade após a carga — sem janela de downtime para a sua operação.\n\nEscritórios novos costumam ficar operacionais em cerca de 1 dia útil; migrações de outro sistema levam de 2 a 5 dias úteis, conforme o volume de histórico.',
   },
 ]
 
-// ─── Competitor differentials ─────────────────────────────────────────────────
+// ─── Diferenciais competitivos (fiéis ao produto real) ─────────────────────────
+// Ângulo: "um sistema no lugar de quatro" + cofre nativo + NFS-e multi-município
+// + IA fiscal + preço previsível. SEM Open Finance (não existe no produto).
 
 export const COMPETITOR_COMPARISON: CompetitorDifferential[] = [
   {
-    title: 'Construído para contadores',
+    title: 'Um sistema no lugar de quatro',
     description:
-      'Não é um ERP genérico adaptado. Cada fluxo, relatório e alerta foi desenhado junto com contadores reais. Sem atalhos que não fazem sentido, sem módulos que nunca serão usados.',
-    icon: 'Users',
+      'ERP contábil, cofre de certificados, automação fiscal e cobrança de honorários — tudo num painel só. Em vez de somar quatro mensalidades e integrar ferramentas frágeis, você opera a carteira inteira em um lugar.',
+    icon: 'Layers',
   },
   {
-    title: 'Sem taxas por transação',
+    title: 'Cofre de certificados nativo',
     description:
-      'Preço fixo mensal, independente de quantas notas são emitidas, boletos gerados ou extratos processados. Quanto mais seu escritório cresce, mais barato fica por cliente atendido.',
-    icon: 'BadgeCheck',
+      'Certificados A1/A3 com alerta de validade (30 e 15 dias) e trilha de auditoria de uso, embutidos na operação — não um produto avulso contratado à parte. Nenhum certificado vence sem você saber.',
+    icon: 'ShieldCheck',
   },
   {
-    title: 'Open Finance nativo',
+    title: 'NFS-e em qualquer município',
     description:
-      'Integração direta com o padrão regulado pelo Banco Central. Extratos, conciliações e alertas de divergência chegam automaticamente — sem importação de OFX, sem planilha.',
-    icon: 'Landmark',
+      'Emita, cancele e baixe NFS-e de forma centralizada, com ou sem a NFS-e Nacional — contornando a baixa adesão dos municípios e a instabilidade do emissor nacional em 2026.',
+    icon: 'FileText',
   },
   {
-    title: 'Automação de honorários',
+    title: 'IA que antecipa prazos e pendências',
     description:
-      'Cálculo automático, emissão de cobrança e controle de inadimplência para todos os clientes da carteira. Você para de gastar horas por mês em algo que não precisa de intervenção humana.',
+      'A inteligência artificial lê documentos, recomenda regime e prioriza as obrigações do dia, com masking de CPF/CNPJ por padrão (LGPD). Não é IA de marketing — é assistência na rotina fiscal real.',
+    icon: 'Sparkles',
+  },
+  {
+    title: 'Preço fixo, sem taxa por nota',
+    description:
+      'Mensalidade previsível, independente de quantas NFS-e ou guias você processa. Quanto mais a carteira cresce, mais barato fica por cliente atendido — o contrário do preço por transação dos concorrentes.',
     icon: 'CircleDollarSign',
   },
   {
-    title: 'Zero curva de aprendizado',
+    title: 'Construído para contadores',
     description:
-      'Dashboard projetado por quem trabalha ao lado de contadores há anos. Novos usuários estão operacionais no mesmo dia, sem treinamento extenso e sem resistência da equipe.',
-    icon: 'Zap',
+      'Não é um ERP genérico adaptado. Cada fluxo, alerta e relatório foi desenhado para a operação de um escritório de contabilidade — multiempresa, multirregime, com o portal do cliente que reduz o seu backlog.',
+    icon: 'Users',
   },
 ]

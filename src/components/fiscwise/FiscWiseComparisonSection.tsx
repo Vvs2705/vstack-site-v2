@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Users, BadgeCheck, Landmark, CircleDollarSign, Zap, type LucideIcon } from 'lucide-react'
+import { Users, BadgeCheck, Landmark, CircleDollarSign, Zap, Layers, ShieldCheck, FileText, Sparkles, type LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { CompetitorDifferential } from '@/lib/fiscwise-faq'
 
@@ -15,6 +15,10 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Landmark,
   CircleDollarSign,
   Zap,
+  Layers,
+  ShieldCheck,
+  FileText,
+  Sparkles,
 }
 
 // ─── Types ────────────────────────────────────────────────────────────────────
