@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Layers, ShieldAlert, CalendarClock, CheckCircle2, Shield, Lock } from 'lucide-react'
+import { ArrowRight, Layers, ShieldAlert, CalendarClock, CheckCircle2, Shield, Lock, FileText, Receipt } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import FiscWise3DMockupClient from '@/components/fiscwise/FiscWise3DMockupClient'
 import FiscWiseFAQSection from '@/components/fiscwise/FiscWiseFAQSection'
 import FiscWiseComparisonSection from '@/components/fiscwise/FiscWiseComparisonSection'
 import CTASection from '@/components/sections/CTASection'
@@ -291,8 +290,8 @@ export default function FiscWisePage() {
                 </div>
               </div>
 
-              {/* 3D mockup */}
-              <FiscWise3DMockupClient splineUrl="https://my.spline.design/fxJ4v4P0T5bM5xXG" />
+              {/* Painel ilustrativo do produto (self-contained, sem dependência externa) */}
+              <HeroPanel />
             </div>
           </Container>
         </section>
@@ -496,6 +495,59 @@ function Stat({ value, label }: { value: string; label: string }) {
     <div className="border-t border-[var(--border)] pt-4 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-4 first:border-t-0 first:pt-0 sm:first:border-l-0 sm:first:pl-0">
       <strong className="block font-display text-2xl font-bold text-[var(--text-1)]">{value}</strong>
       <span className="mt-1 block text-[11px] leading-4 text-[var(--text-3)]">{label}</span>
+    </div>
+  )
+}
+
+function HeroPanel() {
+  const rows = [
+    { icon: ShieldAlert, label: 'Certificado A1 · Construtora Lima', meta: 'vence em 12 dias', tone: 'warn' },
+    { icon: FileText, label: 'NFS-e a emitir', meta: '8 notas', tone: 'accent' },
+    { icon: CalendarClock, label: 'DEFIS · entrega', meta: 'em 5 dias', tone: 'accent' },
+    { icon: Receipt, label: 'Honorários em atraso', meta: '3 clientes', tone: 'danger' },
+  ]
+  const toneStyles: Record<string, string> = {
+    warn: 'border-amber-400/30 bg-amber-400/10 text-amber-600',
+    accent: 'border-[var(--accent-border)] bg-[var(--accent-muted)] text-[var(--accent)]',
+    danger: 'border-red-400/30 bg-red-400/10 text-red-500',
+  }
+  return (
+    <div className="relative">
+      <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[28px] bg-[var(--accent-muted)] opacity-60 blur-2xl" />
+      <Surface className="p-5 sm:p-6">
+        <div className="mb-5 flex items-center justify-between border-b border-[var(--border)] pb-4">
+          <div className="flex items-center gap-2.5">
+            <span className="flex gap-1">
+              <span className="h-2 w-2 rounded-full bg-[var(--border-strong)]" />
+              <span className="h-2 w-2 rounded-full bg-[var(--border-strong)]" />
+              <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
+            </span>
+            <span className="text-[12px] font-bold text-[var(--text-1)]">FiscWise · Painel do contador</span>
+          </div>
+          <span className="rounded-full bg-[var(--bg-deep)] px-2 py-0.5 text-[10px] font-semibold text-[var(--text-3)]">Hoje</span>
+        </div>
+        <div className="grid gap-2.5">
+          {rows.map(({ icon: Icon, label, meta, tone }) => (
+            <div
+              key={label}
+              className="flex items-center gap-3 rounded-[var(--radius-btn)] border border-[var(--border)] bg-[var(--bg)] p-3"
+            >
+              <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${toneStyles[tone]}`}>
+                <Icon className="h-4 w-4" />
+              </span>
+              <span className="flex-1 text-[12.5px] font-medium leading-4 text-[var(--text-1)]">{label}</span>
+              <span className="whitespace-nowrap text-[11px] font-semibold text-[var(--text-2)]">{meta}</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-5 flex items-center justify-between rounded-[var(--radius-btn)] border border-[var(--accent-border)] bg-[var(--accent-muted)] p-3">
+          <span className="flex items-center gap-2 text-[12px] font-semibold text-[var(--text-1)]">
+            <CheckCircle2 className="h-4 w-4 text-[var(--accent)]" />
+            Obrigações da carteira em dia
+          </span>
+          <span className="font-display text-[15px] font-black text-[var(--accent)]">92%</span>
+        </div>
+      </Surface>
     </div>
   )
 }
