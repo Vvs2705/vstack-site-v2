@@ -12,6 +12,9 @@ import ThemeToggle from '@/components/ui/ThemeToggle'
 const NAV_LINKS = [
   { label: 'Soluções', href: '/solucoes' },
   { label: 'FiscWise', href: '/fiscwise', accent: true },
+  { label: 'SessãoInk', href: '/sessaoink' },
+  { label: 'Fretamento Pro', href: '/fretamento-pro' },
+  { label: 'ERP-V', href: '/erp-v' },
   { label: 'Conteúdos', href: '/conteudos' },
   { label: 'Sobre', href: '/sobre' },
   { label: 'FAQ', href: '/faq' },
@@ -33,7 +36,7 @@ export default function Navbar() {
           <VStackLogo />
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-6 md:flex">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
             return (
