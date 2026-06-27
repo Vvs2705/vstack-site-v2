@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ChevronRight, ChevronLeft, Check, Loader2 } from 'lucide-react'
 import { CotacaoSchema, type CotacaoInput } from '@/lib/validations'
+import { trackFormSubmit } from '@/lib/analytics'
 import { z } from 'zod'
 
 type Step = 1 | 2 | 3 | 4
@@ -110,6 +111,13 @@ export default function CotacaoForm() {
       if (!res.ok) {
         throw new Error(data.error || 'Erro ao enviar cotação')
       }
+
+      trackFormSubmit('cotacao', {
+        projectType: validated.projectType.join(','),
+        projectBudget: validated.projectBudget,
+        projectTimeline: validated.projectTimeline,
+        companySize: validated.companySize,
+      })
 
       setIsSuccess(true)
       setStep(4)

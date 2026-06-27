@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Send, Check, Loader2 } from 'lucide-react'
 import { ContatoSchema, type ContatoInput } from '@/lib/validations'
+import { trackFormSubmit } from '@/lib/analytics'
 import { z } from 'zod'
 
 type ContactInterest = ContatoInput['interest']
@@ -45,6 +46,11 @@ export default function ContatoForm() {
       if (!res.ok) {
         throw new Error(data.error || 'Erro ao enviar mensagem')
       }
+
+      trackFormSubmit('contato', {
+        interest: validated.interest,
+        hasCompany: Boolean(validated.company),
+      })
 
       setIsSuccess(true)
     } catch (error) {
