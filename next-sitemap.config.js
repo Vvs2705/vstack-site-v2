@@ -34,6 +34,12 @@ module.exports = {
       '/fretamento-pro': 0.9,
       '/erp-v': 0.9,
       '/conteudos': 0.8,
+      // Comparativos (fundo de funil, SEO long-tail). Índice + slugs.
+      // Mantidos em sincronia com src/lib/comparativos.ts.
+      '/comparativos': 0.8,
+      '/comparativos/fiscwise-vs-sistemas-para-contabilidade': 0.8,
+      '/comparativos/sessaoink-vs-gestao-generica-de-estudio': 0.8,
+      '/comparativos/erp-v-sob-medida-vs-erp-pronto': 0.8,
       '/envie-sua-dor': 0.8,
       '/sobre': 0.8,
       '/faq': 0.7,
@@ -54,6 +60,10 @@ module.exports = {
       '/fretamento-pro': 'weekly',
       '/erp-v': 'weekly',
       '/conteudos': 'weekly',
+      '/comparativos': 'weekly',
+      '/comparativos/fiscwise-vs-sistemas-para-contabilidade': 'monthly',
+      '/comparativos/sessaoink-vs-gestao-generica-de-estudio': 'monthly',
+      '/comparativos/erp-v-sob-medida-vs-erp-pronto': 'monthly',
       '/envie-sua-dor': 'monthly',
       '/sobre': 'monthly',
       '/faq': 'weekly',

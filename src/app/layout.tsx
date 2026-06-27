@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { DM_Sans, Geist, JetBrains_Mono, Syne } from 'next/font/google'
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import VercelAnalytics from '@/components/analytics/VercelAnalytics'
 import RootLayoutWrapper from '@/components/providers/RootLayoutWrapper'
 import JsonLd from '@/components/seo/JsonLd'
@@ -128,6 +129,7 @@ export default function RootLayout({
           {children}
         </RootLayoutWrapper>
         <VercelAnalytics />
+        <GoogleAnalytics />
       </body>
     </html>
   )
