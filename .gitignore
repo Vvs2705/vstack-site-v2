@@ -56,3 +56,42 @@ next-env.d.ts
 
 .vercel
 VERCEL_ENV_IMPORT.env
+
+# === Higiene: docs de processo / handoff de agente / notas de IA (NUNCA versionar) ===
+# Regra: so codigo e o necessario para rodar sobe ao repo. Instrucoes, planos,
+# status, diagnosticos, passo-a-passo e briefs de design ficam LOCAIS (nunca sobem).
+
+# Briefs de design — fonte da verdade local, colada nos prompts (nao versionar)
+/DESIGN.md
+/AJUSTES-DESIGN.md
+
+# Handoff de agente lido pelo harness — mantido apenas localmente
+/AGENTS.md
+/CLAUDE.md
+
+# Notas de memoria de IA (agent-memory) — nunca versionar; launch.json fica de fora (config funcional)
+/.claude/agent-memory/
+
+# Docs de processo por padrao de nome (qualquer pasta)
+*PLANO*.md
+*PASSO*.md
+*STATUS*.md
+*HANDOFF*.md
+*ROADMAP*.md
+*CHECKLIST*.md
+*AUDITORIA*.md
+*DIAGNOSTIC*.md
+*STRATEGY*.md
+*.instructions.md
+CLEANUP_LOG_*.md
+
+# Docs de processo especificos removidos nesta faxina
+/docs/CURRENT_PROJECT_STATUS.md
+/docs/DEPLOY.md
+/docs/DESIGN_SYSTEM.md
+/docs/SEO.md
+/docs/SEO_COPY_STRATEGY.md
+/docs/SEARCH_CONSOLE_SETUP.md
+
+# Garantir que o README de uso NUNCA seja ignorado por engano
+!README.md
