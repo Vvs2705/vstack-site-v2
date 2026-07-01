@@ -38,13 +38,6 @@ export const DorSchema = z.object({
   isAnonymous: z.boolean().default(false),
 })
 
-export const ChatMessageSchema = z.object({
-  message: z.string().min(1).max(500).trim(),
-  sessionToken: z.string().min(20).max(100),
-  visitorName: z.string().max(100).optional(),
-  visitorEmail: z.string().email().optional(),
-})
-
 export const SimulateRegimeSchema = z.object({
   revenue: z.number().min(1, 'Receita deve ser maior que zero').max(100_000_000),
   sector: z.string().min(2, 'Setor obrigatório').max(100),
@@ -82,7 +75,6 @@ export const FiscalChatSchema = z.object({
 export type ContatoInput = z.infer<typeof ContatoSchema>
 export type CotacaoInput = z.infer<typeof CotacaoSchema>
 export type DorInput = z.infer<typeof DorSchema>
-export type ChatInput = z.infer<typeof ChatMessageSchema>
 export type SimulateRegimeInput = z.infer<typeof SimulateRegimeSchema>
 export type SimulateIcmsInput = z.infer<typeof SimulateIcmsSchema>
 export type FiscalChatInput = z.infer<typeof FiscalChatSchema>
