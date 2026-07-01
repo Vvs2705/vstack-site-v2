@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { DM_Sans, Geist, JetBrains_Mono, Syne } from 'next/font/google'
+import { Geist, JetBrains_Mono, Syne } from 'next/font/google'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import VercelAnalytics from '@/components/analytics/VercelAnalytics'
 import RootLayoutWrapper from '@/components/providers/RootLayoutWrapper'
@@ -12,12 +12,6 @@ const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
 const syne = Syne({
   variable: '--font-syne',
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-const dmSans = DM_Sans({
-  variable: '--font-dm-sans',
   subsets: ['latin'],
   display: 'swap',
 })
@@ -112,7 +106,6 @@ export default function RootLayout({
       className={cn(
         'h-full antialiased font-sans',
         syne.variable,
-        dmSans.variable,
         jetbrainsMono.variable,
         geist.variable
       )}

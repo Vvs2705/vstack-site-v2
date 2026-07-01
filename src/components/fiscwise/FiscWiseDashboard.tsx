@@ -114,12 +114,12 @@ function IndicatorRow({ icon, label, status }: IndicatorRowProps) {
         style={
           status === 'ativo'
             ? {
-                background: 'rgba(34, 197, 94, 0.12)',
-                color: '#22c55e',
+                background: 'color-mix(in oklab, var(--success) 12%, transparent)',
+                color: 'var(--success)',
               }
             : {
-                background: 'rgba(234, 179, 8, 0.12)',
-                color: '#eab308',
+                background: 'color-mix(in oklab, var(--warning) 12%, transparent)',
+                color: 'var(--warning)',
               }
         }
       >
@@ -155,10 +155,10 @@ export default function FiscWiseDashboard() {
         </div>
         <div
           className="flex items-center gap-1.5 rounded-full px-3 py-1"
-          style={{ background: 'rgba(34, 197, 94, 0.1)' }}
+          style={{ background: 'color-mix(in oklab, var(--success) 10%, transparent)' }}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-green-500" aria-hidden="true" />
-          <span className="text-[11px] font-semibold text-green-500">Open Banking ativo</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden="true" />
+          <span className="text-[11px] font-semibold text-success">Open Banking ativo</span>
         </div>
       </motion.div>
 
@@ -172,7 +172,7 @@ export default function FiscWiseDashboard() {
         {/* Card 1: Entradas vs Saídas */}
         <motion.div
           variants={cardVariants}
-          className="col-span-2 rounded-2xl p-4"
+          className="col-span-2 rounded-[var(--radius-card)] p-4"
           style={{
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
@@ -185,12 +185,12 @@ export default function FiscWiseDashboard() {
             <div className="flex-1">
               <div className="mb-1 flex items-center gap-1.5">
                 <ArrowUpRight
-                  className="h-4 w-4 text-green-500"
+                  className="h-4 w-4 text-success"
                   aria-hidden="true"
                 />
                 <span className="text-[11px] text-[var(--text-2)]">Receitas</span>
               </div>
-              <p className="text-2xl font-bold text-green-500">R$ 84,2k</p>
+              <p className="text-2xl font-bold text-success">R$ 84,2k</p>
             </div>
             <div
               className="h-10 w-px"
@@ -200,12 +200,12 @@ export default function FiscWiseDashboard() {
             <div className="flex-1">
               <div className="mb-1 flex items-center gap-1.5">
                 <ArrowDownRight
-                  className="h-4 w-4 text-red-400"
+                  className="h-4 w-4 text-danger"
                   aria-hidden="true"
                 />
                 <span className="text-[11px] text-[var(--text-2)]">Despesas</span>
               </div>
-              <p className="text-2xl font-bold text-red-400">R$ 31,4k</p>
+              <p className="text-2xl font-bold text-danger">R$ 31,4k</p>
             </div>
             <div className="flex-1 text-right">
               <p className="text-[11px] text-[var(--text-3)]">Margem</p>
@@ -217,7 +217,7 @@ export default function FiscWiseDashboard() {
         {/* Card 2: Conciliação Automática */}
         <motion.div
           variants={cardVariants}
-          className="rounded-2xl p-4"
+          className="rounded-[var(--radius-card)] p-4"
           style={{
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
@@ -260,7 +260,7 @@ export default function FiscWiseDashboard() {
         {/* Card 3: Indicadores Ativos */}
         <motion.div
           variants={cardVariants}
-          className="rounded-2xl p-4"
+          className="rounded-[var(--radius-card)] p-4"
           style={{
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
@@ -291,7 +291,7 @@ export default function FiscWiseDashboard() {
         {/* Card 4: Receita Semanal (full width) */}
         <motion.div
           variants={cardVariants}
-          className="col-span-2 rounded-2xl p-4"
+          className="col-span-2 rounded-[var(--radius-card)] p-4"
           style={{
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
@@ -307,7 +307,7 @@ export default function FiscWiseDashboard() {
                 Receita Semanal
               </p>
             </div>
-            <p className="text-[12px] font-semibold text-green-500">+13,7%</p>
+            <p className="text-[12px] font-semibold text-success">+13,7%</p>
           </div>
 
           <motion.div

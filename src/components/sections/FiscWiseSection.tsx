@@ -3,10 +3,10 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Container, Section, Surface } from '@/components/primitives/Layout'
 
 const FEATURES = [
-  'Conciliação bancária automática — zero planilha, zero retrabalho',
-  'Open Banking BR integrado nativamente',
-  'Dashboard executivo em tempo real para decisões rápidas',
-  'Alertas de anomalia antes que o problema vire crise',
+  'Cofre de certificados digitais A1/A3 com alerta de validade',
+  'Emissão de NFS-e multi-município e controle de guias (DAS/DARF/GPS/ISS)',
+  'Calendário de obrigações fiscais por regime, CNAE e município',
+  'IA que antecipa prazos e pendências — com masking de dados (LGPD)',
 ]
 
 const BAR_DATA = [
@@ -27,17 +27,14 @@ export default function FiscWiseSection() {
           <div>
             <div className="mb-5 flex items-center gap-3">
               <p className="eyebrow">FiscWise</p>
-              <span className="rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] px-3 py-1 text-[10px] font-bold tracking-[0.14em] text-[var(--accent)]">
-                ACESSO ANTECIPADO
-              </span>
             </div>
 
             <h2 className="font-display text-balance text-3xl font-bold leading-tight text-[var(--text-1)] sm:text-4xl">
-              Chega de passar o final do mês caçando lançamento e reconciliando na mão.
+              Toda a operação do escritório de contabilidade num sistema só.
             </h2>
 
             <p className="mt-5 max-w-xl text-[15px] leading-8 text-[var(--text-2)]">
-              O FiscWise automatiza toda a operação financeira da sua empresa — da conciliação bancária ao relatório executivo — para que o fechamento mensal deixe de ser uma maratona de 72 horas e vire um processo previsível.
+              O FiscWise reúne certificados digitais, emissão de NFS-e, obrigações fiscais, guias e cobrança de honorários numa só plataforma — com IA que antecipa prazos e pendências. Um sistema no lugar de quatro.
             </p>
 
             <ul className="mt-8 grid gap-3">
@@ -61,7 +58,7 @@ export default function FiscWiseSection() {
                 <p className="text-[12px] text-[var(--text-3)]">Dashboard executivo</p>
                 <h3 className="font-display text-xl font-bold text-[var(--text-1)]">Maio 2026</h3>
               </div>
-              <span className="rounded-full bg-[#22c55e]/10 px-3 py-1 text-[11px] font-bold text-[#22c55e]">
+              <span className="rounded-full bg-success/10 px-3 py-1 text-[11px] font-bold text-success">
                 Operacional
               </span>
             </div>
@@ -72,7 +69,7 @@ export default function FiscWiseSection() {
               <Stat title="Pendências" value="3" detail="de 250" />
             </div>
 
-            <div className="mt-6 rounded-2xl border border-[var(--border)] bg-[var(--bg-deep)] p-5">
+            <div className="mt-6 rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-deep)] p-5">
               <div className="mb-4 flex items-center justify-between">
                 <p className="text-[13px] font-semibold text-[var(--text-1)]">Receita mensal</p>
                 <p className="text-[12px] text-[var(--text-3)]">últimos 7 meses</p>
@@ -101,7 +98,7 @@ export default function FiscWiseSection() {
 
 function Stat({ title, value, detail, accent = false }: { title: string; value: string; detail: string; accent?: boolean }) {
   return (
-    <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-deep)] p-4">
+    <div className="rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-deep)] p-4">
       <p className="text-[12px] text-[var(--text-3)]">{title}</p>
       <p className="mt-1 font-display text-xl font-bold" style={{ color: accent ?'var(--accent)' : 'var(--text-1)' }}>
         {value}

@@ -9,11 +9,11 @@ interface ProjectDetailHeroProps {
 
 const statusConfig = {
   planning: {
-    color: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
+    color: 'bg-info/10 text-info border-info/20',
     label: 'Em Planejamento'
   },
   active: {
-    color: 'bg-green-500/10 text-green-500 border-green-500/20',
+    color: 'bg-success/10 text-success border-success/20',
     label: 'Ativo'
   },
   developing: {

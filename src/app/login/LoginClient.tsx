@@ -65,7 +65,7 @@ export default function LoginClient() {
         </span>
       </Link>
 
-      <div className="w-full max-w-sm rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-8 shadow-[var(--shadow-sm)]">
+      <div className="w-full max-w-sm rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] p-8 shadow-[var(--shadow-sm)]">
         <div className="mb-8 text-center">
           <h1 className="mb-2 font-display text-xl font-bold text-[var(--text-1)]">
             Acesse sua conta
@@ -78,7 +78,7 @@ export default function LoginClient() {
         {errorMessage && (
           <div
             role="alert"
-            className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-700"
+            className="mb-6 rounded-lg border border-danger/20 bg-danger/10 px-4 py-3 text-[13px] text-danger"
           >
             {errorMessage}
           </div>

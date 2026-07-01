@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'SessãoInk — Gestão para tatuadores',
   description:
     'O sistema que organiza seu estúdio de tatuagem: agenda, clientes, financeiro com comissões por artista, portfólio, consentimento assinado e portal público por slug.',
+  alternates: { canonical: 'https://www.vstack-solutions.com.br/sessaoink' },
   openGraph: {
     title: 'SessãoInk — Gestão para tatuadores',
     description:

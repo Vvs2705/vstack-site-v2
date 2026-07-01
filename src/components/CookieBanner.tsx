@@ -34,7 +34,7 @@ export default function CookieBanner() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-6 animate-slide-up">
       <div className="max-w-6xl mx-auto">
-        <div className="card-vstack relative shadow-2xl !p-4 sm:!p-6">
+        <div className="card-vstack relative shadow-[var(--shadow)] !p-4 sm:!p-6">
           <button
             onClick={handleReject}
             className="absolute top-3 right-3 sm:top-4 sm:right-4 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] text-[var(--text-2)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"

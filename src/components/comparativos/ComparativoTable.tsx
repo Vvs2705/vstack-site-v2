@@ -11,7 +11,7 @@ const CELL_CONFIG: Record<
   { Icon: typeof Check; srLabel: string; iconClass: string }
 > = {
   yes: { Icon: Check, srLabel: 'Sim', iconClass: 'text-[var(--accent)]' },
-  partial: { Icon: Minus, srLabel: 'Parcial', iconClass: 'text-amber-500' },
+  partial: { Icon: Minus, srLabel: 'Parcial', iconClass: 'text-warning' },
   no: { Icon: X, srLabel: 'Não', iconClass: 'text-[var(--text-3)]' },
   depends: { Icon: CircleHelp, srLabel: 'Depende', iconClass: 'text-[var(--text-3)]' },
 }

@@ -507,9 +507,9 @@ function HeroPanel() {
     { icon: Receipt, label: 'Honorários em atraso', meta: '3 clientes', tone: 'danger' },
   ]
   const toneStyles: Record<string, string> = {
-    warn: 'border-amber-400/30 bg-amber-400/10 text-amber-600',
+    warn: 'border-warning/30 bg-warning/10 text-warning',
     accent: 'border-[var(--accent-border)] bg-[var(--accent-muted)] text-[var(--accent)]',
-    danger: 'border-red-400/30 bg-red-400/10 text-red-500',
+    danger: 'border-danger/30 bg-danger/10 text-danger',
   }
   return (
     <div className="relative">

@@ -131,7 +131,7 @@ export function SimulationHistory({ plan, canExportPDF }: Props) {
       {error && (
         <div
           role="alert"
-          className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-[13px] text-red-700 dark:border-red-800 dark:bg-red-950/40 dark:text-red-400"
+          className="flex items-center gap-2 rounded-lg border border-danger/30 bg-danger/10 p-3 text-[13px] text-danger"
         >
           <AlertCircle className="h-4 w-4 shrink-0" />
           {error}
@@ -141,7 +141,7 @@ export function SimulationHistory({ plan, canExportPDF }: Props) {
       {exportError && (
         <div
           role="alert"
-          className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-[13px] text-red-700 dark:border-red-800 dark:bg-red-950/40 dark:text-red-400"
+          className="flex items-center gap-2 rounded-lg border border-danger/30 bg-danger/10 p-3 text-[13px] text-danger"
         >
           <AlertCircle className="h-4 w-4 shrink-0" />
           {exportError}

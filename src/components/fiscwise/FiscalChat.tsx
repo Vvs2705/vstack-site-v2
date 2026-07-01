@@ -127,7 +127,7 @@ export function FiscalChat({ plan, monthlyMessagesLimit, messagesUsed }: Props) 
             className={cn(
               'rounded-full px-2.5 py-0.5 text-[11px] font-bold',
               remaining <= 5
-                ? 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400'
+                ? 'bg-danger/10 text-danger'
                 : 'border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-3)]'
             )}
             aria-label={`${remaining} mensagens restantes este mês`}
@@ -257,7 +257,7 @@ export function FiscalChat({ plan, monthlyMessagesLimit, messagesUsed }: Props) 
           {error && (
             <div
               role="alert"
-              className="mb-2 flex items-center gap-2 text-[12px] text-red-600 dark:text-red-400"
+              className="mb-2 flex items-center gap-2 text-[12px] text-danger"
             >
               <AlertCircle className="h-3.5 w-3.5 shrink-0" />
               {error}

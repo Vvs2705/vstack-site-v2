@@ -5,6 +5,7 @@ import { fretamentoProLanding } from '@/lib/products/fretamento-pro'
 export const metadata: Metadata = {
   title: fretamentoProLanding.metaTitle,
   description: fretamentoProLanding.metaDescription,
+  alternates: { canonical: 'https://www.vstack-solutions.com.br/fretamento-pro' },
   openGraph: {
     title: fretamentoProLanding.metaTitle,
     description: fretamentoProLanding.metaDescription,

@@ -72,7 +72,7 @@ export default function ContatoForm() {
 
   if (isSuccess) {
     return (
-      <div className="card-vstack max-w-2xl mx-auto text-center space-y-6">
+      <div role="status" aria-live="polite" className="card-vstack max-w-2xl mx-auto text-center space-y-6">
         <div className="flex justify-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--accent)] accent-glow">
             <Check className="h-10 w-10 text-white" />
@@ -128,12 +128,14 @@ export default function ContatoForm() {
               type="text"
               value={formData.name}
               onChange={(e) => updateField('name', e.target.value)}
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? 'contato-error-name' : undefined}
               className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
               placeholder="Seu nome"
               required
             />
             {errors.name && (
-              <p className="mt-1 text-sm text-red-400">{errors.name}</p>
+              <p id="contato-error-name" role="alert" className="mt-1 text-sm text-danger">{errors.name}</p>
             )}
           </div>
 
@@ -145,11 +147,13 @@ export default function ContatoForm() {
               type="text"
               value={formData.company}
               onChange={(e) => updateField('company', e.target.value)}
+              aria-invalid={Boolean(errors.company)}
+              aria-describedby={errors.company ? 'contato-error-company' : undefined}
               className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
               placeholder="Nome da empresa"
             />
             {errors.company && (
-              <p className="mt-1 text-sm text-red-400">{errors.company}</p>
+              <p id="contato-error-company" role="alert" className="mt-1 text-sm text-danger">{errors.company}</p>
             )}
           </div>
         </div>
@@ -163,12 +167,14 @@ export default function ContatoForm() {
               type="email"
               value={formData.email}
               onChange={(e) => updateField('email', e.target.value)}
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? 'contato-error-email' : undefined}
               className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
               placeholder="seu@email.com"
               required
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+              <p id="contato-error-email" role="alert" className="mt-1 text-sm text-danger">{errors.email}</p>
             )}
           </div>
 
@@ -180,11 +186,13 @@ export default function ContatoForm() {
               type="tel"
               value={formData.phone}
               onChange={(e) => updateField('phone', e.target.value)}
+              aria-invalid={Boolean(errors.phone)}
+              aria-describedby={errors.phone ? 'contato-error-phone' : undefined}
               className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
               placeholder="(11) 99999-9999"
             />
             {errors.phone && (
-              <p className="mt-1 text-sm text-red-400">{errors.phone}</p>
+              <p id="contato-error-phone" role="alert" className="mt-1 text-sm text-danger">{errors.phone}</p>
             )}
           </div>
         </div>
@@ -196,6 +204,8 @@ export default function ContatoForm() {
           <select
             value={formData.interest || ''}
             onChange={(e) => updateField('interest', e.target.value as ContactInterest)}
+            aria-invalid={Boolean(errors.interest)}
+            aria-describedby={errors.interest ? 'contato-error-interest' : undefined}
             className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
             required
           >
@@ -208,7 +218,7 @@ export default function ContatoForm() {
             <option value="outro">Outro</option>
           </select>
           {errors.interest && (
-            <p className="mt-1 text-sm text-red-400">{errors.interest}</p>
+            <p id="contato-error-interest" role="alert" className="mt-1 text-sm text-danger">{errors.interest}</p>
           )}
         </div>
 
@@ -220,18 +230,20 @@ export default function ContatoForm() {
             value={formData.message}
             onChange={(e) => updateField('message', e.target.value)}
             rows={6}
+            aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? 'contato-error-message' : undefined}
             className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
             placeholder="Conte-nos sobre o que você precisa..."
             required
           />
           {errors.message && (
-            <p className="mt-1 text-sm text-red-400">{errors.message}</p>
+            <p id="contato-error-message" role="alert" className="mt-1 text-sm text-danger">{errors.message}</p>
           )}
         </div>
       </div>
 
       {errors.submit && (
-        <div className="rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">
+        <div role="alert" className="rounded-lg bg-danger/10 border border-danger/30 px-4 py-3 text-sm text-danger">
           {errors.submit}
         </div>
       )}

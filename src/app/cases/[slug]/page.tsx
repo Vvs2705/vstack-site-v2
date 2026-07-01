@@ -179,7 +179,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 </div>
               </div>
 
-              <div className="mt-8 p-4 rounded-2xl bg-[var(--accent-muted)] border border-[var(--accent-border)]">
+              <div className="mt-8 p-4 rounded-[var(--radius-card)] bg-[var(--accent-muted)] border border-[var(--accent-border)]">
                 <p className="text-xs text-[var(--text-3)] mb-1">Payback</p>
                 <p className="font-display text-2xl font-bold text-[var(--accent)]">
                   {caseStudy.payback}

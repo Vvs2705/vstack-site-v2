@@ -39,7 +39,7 @@ function IntegrationBadge({ integration }: BadgeProps) {
         aria-label={name}
         className={cn(
           'group relative flex flex-col items-center justify-center gap-2.5',
-          'rounded-2xl border border-[var(--border)] bg-[var(--bg-card)]',
+          'rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)]',
           'p-4 text-center',
           'transition-all duration-300',
           'hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-glow)]',
@@ -64,7 +64,7 @@ function IntegrationBadge({ integration }: BadgeProps) {
 
         {/* Glow ring on hover */}
         <span
-          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 ring-2 ring-[var(--accent)] transition-opacity duration-300 group-hover:opacity-30"
+          className="pointer-events-none absolute inset-0 rounded-[var(--radius-card)] opacity-0 ring-2 ring-[var(--accent)] transition-opacity duration-300 group-hover:opacity-30"
           aria-hidden="true"
         />
       </Tag>
@@ -111,7 +111,7 @@ export default function IntegrationsSection() {
 
             {/* Stat callout */}
             <motion.div
-              className="mt-8 flex items-center gap-4 rounded-2xl border border-[var(--accent-border)] bg-[var(--accent-muted)] px-5 py-4"
+              className="mt-8 flex items-center gap-4 rounded-[var(--radius-card)] border border-[var(--accent-border)] bg-[var(--accent-muted)] px-5 py-4"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >

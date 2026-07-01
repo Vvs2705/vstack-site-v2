@@ -65,11 +65,11 @@ export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
 }
 
 export const ORDER_STATUS_COLORS: Record<OrderStatus, string> = {
-  pending: 'text-yellow-600 bg-yellow-50 border-yellow-200',
-  confirmed: 'text-blue-600 bg-blue-50 border-blue-200',
+  pending: 'text-warning bg-warning/10 border-warning/20',
+  confirmed: 'text-info bg-info/10 border-info/20',
   in_progress: 'text-[var(--accent)] bg-orange-50 border-orange-200',
   review: 'text-purple-600 bg-purple-50 border-purple-200',
-  delivered: 'text-green-600 bg-green-50 border-green-200',
-  completed: 'text-emerald-600 bg-emerald-50 border-emerald-200',
-  cancelled: 'text-red-600 bg-red-50 border-red-200',
+  delivered: 'text-success bg-success/10 border-success/20',
+  completed: 'text-success bg-success/10 border-success/20',
+  cancelled: 'text-danger bg-danger/10 border-danger/20',
 }
