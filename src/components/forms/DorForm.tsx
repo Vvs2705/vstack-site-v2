@@ -68,7 +68,7 @@ export default function DorForm() {
 
   if (isSuccess) {
     return (
-      <div className="card-vstack max-w-2xl mx-auto text-center space-y-6">
+      <div role="status" aria-live="polite" className="card-vstack max-w-2xl mx-auto text-center space-y-6">
         <div className="flex justify-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--accent)] accent-glow">
             <Check className="h-10 w-10 text-white" />
@@ -154,11 +154,13 @@ export default function DorForm() {
                 type="text"
                 value={formData.name}
                 onChange={(e) => updateField('name', e.target.value)}
+                aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? 'dor-error-name' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Nome completo"
               />
               {errors.name && (
-                <p className="mt-1 text-sm text-red-400">{errors.name}</p>
+                <p id="dor-error-name" role="alert" className="mt-1 text-sm text-danger">{errors.name}</p>
               )}
             </div>
 
@@ -170,11 +172,13 @@ export default function DorForm() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => updateField('email', e.target.value)}
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? 'dor-error-email' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="seu@email.com"
               />
               {errors.email && (
-                <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+                <p id="dor-error-email" role="alert" className="mt-1 text-sm text-danger">{errors.email}</p>
               )}
             </div>
 
@@ -186,11 +190,13 @@ export default function DorForm() {
                 type="text"
                 value={formData.company}
                 onChange={(e) => updateField('company', e.target.value)}
+                aria-invalid={Boolean(errors.company)}
+                aria-describedby={errors.company ? 'dor-error-company' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Nome da empresa"
               />
               {errors.company && (
-                <p className="mt-1 text-sm text-red-400">{errors.company}</p>
+                <p id="dor-error-company" role="alert" className="mt-1 text-sm text-danger">{errors.company}</p>
               )}
             </div>
 
@@ -202,11 +208,13 @@ export default function DorForm() {
                 type="text"
                 value={formData.sector}
                 onChange={(e) => updateField('sector', e.target.value)}
+                aria-invalid={Boolean(errors.sector)}
+                aria-describedby={errors.sector ? 'dor-error-sector' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Ex: Tecnologia, Varejo..."
               />
               {errors.sector && (
-                <p className="mt-1 text-sm text-red-400">{errors.sector}</p>
+                <p id="dor-error-sector" role="alert" className="mt-1 text-sm text-danger">{errors.sector}</p>
               )}
             </div>
           </div>
@@ -227,12 +235,14 @@ export default function DorForm() {
             type="text"
             value={formData.title}
             onChange={(e) => updateField('title', e.target.value)}
+            aria-invalid={Boolean(errors.title)}
+            aria-describedby={errors.title ? 'dor-error-title' : undefined}
             className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
             placeholder="Ex: Processos manuais consomem muito tempo"
             required
           />
           {errors.title && (
-            <p className="mt-1 text-sm text-red-400">{errors.title}</p>
+            <p id="dor-error-title" role="alert" className="mt-1 text-sm text-danger">{errors.title}</p>
           )}
         </div>
 
@@ -244,12 +254,14 @@ export default function DorForm() {
             value={formData.description}
             onChange={(e) => updateField('description', e.target.value)}
             rows={5}
+            aria-invalid={Boolean(errors.description)}
+            aria-describedby={errors.description ? 'dor-error-description' : undefined}
             className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
             placeholder="Descreva em detalhes o problema que você enfrenta..."
             required
           />
           {errors.description && (
-            <p className="mt-1 text-sm text-red-400">{errors.description}</p>
+            <p id="dor-error-description" role="alert" className="mt-1 text-sm text-danger">{errors.description}</p>
           )}
         </div>
 
@@ -261,12 +273,14 @@ export default function DorForm() {
             value={formData.impact}
             onChange={(e) => updateField('impact', e.target.value)}
             rows={3}
+            aria-invalid={Boolean(errors.impact)}
+            aria-describedby={errors.impact ? 'dor-error-impact' : undefined}
             className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
             placeholder="Como isso afeta sua empresa?(custos, tempo, produtividade...)"
             required
           />
           {errors.impact && (
-            <p className="mt-1 text-sm text-red-400">{errors.impact}</p>
+            <p id="dor-error-impact" role="alert" className="mt-1 text-sm text-danger">{errors.impact}</p>
           )}
         </div>
 
@@ -276,10 +290,10 @@ export default function DorForm() {
           </label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { value: 'baixa' as const, label: 'Baixa', color: 'bg-blue-500/10 border-blue-500/30 text-blue-400' },
-              { value: 'media' as const, label: 'Média', color: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400' },
+              { value: 'baixa' as const, label: 'Baixa', color: 'bg-info/10 border-info/30 text-info' },
+              { value: 'media' as const, label: 'Média', color: 'bg-warning/10 border-warning/30 text-warning' },
               { value: 'alta' as const, label: 'Alta', color: 'bg-orange-500/10 border-orange-500/30 text-orange-400' },
-              { value: 'critica' as const, label: 'Crítica', color: 'bg-red-500/10 border-red-500/30 text-red-400' },
+              { value: 'critica' as const, label: 'Crítica', color: 'bg-danger/10 border-danger/30 text-danger' },
             ].map((option) => (
               <button
                 key={option.value}
@@ -296,7 +310,7 @@ export default function DorForm() {
             ))}
           </div>
           {errors.urgency && (
-            <p className="mt-1 text-sm text-red-400">{errors.urgency}</p>
+            <p id="dor-error-urgency" role="alert" className="mt-1 text-sm text-danger">{errors.urgency}</p>
           )}
         </div>
 
@@ -308,17 +322,19 @@ export default function DorForm() {
             value={formData.currentSolution}
             onChange={(e) => updateField('currentSolution', e.target.value)}
             rows={3}
+            aria-invalid={Boolean(errors.currentSolution)}
+            aria-describedby={errors.currentSolution ? 'dor-error-currentSolution' : undefined}
             className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
             placeholder="Como você lida com isso hoje?Por que não é suficiente?"
           />
           {errors.currentSolution && (
-            <p className="mt-1 text-sm text-red-400">{errors.currentSolution}</p>
+            <p id="dor-error-currentSolution" role="alert" className="mt-1 text-sm text-danger">{errors.currentSolution}</p>
           )}
         </div>
       </div>
 
       {errors.submit && (
-        <div className="rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">
+        <div role="alert" className="rounded-lg bg-danger/10 border border-danger/30 px-4 py-3 text-sm text-danger">
           {errors.submit}
         </div>
       )}

@@ -17,6 +17,12 @@
   --accent-muted: rgba(224, 94, 24, 0.1);
   --accent-border: rgba(224, 94, 24, 0.28);
 
+  /* Status semânticos (light) — cores mais escuras p/ contraste sobre fundo claro */
+  --success: #15803d;
+  --warning: #b45309;
+  --danger: #b91c1c;
+  --info: #1d4ed8;
+
   --text-1: #101522;
   --text-2: #526071;
   --text-3: #8b96a8;
@@ -38,15 +44,6 @@
   --nav-blur: rgba(246, 247, 251, 0.86);
 
   --bg-primary: var(--bg);
-
-  /*
-   * DEPRECATED text aliases — use --text-1 / --text-2 / --text-3 instead.
-   * Kept active only because src/components/chat/ChatWidget.tsx still
-   * references them. Once that file is migrated, remove these three lines.
-   */
-  --text-primary: var(--text-1);
-  --text-secondary: var(--text-2);
-  --text-muted: var(--text-3);
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -94,9 +91,15 @@
   --accent-muted: rgba(240, 112, 40, 0.14);
   --accent-border: rgba(240, 112, 40, 0.32);
 
+  /* Status semânticos (dark) — cores mais claras p/ contraste sobre fundo escuro */
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --info: #60a5fa;
+
   --text-1: #eef2ff;
   --text-2: #a7b1c4;
-  --text-3: #66758c;
+  --text-3: #8b97ab;
 
   --border: rgba(238, 242, 255, 0.1);
   --border-strong: rgba(238, 242, 255, 0.16);
@@ -227,7 +230,7 @@ h6 {
   }
 
   .btn-primary {
-    border: 1px solid rgba(0, 180, 216, 0.25);
+    border: 1px solid var(--accent-border);
     background: linear-gradient(135deg, var(--accent), var(--accent-light));
     color: white;
     box-shadow: var(--shadow-glow);
@@ -246,7 +249,7 @@ h6 {
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 20px 60px rgba(0, 180, 216, 0.35);
+    box-shadow: 0 20px 60px rgba(224, 94, 24, 0.35);
   }
 
   .btn-primary:hover::after {
@@ -382,6 +385,10 @@ h6 {
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);

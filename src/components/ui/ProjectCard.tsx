@@ -11,11 +11,11 @@ type ProjectCardProps = ProjectData
 
 const statusConfig = {
   planning: {
-    color: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
+    color: 'bg-info/10 text-info border-info/20',
     label: 'Em planejamento',
   },
   active: {
-    color: 'bg-green-500/10 text-green-500 border-green-500/20',
+    color: 'bg-success/10 text-success border-success/20',
     label: 'Ativo',
   },
   developing: {
@@ -36,7 +36,7 @@ export default function ProjectCard({
 
   return (
     <Link href={`/solucoes/${slug}`}>
-      <div className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--border-hover)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.22)]">
+      <div className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--border-hover)] hover:shadow-[var(--shadow)]">
         <div className="relative h-48 overflow-hidden bg-[var(--bg-deep)]">
           <Image
             src={thumbnail}

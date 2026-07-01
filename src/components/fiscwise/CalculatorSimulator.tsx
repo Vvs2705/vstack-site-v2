@@ -116,7 +116,7 @@ export function CalculatorSimulator({ plan }: Props) {
                 {...register('revenue', { valueAsNumber: true })}
               />
               {errors.revenue && (
-                <p id="revenue-error" className="text-[12px] text-red-500">
+                <p id="revenue-error" className="text-[12px] text-danger">
                   {errors.revenue.message}
                 </p>
               )}
@@ -140,7 +140,7 @@ export function CalculatorSimulator({ plan }: Props) {
                 {...register('employee_count', { valueAsNumber: true })}
               />
               {errors.employee_count && (
-                <p id="employees-error" className="text-[12px] text-red-500">
+                <p id="employees-error" className="text-[12px] text-danger">
                   {errors.employee_count.message}
                 </p>
               )}
@@ -176,7 +176,7 @@ export function CalculatorSimulator({ plan }: Props) {
                 ))}
               </select>
               {errors.sector && (
-                <p id="sector-error" className="text-[12px] text-red-500">
+                <p id="sector-error" className="text-[12px] text-danger">
                   {errors.sector.message}
                 </p>
               )}
@@ -213,7 +213,7 @@ export function CalculatorSimulator({ plan }: Props) {
           {error && (
             <div
               role="alert"
-              className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-[13px] text-red-700 dark:border-red-800 dark:bg-red-950/40 dark:text-red-400"
+              className="flex items-start gap-2 rounded-lg border border-danger/30 bg-danger/10 p-3 text-[13px] text-danger"
             >
               <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
               <span>{error}</span>

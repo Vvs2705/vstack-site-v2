@@ -174,7 +174,7 @@ function UserMenu({ user, isOpen, onToggle, onClose, onSignOut }: UserMenuProps)
       {isOpen && (
         <>
           <button className="fixed inset-0 z-10 cursor-default" onClick={onClose} aria-label="Fechar menu" />
-          <div role="menu" className="absolute right-0 top-11 z-20 w-52 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] py-2 shadow-[var(--shadow-sm)]">
+          <div role="menu" className="absolute right-0 top-11 z-20 w-52 overflow-hidden rounded-[var(--radius-panel)] border border-[var(--border)] bg-[var(--bg-card)] py-2 shadow-[var(--shadow-sm)]">
             <div className="border-b border-[var(--border)] px-3 pb-3 pt-1">
               <p className="truncate text-[12px] font-semibold text-[var(--text-1)]">{user.name}</p>
               <p className="truncate text-[11px] text-[var(--text-3)]">{user.email}</p>
@@ -189,7 +189,7 @@ function UserMenu({ user, isOpen, onToggle, onClose, onSignOut }: UserMenuProps)
                 onClose()
                 onSignOut()
               }}
-              className="flex w-full items-center gap-2.5 px-3 py-2.5 text-[13px] text-[var(--text-2)] hover:bg-red-50 hover:text-red-600"
+              className="flex w-full items-center gap-2.5 px-3 py-2.5 text-[13px] text-[var(--text-2)] hover:bg-danger/10 hover:text-danger"
             >
               <LogOut className="h-4 w-4" />
               Sair

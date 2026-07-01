@@ -108,8 +108,11 @@ export const PROOF_STATS: ProofStat[] = [
     label: 'SaaS próprios que construímos e operamos',
   },
   {
-    value: '25+',
-    label: 'Integrações nativas com o mercado brasileiro',
+    // "25+" era um número não verificável. Trocado por um valor qualitativo até
+    // o Vinicius confirmar a contagem real de integrações (pending).
+    value: 'Nativas',
+    label: 'Integrações com o mercado brasileiro (e-CAC, NFS-e, Open Banking)',
+    pending: true,
   },
   {
     // Derivado de PROOF_TESTIMONIALS — nº real de cases com depoimento cadastrados.

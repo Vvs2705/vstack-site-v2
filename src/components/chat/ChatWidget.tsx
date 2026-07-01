@@ -8,6 +8,7 @@ interface Message {
   role: 'user' | 'assistant'
   content: string
   timestamp: Date
+  isError?: boolean
 }
 
 export default function ChatWidget() {
@@ -50,6 +51,7 @@ export default function ChatWidget() {
               role: 'assistant',
               content: 'Não consegui iniciar o chat agora. Tente novamente em alguns instantes.',
               timestamp: new Date(),
+              isError: true,
             },
           ])
         }
@@ -133,6 +135,7 @@ export default function ChatWidget() {
           role: 'assistant',
           content: 'Desculpe, ocorreu um erro. Por favor, tente novamente.',
           timestamp: new Date(),
+          isError: true,
         },
       ])
     } finally {
@@ -148,7 +151,7 @@ export default function ChatWidget() {
             track('chat_opened')
             setIsOpen(true)
           }}
-          className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--accent)] text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl sm:bottom-6 sm:right-6"
+          className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--accent)] text-white shadow-[var(--shadow-sm)] transition-all hover:scale-105 hover:shadow-[var(--shadow)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-border)] focus-visible:ring-offset-0 sm:bottom-6 sm:right-6"
           aria-label="Abrir chat"
         >
           <MessageCircle className="h-6 w-6" />
@@ -156,7 +159,7 @@ export default function ChatWidget() {
       )}
 
       {isOpen && (
-        <div className="fixed inset-x-3 bottom-3 z-50 flex h-[min(620px,calc(100dvh-1.5rem))] flex-col overflow-hidden rounded-2xl border border-[var(--border-strong)] bg-[var(--bg-card)] shadow-2xl sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[400px]">
+        <div className="fixed inset-x-3 bottom-3 z-50 flex h-[min(620px,calc(100dvh-1.5rem))] flex-col overflow-hidden rounded-[var(--radius-panel)] border border-[var(--border-strong)] bg-[var(--bg-card)] shadow-[var(--shadow)] sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[400px]">
           <div className="flex items-center justify-between bg-[var(--accent)] px-4 py-3 sm:px-5 sm:py-4">
             <div className="flex min-w-0 items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20">
@@ -171,7 +174,7 @@ export default function ChatWidget() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="rounded-full p-1 transition-colors hover:bg-white/20"
+              className="rounded-full p-1 transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-0"
               aria-label="Fechar chat"
             >
               <X className="h-5 w-5 text-white" />
@@ -182,10 +185,10 @@ export default function ChatWidget() {
             {showNameForm ? (
               <div className="flex h-full flex-col justify-center space-y-4">
                 <div className="text-center">
-                  <h4 className="mb-2 font-display text-lg font-semibold text-[var(--text-primary)]">
+                  <h4 className="mb-2 font-display text-lg font-semibold text-[var(--text-1)]">
                     Bem-vindo!
                   </h4>
-                  <p className="text-sm text-[var(--text-secondary)]">
+                  <p className="text-sm text-[var(--text-2)]">
                     Como podemos chamá-lo?
                   </p>
                 </div>
@@ -195,7 +198,7 @@ export default function ChatWidget() {
                     value={visitorName}
                     onChange={(event) => setVisitorName(event.target.value)}
                     placeholder="Seu nome"
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-deep)] px-4 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent)] focus:outline-none"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-deep)] px-4 py-2 text-sm text-[var(--text-1)] placeholder:text-[var(--text-3)] focus:border-[var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-border)] focus-visible:ring-offset-0"
                     required
                   />
                   <input
@@ -203,7 +206,7 @@ export default function ChatWidget() {
                     value={visitorEmail}
                     onChange={(event) => setVisitorEmail(event.target.value)}
                     placeholder="Seu email (opcional)"
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-deep)] px-4 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent)] focus:outline-none"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-deep)] px-4 py-2 text-sm text-[var(--text-1)] placeholder:text-[var(--text-3)] focus:border-[var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-border)] focus-visible:ring-offset-0"
                   />
                   <button type="submit" className="btn-primary w-full px-4 py-2 text-sm font-medium">
                     Iniciar conversa
@@ -218,16 +221,17 @@ export default function ChatWidget() {
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[84%] rounded-2xl px-4 py-2 ${
+                      role={msg.isError ? 'alert' : undefined}
+                      className={`max-w-[84%] rounded-[var(--radius-card)] px-4 py-2 ${
                         msg.role === 'user'
                           ? 'bg-[var(--accent)] text-white'
-                          : 'border border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-primary)]'
+                          : 'border border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-1)]'
                       }`}
                     >
                       <p className="whitespace-pre-wrap text-sm leading-relaxed">{msg.content}</p>
                       <span
                         className={`mt-1 block text-xs ${
-                          msg.role === 'user' ? 'text-white/70' : 'text-[var(--text-muted)]'
+                          msg.role === 'user' ? 'text-white/70' : 'text-[var(--text-3)]'
                         }`}
                       >
                         {msg.timestamp.toLocaleTimeString('pt-BR', {
@@ -240,7 +244,7 @@ export default function ChatWidget() {
                 ))}
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-deep)] px-4 py-3">
+                    <div className="rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-deep)] px-4 py-3">
                       <Loader2 className="h-5 w-5 animate-spin text-[var(--accent)]" />
                     </div>
                   </div>
@@ -259,12 +263,12 @@ export default function ChatWidget() {
                   onChange={(event) => setInput(event.target.value)}
                   placeholder="Digite sua mensagem..."
                   disabled={isLoading}
-                  className="min-w-0 flex-1 rounded-lg border border-[var(--border)] bg-[var(--bg-deep)] px-4 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent)] focus:outline-none disabled:opacity-50"
+                  className="min-w-0 flex-1 rounded-lg border border-[var(--border)] bg-[var(--bg-deep)] px-4 py-2 text-sm text-[var(--text-1)] placeholder:text-[var(--text-3)] focus:border-[var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-border)] focus-visible:ring-offset-0 disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={isLoading || !input.trim()}
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)] text-white transition-colors hover:bg-[var(--accent-light)] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--accent)] text-white transition-colors hover:bg-[var(--accent-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-border)] focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
                   aria-label="Enviar mensagem"
                 >
                   {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}

@@ -167,7 +167,7 @@ export default function CotacaoForm() {
 
   if (step === 4 && isSuccess) {
     return (
-      <div className="card-vstack max-w-2xl mx-auto text-center space-y-6">
+      <div role="status" aria-live="polite" className="card-vstack max-w-2xl mx-auto text-center space-y-6">
         <div className="flex justify-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--accent)] accent-glow">
             <Check className="h-10 w-10 text-white" />
@@ -235,11 +235,13 @@ export default function CotacaoForm() {
                 type="text"
                 value={formData.companyName}
                 onChange={(e) => updateField('companyName', e.target.value)}
+                aria-invalid={Boolean(errors.companyName)}
+                aria-describedby={errors.companyName ? 'cotacao-error-companyName' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Ex: Acme Corporation"
               />
               {errors.companyName && (
-                <p className="mt-1 text-sm text-red-400">{errors.companyName}</p>
+                <p id="cotacao-error-companyName" role="alert" className="mt-1 text-sm text-danger">{errors.companyName}</p>
               )}
             </div>
 
@@ -251,11 +253,13 @@ export default function CotacaoForm() {
                 type="text"
                 value={formData.companySector}
                 onChange={(e) => updateField('companySector', e.target.value)}
+                aria-invalid={Boolean(errors.companySector)}
+                aria-describedby={errors.companySector ? 'cotacao-error-companySector' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Ex: Tecnologia, Varejo, Saúde..."
               />
               {errors.companySector && (
-                <p className="mt-1 text-sm text-red-400">{errors.companySector}</p>
+                <p id="cotacao-error-companySector" role="alert" className="mt-1 text-sm text-danger">{errors.companySector}</p>
               )}
             </div>
 
@@ -263,7 +267,12 @@ export default function CotacaoForm() {
               <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Porte da Empresa *
               </label>
-              <div className="grid grid-cols-2 gap-3">
+              <div
+                role="group"
+                aria-invalid={Boolean(errors.companySize)}
+                aria-describedby={errors.companySize ? 'cotacao-error-companySize' : undefined}
+                className="grid grid-cols-2 gap-3"
+              >
                 {[
                   { value: '1-10' as CompanySize, label: '1-10 funcionários' },
                   { value: '11-50' as CompanySize, label: '11-50 funcionários' },
@@ -285,7 +294,7 @@ export default function CotacaoForm() {
                 ))}
               </div>
               {errors.companySize && (
-                <p className="mt-1 text-sm text-red-400">{errors.companySize}</p>
+                <p id="cotacao-error-companySize" role="alert" className="mt-1 text-sm text-danger">{errors.companySize}</p>
               )}
             </div>
           </div>
@@ -320,11 +329,13 @@ export default function CotacaoForm() {
                 type="text"
                 value={formData.contactName}
                 onChange={(e) => updateField('contactName', e.target.value)}
+                aria-invalid={Boolean(errors.contactName)}
+                aria-describedby={errors.contactName ? 'cotacao-error-contactName' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="Seu nome"
               />
               {errors.contactName && (
-                <p className="mt-1 text-sm text-red-400">{errors.contactName}</p>
+                <p id="cotacao-error-contactName" role="alert" className="mt-1 text-sm text-danger">{errors.contactName}</p>
               )}
             </div>
 
@@ -336,11 +347,13 @@ export default function CotacaoForm() {
                 type="email"
                 value={formData.contactEmail}
                 onChange={(e) => updateField('contactEmail', e.target.value)}
+                aria-invalid={Boolean(errors.contactEmail)}
+                aria-describedby={errors.contactEmail ? 'cotacao-error-contactEmail' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 placeholder="seu@email.com"
               />
               {errors.contactEmail && (
-                <p className="mt-1 text-sm text-red-400">{errors.contactEmail}</p>
+                <p id="cotacao-error-contactEmail" role="alert" className="mt-1 text-sm text-danger">{errors.contactEmail}</p>
               )}
             </div>
 
@@ -401,7 +414,12 @@ export default function CotacaoForm() {
               <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
                 Tipo de Projeto * (selecione um ou mais)
               </label>
-              <div className="grid grid-cols-2 gap-3">
+              <div
+                role="group"
+                aria-invalid={Boolean(errors.projectType)}
+                aria-describedby={errors.projectType ? 'cotacao-error-projectType' : undefined}
+                className="grid grid-cols-2 gap-3"
+              >
                 {[
                   { value: 'automacao' as ProjectType, label: 'Automação' },
                   { value: 'ia' as ProjectType, label: 'Agente de IA' },
@@ -425,7 +443,7 @@ export default function CotacaoForm() {
                 ))}
               </div>
               {errors.projectType && (
-                <p className="mt-1 text-sm text-red-400">{errors.projectType}</p>
+                <p id="cotacao-error-projectType" role="alert" className="mt-1 text-sm text-danger">{errors.projectType}</p>
               )}
             </div>
 
@@ -437,6 +455,8 @@ export default function CotacaoForm() {
                 <select
                   value={formData.projectBudget || ''}
                   onChange={(e) => updateField('projectBudget', e.target.value as ProjectBudget)}
+                  aria-invalid={Boolean(errors.projectBudget)}
+                  aria-describedby={errors.projectBudget ? 'cotacao-error-projectBudget' : undefined}
                   className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 >
                   <option value="">Selecione...</option>
@@ -446,7 +466,7 @@ export default function CotacaoForm() {
                   <option value="200k+">Acima de R$ 200.000</option>
                 </select>
                 {errors.projectBudget && (
-                  <p className="mt-1 text-sm text-red-400">{errors.projectBudget}</p>
+                  <p id="cotacao-error-projectBudget" role="alert" className="mt-1 text-sm text-danger">{errors.projectBudget}</p>
                 )}
               </div>
 
@@ -457,6 +477,8 @@ export default function CotacaoForm() {
                 <select
                   value={formData.projectTimeline || ''}
                   onChange={(e) => updateField('projectTimeline', e.target.value as ProjectTimeline)}
+                  aria-invalid={Boolean(errors.projectTimeline)}
+                  aria-describedby={errors.projectTimeline ? 'cotacao-error-projectTimeline' : undefined}
                   className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 >
                   <option value="">Selecione...</option>
@@ -466,7 +488,7 @@ export default function CotacaoForm() {
                   <option value="6meses+">Mais de 6 meses</option>
                 </select>
                 {errors.projectTimeline && (
-                  <p className="mt-1 text-sm text-red-400">{errors.projectTimeline}</p>
+                  <p id="cotacao-error-projectTimeline" role="alert" className="mt-1 text-sm text-danger">{errors.projectTimeline}</p>
                 )}
               </div>
             </div>
@@ -479,11 +501,13 @@ export default function CotacaoForm() {
                 value={formData.projectDescription}
                 onChange={(e) => updateField('projectDescription', e.target.value)}
                 rows={4}
+                aria-invalid={Boolean(errors.projectDescription)}
+                aria-describedby={errors.projectDescription ? 'cotacao-error-projectDescription' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
                 placeholder="Descreva o que você precisa..."
               />
               {errors.projectDescription && (
-                <p className="mt-1 text-sm text-red-400">{errors.projectDescription}</p>
+                <p id="cotacao-error-projectDescription" role="alert" className="mt-1 text-sm text-danger">{errors.projectDescription}</p>
               )}
             </div>
 
@@ -508,17 +532,19 @@ export default function CotacaoForm() {
                 value={formData.mainChallenge}
                 onChange={(e) => updateField('mainChallenge', e.target.value)}
                 rows={3}
+                aria-invalid={Boolean(errors.mainChallenge)}
+                aria-describedby={errors.mainChallenge ? 'cotacao-error-mainChallenge' : undefined}
                 className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
                 placeholder="Qual o maior desafio que você enfrenta hoje?"
               />
               {errors.mainChallenge && (
-                <p className="mt-1 text-sm text-red-400">{errors.mainChallenge}</p>
+                <p id="cotacao-error-mainChallenge" role="alert" className="mt-1 text-sm text-danger">{errors.mainChallenge}</p>
               )}
             </div>
           </div>
 
           {errors.submit && (
-            <div className="rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">
+            <div role="alert" className="rounded-lg bg-danger/10 border border-danger/30 px-4 py-3 text-sm text-danger">
               {errors.submit}
             </div>
           )}

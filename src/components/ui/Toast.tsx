@@ -27,9 +27,9 @@ const ICONS: Record<ToastType, typeof CheckCircle2> = {
 }
 
 const COLORS: Record<ToastType, string> = {
-  success: 'text-emerald-500',
-  error: 'text-red-500',
-  info: 'text-[var(--accent)]',
+  success: 'text-success',
+  error: 'text-danger',
+  info: 'text-info',
 }
 
 export function ToastContainer() {
@@ -67,7 +67,7 @@ export function ToastContainer() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 12, scale: 0.96 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="flex max-w-sm items-start gap-3 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] px-4 py-3.5 shadow-[var(--shadow)]"
+              className="flex max-w-sm items-start gap-3 rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] px-4 py-3.5 shadow-[var(--shadow)]"
               role="alert"
             >
               <Icon className={`mt-0.5 h-4 w-4 shrink-0 ${COLORS[item.type]}`} aria-hidden="true" />

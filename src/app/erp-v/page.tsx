@@ -5,6 +5,7 @@ import { erpVLanding } from '@/lib/products/erp-v'
 export const metadata: Metadata = {
   title: erpVLanding.metaTitle,
   description: erpVLanding.metaDescription,
+  alternates: { canonical: 'https://www.vstack-solutions.com.br/erp-v' },
   openGraph: {
     title: erpVLanding.metaTitle,
     description: erpVLanding.metaDescription,

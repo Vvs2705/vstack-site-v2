@@ -26,7 +26,7 @@ function ProofProductCard({ product }: { product: ProofProduct }) {
         <span
           className={
             isProduction
-              ? 'rounded-full bg-[#22c55e]/10 px-3 py-1 text-[10px] font-bold tracking-[0.12em] text-[#22c55e]'
+              ? 'rounded-full bg-success/10 px-3 py-1 text-[10px] font-bold tracking-[0.12em] text-success'
               : 'rounded-full border border-[var(--accent-border)] bg-[var(--accent-muted)] px-3 py-1 text-[10px] font-bold tracking-[0.12em] text-[var(--accent)]'
           }
         >

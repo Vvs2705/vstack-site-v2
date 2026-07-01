@@ -11,6 +11,7 @@ const PILLARS = [
     title: 'Automação de Processos',
     description: 'Você para de depender de planilha, tarefa manual e retrabalho. Seu time ganha horas por semana e o processo roda com consistência — mesmo quando ninguém está olhando.',
     href: '/automacao-de-processos',
+    ctaLabel: 'Ver automação de processos',
   },
   {
     icon: AIIcon,
@@ -18,6 +19,7 @@ const PILLARS = [
     title: 'Inteligência Artificial',
     description: 'Seu negócio para de desperdiçar dados que já tem. Agentes de IA classificam, analisam e tomam decisões de rotina para você — integrados ao processo real, não a um chatbot genérico.',
     href: '/agentes-de-ia',
+    ctaLabel: 'Ver IA aplicada',
   },
   {
     icon: IntegrationIcon,
@@ -25,6 +27,7 @@ const PILLARS = [
     title: 'Integração de Sistemas',
     description: 'Seus sistemas param de viver em mundos separados. ERP, CRM, banco e ferramentas internas passam a falar a mesma língua — sem exportação manual, sem dados desatualizados.',
     href: '/integracao-de-sistemas',
+    ctaLabel: 'Ver integração de sistemas',
   },
   {
     icon: SaaSIcon,
@@ -32,6 +35,7 @@ const PILLARS = [
     title: 'Produtos SaaS',
     description: 'Você para de adaptar seu negócio a software de prateleira que não serve. Construímos exatamente o que a sua operação precisa, com arquitetura que aguenta crescer junto com você.',
     href: '/sistemas-sob-medida',
+    ctaLabel: 'Ver sistemas sob medida',
   },
 ]
 
@@ -49,7 +53,7 @@ export default function PillarsSection() {
           </FadeInUp>
 
           <StaggerContainer className="grid gap-4 sm:grid-cols-2" delay={0.05}>
-            {PILLARS.map(({ icon: Icon, iconDelay, title, description, href }) => (
+            {PILLARS.map(({ icon: Icon, iconDelay, title, description, href, ctaLabel }) => (
               <StaggerItem key={title}>
                 <Surface
                   as="a"
@@ -72,7 +76,7 @@ export default function PillarsSection() {
                     className="mt-4 inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--accent)] opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                     aria-hidden="true"
                   >
-                    Saiba mais
+                    {ctaLabel}
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>

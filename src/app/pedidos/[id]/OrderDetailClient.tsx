@@ -120,7 +120,7 @@ export default function OrderDetailClient({ order }: Props) {
                   <dt className="text-[11px] font-medium text-[var(--text-3)] uppercase tracking-wide mb-0.5">
                     Entregue em
                   </dt>
-                  <dd className="text-[13px] text-emerald-600 font-medium">
+                  <dd className="text-[13px] text-success font-medium">
                     {formatDateTime(order.deliveredAt)}
                   </dd>
                 </div>
@@ -233,7 +233,7 @@ function StatusTimeline({
                 className={`text-[13px] font-semibold ${
                   event.isCurrent
                     ?isCancelled
-                      ?'text-red-600'
+                      ?'text-danger'
                       : 'text-[var(--accent)]'
                     : event.isCompleted
                     ?'text-[var(--text-1)]'
@@ -276,7 +276,7 @@ function TimelineIcon({
   const base = 'h-8 w-8 mt-0'
 
   if (isCancelled && isCurrent) {
-    return <XCircle className={`${base} text-red-500`} aria-hidden="true" />
+    return <XCircle className={`${base} text-danger`} aria-hidden="true" />
   }
   if (isCompleted && !isCurrent) {
     return <CheckCircle2 className={`${base} text-[var(--accent)]`} aria-hidden="true" />

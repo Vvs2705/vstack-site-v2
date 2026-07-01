@@ -111,14 +111,14 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)] mb-3">Case FiscWise</p>
+            <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)] mb-3">Case FinFlow</p>
             <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-1)] mb-2">
-              De 5 dias fechando mês a 1 dia. Sem erros.
+              De 5 dias de reconciliação a 1 hora de validação.
             </h3>
             <p className="text-[var(--text-2)]">
-              Um cliente reduziu o tempo de fechamento mensal de 5 dias para 1, eliminando erros manuais e economizando R$ 18k/mês em folha. Tudo com automação financeira.
+              A FinFlow gastava 5 dias por semana reconciliando 6 sistemas na mão. Com integração em tempo real, o retrabalho caiu 98%, os erros caíram 97% e a operação economiza R$ 13k/mês.
             </p>
-            <Link href="/fiscwise" className="mt-4 inline-flex items-center text-[var(--accent)] font-semibold text-sm hover:gap-3 gap-2 transition-all">
+            <Link href="/cases/finflow" className="mt-4 inline-flex items-center text-[var(--accent)] font-semibold text-sm hover:gap-3 gap-2 transition-all">
               Ver case completo <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
