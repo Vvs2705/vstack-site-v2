@@ -1,22 +1,17 @@
-name: Security Review
-
-permissions:
-  pull-requests: write
-  contents: read
+name: Security Scan
 
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
-  security:
+  semgrep:
+    name: Semgrep (SAST + secrets)
     runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          fetch-depth: 2
-
-      - uses: anthropics/claude-code-security-review@main
-        with:
-          comment-pr: true
-          claude-api-key: ${{ secrets.CLAUDE_API_KEY }}
+      - run: semgrep scan --config p/security-audit --config p/secrets --error
