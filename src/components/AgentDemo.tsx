@@ -11,7 +11,6 @@ import {
   User,
 } from 'lucide-react'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
-import { cn } from '@/lib/utils'
 
 /* -------------------------------------------------------------------------- */
 /*  Roteiro determinístico (intent -> resposta). Sem rede, sem segredos.       */

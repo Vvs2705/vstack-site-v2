@@ -50,9 +50,23 @@ export async function POST(request: NextRequest) {
         <blockquote>${data.impact}</blockquote>
         <h3>Como Resolvem Hoje</h3>
         <blockquote>${data.currentSolution || 'Não resolvem / Não informado'}</blockquote>
-        <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}/admin/dores/${dor.id}">Ver no painel admin</a></p>
+        <p><small>ID: ${dor.id}</small></p>
       `,
     })
+
+    // Email de confirmação (só quando a pessoa se identificou)
+    if (!data.isAnonymous && data.email) {
+      await sendEmail('dor:cliente', {
+        from:    process.env.RESEND_FROM_EMAIL!,
+        to:      data.email,
+        subject: 'Recebemos sua dor — V-STACK SOLUTIONS',
+        html: `
+          <h2>Olá${data.name ? `, ${data.name}` : ''}!</h2>
+          <p>Recebemos o relato <strong>${data.title}</strong>. Vamos estudar o problema e, se fizer sentido, entramos em contato.</p>
+          <p>Equipe V-STACK SOLUTIONS</p>
+        `,
+      })
+    }
 
     await prisma.auditLog.create({
       data: { action: 'dor_submitted', entityType: 'DorCliente', entityId: dor.id, ipAddress: ip },

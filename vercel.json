@@ -4,9 +4,6 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "regions": ["gru1"],
-  "env": {
-    "NEXT_PUBLIC_SITE_URL": "https://www.vstack-solutions.com.br"
-  },
   "build": {
     "env": {
       "NEXT_TELEMETRY_DISABLED": "1"

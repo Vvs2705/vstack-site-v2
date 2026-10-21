@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
         <p><strong>Interesse:</strong> ${data.interest}</p>
         <p><strong>Mensagem:</strong></p>
         <blockquote>${data.message}</blockquote>
-        <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}/admin/leads/${lead.id}">Ver no painel admin</a></p>
+        <p><small>ID: ${lead.id}</small></p>
       `,
     })
 

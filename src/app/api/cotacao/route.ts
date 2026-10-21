@@ -65,7 +65,20 @@ export async function POST(request: NextRequest) {
         <blockquote>${data.projectDescription}</blockquote>
         <h3>Principal Desafio</h3>
         <blockquote>${data.mainChallenge}</blockquote>
-        <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}/admin/cotacoes/${cotacao.id}">Ver no painel admin</a></p>
+        <p><small>ID: ${cotacao.id}</small></p>
+      `,
+    })
+
+    // Email de confirmação para o cliente
+    await sendEmail('cotacao:cliente', {
+      from:    process.env.RESEND_FROM_EMAIL!,
+      to:      data.contactEmail,
+      subject: 'Recebemos seu pedido de diagnóstico — V-STACK SOLUTIONS',
+      html: `
+        <h2>Olá, ${data.contactName}!</h2>
+        <p>Recebemos o pedido de diagnóstico da <strong>${data.companyName}</strong>.</p>
+        <p>Vamos analisar o contexto e retornar com uma direção inicial em até <strong>24 horas úteis</strong>.</p>
+        <p>Equipe V-STACK SOLUTIONS</p>
       `,
     })
 

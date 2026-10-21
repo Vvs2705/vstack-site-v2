@@ -3,13 +3,13 @@ module.exports = {
   siteUrl: 'https://www.vstack-solutions.com.br',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
-  exclude: ['/api/*', '/admin/*', '/login', '/pedidos', '/pedidos/*'],
+  exclude: ['/api/*'],
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/'],
+        disallow: ['/api/'],
       },
     ],
     additionalSitemaps: [],

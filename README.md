@@ -14,7 +14,6 @@ Aplicação **SSR completa** em Next.js (App Router), não um site estático.
 - **React 19** + **TypeScript 5**
 - **Tailwind CSS 4** (via `@tailwindcss/postcss`, `lightningcss`)
 - **Prisma 5** + **PostgreSQL** (Neon / Supabase / Railway)
-- **Autenticação** própria com `jose` (JWT) + `bcryptjs` (área administrativa de pedidos)
 - **Upstash Redis** + `@upstash/ratelimit` (rate limiting de formulários/APIs)
 - **Resend** (envio de e-mails de leads e contato)
 - **OpenAI SDK** (chat/assistentes e a calculadora fiscal do FiscWise)
@@ -44,9 +43,8 @@ Aplicação **SSR completa** em Next.js (App Router), não um site estático.
 │   │   ├── cotacao/, contato/,   # Conversão (formulários)
 │   │   │   envie-sua-dor/, faq/
 │   │   ├── privacidade/, termos/, cookies/   # Legal / LGPD
-│   │   ├── login/, pedidos/      # Área administrativa (auth)
-│   │   └── api/                  # Route handlers (contato, cotacao, dor, chat,
-│   │                             #   auth, orders, fiscwise/calculator, ...)
+│   │   └── api/                  # Route handlers (contato, cotacao, dor,
+│   │                             #   fiscwise/calculator)
 │   ├── components/               # UI, sections, forms, layout, seo, analytics
 │   ├── lib/                      # Dados e serviços (ver abaixo)
 │   │   ├── articles.ts           # Conteúdo do blog (/conteudos)
@@ -56,7 +54,6 @@ Aplicação **SSR completa** em Next.js (App Router), não um site estático.
 │   │   │   resend.ts, openai.ts
 │   │   ├── analytics.ts          # Camada de eventos (despacha p/ window.gtag)
 │   │   └── validations.ts        # Schemas zod dos formulários
-│   └── hooks/                    # Hooks React (ex.: useAuth)
 ├── prisma/schema.prisma          # Modelo de dados
 ├── middleware.ts                 # Middleware de borda
 ├── next.config.ts                # Security headers, redirects, canonical host
@@ -108,7 +105,6 @@ Copie `.env.example` para `.env` e preencha. Principais:
 
 | Variável | Obrigatória | Descrição |
 |----------|:-----------:|-----------|
-| `NEXT_PUBLIC_SITE_URL` | sim | URL canônica do site (`https://vstack-solutions.com.br`) |
 | `DATABASE_URL` | sim | String de conexão PostgreSQL (Prisma) |
 | `UPSTASH_REDIS_REST_URL` | sim | Endpoint do Upstash Redis (rate limiting) |
 | `UPSTASH_REDIS_REST_TOKEN` | sim | Token do Upstash Redis |
@@ -116,11 +112,10 @@ Copie `.env.example` para `.env` e preencha. Principais:
 | `RESEND_API_KEY` | sim | Chave da Resend (envio de e-mails) |
 | `RESEND_FROM_EMAIL` | sim | Remetente dos e-mails transacionais |
 | `LEADS_EMAIL` | sim | Destino dos leads recebidos pelos formulários |
-| `JWT_SECRET` | sim | Segredo de assinatura JWT (mín. 32 caracteres) |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | não | Verificação do Google Search Console |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | não | ID do GA4 (`G-XXXXXXXXXX`) — sem ele o GA4 não injeta nada |
 
-> **Analytics — estado real:** o componente `GoogleAnalytics` (`src/components/analytics/GoogleAnalytics.tsx`) só injeta o `gtag.js` quando `NEXT_PUBLIC_GA_MEASUREMENT_ID` está definido; sem a variável ele retorna `null` (no-op gracioso, não quebra build nem produção). Enquanto a propriedade GA4 não é criada, apenas **Vercel Analytics** está ativo.
+> **Analytics — estado real:** o componente `GoogleAnalytics` (`src/components/analytics/GoogleAnalytics.tsx`) só injeta o `gtag.js` quando `NEXT_PUBLIC_GA_MEASUREMENT_ID` está definido **e** o visitante aceitou cookies no banner; sem isso ele retorna `null` (no-op gracioso, não quebra build nem produção). Enquanto a propriedade GA4 não é criada, apenas **Vercel Analytics** está ativo.
 
 Nunca commite o `.env`. Em produção, configure tudo nas **Environment Variables da Vercel**.
 
@@ -166,7 +161,6 @@ Exemplos reais (`src/app/conteudos/page.tsx`):
 - `/cotacao`, `/contato`, `/envie-sua-dor` — Formulários de captação (Resend + Upstash + zod)
 - `/faq`, `/sobre` — Apoio à venda
 - `/privacidade`, `/termos`, `/cookies` — Legal / LGPD
-- `/login`, `/pedidos` — Área administrativa (auth com `jose`/`bcrypt`)
 
 Plano editorial completo do blog em [`docs/PLANO_CONTEUDO_90D.md`](docs/PLANO_CONTEUDO_90D.md).
 

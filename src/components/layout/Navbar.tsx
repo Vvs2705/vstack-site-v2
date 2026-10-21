@@ -2,10 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Package, LogOut, ChevronDown } from 'lucide-react'
-import { useAuth } from '@/hooks/useAuth'
+import { Menu, X } from 'lucide-react'
 import VStackLogo from '@/components/brand/VStackLogo'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 
@@ -22,8 +20,6 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
-  const { user, isAuthenticated, isLoading, signInWithGoogle, signOut } = useAuth()
   const pathname = usePathname()
 
   return (
@@ -68,29 +64,9 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
-          {!isLoading && (
-            isAuthenticated && user ?(
-              <UserMenu
-                user={user}
-                isOpen={isUserMenuOpen}
-                onToggle={() => setIsUserMenuOpen((value) => !value)}
-                onClose={() => setIsUserMenuOpen(false)}
-                onSignOut={signOut}
-              />
-            ) : (
-              <>
-                <button
-                  onClick={signInWithGoogle}
-                  className="flex h-11 items-center px-3 text-[13px] font-semibold text-[var(--text-2)] transition-colors hover:text-[var(--text-1)]"
-                >
-                  Entrar
-                </button>
-                <Link href="/cotacao" className="btn-primary min-h-[44px] px-5 py-2.5 text-[13px]">
-                  Solicitar diagnóstico
-                </Link>
-              </>
-            )
-          )}
+          <Link href="/cotacao" className="btn-primary min-h-[44px] px-5 py-2.5 text-[13px]">
+            Solicitar diagnóstico
+          </Link>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -142,61 +118,3 @@ export default function Navbar() {
   )
 }
 
-interface UserMenuProps {
-  user: { name: string; email: string; image?: string | null }
-  isOpen: boolean
-  onToggle: () => void
-  onClose: () => void
-  onSignOut: () => void
-}
-
-function UserMenu({ user, isOpen, onToggle, onClose, onSignOut }: UserMenuProps) {
-  return (
-    <div className="relative">
-      <button
-        onClick={onToggle}
-        className="flex h-11 items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] px-2.5 transition-colors hover:border-[var(--accent-border)]"
-        aria-label="Menu do usuário"
-        aria-expanded={isOpen}
-        aria-haspopup="menu"
-      >
-        {user.image ?(
-          <Image src={user.image} alt={user.name} width={24} height={24} className="rounded-full object-cover" />
-        ) : (
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--accent-muted)] text-[10px] font-bold text-[var(--accent)]">
-            {user.name.charAt(0).toUpperCase()}
-          </span>
-        )}
-        <span className="max-w-[110px] truncate text-[12px] font-semibold text-[var(--text-1)]">{user.name.split(' ')[0]}</span>
-        <ChevronDown className="h-3 w-3 text-[var(--text-3)]" />
-      </button>
-
-      {isOpen && (
-        <>
-          <button className="fixed inset-0 z-10 cursor-default" onClick={onClose} aria-label="Fechar menu" />
-          <div role="menu" className="absolute right-0 top-11 z-20 w-52 overflow-hidden rounded-[var(--radius-panel)] border border-[var(--border)] bg-[var(--bg-card)] py-2 shadow-[var(--shadow-sm)]">
-            <div className="border-b border-[var(--border)] px-3 pb-3 pt-1">
-              <p className="truncate text-[12px] font-semibold text-[var(--text-1)]">{user.name}</p>
-              <p className="truncate text-[11px] text-[var(--text-3)]">{user.email}</p>
-            </div>
-            <Link href="/pedidos" role="menuitem" onClick={onClose} className="flex items-center gap-2.5 px-3 py-2.5 text-[13px] text-[var(--text-2)] hover:bg-[var(--accent-muted)] hover:text-[var(--accent)]">
-              <Package className="h-4 w-4" />
-              Meus pedidos
-            </Link>
-            <button
-              role="menuitem"
-              onClick={() => {
-                onClose()
-                onSignOut()
-              }}
-              className="flex w-full items-center gap-2.5 px-3 py-2.5 text-[13px] text-[var(--text-2)] hover:bg-danger/10 hover:text-danger"
-            >
-              <LogOut className="h-4 w-4" />
-              Sair
-            </button>
-          </div>
-        </>
-      )}
-    </div>
-  )
-}

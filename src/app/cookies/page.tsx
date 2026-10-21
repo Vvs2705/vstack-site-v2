@@ -54,11 +54,6 @@ export default function CookiesPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-[var(--border)]">
-                        <td className="py-2 pr-4 font-mono text-xs">admin_token</td>
-                        <td className="py-2 pr-4">Autenticação do painel administrativo</td>
-                        <td className="py-2">8 horas</td>
-                      </tr>
                       <tr>
                         <td className="py-2 pr-4 font-mono text-xs">vstack-cookie-consent</td>
                         <td className="py-2 pr-4">Armazena sua preferência de cookies</td>

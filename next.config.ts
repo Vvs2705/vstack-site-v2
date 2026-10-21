@@ -56,11 +56,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: '/admin',
-        destination: '/admin/dashboard',
-        permanent: false,
-      },
       // Host canônico: non-www -> www (301)
       {
         source: '/:path*',
