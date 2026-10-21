@@ -4,12 +4,14 @@ import DorForm from '@/components/forms/DorForm'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import { Container, Section, Surface } from '@/components/primitives/Layout'
+import { OG_DEFAULTS } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
   title: 'Envie sua dor',
   description:
     'Descreva um gargalo operacional da sua empresa. A V-STACK SOLUTIONS analisa oportunidades de automação, IA, integração ou sistema sob medida.',
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Envie sua dor | V-STACK SOLUTIONS',
     description: 'Conte onde sua operação trava e receba uma leitura técnica inicial.',
   },

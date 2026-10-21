@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle2, Compass, Layers3, ShieldCheck, Target, Workfl
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import JsonLd from '@/components/seo/JsonLd'
-import { breadcrumbList } from '@/lib/structured-data'
+import { breadcrumbList, OG_DEFAULTS } from '@/lib/structured-data'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
 
 // Lazy-load heavy below-fold sections
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description:
     'Conheça a V-STACK SOLUTIONS: uma empresa de tecnologia focada em automação, IA, integrações e sistemas sob medida para operações que precisam escalar.',
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Sobre | V-STACK SOLUTIONS',
     description:
       'Tecnologia sob medida para reduzir retrabalho, integrar sistemas e transformar operação em vantagem competitiva.',

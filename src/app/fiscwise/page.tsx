@@ -9,7 +9,7 @@ import FiscWiseComparisonSection from '@/components/fiscwise/FiscWiseComparisonS
 import CTASection from '@/components/sections/CTASection'
 import { Container, Section, Surface, SectionHeader } from '@/components/primitives/Layout'
 import JsonLd from '@/components/seo/JsonLd'
-import { breadcrumbList } from '@/lib/structured-data'
+import { breadcrumbList, OG_DEFAULTS } from '@/lib/structured-data'
 import { FISCWISE_FAQ, COMPETITOR_COMPARISON } from '@/lib/fiscwise-faq'
 
 const APP_URL = 'https://www.fiscwise.com.br'
@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/fiscwise` },
   openGraph: {
+    ...OG_DEFAULTS,
     title: META_TITLE,
     description: META_DESCRIPTION,
     url: `${SITE_URL}/fiscwise`,

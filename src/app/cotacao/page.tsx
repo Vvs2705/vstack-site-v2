@@ -5,12 +5,14 @@ import CotacaoForm from '@/components/forms/CotacaoForm'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import { Container, Section, Surface } from '@/components/primitives/Layout'
+import { OG_DEFAULTS } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
   title: 'Solicitar Diagnóstico',
   description:
     'Solicite um diagnóstico para automação, IA, integração de sistemas ou desenvolvimento sob medida. Receba uma análise inicial do caminho técnico recomendado.',
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Solicitar Diagnóstico | V-STACK SOLUTIONS',
     description: 'Receba uma análise inicial para transformar seu desafio operacional em solução técnica.',
   },

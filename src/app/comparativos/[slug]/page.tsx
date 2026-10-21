@@ -6,7 +6,7 @@ import Navbar from '@/components/layout/Navbar'
 import JsonLd from '@/components/seo/JsonLd'
 import ComparativoTable from '@/components/comparativos/ComparativoTable'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
-import { breadcrumbList } from '@/lib/structured-data'
+import { breadcrumbList, OG_DEFAULTS } from '@/lib/structured-data'
 import { comparativos, getComparativo, comparativoUrl } from '@/lib/comparativos'
 import type { Comparativo } from '@/lib/comparativos'
 
@@ -40,6 +40,7 @@ export async function generateMetadata({ params }: ComparativoPageProps): Promis
       canonical: `/comparativos/${comparativo.slug}`,
     },
     openGraph: {
+      ...OG_DEFAULTS,
       title: `${comparativo.metaTitle} | V-STACK SOLUTIONS`,
       description: comparativo.metaDescription,
       type: 'article',

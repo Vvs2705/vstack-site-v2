@@ -6,6 +6,15 @@ import type { SeoServicePage } from '@/lib/seo-service-pages'
 export const SITE_URL = 'https://www.vstack-solutions.com.br'
 const siteUrl = SITE_URL
 
+// O Next não faz merge profundo do openGraph: a página que define o seu perde url, imagem
+// e siteName da raiz. Toda página espalha isto antes dos próprios campos.
+export const OG_DEFAULTS = {
+  locale: 'pt_BR',
+  url: './', // resolve por página, como o canonical
+  siteName: 'V-STACK SOLUTIONS',
+  images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'V-STACK SOLUTIONS' }],
+}
+
 export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',

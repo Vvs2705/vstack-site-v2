@@ -4,7 +4,7 @@ import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import JsonLd from '@/components/seo/JsonLd'
 import { Container, Section } from '@/components/primitives/Layout'
-import { breadcrumbList } from '@/lib/structured-data'
+import { breadcrumbList, OG_DEFAULTS } from '@/lib/structured-data'
 import { comparativos } from '@/lib/comparativos'
 
 export const metadata: Metadata = {
@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     canonical: '/comparativos',
   },
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Comparativos | V-STACK SOLUTIONS',
     description:
       'Comparativos honestos para decidir entre os produtos da V-STACK e as alternativas do mercado, com o veredito de quando cada um faz sentido.',

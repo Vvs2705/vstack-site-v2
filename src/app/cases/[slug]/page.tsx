@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Container, Surface } from '@/components/primitives/Layout'
 import JsonLd from '@/components/seo/JsonLd'
-import { breadcrumbList } from '@/lib/structured-data'
+import { breadcrumbList, OG_DEFAULTS } from '@/lib/structured-data'
 import { caseStudies, getCaseStudy } from '@/lib/case-studies'
 import type { CaseStudySlug } from '@/lib/case-studies'
 
@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${caseStudy.company} - Case de Estudo`,
     description: `Como ${caseStudy.company} (${caseStudy.industry}) alcançou ${caseStudy.results[0].improvement} em ${caseStudy.results[0].metric.toLowerCase()}`,
     openGraph: {
+      ...OG_DEFAULTS,
       title: `${caseStudy.company} - Case de Estudo`,
       description: caseStudy.challenge,
       type: 'article',

@@ -4,7 +4,7 @@ import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import SolucoesHero from '@/components/sections/SolucoesHero'
 import JsonLd from '@/components/seo/JsonLd'
-import { breadcrumbList } from '@/lib/structured-data'
+import { breadcrumbList, OG_DEFAULTS } from '@/lib/structured-data'
 import { Container, Section } from '@/components/primitives/Layout'
 
 // Lazy-load heavy sections below the fold
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     'Automação de processos, agentes de IA, integração de sistemas e desenvolvimento sob medida para empresas que precisam escalar com menos retrabalho.',
   keywords: ['automação de processos', 'agentes de IA', 'integração de sistemas', 'sistemas sob medida', 'FiscWise'],
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Soluções | V-STACK SOLUTIONS',
     description:
       'Tecnologia aplicada para reduzir retrabalho, integrar sistemas e criar operações mais previsíveis.',

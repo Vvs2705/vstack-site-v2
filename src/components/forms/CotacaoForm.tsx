@@ -275,7 +275,6 @@ export default function CotacaoForm() {
               </label>
               <div
                 role="group"
-                aria-invalid={Boolean(errors.companySize)}
                 aria-describedby={errors.companySize ? 'cotacao-error-companySize' : undefined}
                 className="grid grid-cols-2 gap-3"
               >
@@ -422,7 +421,6 @@ export default function CotacaoForm() {
               </label>
               <div
                 role="group"
-                aria-invalid={Boolean(errors.projectType)}
                 aria-describedby={errors.projectType ? 'cotacao-error-projectType' : undefined}
                 className="grid grid-cols-2 gap-3"
               >

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_DEFAULTS } from './structured-data'
 
 export type SeoServiceSlug =
   | 'automacao-de-processos'
@@ -167,6 +168,7 @@ export function getSeoServiceMetadata(slug: SeoServiceSlug): Metadata {
       canonical: `/${page.slug}`,
     },
     openGraph: {
+      ...OG_DEFAULTS,
       title: `${page.eyebrow} | V-STACK SOLUTIONS`,
       description: page.metaDescription,
       type: 'website',

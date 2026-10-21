@@ -6,7 +6,7 @@ import Navbar from '@/components/layout/Navbar'
 import JsonLd from '@/components/seo/JsonLd'
 import { Container, Section } from '@/components/primitives/Layout'
 import { articles, getArticle } from '@/lib/articles'
-import { articleJsonLd, SITE_URL } from '@/lib/structured-data'
+import { articleJsonLd, OG_DEFAULTS, SITE_URL } from '@/lib/structured-data'
 
 
 // Breadcrumb definido localmente (Home › Conteúdos › {artigo}) para não acoplar
@@ -62,6 +62,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       canonical: `/conteudos/${article.slug}`,
     },
     openGraph: {
+      ...OG_DEFAULTS,
       title: `${article.title} | V-STACK SOLUTIONS`,
       description: article.description,
       type: 'article',

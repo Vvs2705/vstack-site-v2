@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import ProductLanding from '@/components/product/ProductLanding'
 import { fretamentoProLanding } from '@/lib/products/fretamento-pro'
+import { OG_DEFAULTS } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
   title: fretamentoProLanding.metaTitle,
   description: fretamentoProLanding.metaDescription,
   alternates: { canonical: 'https://www.vstack-solutions.com.br/fretamento-pro' },
   openGraph: {
+    ...OG_DEFAULTS,
     title: fretamentoProLanding.metaTitle,
     description: fretamentoProLanding.metaDescription,
     url: 'https://www.vstack-solutions.com.br/fretamento-pro',

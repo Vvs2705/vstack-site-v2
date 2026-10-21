@@ -4,12 +4,14 @@ import ContatoForm from '@/components/forms/ContatoForm'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import { Container, Section, Surface } from '@/components/primitives/Layout'
+import { OG_DEFAULTS } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
   title: 'Contato',
   description:
     'Fale com a V-STACK SOLUTIONS para discutir automação, IA, integrações ou desenvolvimento de sistemas sob medida para sua empresa.',
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Contato | V-STACK SOLUTIONS',
     description: 'Converse com especialistas em automação, IA e sistemas sob medida.',
   },

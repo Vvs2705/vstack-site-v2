@@ -4,7 +4,7 @@ import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import VercelAnalytics from '@/components/analytics/VercelAnalytics'
 import RootLayoutWrapper from '@/components/providers/RootLayoutWrapper'
 import JsonLd from '@/components/seo/JsonLd'
-import { organizationJsonLd, SITE_URL, websiteJsonLd } from '@/lib/structured-data'
+import { OG_DEFAULTS, organizationJsonLd, SITE_URL, websiteJsonLd } from '@/lib/structured-data'
 import { cn } from '@/lib/utils'
 import './globals.css'
 
@@ -55,22 +55,11 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
+    ...OG_DEFAULTS,
     type: 'website',
-    locale: 'pt_BR',
-    // './' resolve por página (como o canonical); siteUrl fazia todo og:url apontar para a home
-    url: './',
-    siteName: 'V-STACK SOLUTIONS',
     title: 'V-STACK SOLUTIONS - Automação, IA e Sistemas Sob Medida',
     description:
       'Automação de processos, agentes de IA, integrações e sistemas sob medida para empresas que precisam escalar com clareza operacional.',
-    images: [
-      {
-        url: `${siteUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'V-STACK SOLUTIONS',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',

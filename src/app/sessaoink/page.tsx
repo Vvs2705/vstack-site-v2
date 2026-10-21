@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import ProductLanding from '@/components/product/ProductLanding'
 import { sessaoinkLanding } from '@/lib/products/sessaoink'
+import { OG_DEFAULTS } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
   title: 'SessãoInk — Gestão para tatuadores',
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     'O sistema que organiza seu estúdio de tatuagem: agenda, clientes, financeiro com comissões por artista, portfólio, consentimento assinado e portal público por slug.',
   alternates: { canonical: 'https://www.vstack-solutions.com.br/sessaoink' },
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'SessãoInk — Gestão para tatuadores',
     description:
       'Agenda, clientes, financeiro com comissão por artista, portfólio, consentimento assinado e página pública. O sistema feito para tatuadores e estúdios.',

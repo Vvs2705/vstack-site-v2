@@ -5,7 +5,7 @@ import Navbar from '@/components/layout/Navbar'
 import JsonLd from '@/components/seo/JsonLd'
 import { Container, Section } from '@/components/primitives/Layout'
 import { articles } from '@/lib/articles'
-import { SITE_URL } from '@/lib/structured-data'
+import { OG_DEFAULTS, SITE_URL } from '@/lib/structured-data'
 
 
 // Breadcrumb (Início › Conteúdos) definido localmente para não acoplar a página
@@ -41,6 +41,7 @@ export const metadata: Metadata = {
     'transformação digital',
   ],
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Conteúdos | V-STACK SOLUTIONS',
     description:
       'Guias práticos para empresas que querem reduzir retrabalho, organizar processos e usar tecnologia com mais clareza.',

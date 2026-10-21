@@ -20,6 +20,7 @@ import Footer from '@/components/layout/Footer'
 import Breadcrumb from '@/components/ui/Breadcrumb'
 import ProjectDetailHero from '@/components/sections/ProjectDetailHero'
 import CTASection from '@/components/sections/CTASection'
+import { OG_DEFAULTS } from '@/lib/structured-data'
 
 const iconMap = {
   TrendingUp,
@@ -60,6 +61,7 @@ export async function generateMetadata(
     description: project.description,
     keywords: [project.title, ...project.tags, 'case study', 'projeto'],
     openGraph: {
+      ...OG_DEFAULTS,
       title: `${project.title} | V-STACK SOLUTIONS`,
       description: project.description,
       type: 'website',
