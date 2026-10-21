@@ -9,6 +9,11 @@ export const ContatoSchema = z.object({
   interest: z.enum(['automacao', 'ia', 'integracao', 'saas', 'fiscwise', 'outro']),
 })
 
+// Inclui os slugs de produto: /cotacao?produto=<slug> pré-seleciona o tipo.
+export const PROJECT_TYPES = [
+  'automacao', 'ia', 'integracao', 'saas', 'fiscwise', 'sessaoink', 'fretamento-pro', 'erp-v', 'outro',
+] as const
+
 export const CotacaoSchema = z.object({
   companyName: z.string().min(2).max(100).trim(),
   companySector: z.string().min(2).max(100).trim(),
@@ -17,7 +22,7 @@ export const CotacaoSchema = z.object({
   contactEmail: z.string().email().max(254).trim().transform((value) => value.toLowerCase()),
   contactPhone: z.string().max(20).optional(),
   contactRole: z.string().max(100).optional(),
-  projectType: z.array(z.enum(['automacao', 'ia', 'integracao', 'saas', 'fiscwise', 'outro'])).min(1),
+  projectType: z.array(z.enum(PROJECT_TYPES)).min(1),
   projectBudget: z.enum(['ate-10k', '10k-50k', '50k-200k', '200k+']),
   projectTimeline: z.enum(['urgente', '1-3meses', '3-6meses', '6meses+']),
   projectDescription: z.string().min(20).max(3000).trim(),

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { ClipboardCheck, Clock, FileSearch, ShieldCheck } from 'lucide-react'
 import CotacaoForm from '@/components/forms/CotacaoForm'
 import Footer from '@/components/layout/Footer'
@@ -74,7 +75,9 @@ export default function CotacaoPage() {
 
         <Section>
           <Container>
-            <CotacaoForm />
+            <Suspense fallback={<div className="card-vstack mx-auto min-h-[520px] max-w-3xl" />}>
+              <CotacaoForm />
+            </Suspense>
           </Container>
         </Section>
       </main>

@@ -16,6 +16,11 @@ export async function trackConversion(name: string, properties?: AnalyticsProper
   }
 }
 
+// Consentimento LGPD: o CookieBanner grava a escolha e dispara CONSENT_EVENT;
+// o GoogleAnalytics só carrega com 'accepted'.
+export const CONSENT_KEY = 'vstack-cookie-consent'
+export const CONSENT_EVENT = 'vstack-consent-change'
+
 // ---------------------------------------------------------------------------
 // Camada de eventos client-side
 // ---------------------------------------------------------------------------

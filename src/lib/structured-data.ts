@@ -1,7 +1,10 @@
 import type { Article } from '@/lib/articles'
 import type { SeoServicePage } from '@/lib/seo-service-pages'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vstack-solutions.com.br'
+// Host canônico fixo (não vem do env): o NEXT_PUBLIC_SITE_URL da Vercel aponta para o
+// domínio sem www, que redireciona, e 31 páginas herdavam canonical/og:url errados.
+export const SITE_URL = 'https://www.vstack-solutions.com.br'
+const siteUrl = SITE_URL
 
 export function organizationJsonLd() {
   return {

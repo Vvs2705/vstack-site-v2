@@ -3,7 +3,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
 export const metadata = {
-  title: 'Política de Privacidade — V-STACK SOLUTIONS',
+  title: 'Política de Privacidade',
   description: 'Como coletamos, usamos e protegemos seus dados pessoais.',
 }
 

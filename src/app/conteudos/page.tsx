@@ -5,9 +5,8 @@ import Navbar from '@/components/layout/Navbar'
 import JsonLd from '@/components/seo/JsonLd'
 import { Container, Section } from '@/components/primitives/Layout'
 import { articles } from '@/lib/articles'
+import { SITE_URL } from '@/lib/structured-data'
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vstack-solutions.com.br'
 
 // Breadcrumb (Início › Conteúdos) definido localmente para não acoplar a página
 // a um helper compartilhado.

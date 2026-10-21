@@ -1,3 +1,5 @@
+import { SITE_URL } from '@/lib/structured-data'
+
 // ─── Comparativos indexáveis (SEO long-tail, fundo de funil) ───────────────────
 //
 // REGRA DE INTEGRIDADE (crítica): nada aqui pode fabricar preço, número ou
@@ -85,7 +87,7 @@ export interface Comparativo {
 
 // ─── Helpers de dados ──────────────────────────────────────────────────────────
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vstack-solutions.com.br'
+const SITE = SITE_URL
 
 export const comparativos: Comparativo[] = [
   // ── 1. FiscWise vs. sistemas para escritório de contabilidade ────────────────

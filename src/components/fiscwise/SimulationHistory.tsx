@@ -51,30 +51,35 @@ async function exportSimulationPDF(simulationId: string): Promise<void> {
 
 export function SimulationHistory({ plan, canExportPDF }: Props) {
   const [simulations, setSimulations] = useState<Simulation[]>([])
-  const [isLoading, setIsLoading] = useState(false)
+  const canView = plan !== 'FREE'
+  const [isLoading, setIsLoading] = useState(canView)
   const [error, setError] = useState<string | null>(null)
   const [exportingId, setExportingId] = useState<string | null>(null)
   const [exportError, setExportError] = useState<string | null>(null)
 
-  const canView = plan !== 'FREE'
+  // Estado só muda nos callbacks da promise: o efeito inicial não dispara render em cascata.
+  const fetchSimulations = useCallback(
+    () =>
+      getSimulations()
+        .then((data) => {
+          setSimulations(data.simulations)
+          setError(null)
+        })
+        .catch((err) => setError(err instanceof Error ? err.message : 'Erro ao carregar histórico.'))
+        .finally(() => setIsLoading(false)),
+    []
+  )
 
-  const load = useCallback(async () => {
+  const load = () => {
     if (!canView) return
     setIsLoading(true)
     setError(null)
-    try {
-      const data = await getSimulations()
-      setSimulations(data.simulations)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao carregar histórico.')
-    } finally {
-      setIsLoading(false)
-    }
-  }, [canView])
+    void fetchSimulations()
+  }
 
   useEffect(() => {
-    load()
-  }, [load])
+    if (canView) void fetchSimulations()
+  }, [canView, fetchSimulations])
 
   async function handleExport(id: string) {
     setExportingId(id)

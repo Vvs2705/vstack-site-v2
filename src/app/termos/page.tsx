@@ -3,7 +3,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
 export const metadata = {
-  title: 'Termos de Uso — V-STACK SOLUTIONS',
+  title: 'Termos de Uso',
   description: 'Termos e condições de uso dos serviços da V-STACK SOLUTIONS.',
 }
 

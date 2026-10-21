@@ -5,10 +5,9 @@ import Footer from '@/components/layout/Footer'
 import { Container, Section, Surface, SectionHeader } from '@/components/primitives/Layout'
 import { FadeInUp, StaggerContainer, StaggerItem } from '@/components/animations'
 import JsonLd from '@/components/seo/JsonLd'
-import { breadcrumbList } from '@/lib/structured-data'
+import { breadcrumbList, SITE_URL } from '@/lib/structured-data'
 import type { ProductLandingData } from '@/lib/products/types'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vstack-solutions.com.br'
 
 /**
  * Landing page de venda reutilizável para produtos próprios da Vstack.

@@ -3,13 +3,14 @@
 import { useState, useEffect } from 'react'
 import { Cookie, X } from 'lucide-react'
 import Link from 'next/link'
+import { CONSENT_EVENT, CONSENT_KEY } from '@/lib/analytics'
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     // Check if user has already accepted cookies
-    const cookieConsent = localStorage.getItem('vstack-cookie-consent')
+    const cookieConsent = localStorage.getItem(CONSENT_KEY)
     if (!cookieConsent) {
       // Show banner after 1 second delay
       const timer = setTimeout(() => {
@@ -19,15 +20,14 @@ export default function CookieBanner() {
     }
   }, [])
 
-  const handleAccept = () => {
-    localStorage.setItem('vstack-cookie-consent', 'accepted')
+  const saveConsent = (value: 'accepted' | 'rejected') => {
+    localStorage.setItem(CONSENT_KEY, value)
+    window.dispatchEvent(new Event(CONSENT_EVENT))
     setIsVisible(false)
   }
 
-  const handleReject = () => {
-    localStorage.setItem('vstack-cookie-consent', 'rejected')
-    setIsVisible(false)
-  }
+  const handleAccept = () => saveConsent('accepted')
+  const handleReject = () => saveConsent('rejected')
 
   if (!isVisible) return null
 

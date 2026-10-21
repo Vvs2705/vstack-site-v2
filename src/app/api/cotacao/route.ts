@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { resend } from '@/lib/resend'
+import { sendEmail } from '@/lib/resend'
 import { CotacaoSchema } from '@/lib/validations'
 import { sanitizeObject, extractIp } from '@/lib/security'
 import { trackConversion } from '@/lib/analytics'
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Notificação interna detalhada
-    await resend.emails.send({
+    await sendEmail('cotacao:interno', {
       from:    process.env.RESEND_FROM_EMAIL!,
       to:      process.env.LEADS_EMAIL!,
       subject: `📋 Nova Cotação — ${data.companyName} | ${data.projectType.join(', ')}`,

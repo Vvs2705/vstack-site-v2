@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { ChevronRight, ChevronLeft, Check, Loader2 } from 'lucide-react'
-import { CotacaoSchema, type CotacaoInput } from '@/lib/validations'
+import { CotacaoSchema, PROJECT_TYPES, type CotacaoInput } from '@/lib/validations'
 import { trackFormSubmit } from '@/lib/analytics'
 import { z } from 'zod'
 
@@ -12,7 +13,12 @@ type ProjectBudget = CotacaoInput['projectBudget']
 type ProjectTimeline = CotacaoInput['projectTimeline']
 type ProjectType = CotacaoInput['projectType'][number]
 
+const isProjectType = (value: string | null): value is ProjectType =>
+  PROJECT_TYPES.some((type) => type === value)
+
+// useSearchParams: a página envolve este form em <Suspense>.
 export default function CotacaoForm() {
+  const produto = useSearchParams().get('produto')
   const [step, setStep] = useState<Step>(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
@@ -26,7 +32,7 @@ export default function CotacaoForm() {
     contactEmail: '',
     contactPhone: '',
     contactRole: '',
-    projectType: [],
+    projectType: isProjectType(produto) ? [produto] : [],
     projectBudget: undefined,
     projectTimeline: undefined,
     projectDescription: '',
@@ -426,6 +432,9 @@ export default function CotacaoForm() {
                   { value: 'integracao' as ProjectType, label: 'Integração de sistemas' },
                   { value: 'saas' as ProjectType, label: 'Sistema sob medida' },
                   { value: 'fiscwise' as ProjectType, label: 'FiscWise (Gestão Financeira)' },
+                  { value: 'sessaoink' as ProjectType, label: 'SessãoInk (estúdios)' },
+                  { value: 'fretamento-pro' as ProjectType, label: 'Gestão Fretamento Pro' },
+                  { value: 'erp-v' as ProjectType, label: 'ERP-V' },
                   { value: 'outro' as ProjectType, label: 'Ainda não sei' },
                 ].map((option) => (
                   <button

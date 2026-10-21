@@ -1,26 +1,42 @@
+'use client'
+
 import Script from 'next/script'
+import { useSyncExternalStore } from 'react'
+import { CONSENT_EVENT, CONSENT_KEY } from '@/lib/analytics'
 
 /**
  * Google Analytics 4 (GA4) loader.
  *
- * Degrada de forma graciosa: se `NEXT_PUBLIC_GA_MEASUREMENT_ID` não estiver
- * definido (ainda não há propriedade GA4 criada na Vercel), o componente
- * retorna `null` e nada é injetado na página — não quebra build nem produção.
+ * Só injeta o gtag.js quando as duas condições valem:
+ *   1. `NEXT_PUBLIC_GA_MEASUREMENT_ID` está definido na Vercel;
+ *   2. o visitante clicou em "Aceitar todos" no CookieBanner (LGPD).
  *
- * Quando o ID existir, injeta o gtag.js manualmente via `next/script` com
- * strategy `afterInteractive` (o pacote `@next/third-parties` não está
- * instalado neste projeto). A camada de eventos em `src/lib/analytics.ts`
- * despacha para o `window.gtag` que este script registra.
- *
- * TODO (Vinicius): criar a propriedade GA4 e definir
- * `NEXT_PUBLIC_GA_MEASUREMENT_ID` (ex.: "G-XXXXXXXXXX") nas variáveis de
- * ambiente da Vercel para ativar a coleta.
+ * O aceite carrega o GA na hora, sem recarregar a página: o banner dispara
+ * `CONSENT_EVENT`. A camada de eventos em `src/lib/analytics.ts` despacha
+ * para o `window.gtag` que este script registra.
  */
+function subscribe(onChange: () => void) {
+  window.addEventListener(CONSENT_EVENT, onChange)
+  window.addEventListener('storage', onChange)
+  return () => {
+    window.removeEventListener(CONSENT_EVENT, onChange)
+    window.removeEventListener('storage', onChange)
+  }
+}
+
+function hasConsent() {
+  try {
+    return localStorage.getItem(CONSENT_KEY) === 'accepted'
+  } catch {
+    return false
+  }
+}
+
 export default function GoogleAnalytics() {
   const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+  const consented = useSyncExternalStore(subscribe, hasConsent, () => false)
 
-  // No-op gracioso enquanto não existe propriedade GA4 / env configurada.
-  if (!measurementId) {
+  if (!measurementId || !consented) {
     return null
   }
 

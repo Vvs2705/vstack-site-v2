@@ -1,9 +1,9 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://www.vstack-solutions.com.br',
+  siteUrl: 'https://www.vstack-solutions.com.br',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
-  exclude: ['/api/*', '/admin/*'],
+  exclude: ['/api/*', '/admin/*', '/login', '/pedidos', '/pedidos/*'],
   robotsTxtOptions: {
     policies: [
       {

@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -152,18 +152,18 @@ function resolveAnswer(input: string): ScriptedAnswer {
 /*  Hook: efeito de digitação respeitando prefers-reduced-motion.              */
 /* -------------------------------------------------------------------------- */
 
+const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
+
 function usePrefersReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReduced(mq.matches)
-    const onChange = () => setReduced(mq.matches)
-    mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
-  }, [])
-
-  return reduced
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia(REDUCED_MOTION)
+      mq.addEventListener('change', onChange)
+      return () => mq.removeEventListener('change', onChange)
+    },
+    () => window.matchMedia(REDUCED_MOTION).matches,
+    () => false
+  )
 }
 
 type Phase = 'idle' | 'thinking' | 'typing' | 'done'

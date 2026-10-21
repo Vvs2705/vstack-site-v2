@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { AlertCircle, Check, Loader2 } from 'lucide-react'
 import { DorSchema, type DorInput } from '@/lib/validations'
+import { trackFormSubmit } from '@/lib/analytics'
 import { z } from 'zod'
 
 export default function DorForm() {
@@ -34,7 +35,8 @@ export default function DorForm() {
     setErrors({})
 
     try {
-      const validated = DorSchema.parse(formData)
+      // '' não passa no z.email() opcional: campo vazio vira undefined
+      const validated = DorSchema.parse({ ...formData, email: formData.email || undefined })
 
       const res = await fetch('/api/dor', {
         method: 'POST',
@@ -47,6 +49,11 @@ export default function DorForm() {
       if (!res.ok) {
         throw new Error(data.error || 'Erro ao enviar dor')
       }
+
+      trackFormSubmit('dor', {
+        urgency: validated.urgency,
+        isAnonymous: validated.isAnonymous,
+      })
 
       setIsSuccess(true)
     } catch (error) {

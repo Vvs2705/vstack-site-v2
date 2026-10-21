@@ -3,7 +3,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
 export const metadata = {
-  title: 'Política de Cookies — V-STACK SOLUTIONS',
+  title: 'Política de Cookies',
   description: 'Como usamos cookies e tecnologias similares em nosso site.',
 }
 
@@ -62,7 +62,7 @@ export default function CookiesPage() {
                       <tr>
                         <td className="py-2 pr-4 font-mono text-xs">vstack-cookie-consent</td>
                         <td className="py-2 pr-4">Armazena sua preferência de cookies</td>
-                        <td className="py-2">1 ano</td>
+                        <td className="py-2">Até você limpar os dados do navegador</td>
                       </tr>
                     </tbody>
                   </table>
@@ -73,7 +73,9 @@ export default function CookiesPage() {
                     Cookies de Analytics (opcionais)
                   </h3>
                   <p className="text-sm mb-3">
-                    Nos ajudam a entender como o site é usado. Ativados apenas com seu consentimento.
+                    Nos ajudam a entender como o site é usado. O Google Analytics só é carregado depois
+                    que você clica em &quot;Aceitar todos&quot;. Também usamos o Vercel Web Analytics, que
+                    não grava cookies e mede apenas visitas agregadas e anônimas.
                   </p>
                   <table className="w-full text-sm">
                     <thead>

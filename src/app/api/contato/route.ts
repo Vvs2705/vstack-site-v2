@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { resend } from '@/lib/resend'
+import { sendEmail } from '@/lib/resend'
 import { ContatoSchema } from '@/lib/validations'
 import { sanitizeObject, extractIp } from '@/lib/security'
 import { trackConversion } from '@/lib/analytics'
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Enviar email de notificação
-    await resend.emails.send({
+    await sendEmail('contato:interno', {
       from:    process.env.RESEND_FROM_EMAIL!,
       to:      process.env.LEADS_EMAIL!,
       subject: `🔔 Novo Lead — ${data.name} (${data.company || 'sem empresa'})`,
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Email de confirmação para o cliente
-    await resend.emails.send({
+    await sendEmail('contato:cliente', {
       from:    process.env.RESEND_FROM_EMAIL!,
       to:      data.email,
       subject: 'Recebemos seu contato — V-STACK SOLUTIONS',

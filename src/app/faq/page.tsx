@@ -7,7 +7,7 @@ import { Container, Section } from '@/components/primitives/Layout'
 import { FAQ } from '@/lib/faq'
 
 export const metadata = {
-  title: 'Perguntas Frequentes | V-STACK SOLUTIONS',
+  title: 'Perguntas Frequentes',
   description:
     'Respostas diretas sobre diagnóstico, automação, IA, integrações e desenvolvimento sob medida para empresas que precisam resolver problemas reais.',
 }

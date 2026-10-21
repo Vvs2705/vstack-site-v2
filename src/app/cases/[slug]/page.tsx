@@ -15,10 +15,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const caseStudy = getCaseStudy(slug as CaseStudySlug)
-  if (!caseStudy) return { title: 'Case não encontrado | V-STACK' }
+  if (!caseStudy) return { title: 'Case não encontrado' }
 
   return {
-    title: `${caseStudy.company} - Case de Estudo | V-STACK`,
+    title: `${caseStudy.company} - Case de Estudo`,
     description: `Como ${caseStudy.company} (${caseStudy.industry}) alcançou ${caseStudy.results[0].improvement} em ${caseStudy.results[0].metric.toLowerCase()}`,
     openGraph: {
       title: `${caseStudy.company} - Case de Estudo`,

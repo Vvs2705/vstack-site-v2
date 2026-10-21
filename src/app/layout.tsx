@@ -4,7 +4,7 @@ import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import VercelAnalytics from '@/components/analytics/VercelAnalytics'
 import RootLayoutWrapper from '@/components/providers/RootLayoutWrapper'
 import JsonLd from '@/components/seo/JsonLd'
-import { organizationJsonLd, websiteJsonLd } from '@/lib/structured-data'
+import { organizationJsonLd, SITE_URL, websiteJsonLd } from '@/lib/structured-data'
 import { cn } from '@/lib/utils'
 import './globals.css'
 
@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vstack-solutions.com.br'
+const siteUrl = SITE_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -57,7 +57,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: siteUrl,
+    // './' resolve por página (como o canonical); siteUrl fazia todo og:url apontar para a home
+    url: './',
     siteName: 'V-STACK SOLUTIONS',
     title: 'V-STACK SOLUTIONS - Automação, IA e Sistemas Sob Medida',
     description:

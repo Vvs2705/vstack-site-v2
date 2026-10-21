@@ -5,7 +5,7 @@ import { Container, Surface } from '@/components/primitives/Layout'
 import { caseStudies } from '@/lib/case-studies'
 
 export const metadata: Metadata = {
-  title: 'Cases de Estudo | V-STACK',
+  title: 'Cases de Estudo',
   description: 'Histórias reais de empresas que transformaram operações com V-STACK. LogTech, MediServe, FinFlow e mais.',
 }
 

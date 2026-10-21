@@ -56,7 +56,7 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${project.title} | V-STACK SOLUTIONS`,
+    title: project.title,
     description: project.description,
     keywords: [project.title, ...project.tags, 'case study', 'projeto'],
     openGraph: {
