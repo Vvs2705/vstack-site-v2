@@ -27,7 +27,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
-    "isomorphic-dompurify": "^2.16.0",
     "lightningcss": "^1.32.0",
     "lucide-react": "^0.468.0",
     "next": "^16.4.2",

@@ -1,10 +1,18 @@
-import DOMPurify from 'isomorphic-dompurify'
+const HTML_ESCAPES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+}
 
 /**
- * Sanitiza strings para prevenir XSS
+ * Escapa HTML para prevenir XSS (os campos entram no HTML dos e-mails).
+ * Antes era isomorphic-dompurify: o jsdom dele quebra na Vercel (ERR_REQUIRE_ESM)
+ * ao carregar a rota, e todo formulário de lead respondia 500.
  */
 export function sanitizeString(input: string): string {
-  return DOMPurify.sanitize(input.trim(), { ALLOWED_TAGS: [], ALLOWED_ATTR: [] })
+  return input.trim().replace(/[&<>"']/g, (char) => HTML_ESCAPES[char])
 }
 
 /**
