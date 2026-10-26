@@ -81,7 +81,7 @@ model Lead {
   email     String
   phone     String?
   message   String
-  interest  String   // "automacao" | "ia" | "integracao" | "saas" | "outro"
+  interest  String   // "site" | "automacao" | "ia" | "integracao" | "saas" | "jogo" | "fiscwise" | "outro"
   source    String   @default("contato") // "contato" | "cotacao" | "dor" | "chat"
   status    String   @default("novo")    // "novo" | "em_contato" | "qualificado" | "perdido" | "convertido"
   notes     String?  // Notas internas do admin
@@ -110,7 +110,7 @@ model Cotacao {
   contactRole    String?
   // Dados do projeto
   projectType    String[] // ["automacao", "ia", "integracao", "saas", "outro"]
-  projectBudget  String   // "ate-10k" | "10k-50k" | "50k-200k" | "200k+"
+  projectBudget  String   // "ate-3k" | "3k-10k" | "ate-10k" (legado) | "10k-50k" | "50k-200k" | "200k+" | "nao-sei"
   projectTimeline String  // "urgente" | "1-3meses" | "3-6meses" | "6meses+"
   projectDescription String
   currentTools   String?  // ERPs, sistemas atuais

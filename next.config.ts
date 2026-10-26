@@ -66,6 +66,9 @@ const nextConfig: NextConfig = {
       // ContaFlow foi renomeado para FiscWise — redireciona rotas antigas
       { source: '/contaflow', destination: '/fiscwise', permanent: true },
       { source: '/solucoes/contaflow', destination: '/fiscwise', permanent: true },
+      // Cases ilustrativos foram removidos do site — URLs antigas caem em Soluções
+      { source: '/cases', destination: '/solucoes', permanent: true },
+      { source: '/cases/:slug', destination: '/solucoes', permanent: true },
     ]
   },
 }

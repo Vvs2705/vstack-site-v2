@@ -2,12 +2,15 @@ import Link from 'next/link'
 import { Github, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 import VStackLogo from '@/components/brand/VStackLogo'
 import { Container } from '@/components/primitives/Layout'
+import { WHATSAPP_DISPLAY, whatsappLink } from '@/lib/contact'
 
 const SOLUTIONS = [
+  { label: 'Criação de sites', href: '/criacao-de-sites' },
+  { label: 'Sistemas sob medida', href: '/sistemas-sob-medida' },
   { label: 'Automação de processos', href: '/automacao-de-processos' },
   { label: 'Agentes de IA', href: '/agentes-de-ia' },
   { label: 'Integração de sistemas', href: '/integracao-de-sistemas' },
-  { label: 'Sistemas sob medida', href: '/sistemas-sob-medida' },
+  { label: 'Jogos sob encomenda', href: '/jogos' },
   { label: 'FiscWise', href: '/fiscwise' },
 ]
 
@@ -38,7 +41,7 @@ export default function Footer() {
               <VStackLogo />
             </Link>
             <p className="mt-5 max-w-xs text-[14px] leading-7 text-[var(--text-2)]">
-              Tecnologia sob medida para empresas que precisam organizar processos, integrar sistemas e escalar com clareza.
+              Sites, sistemas sob medida, automação com IA e jogos para empresas que querem vender mais e trabalhar melhor.
             </p>
             <div className="mt-5 flex items-center gap-2">
               {SOCIAL.map(({ label, href, Icon }) => (
@@ -66,9 +69,9 @@ export default function Footer() {
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
                 <span className="break-all">vinicius@vstack-solutions.com.br</span>
               </a>
-              <a href="https://wa.me/5511973358775" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--text-1)]">
+              <a href={whatsappLink('DIAGNÓSTICO')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--text-1)]">
                 <Phone className="h-4 w-4 text-[var(--accent)]" />
-                (11) 97335-8775
+                WhatsApp {WHATSAPP_DISPLAY}
               </a>
               <p className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 text-[var(--accent)]" />

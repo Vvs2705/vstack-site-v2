@@ -132,7 +132,7 @@ export const articles: Article[] = [
     ],
     relatedLinks: [
       { label: 'Ver agentes de IA', href: '/agentes-de-ia' },
-      { label: 'Enviar minha dor', href: '/envie-sua-dor' },
+      { label: 'Contar meu problema', href: '/envie-sua-dor' },
     ],
   },
   {
@@ -224,7 +224,7 @@ export const articles: Article[] = [
     ],
     relatedLinks: [
       { label: 'Ver agentes de IA', href: '/agentes-de-ia' },
-      { label: 'Enviar minha dor', href: '/envie-sua-dor' },
+      { label: 'Contar meu problema', href: '/envie-sua-dor' },
     ],
   },
   {

@@ -77,7 +77,7 @@ export default function FAQPage() {
                 href="/envie-sua-dor"
                 className="btn-outline inline-flex px-6 py-3 text-sm font-semibold"
               >
-                Enviar minha dor
+                Contar meu problema
               </Link>
             </div>
           </Container>

@@ -21,6 +21,8 @@ export function organizationJsonLd() {
     '@type': 'Organization',
     '@id': `${siteUrl}/#organization`,
     name: 'V-STACK SOLUTIONS',
+    description:
+      'Criação de sites, sistemas sob medida, automação com IA e jogos sob encomenda para empresas.',
     url: siteUrl,
     logo: `${siteUrl}/icon-512.png`,
     image: `${siteUrl}/og-image.png`,

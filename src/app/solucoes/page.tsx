@@ -15,13 +15,13 @@ const CTASection = dynamic(() => import('@/components/sections/CTASection'))
 export const metadata: Metadata = {
   title: 'Soluções',
   description:
-    'Automação de processos, agentes de IA, integração de sistemas e desenvolvimento sob medida para empresas que precisam escalar com menos retrabalho.',
-  keywords: ['automação de processos', 'agentes de IA', 'integração de sistemas', 'sistemas sob medida', 'FiscWise'],
+    'Criação de sites, sistemas sob medida, automação com IA e jogos sob encomenda para empresas que querem vender mais e trabalhar melhor.',
+  keywords: ['criação de sites', 'sistemas sob medida', 'automação de processos', 'agentes de IA', 'desenvolvimento de jogos'],
   openGraph: {
     ...OG_DEFAULTS,
     title: 'Soluções | V-STACK SOLUTIONS',
     description:
-      'Tecnologia aplicada para reduzir retrabalho, integrar sistemas e criar operações mais previsíveis.',
+      'Sites, sistemas sob medida, automação com IA e jogos sob encomenda.',
     type: 'website',
   },
 }
@@ -49,12 +49,8 @@ export default function SolucoesPage() {
         </Section>
 
         <CTASection
-          headline="Qual parte da sua operação mais trava hoje?"
-          description="Envie o contexto. Nós ajudamos a identificar se o melhor caminho é automação, IA, integração, produto interno ou uma combinação dos quatro."
-          ctaPrimaryLabel="Solicitar diagnóstico"
-          ctaPrimaryHref="/cotacao"
-          ctaSecondaryLabel="Enviar minha dor"
-          ctaSecondaryHref="/envie-sua-dor"
+          headline="Não sabe por onde começar?"
+          description="Conte o seu problema. Indicamos se o melhor caminho é um site, um sistema, uma automação, um jogo ou uma combinação, e retornamos em até 24 horas úteis."
         />
       </main>
 

@@ -82,7 +82,7 @@ export default function ContatoForm() {
           Diagnóstico solicitado
         </h2>
         <p className="text-[var(--text-2)] text-lg">
-          Recebemos sua mensagem. Nossa equipe vai avaliar o contexto e responder em até 24 horas úteis.
+          Recebemos sua mensagem. Vamos avaliar o contexto e responder em até 24 horas úteis.
         </p>
         <p className="text-sm text-[var(--text-3)]">
           Enviamos uma confirmação para <strong>{formData.email}</strong>
@@ -210,10 +210,12 @@ export default function ContatoForm() {
             required
           >
             <option value="">Selecione uma opção...</option>
-            <option value="automacao">Automação de Processos</option>
-            <option value="ia">Inteligência Artificial</option>
-            <option value="integracao">Integração de Sistemas</option>
-            <option value="saas">Desenvolvimento SaaS</option>
+            <option value="site">Site ou landing page</option>
+            <option value="saas">Sistema sob medida</option>
+            <option value="automacao">Automação de processos</option>
+            <option value="ia">Inteligência artificial</option>
+            <option value="integracao">Integração de sistemas</option>
+            <option value="jogo">Jogo sob encomenda</option>
             <option value="fiscwise">FiscWise (Gestão Contábil e Financeira)</option>
             <option value="outro">Outro</option>
           </select>

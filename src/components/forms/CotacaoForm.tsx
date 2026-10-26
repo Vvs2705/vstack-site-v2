@@ -425,10 +425,12 @@ export default function CotacaoForm() {
                 className="grid grid-cols-2 gap-3"
               >
                 {[
+                  { value: 'site' as ProjectType, label: 'Site ou landing page' },
                   { value: 'automacao' as ProjectType, label: 'Automação' },
                   { value: 'ia' as ProjectType, label: 'Agente de IA' },
                   { value: 'integracao' as ProjectType, label: 'Integração de sistemas' },
                   { value: 'saas' as ProjectType, label: 'Sistema sob medida' },
+                  { value: 'jogo' as ProjectType, label: 'Jogo sob encomenda' },
                   { value: 'fiscwise' as ProjectType, label: 'FiscWise (Gestão Financeira)' },
                   { value: 'sessaoink' as ProjectType, label: 'SessãoInk (estúdios)' },
                   { value: 'fretamento-pro' as ProjectType, label: 'Gestão Fretamento Pro' },
@@ -467,10 +469,12 @@ export default function CotacaoForm() {
                   className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
                 >
                   <option value="">Selecione...</option>
-                  <option value="ate-10k">Até R$ 10.000</option>
+                  <option value="ate-3k">Até R$ 3.000</option>
+                  <option value="3k-10k">R$ 3.000 - R$ 10.000</option>
                   <option value="10k-50k">R$ 10.000 - R$ 50.000</option>
                   <option value="50k-200k">R$ 50.000 - R$ 200.000</option>
                   <option value="200k+">Acima de R$ 200.000</option>
+                  <option value="nao-sei">Ainda não sei</option>
                 </select>
                 {errors.projectBudget && (
                   <p id="cotacao-error-projectBudget" role="alert" className="mt-1 text-sm text-danger">{errors.projectBudget}</p>

@@ -116,13 +116,13 @@ export default function IntegrationsSection() {
               transition={{ duration: 0.2 }}
             >
               <span
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-[var(--accent)] text-xl font-black"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-[var(--accent)] text-[15px] font-black"
                 aria-hidden="true"
               >
-                25+
+                API
               </span>
-              <p className="text-[13px] leading-6 text-[var(--text-2)]">
-                Integrações nativas com os sistemas mais usados no mercado brasileiro
+              <p className="text-[14px] leading-6 text-[var(--text-2)]">
+                Se o sistema que você usa tem API, conseguimos conectar. Ao lado, exemplos de sistemas comuns no mercado brasileiro.
               </p>
             </motion.div>
 

@@ -18,12 +18,12 @@ export default function SolucoesHero() {
           </motion.p>
 
           <motion.h1
-            className="font-display text-balance text-[38px] font-extrabold leading-tight tracking-[-0.025em] text-[var(--text-1)] sm:text-[56px]"
+            className="text-balance text-[var(--text-1)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
           >
-            Soluções para tirar a operação do improviso.
+            Sites, sistemas, automação e jogos para a sua empresa crescer.
           </motion.h1>
 
           <motion.p
@@ -32,7 +32,7 @@ export default function SolucoesHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
           >
-            Atuamos onde há retrabalho, sistemas desconectados, dados pouco confiáveis e decisões lentas. O objetivo é simples: transformar processo em software útil.
+            Do site que traz clientes ao sistema que organiza a operação: escolha a frente que resolve o seu problema hoje e evolua a partir dela.
           </motion.p>
         </div>
       </Container>

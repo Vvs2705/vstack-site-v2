@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Cookie, X } from 'lucide-react'
 import Link from 'next/link'
 import { CONSENT_EVENT, CONSENT_KEY } from '@/lib/analytics'
 
@@ -31,59 +30,27 @@ export default function CookieBanner() {
 
   if (!isVisible) return null
 
+  // Barra compacta: não pode esconder o título e os botões da primeira tela no celular.
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-6 animate-slide-up">
-      <div className="max-w-6xl mx-auto">
-        <div className="card-vstack relative shadow-[var(--shadow)] !p-4 sm:!p-6">
-          <button
-            onClick={handleReject}
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] text-[var(--text-2)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-            aria-label="Fechar"
-          >
-            <X className="h-4 w-4" />
+    <div className="fixed inset-x-0 bottom-0 z-50 p-2 sm:p-4 animate-slide-up" role="region" aria-label="Aviso de cookies">
+      <div className="mx-auto flex max-w-4xl flex-col gap-2 rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] p-3 shadow-[var(--shadow)] sm:flex-row sm:items-center sm:gap-4 sm:px-5">
+        <p className="flex-1 text-[13px] leading-5 text-[var(--text-2)]">
+          Usamos cookies essenciais e analíticos, conforme a{' '}
+          <Link href="/privacidade" className="font-semibold text-[var(--accent)] hover:underline">
+            LGPD
+          </Link>
+          .{' '}
+          <Link href="/cookies" className="underline hover:text-[var(--accent)]">
+            Preferências
+          </Link>
+        </p>
+        <div className="flex gap-2">
+          <button onClick={handleReject} className="btn-secondary min-h-[40px] flex-1 px-4 py-2 text-[13px] sm:flex-none">
+            Só essenciais
           </button>
-
-          <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 pr-10">
-            <div className="hidden sm:flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--accent-muted)] border border-[var(--accent-border)] flex-shrink-0">
-              <Cookie className="h-6 w-6 text-[var(--accent)]" />
-            </div>
-
-            <div className="flex-1 space-y-3">
-              <div>
-                <h3 className="font-display text-base sm:text-lg font-semibold text-[var(--text-1)] mb-1">
-                  Cookies e Privacidade
-                </h3>
-                <p className="text-xs sm:text-sm text-[var(--text-2)] leading-relaxed">
-                  Usamos cookies essenciais e analíticos, conforme a{' '}
-                  <Link href="/privacidade" className="text-[var(--accent)] hover:underline">
-                    LGPD
-                  </Link>
-                  .{' '}
-                  <Link
-                    href="/cookies"
-                    className="text-[var(--text-2)] underline hover:text-[var(--accent)] transition-colors"
-                  >
-                    Gerenciar preferências
-                  </Link>
-                </p>
-              </div>
-
-              <div className="flex flex-row items-stretch sm:items-center gap-2 sm:gap-3">
-                <button
-                  onClick={handleAccept}
-                  className="btn-primary flex-1 sm:flex-none px-4 sm:px-6 py-2 sm:py-2.5 text-sm font-medium"
-                >
-                  Aceitar todos
-                </button>
-                <button
-                  onClick={handleReject}
-                  className="btn-secondary flex-1 sm:flex-none px-4 sm:px-6 py-2 sm:py-2.5 text-sm font-medium"
-                >
-                  Apenas essenciais
-                </button>
-              </div>
-            </div>
-          </div>
+          <button onClick={handleAccept} className="btn-primary min-h-[40px] flex-1 px-4 py-2 text-[13px] sm:flex-none">
+            Aceitar
+          </button>
         </div>
       </div>
     </div>

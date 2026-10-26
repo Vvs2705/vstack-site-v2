@@ -2,19 +2,16 @@ import dynamic from 'next/dynamic'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/sections/HeroSection'
-import TechStripSection from '@/components/sections/TechStripSection'
 
 // Lazy-load sections below the fold to improve initial LCP
-const PillarsSection = dynamic(() => import('@/components/sections/PillarsSection'), {
-  loading: () => <SectionSkeleton />,
-})
-const IntegrationsSection = dynamic(() => import('@/components/sections/IntegrationsSection'), {
+const PainsSection = dynamic(() => import('@/components/sections/PainsSection'), {
   loading: () => <SectionSkeleton />,
 })
 const SocialProofSection = dynamic(() => import('@/components/sections/SocialProofSection'), {
   loading: () => <SectionSkeleton />,
 })
-const FiscWiseSection = dynamic(() => import('@/components/sections/FiscWiseSection'))
+const ProcessSection = dynamic(() => import('@/components/sections/ProcessSection'))
+const IntegrationsSection = dynamic(() => import('@/components/sections/IntegrationsSection'))
 const FAQSection = dynamic(() => import('@/components/sections/FAQSection'))
 const CTASection = dynamic(() => import('@/components/sections/CTASection'))
 
@@ -30,21 +27,19 @@ function SectionSkeleton() {
   )
 }
 
+// Ordem: o que fazemos (hero) → dores que o visitante reconhece → prova →
+// como funciona → integrações → dúvidas → chamada final.
 export default function Home() {
   return (
     <>
       <Navbar />
 
       <main className="min-h-screen bg-[var(--bg)] pt-16">
-        {/* Accent line */}
-        <div className="h-[2px] w-full bg-gradient-to-r from-[var(--accent)] to-transparent" />
-
         <HeroSection />
-        <TechStripSection />
-        <PillarsSection />
-        <IntegrationsSection />
+        <PainsSection />
         <SocialProofSection />
-        <FiscWiseSection />
+        <ProcessSection />
+        <IntegrationsSection />
         <FAQSection limit={6} showFilter={false} />
         <CTASection />
       </main>

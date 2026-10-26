@@ -3,24 +3,30 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react'
 import VStackLogo from '@/components/brand/VStackLogo'
 import ThemeToggle from '@/components/ui/ThemeToggle'
+import { SERVICES } from '@/lib/services'
+import { whatsappLink } from '@/lib/contact'
 
-const NAV_LINKS = [
-  { label: 'Soluções', href: '/solucoes' },
-  { label: 'FiscWise', href: '/fiscwise', accent: true },
-  { label: 'SessãoInk', href: '/sessaoink' },
-  { label: 'Fretamento Pro', href: '/fretamento-pro' },
-  { label: 'ERP-V', href: '/erp-v' },
-  { label: 'Conteúdos', href: '/conteudos' },
+// Menu fala a língua de quem compra: serviços primeiro, produtos próprios num submenu.
+const NAV_LINKS: { label: string; href: string; accent?: boolean }[] = [
+  ...SERVICES.map((service) => ({ label: service.navLabel, href: service.href })),
   { label: 'Sobre', href: '/sobre' },
-  { label: 'FAQ', href: '/faq' },
+]
+
+const PRODUCT_LINKS = [
+  { label: 'FiscWise', href: '/fiscwise', note: 'Gestão para contabilidade' },
+  { label: 'SessãoInk', href: '/sessaoink', note: 'Gestão para tatuadores' },
+  { label: 'Fretamento Pro', href: '/fretamento-pro', note: 'Gestão de frota' },
+  { label: 'ERP-V', href: '/erp-v', note: 'ERP e motor fiscal' },
 ]
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [productsOpen, setProductsOpen] = useState(false)
   const pathname = usePathname()
+  const isProductActive = PRODUCT_LINKS.some((link) => pathname.startsWith(link.href))
 
   return (
     <nav
@@ -32,7 +38,7 @@ export default function Navbar() {
           <VStackLogo />
         </Link>
 
-        <ul className="hidden items-center gap-6 md:flex">
+        <ul className="hidden items-center gap-6 xl:gap-7 lg:flex">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
             return (
@@ -40,7 +46,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`group relative pb-1 text-[13px] font-semibold transition-colors duration-200 ${
+                  className={`group relative pb-1 text-[14px] font-semibold transition-colors duration-200 ${
                     link.accent
                       ? isActive
                         ? 'text-[var(--accent)]'
@@ -60,16 +66,52 @@ export default function Navbar() {
               </li>
             )
           })}
+          <li
+            className="relative"
+            onMouseEnter={() => setProductsOpen(true)}
+            onMouseLeave={() => setProductsOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setProductsOpen((value) => !value)}
+              aria-expanded={productsOpen}
+              aria-haspopup="true"
+              className={`flex items-center gap-1 pb-1 text-[14px] font-semibold leading-[1.6] transition-colors duration-200 ${
+                isProductActive ? 'text-[var(--text-1)]' : 'text-[var(--text-2)] hover:text-[var(--text-1)]'
+              }`}
+            >
+              Produtos
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform ${productsOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+            </button>
+            {productsOpen && (
+              <div className="absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3">
+                <ul className="rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] p-2 shadow-[var(--shadow)]">
+                  {PRODUCT_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setProductsOpen(false)}
+                        className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-[var(--accent-muted)]"
+                      >
+                        <span className="block text-[14px] font-semibold text-[var(--text-1)]">{link.label}</span>
+                        <span className="block text-[12px] text-[var(--text-2)]">{link.note}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </li>
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
-          <Link href="/cotacao" className="btn-primary min-h-[44px] px-5 py-2.5 text-[13px]">
-            Solicitar diagnóstico
+          <Link href="/cotacao" className="btn-primary min-h-[44px] px-5 py-2.5 text-[14px]">
+            Pedir orçamento
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button
             onClick={() => setIsOpen((value) => !value)}
@@ -83,7 +125,7 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="border-t border-[var(--border)] bg-[var(--bg-card)] px-5 py-5 md:hidden">
+        <div className="border-t border-[var(--border)] bg-[var(--bg-card)] px-5 py-5 lg:hidden">
           <div className="mx-auto max-w-7xl space-y-2">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
@@ -103,12 +145,29 @@ export default function Navbar() {
                 </Link>
               )
             })}
-            <div className="grid gap-2 border-t border-[var(--border)] pt-4">
-              <Link href="/envie-sua-dor" onClick={() => setIsOpen(false)} className="btn-outline min-h-[44px] px-4 py-3 text-[14px]">
-                Enviar minha dor
+            <p className="px-3 pt-3 text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--text-3)]">Produtos</p>
+            {PRODUCT_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="flex min-h-[44px] items-center rounded-xl px-3 py-2 text-[14px] font-semibold text-[var(--text-2)] hover:bg-[var(--accent-muted)] hover:text-[var(--accent)]"
+              >
+                {link.label}
               </Link>
-              <Link href="/cotacao" onClick={() => setIsOpen(false)} className="btn-primary min-h-[44px] px-4 py-3 text-[14px]">
-                Solicitar diagnóstico
+            ))}
+            <div className="grid gap-2 border-t border-[var(--border)] pt-4">
+              <a
+                href={whatsappLink('DIAGNÓSTICO')}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="btn-primary min-h-[48px] px-4 py-3 text-[15px]"
+              >
+                Pedir orçamento no WhatsApp
+              </a>
+              <Link href="/cotacao" onClick={() => setIsOpen(false)} className="btn-outline min-h-[48px] px-4 py-3 text-[15px]">
+                Preencher formulário
               </Link>
             </div>
           </div>

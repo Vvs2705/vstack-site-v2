@@ -1,18 +1,34 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-import { solutionsDetailed } from '@/lib/solutions-detailed'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { SERVICES } from '@/lib/services'
+import { whatsappLink } from '@/lib/contact'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
-import { caseStudies } from '@/lib/case-studies'
-import {
-  FadeInUp,
-  SlideIn,
-  StaggerContainer,
-  StaggerItem,
-  PulseLabel,
-  AnimatedSection,
-} from '@/components/animations'
+import { FadeInUp, AnimatedSection } from '@/components/animations'
+
+const DIFFERENCES = [
+  {
+    topic: 'Quem atende você',
+    us: 'Quem constrói: a conversa é direto com quem desenha e desenvolve.',
+    others: 'Atendimento comercial que repassa para outra equipe.',
+  },
+  {
+    topic: 'O que é entregue',
+    us: 'Site ou sistema feito para o seu processo, integrado ao que você já usa.',
+    others: 'Modelo pronto adaptado, que obriga você a mudar o processo.',
+  },
+  {
+    topic: 'Antes de começar',
+    us: 'Proposta com escopo, prazo e valor definidos e aprovados por você.',
+    others: '"Orçamento sob consulta" que muda no meio do caminho.',
+  },
+  {
+    topic: 'Depois da entrega',
+    us: 'Suporte e evolução combinados em contrato, com medição de uso.',
+    others: 'Você fica sozinho quando algo para de funcionar.',
+  },
+]
 
 export default function SolutionsDetailedSection() {
   return (
@@ -22,147 +38,70 @@ export default function SolutionsDetailedSection() {
           <FadeInUp>
             <SectionHeader
               eyebrow="Como resolvemos"
-              title="Cada problema tem uma solução específica."
-              description="Não vendemos ferramenta pronta. Mapeamos a dor, desenhamos a solução, entregamos resultado quantificado."
+              title="Cada problema pede uma solução específica."
+              description="Não vendemos pacote genérico. Entendemos o seu problema e indicamos o caminho mais direto, seja um site, um sistema, uma automação ou um jogo."
               align="center"
               className="mb-12"
             />
           </FadeInUp>
 
-          <div className="space-y-16">
-            {solutionsDetailed.map((solution, solutionIndex) => {
-              const relatedCase = caseStudies[solution.relatedCase]
-              const isEven = solutionIndex % 2 === 0
-
-              return (
-                <AnimatedSection key={solution.id} delay={0.05}>
-                  <div className="scroll-mt-20" id={`solution-${solution.id}`}>
-                    <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
-                      {/* Left: Icon + Title + Problem */}
-                      <SlideIn direction={isEven ? 'left' : 'right'}>
-                        <div
-                          className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--border)]"
-                          style={{ backgroundColor: solution.color.muted, borderColor: solution.color.border }}
-                        >
-                          <solution.icon className="h-7 w-7" style={{ color: solution.color.accent }} />
-                        </div>
-
-                        <h2 className="font-display text-3xl font-bold text-[var(--text-1)] mb-6">
-                          {solution.title}
-                        </h2>
-
-                        <div className="mb-8">
-                          <PulseLabel className="block text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--text-3)] mb-3">
-                            O Problema
-                          </PulseLabel>
-                          <p className="text-[14px] leading-7 text-[var(--text-2)]">
-                            {solution.problem}
-                          </p>
-                        </div>
-
-                        <Link
-                          href={`/cases/${relatedCase.slug}`}
-                          className="inline-flex items-center gap-2 text-sm font-semibold transition-colors"
-                          style={{ color: solution.color.accent }}
-                        >
-                          Ver case: {relatedCase.company}
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      </SlideIn>
-
-                      {/* Right: Solution + Results */}
-                      <SlideIn direction={isEven ? 'right' : 'left'} delay={0.1}>
-                        <div className="space-y-8">
-                          {/* Solution steps */}
-                          <div>
-                            <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--text-3)] mb-4">
-                              Nossa Solução
-                            </p>
-                            <StaggerContainer className="space-y-3" delay={0.15}>
-                              {solution.solution.map((step, index) => (
-                                <StaggerItem key={index}>
-                                  <div className="flex gap-3">
-                                    <div
-                                      className="mt-1 h-5 w-5 flex-shrink-0 rounded-full flex items-center justify-center text-white text-[11px] font-bold"
-                                      style={{ backgroundColor: solution.color.accent }}
-                                    >
-                                      {index + 1}
-                                    </div>
-                                    <p className="text-[14px] leading-6 text-[var(--text-2)]">
-                                      {step}
-                                    </p>
-                                  </div>
-                                </StaggerItem>
-                              ))}
-                            </StaggerContainer>
-                          </div>
-
-                          {/* Results */}
-                          <div>
-                            <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--text-3)] mb-4">
-                              Resultado Quantificado
-                            </p>
-                            <StaggerContainer className="space-y-2" delay={0.2}>
-                              {solution.results.map((result, index) => (
-                                <StaggerItem key={index}>
-                                  <Surface
-                                    className="p-4"
-                                    style={{
-                                      backgroundColor: solution.color.muted,
-                                      borderColor: solution.color.border,
-                                      borderWidth: '1px',
-                                    }}
-                                  >
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[var(--text-3)] mb-2">
-                                      {result.metric}
-                                    </p>
-                                    <div className="flex items-center justify-between">
-                                      <div>
-                                        <p className="text-[12px] text-[var(--text-3)] mb-1">Antes</p>
-                                        <p className="text-[13px] font-semibold text-[var(--text-2)]">
-                                          {result.before}
-                                        </p>
-                                      </div>
-                                      <ArrowRight className="h-4 w-4 text-[var(--text-3)]" />
-                                      <div className="text-right">
-                                        <p className="text-[12px] text-[var(--text-3)] mb-1">Depois</p>
-                                        <p className="text-[13px] font-semibold" style={{ color: solution.color.accent }}>
-                                          {result.after}
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <p className="mt-3 text-[12px] font-semibold" style={{ color: solution.color.accent }}>
-                                      {result.highlight}
-                                    </p>
-                                  </Surface>
-                                </StaggerItem>
-                              ))}
-                            </StaggerContainer>
-                          </div>
-                        </div>
-                      </SlideIn>
+          <div className="space-y-6">
+            {SERVICES.map((service) => (
+              <AnimatedSection key={service.id} delay={0.05}>
+                <Surface className="scroll-mt-24 p-6 sm:p-8" id={`solucao-${service.id}`}>
+                  <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
+                    <div>
+                      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--accent-border)] bg-[var(--accent-muted)]">
+                        <service.icon className="h-6 w-6 text-[var(--accent)]" aria-hidden="true" />
+                      </div>
+                      <h2 className="text-[var(--text-1)]">{service.title}</h2>
+                      <p className="mt-4 text-[15px] leading-7 text-[var(--text-2)]">
+                        <strong className="text-[var(--text-1)]">O problema:</strong> {service.pain}
+                      </p>
+                      <p className="mt-2 text-[15px] leading-7 text-[var(--text-2)]">
+                        <strong className="text-[var(--text-1)]">O que fazemos:</strong> {service.promise}
+                      </p>
                     </div>
 
-                    {/* Divider */}
-                    {solutionsDetailed[solutionsDetailed.length - 1].id !== solution.id && (
-                      <div className="mt-16 border-b border-[var(--border)]" />
-                    )}
+                    <div className="flex flex-col justify-between gap-6">
+                      <ul className="space-y-3">
+                        {service.bullets.map((item) => (
+                          <li key={item} className="flex gap-3 text-[15px] leading-6 text-[var(--text-2)]">
+                            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--accent)]" aria-hidden="true" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="flex flex-col gap-3 sm:flex-row">
+                        <Link href={service.href} className="btn-outline min-h-[44px] px-5 py-2.5 text-[14px]">
+                          Ver detalhes
+                          <ArrowRight className="h-4 w-4" />
+                        </Link>
+                        <a
+                          href={whatsappLink(service.whatsappTopic)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-primary min-h-[44px] px-5 py-2.5 text-[14px]"
+                        >
+                          Pedir orçamento
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </AnimatedSection>
-              )
-            })}
+                </Surface>
+              </AnimatedSection>
+            ))}
           </div>
         </Container>
       </Section>
 
-      {/* Comparison Section */}
       <Section tone="deep" className="border-y border-[var(--border)]">
         <Container>
           <FadeInUp>
             <SectionHeader
               eyebrow="Por que somos diferentes"
-              title="Nós vs. agências genéricas"
-              description="A diferença não está só em preço, mas em responsabilidade e resultado."
+              title="V-STACK vs. fornecedores genéricos"
+              description="A diferença está em quem faz, no que é entregue e em quem responde depois."
               align="center"
               className="mb-10"
             />
@@ -170,46 +109,22 @@ export default function SolutionsDetailedSection() {
 
           <FadeInUp delay={0.1}>
             <div className="overflow-x-auto">
-              <table className="w-full text-[14px]">
+              <table className="w-full min-w-[560px] text-[14px]">
+                <thead>
+                  <tr className="border-b border-[var(--border)] text-left">
+                    <th className="py-3 pr-4" scope="col"><span className="sr-only">Aspecto</span></th>
+                    <th className="py-3 px-4 font-bold text-[var(--accent)]" scope="col">V-STACK</th>
+                    <th className="py-3 px-4 font-semibold text-[var(--text-3)]" scope="col">Fornecedor genérico</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  <tr className="border-b border-[var(--border)]">
-                    <td className="py-4 pr-4 font-semibold text-[var(--text-1)]" style={{ width: '35%' }}>
-                      Garantia de Resultado
-                    </td>
-                    <td className="py-4 px-4 text-[var(--text-2)]">
-                      Você vê ROI em 90 dias ou devolvemos
-                    </td>
-                    <td className="py-4 px-4 text-[var(--text-3)]">
-                      &quot;Orçamento sob solicitação&quot;
-                    </td>
-                  </tr>
-                  <tr className="border-b border-[var(--border)]">
-                    <td className="py-4 pr-4 font-semibold text-[var(--text-1)]">Entrega</td>
-                    <td className="py-4 px-4 text-[var(--text-2)]">
-                      SaaS escalável + código seu = evolui depois
-                    </td>
-                    <td className="py-4 px-4 text-[var(--text-3)]">
-                      Ferramentas off-the-shelf limitadas
-                    </td>
-                  </tr>
-                  <tr className="border-b border-[var(--border)]">
-                    <td className="py-4 pr-4 font-semibold text-[var(--text-1)]">Processo</td>
-                    <td className="py-4 px-4 text-[var(--text-2)]">
-                      Padrão com opções (você decide evolução)
-                    </td>
-                    <td className="py-4 px-4 text-[var(--text-3)]">
-                      Tudo custom, sem padronização
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-4 pr-4 font-semibold text-[var(--text-1)]">Pós-deploy</td>
-                    <td className="py-4 px-4 text-[var(--text-2)]">
-                      Suporte 24/7 + dashboards de uso + relatórios
-                    </td>
-                    <td className="py-4 px-4 text-[var(--text-3)]">
-                      Você fica sozinho
-                    </td>
-                  </tr>
+                  {DIFFERENCES.map((row) => (
+                    <tr key={row.topic} className="border-b border-[var(--border)] last:border-0">
+                      <th scope="row" className="py-4 pr-4 text-left font-semibold text-[var(--text-1)]">{row.topic}</th>
+                      <td className="py-4 px-4 text-[var(--text-2)]">{row.us}</td>
+                      <td className="py-4 px-4 text-[var(--text-3)]">{row.others}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

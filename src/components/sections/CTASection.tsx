@@ -5,6 +5,23 @@ import { ArrowRight } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Container, Section } from '@/components/primitives/Layout'
+import { whatsappLink } from '@/lib/contact'
+
+// Links externos (WhatsApp) abrem em nova aba; internos usam o roteador.
+function CtaLink({ href, className, children }: { href: string; className: string; children: React.ReactNode }) {
+  if (/^https?:/.test(href)) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {children}
+      </a>
+    )
+  }
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  )
+}
 
 interface CTASectionProps {
   headline?: string
@@ -16,12 +33,12 @@ interface CTASectionProps {
 }
 
 export default function CTASection({
-  headline = 'Pronto para transformar sua operação?',
-  description = 'Conte onde a operação trava. Em até 24 horas úteis, retornamos com uma leitura técnica e um caminho possível de implementação.',
-  ctaPrimaryLabel = 'Solicitar diagnóstico',
-  ctaPrimaryHref = '/cotacao',
-  ctaSecondaryLabel = 'Enviar minha dor',
-  ctaSecondaryHref = '/envie-sua-dor',
+  headline = 'Vamos tirar o seu projeto do papel?',
+  description = 'Conte o que você precisa: site, sistema, automação ou jogo. Retornamos em até 24 horas úteis com as perguntas que faltam e o próximo passo, sem compromisso.',
+  ctaPrimaryLabel = 'Pedir orçamento no WhatsApp',
+  ctaPrimaryHref = whatsappLink('DIAGNÓSTICO'),
+  ctaSecondaryLabel = 'Preencher formulário',
+  ctaSecondaryHref = '/cotacao',
 }: CTASectionProps) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
@@ -43,7 +60,7 @@ export default function CTASection({
           </motion.p>
 
           <motion.h2
-            className="font-display text-balance text-3xl font-bold leading-tight text-[var(--text-1)] sm:text-5xl"
+            className="text-balance text-[var(--text-1)]"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
@@ -67,15 +84,15 @@ export default function CTASection({
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.24 }}
           >
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
-              <Link href={ctaPrimaryHref} className="btn-primary inline-flex min-h-[44px] w-full px-7 py-3 text-[14px] sm:w-auto">
+              <CtaLink href={ctaPrimaryHref} className="btn-primary inline-flex min-h-[48px] w-full px-7 py-3 text-[15px] sm:w-auto">
                 {ctaPrimaryLabel}
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </CtaLink>
             </motion.div>
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
-              <Link href={ctaSecondaryHref} className="btn-outline inline-flex min-h-[44px] w-full px-7 py-3 text-[14px] sm:w-auto">
+              <CtaLink href={ctaSecondaryHref} className="btn-outline inline-flex min-h-[48px] w-full px-7 py-3 text-[15px] sm:w-auto">
                 {ctaSecondaryLabel}
-              </Link>
+              </CtaLink>
             </motion.div>
           </motion.div>
         </div>
