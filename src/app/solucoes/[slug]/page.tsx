@@ -277,7 +277,7 @@ export default async function ProjectDetailPage(
 
         <CTASection
           headline="Quer uma solução similar?"
-          description="Converse com nossa equipe e descubra como podemos adaptar essa solução para seu negócio específico."
+          description="Converse com a gente e descubra como podemos adaptar essa solução para seu negócio específico."
           ctaPrimaryLabel="Solicitar Cotação Gratuita"
           ctaPrimaryHref="/cotacao"
           ctaSecondaryLabel="Envie Sua Dor"

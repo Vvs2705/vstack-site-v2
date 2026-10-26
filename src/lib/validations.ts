@@ -6,12 +6,12 @@ export const ContatoSchema = z.object({
   email: z.string().email('Email inválido').max(254).trim().transform((value) => value.toLowerCase()),
   phone: z.string().max(20).optional(),
   message: z.string().min(10, 'Mensagem muito curta').max(2000).trim(),
-  interest: z.enum(['automacao', 'ia', 'integracao', 'saas', 'fiscwise', 'outro']),
+  interest: z.enum(['site', 'automacao', 'ia', 'integracao', 'saas', 'jogo', 'fiscwise', 'outro']),
 })
 
 // Inclui os slugs de produto: /cotacao?produto=<slug> pré-seleciona o tipo.
 export const PROJECT_TYPES = [
-  'automacao', 'ia', 'integracao', 'saas', 'fiscwise', 'sessaoink', 'fretamento-pro', 'erp-v', 'outro',
+  'site', 'automacao', 'ia', 'integracao', 'saas', 'jogo', 'fiscwise', 'sessaoink', 'fretamento-pro', 'erp-v', 'outro',
 ] as const
 
 export const CotacaoSchema = z.object({
@@ -23,7 +23,7 @@ export const CotacaoSchema = z.object({
   contactPhone: z.string().max(20).optional(),
   contactRole: z.string().max(100).optional(),
   projectType: z.array(z.enum(PROJECT_TYPES)).min(1),
-  projectBudget: z.enum(['ate-10k', '10k-50k', '50k-200k', '200k+']),
+  projectBudget: z.enum(['ate-3k', '3k-10k', 'ate-10k', '10k-50k', '50k-200k', '200k+', 'nao-sei']),
   projectTimeline: z.enum(['urgente', '1-3meses', '3-6meses', '6meses+']),
   projectDescription: z.string().min(20).max(3000).trim(),
   currentTools: z.string().max(500).optional(),

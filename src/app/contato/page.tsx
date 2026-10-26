@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     ...OG_DEFAULTS,
     title: 'Contato | V-STACK SOLUTIONS',
-    description: 'Converse com especialistas em automação, IA e sistemas sob medida.',
+    description: 'Fale com a V-STACK sobre sites, sistemas sob medida, automação e jogos.',
   },
 }
 

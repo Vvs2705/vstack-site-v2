@@ -18,7 +18,7 @@ const MILESTONES: Milestone[] = [
   {
     year: '2022',
     title: 'Primeiro sistema real',
-    text: 'Construímos o primeiro protótipo de conciliação financeira para uma PME. Em 3 semanas, o fechamento mensal caiu de 5 dias para menos de 1 dia.',
+    text: 'Construímos o primeiro protótipo de conciliação financeira, a semente do que viria a ser o FiscWise.',
   },
   {
     year: '2023',

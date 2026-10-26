@@ -84,13 +84,6 @@ export const projects: ProjectData[] = [
       '/images/projects/fiscwise-conciliation.png',
     ],
 
-    metrics: {
-      'Menos fechamento manual': '-72h',
-      'Conciliação assistida': '98%',
-      'Rotinas automatizadas': '100%',
-      'Economia estimada': 'R$ 15k/mês',
-    },
-
     links: {
       demo: 'https://demo.contabilidadeflow.com.br',
       docs: '/fiscwise',

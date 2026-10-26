@@ -1,12 +1,25 @@
 import type { Metadata } from 'next'
+import type { WhatsAppTopic } from './contact'
 import { OG_DEFAULTS } from './structured-data'
 
 export type SeoServiceSlug =
+  | 'criacao-de-sites'
+  | 'jogos'
   | 'automacao-de-processos'
   | 'agentes-de-ia'
   | 'integracao-de-sistemas'
   | 'sistemas-sob-medida'
 
+export interface ServicePackage {
+  name: string
+  forWho: string
+  includes: string[]
+}
+
+/**
+ * Landing de serviço. Sem números de resultado: cases e métricas só voltam
+ * com cliente real, autorização e dados conferidos.
+ */
 export interface SeoServicePage {
   slug: SeoServiceSlug
   eyebrow: string
@@ -20,138 +33,237 @@ export interface SeoServicePage {
   proof: string
   primaryCta: string
   secondaryCta: string
+  /** Palavra-chave da mensagem de WhatsApp do botão principal */
+  whatsappTopic: WhatsAppTopic
+  /** Valor de ?produto= no formulário de orçamento */
+  quoteType: string
+  packages?: ServicePackage[]
 }
 
 export const seoServicePages: Record<SeoServiceSlug, SeoServicePage> = {
+  'criacao-de-sites': {
+    slug: 'criacao-de-sites',
+    eyebrow: 'Criação de sites',
+    title: 'Seu cliente procura no Google. Ele precisa encontrar você.',
+    description:
+      'Criamos sites e landing pages rápidos, bonitos no celular e feitos para vender: aparecem nas buscas, explicam o que você faz em segundos e levam o visitante direto para o seu WhatsApp.',
+    metaDescription:
+      'Criação de sites profissionais e landing pages para pequenas e médias empresas: rápidos, otimizados para Google e celular, integrados ao WhatsApp.',
+    keywords: ['criação de sites', 'site profissional', 'landing page', 'site para pequenas empresas', 'site institucional'],
+    painPoints: [
+      'Você só tem perfil no Instagram, e quem procura no Google encontra o concorrente.',
+      'Seu site é antigo, lento ou quebra no celular, e passa uma imagem amadora.',
+      'O visitante entra, não entende o que você faz e vai embora sem chamar.',
+      'Você não sabe quantas pessoas visitam o site nem de onde vêm os contatos.',
+    ],
+    outcomes: [
+      'Presença profissional no Google, com textos pensados para quem busca o seu serviço.',
+      'Site rápido e confortável no celular, onde está a maior parte dos visitantes.',
+      'Botão de WhatsApp e formulário que chega no seu e-mail: o visitante vira conversa.',
+      'Medição de visitas e cliques para saber o que funciona.',
+    ],
+    process: [
+      'Conversa sobre o seu negócio, o seu cliente e o que o site precisa fazer.',
+      'Proposta com páginas, textos e prazo definidos antes de começar.',
+      'Criação do layout e dos textos, com a sua aprovação antes de publicar.',
+      'Publicação no seu domínio, configuração do Google e ajustes finais.',
+    ],
+    proof:
+      'Este site que você está vendo foi feito pela V-STACK: rápido, otimizado para buscas, com formulários que chegam no e-mail, WhatsApp e medição de visitas. É o mesmo cuidado que levamos para o seu.',
+    primaryCta: 'Pedir orçamento no WhatsApp',
+    secondaryCta: 'Preencher formulário',
+    whatsappTopic: 'SITE',
+    quoteType: 'site',
+    packages: [
+      {
+        name: 'Landing page',
+        forWho: 'Para divulgar um serviço, produto ou campanha.',
+        includes: ['Uma página de vendas completa', 'Botão de WhatsApp e formulário', 'Otimização para celular e Google'],
+      },
+      {
+        name: 'Site institucional',
+        forWho: 'Para apresentar a empresa com credibilidade.',
+        includes: ['Páginas de início, serviços, sobre e contato', 'Textos orientados a conversão', 'Medição de visitas e cliques'],
+      },
+      {
+        name: 'Site + integrações',
+        forWho: 'Para quem quer o site trabalhando pelo negócio.',
+        includes: ['Tudo do institucional', 'Agenda, pagamento, catálogo ou área do cliente', 'Integração com os sistemas que você já usa'],
+      },
+    ],
+  },
+  jogos: {
+    slug: 'jogos',
+    eyebrow: 'Jogos sob encomenda',
+    title: 'Sua marca pode virar um jogo que ninguém esquece.',
+    description:
+      'Desenvolvemos jogos de navegador e celular para ações de marca, eventos e treinamentos. Um jogo prende a atenção por minutos, não por segundos, e transmite a sua mensagem enquanto o público se diverte.',
+    metaDescription:
+      'Desenvolvimento de jogos sob encomenda para marcas, eventos e treinamentos: jogos de navegador e celular, advergames e gamificação.',
+    keywords: ['desenvolvimento de jogos', 'jogo para empresa', 'advergame', 'gamificação', 'jogo para evento'],
+    painPoints: [
+      'Panfleto e post comum não seguram a atenção do público no seu evento ou campanha.',
+      'O treinamento da equipe é cansativo e ninguém lembra do conteúdo depois.',
+      'Você quer uma ação de marca diferente, que as pessoas queiram compartilhar.',
+      'Você tem a ideia de um jogo, mas não tem quem desenvolva.',
+    ],
+    outcomes: [
+      'Um jogo com a cara da sua marca, pensado para o seu público.',
+      'Roda no navegador ou no celular, sem instalação complicada para o jogador.',
+      'Ranking, cadastro e prêmios quando a ação precisa captar contatos.',
+      'Uma experiência que o público comenta e compartilha.',
+    ],
+    process: [
+      'Conversa sobre objetivo, público, onde o jogo vai rodar e quando precisa estar pronto.',
+      'Proposta com a ideia do jogo, plataforma, escopo e prazo.',
+      'Desenvolvimento por etapas, com versões jogáveis para você testar.',
+      'Publicação, acompanhamento durante a ação e ajustes.',
+    ],
+    proof:
+      'Por trás de cada jogo está a mesma engenharia que usamos nos nossos sistemas: cadastro de jogadores, ranking, painel de resultados e integração com o seu CRM quando a ação precisa gerar contatos.',
+    primaryCta: 'Conversar sobre o meu jogo',
+    secondaryCta: 'Preencher formulário',
+    whatsappTopic: 'JOGO',
+    quoteType: 'jogo',
+  },
   'automacao-de-processos': {
     slug: 'automacao-de-processos',
     eyebrow: 'Automação de processos',
-    title: 'Você gasta 12 horas por semana em trabalho que um script faria em 3 minutos.',
+    title: 'Pare de pagar alguém para copiar e colar.',
     description:
-      'Automação real elimina retrabalho de verdade: reduz 15h semanais para 30 minutos, corta erros de 8% para 0,2%, economiza R$ 8k/mês. Resultados mensuráveis em 30 dias.',
+      'Automatizamos as tarefas repetitivas que tomam o tempo do seu time: lançamentos, conferências, relatórios e envios. O processo passa a rodar sozinho, com alerta quando algo foge da regra.',
     metaDescription:
-      'Automação de processos: de 15h semanais para 30min. -87% em tempo, -75% em erro. Implementação em 30 dias com ROI comprovado.',
+      'Automação de processos para empresas: elimine tarefas repetitivas, reduza erros de digitação e libere o time para o que gera resultado.',
     keywords: ['automação de processos', 'reduzir tempo operacional', 'automação de tarefas repetitivas'],
     painPoints: [
-      'Seu time gasta 12+ horas por semana em tarefas que rodam sozinhas em outros lugares.',
-      'Cada vez que o processo roda, há erro manual (digitação, conferência dupla, lançamento errado).',
-      'Quando a pessoa responsável sai, ninguém sabe fazer — ou demora semanas treinar outra.',
-      'Você cresce mas a operação não acompanha sem contratar mais gente.',
+      'Seu time passa horas por semana em tarefas que poderiam rodar sozinhas.',
+      'Cada vez que o processo roda, aparece erro de digitação ou conferência.',
+      'Quando a pessoa responsável sai, ninguém sabe fazer.',
+      'A empresa cresce, mas a operação só acompanha contratando mais gente.',
     ],
     outcomes: [
-      'De 15h para 30min por semana: automação elimina conferência e lançamento manual.',
-      'Erro cai de 8% para 0,2%: máquina executa a mesma regra sem variação.',
-      'R$ 8k/mês economizados em folha (1 pessoa em tempo parcial).',
-      'Processo documentado em código: cresce sem depender de uma pessoa.',
+      'Tarefas repetidas executadas sempre da mesma forma, sem cansaço.',
+      'Menos erro manual: a regra é aplicada igual em todas as vezes.',
+      'Time livre para atender clientes e resolver exceções.',
+      'Processo documentado no sistema, sem depender de uma pessoa.',
     ],
     process: [
-      'Mapeamos a tarefa repetitiva: quantas horas por semana? Qual erro ocorre?',
-      'Testamos automação em paralelo: lado a lado com o atual, sem risco.',
-      'Implementamos e monitoramos 30 dias: ajustamos regras conforme uso real.',
-      'Você vira gestor do processo, não executor: alerta, validação, melhoria.',
+      'Mapeamos a tarefa: quanto tempo leva, onde erra e o que ela alimenta.',
+      'Testamos a automação lado a lado com o processo atual, sem risco.',
+      'Colocamos em produção e ajustamos as regras com o uso real.',
+      'Você acompanha por alertas e relatórios, e só age nas exceções.',
     ],
     proof:
-      'LogTech (logística): 15h semanais de digitação reduziram para 30min. Erro caiu 8% → 0,2%. Payback em 45 dias.',
-    primaryCta: 'Ver case LogTech',
-    secondaryCta: 'Mapear minha automação',
+      'Automatizamos rotinas dos nossos próprios produtos, como a conciliação e os alertas do FiscWise. Antes de propor, medimos o tempo gasto hoje para que o ganho possa ser conferido depois.',
+    primaryCta: 'Falar sobre automação',
+    secondaryCta: 'Preencher formulário',
+    whatsappTopic: 'AUTOMAÇÃO',
+    quoteType: 'automacao',
   },
   'agentes-de-ia': {
     slug: 'agentes-de-ia',
     eyebrow: 'Agentes de IA',
-    title: 'Seu time gasta 20 horas por semana respondendo a mesma pergunta.',
+    title: 'Seu time responde a mesma pergunta o dia inteiro?',
     description:
-      'Agentes de IA conectados aos seus dados. Não é chatbot genérico. É triagem, resposta e decisão com contexto real. 95% de acurácia em 2 semanas.',
+      'Agentes de IA conectados aos dados da sua empresa. Não é chatbot genérico: o agente consulta histórico e regras, responde com contexto e passa para uma pessoa quando precisa.',
     metaDescription:
-      'Agentes de IA para empresas: triagem, resposta contextual, análise e automação com integração aos dados reais do negócio.',
-    keywords: ['agentes de IA', 'IA para triagem', 'automação com inteligência artificial'],
+      'Agentes de IA para empresas: atendimento, triagem e respostas com contexto, integrados aos dados reais do negócio.',
+    keywords: ['agentes de IA', 'IA para atendimento', 'automação com inteligência artificial'],
     painPoints: [
-      'Seu time responde 50+ vezes a mesma pergunta todo mês.',
-      'Documentos e solicitações chegam misturados — ninguém sabe prioridade certa.',
-      'Atendimento lento porque não há contexto — tem que buscar histórico manualmente.',
-      'Erros de triagem custam: alguém recebe demanda fora da área, projeto atrasa.',
+      'As mesmas perguntas chegam várias vezes por dia no WhatsApp e no e-mail.',
+      'Solicitações chegam misturadas e ninguém sabe a prioridade certa.',
+      'O atendimento é lento porque é preciso buscar o histórico na mão.',
+      'Demandas caem na área errada e o cliente espera mais do que devia.',
     ],
     outcomes: [
-      'Agente classifica demanda na fila certa na primeira vez.',
-      'Responde pergunta padrão automaticamente com contexto do cliente.',
-      'Reduz 95% das triagens manuais — time só olha exceção.',
-      'Cada demanda é rastreável: auditoria, qualidade e melhoria contínua.',
+      'Perguntas frequentes respondidas na hora, com dados do próprio cliente.',
+      'Demandas classificadas e enviadas para a pessoa certa.',
+      'Time focado nas exceções, não na repetição.',
+      'Cada resposta registrada para auditoria e melhoria contínua.',
     ],
     process: [
-      'Identificamos as 5-10 perguntas que mais demoram e geram erro.',
-      'Conectamos dados: CRM, histórico, base de conhecimento, regras.',
-      'Treinamos e testamos o agente em paralelo com o time.',
-      'Implantamos com dashboard de qualidade: acurácia, tempo, satisfação.',
+      'Levantamos as perguntas e tarefas que mais consomem tempo.',
+      'Conectamos as fontes: CRM, histórico, base de conhecimento e regras.',
+      'Testamos o agente em paralelo com o time antes de liberar.',
+      'Implantamos com acompanhamento de qualidade das respostas.',
     ],
     proof:
-      'MediServe (saúde): de 20h por semana de resposta manual para 1h de revisão. Acurácia 99%. Payback em 60 dias.',
-    primaryCta: 'Ver case MediServe',
-    secondaryCta: 'Descrever meu desafio',
+      'Usamos IA nos nossos próprios produtos, como o assistente fiscal do FiscWise, sempre com dados mascarados e uma pessoa no controle das decisões sensíveis.',
+    primaryCta: 'Falar sobre IA',
+    secondaryCta: 'Preencher formulário',
+    whatsappTopic: 'AUTOMAÇÃO',
+    quoteType: 'ia',
   },
   'integracao-de-sistemas': {
     slug: 'integracao-de-sistemas',
     eyebrow: 'Integração de sistemas',
-    title: 'Você lança dados 3 vezes em 3 sistemas diferentes. Tudo desatualizado.',
+    title: 'Você lança o mesmo dado em três sistemas diferentes?',
     description:
-      'Integração real conecta ERP, CRM, banco, APIs e planilhas. Dados sincronizam em tempo real. De 5 dias para 1 hora. R$ 13k/mês economizados.',
+      'Conectamos ERP, CRM, bancos, planilhas e APIs para que a informação seja lançada uma vez e apareça em todo lugar, sempre atualizada.',
     metaDescription:
-      'Integração de sistemas e APIs: de 5 dias de reconciliação para 1 hora. Dados sincronizam automaticamente sem retrabalho.',
+      'Integração de sistemas e APIs: conecte ERP, CRM, bancos e planilhas para eliminar relançamentos e relatórios divergentes.',
     keywords: ['integração de sistemas', 'sincronizar dados', 'integração ERP CRM'],
     painPoints: [
-      'Cliente criado no CRM mas precisa ser lançado no ERP, no faturamento, no suporte — 3 vezes.',
-      'Relatórios divergem: financeiro vê um número, comercial vê outro, ninguém confia.',
-      'Toda semana tem planilha sendo baixada, conferida e relançada manualmente.',
-      'Quando algo falha no meio da integração, ninguém vê por dias.',
+      'O cliente é cadastrado no CRM e precisa ser relançado no ERP e no financeiro.',
+      'Os relatórios não batem: cada área vê um número diferente.',
+      'Toda semana alguém baixa planilha, confere e relança na mão.',
+      'Quando algo falha no meio do caminho, ninguém percebe por dias.',
     ],
     outcomes: [
-      'Dados sincronizam em tempo real: lança uma vez, aparece em todo lugar.',
-      'Relatórios consistentes entre áreas: uma fonte de verdade.',
-      'De 5 dias de reconciliação para 1 hora: time vira gestor, não operador.',
-      'Log automático de tudo: quem mudou quê, quando, por quê.',
+      'Dados sincronizados: lançou uma vez, aparece em todo lugar.',
+      'Relatórios consistentes entre áreas, com uma fonte de verdade.',
+      'Fim da planilha intermediária e do relançamento manual.',
+      'Registro de tudo: o que mudou, quando e por quê.',
     ],
     process: [
-      'Mapeamos cada sistema: dados, permissões, regras, limite de volume.',
-      'Definimos a fonte certa para cada tipo de dado.',
-      'Criamos API com retry, alertas e ponto de fallback.',
-      'Monitoramos fluxo 24/7: você recebe alerta antes do problema ficar grande.',
+      'Mapeamos cada sistema: dados, permissões, regras e limites.',
+      'Definimos qual sistema é a fonte certa para cada informação.',
+      'Construímos a integração com tentativas automáticas e alertas de falha.',
+      'Acompanhamos o fluxo e avisamos antes do problema crescer.',
     ],
     proof:
-      'FinFlow (fintech): de 5 dias de reconciliação para 1 hora. Erro caiu 97%. Payback em 60 dias.',
-    primaryCta: 'Ver case FinFlow',
-    secondaryCta: 'Mapear meus sistemas',
+      'Integramos bancos via Open Banking, emissão de NFS-e e serviços fiscais nos nossos próprios produtos. Se o sistema que você usa tem API, conseguimos conectar.',
+    primaryCta: 'Mapear meus sistemas',
+    secondaryCta: 'Preencher formulário',
+    whatsappTopic: 'AUTOMAÇÃO',
+    quoteType: 'integracao',
   },
   'sistemas-sob-medida': {
     slug: 'sistemas-sob-medida',
     eyebrow: 'Sistemas sob medida',
-    title: 'Sua operação específica não cabe em ferramenta genérica.',
+    title: 'Sua operação não cabe em ferramenta genérica.',
     description:
-      'Sistemas feitos para sua regra de negócio. Não é customização de SaaS. É código, arquitetura, e evolução contínua. Valor em 60 dias.',
+      'Criamos sistemas feitos para a sua regra de negócio: painéis, cadastros, agenda, financeiro, portais de cliente e aplicativos. O sistema se adapta ao seu processo, e não o contrário.',
     metaDescription:
-      'Sistemas sob medida: portais, dashboards, SaaS e APIs desenhados para sua operação específica com arquitetura de longo prazo.',
-    keywords: ['sistema sob medida', 'software customizado', 'desenvolvimento de SaaS'],
+      'Sistemas sob medida: portais, painéis, aplicativos e SaaS desenhados para a sua operação, com arquitetura que acompanha o crescimento.',
+    keywords: ['sistema sob medida', 'software personalizado', 'desenvolvimento de sistemas', 'desenvolvimento de SaaS'],
     painPoints: [
-      'Ferramentas prontas forçam você a adaptar processo, nunca o contrário.',
-      'Sua operação cresce em planilhas e controles paralelos: ninguém enxerga tudo junto.',
-      'Faltam relatórios e visibilidade que decisor precisa todos os dias.',
-      'Produto ou ideia parada por falta de expertise técnica e arquitetura sólida.',
+      'Ferramentas prontas obrigam você a mudar o processo para caber nelas.',
+      'A operação cresce em planilhas paralelas e ninguém enxerga tudo junto.',
+      'Faltam relatórios que mostrem o que importa para decidir.',
+      'Você tem a ideia de um produto, mas não tem quem construa.',
     ],
     outcomes: [
-      'Interface desenhada para sua rotina: cada tela reflete como você trabalha.',
-      'Dados integrados: uma visão única de tarefas, clientes, projeto ou indicador.',
-      'Escalável desde o início: arquitetura preparada para crescimento sem remendos.',
-      'Seu código, seu produto: aprende com o time, evolui com você.',
+      'Telas desenhadas para a sua rotina, sem campos que ninguém usa.',
+      'Dados de clientes, tarefas e financeiro num lugar só.',
+      'Arquitetura preparada para crescer sem remendos.',
+      'Código e dados sob o seu controle.',
     ],
     process: [
-      'Mapeamos a operação e a dor certa: qual problema custa mais?',
-      'Desenho de fluxo, dados e interface: você valida antes de qualquer código.',
-      'MVP em 4-6 semanas: versão mínima que entrega impacto real e mensurável.',
-      'Evolução ágil: ajustamos conforme uso, sem reinventar código todo mês.',
+      'Mapeamos a operação e o problema que mais custa caro.',
+      'Desenhamos fluxo, dados e telas: você valida antes de qualquer código.',
+      'Entregamos primeiro a versão mínima que já resolve o principal.',
+      'Evoluímos por etapas, conforme o uso real.',
     ],
     proof:
-      'Vale quando a operação tem regra própria, alto volume de transação ou custo de erro é tão alto que improviso é risco real.',
-    primaryCta: 'Planejar sistema sob medida',
-    secondaryCta: 'Enviar ideia ou dor',
+      'Construímos e operamos produtos próprios: FiscWise (em produção), SessãoInk, Gestão Fretamento Pro e ERP-V. É a mesma engenharia que vai para o seu sistema.',
+    primaryCta: 'Planejar meu sistema',
+    secondaryCta: 'Preencher formulário',
+    whatsappTopic: 'SISTEMA',
+    quoteType: 'saas',
   },
 }
+
 
 export function getSeoServicePage(slug: SeoServiceSlug) {
   return seoServicePages[slug]

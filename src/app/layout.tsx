@@ -30,12 +30,15 @@ export const metadata: Metadata = {
     canonical: './',
   },
   title: {
-    default: 'V-STACK SOLUTIONS - Automação, IA e Sistemas Sob Medida',
+    default: 'V-STACK SOLUTIONS | Sites, sistemas, automação e jogos',
     template: '%s | V-STACK SOLUTIONS',
   },
   description:
-    'Automação de processos, agentes de IA, integrações e sistemas sob medida para reduzir retrabalho, organizar a operação e escalar com tecnologia.',
+    'Criação de sites, sistemas sob medida, automação com IA e jogos sob encomenda para empresas que querem vender mais e trabalhar melhor. Orçamento pelo WhatsApp.',
   keywords: [
+    'criação de sites',
+    'site profissional',
+    'desenvolvimento de jogos',
     'desenvolvimento de software',
     'automação de processos',
     'inteligência artificial para empresas',
@@ -57,15 +60,15 @@ export const metadata: Metadata = {
   openGraph: {
     ...OG_DEFAULTS,
     type: 'website',
-    title: 'V-STACK SOLUTIONS - Automação, IA e Sistemas Sob Medida',
+    title: 'V-STACK SOLUTIONS | Sites, sistemas, automação e jogos',
     description:
-      'Automação de processos, agentes de IA, integrações e sistemas sob medida para empresas que precisam escalar com clareza operacional.',
+      'Sites que trazem clientes, sistemas que organizam a operação, automação com IA e jogos sob encomenda.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'V-STACK SOLUTIONS - Automação, IA e Sistemas Sob Medida',
+    title: 'V-STACK SOLUTIONS | Sites, sistemas, automação e jogos',
     description:
-      'Automação de processos, agentes de IA, integrações e sistemas sob medida para empresas que precisam escalar com clareza operacional.',
+      'Sites que trazem clientes, sistemas que organizam a operação, automação com IA e jogos sob encomenda.',
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {

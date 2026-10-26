@@ -1,4 +1,5 @@
 export type FAQCategory =
+  | 'Serviços'
   | 'Processo'
   | 'Prazo e Investimento'
   | 'Tecnologia'
@@ -14,6 +15,36 @@ export interface FAQItem {
 }
 
 export const FAQ: FAQItem[] = [
+  // Serviços
+  {
+    id: 'faq-servicos-01',
+    category: 'Serviços',
+    question: 'Vocês fazem site para pequeno negócio?',
+    answer:
+      'Sim. Fazemos desde uma página de vendas simples até o site institucional completo, pensados para aparecer no Google, funcionar bem no celular e levar o visitante para o seu WhatsApp. Você não precisa entender de tecnologia: cuidamos da criação, da publicação e dos ajustes.',
+  },
+  {
+    id: 'faq-servicos-02',
+    category: 'Serviços',
+    question: 'Qual a diferença de um site feito pela V-STACK?',
+    answer:
+      'Nós também construímos sistemas e automações. Por isso o site já pode nascer conectado ao que a sua empresa usa: WhatsApp, formulário que chega no seu e-mail, agenda, pagamento ou um sistema interno, com medição de visitas desde o primeiro dia.',
+  },
+  {
+    id: 'faq-servicos-03',
+    category: 'Serviços',
+    question: 'Vocês desenvolvem jogos sob encomenda?',
+    answer:
+      'Sim. Desenvolvemos jogos de navegador e celular para ações de marca, eventos e treinamentos. O projeto começa com o objetivo do jogo e o público, e a proposta define plataforma, escopo e prazo antes de qualquer desenvolvimento.',
+  },
+  {
+    id: 'faq-servicos-04',
+    category: 'Serviços',
+    question: 'Como peço um orçamento?',
+    answer:
+      'Mande uma mensagem no WhatsApp ou preencha o formulário de orçamento contando o que você precisa. Retornamos em até 24 horas úteis com as perguntas que faltam e o próximo passo. O orçamento não tem custo nem compromisso.',
+  },
+
   // Processo
   {
     id: 'faq-processo-01',
@@ -126,6 +157,7 @@ export const FAQ: FAQItem[] = [
 ]
 
 export const FAQ_CATEGORIES: FAQCategory[] = [
+  'Serviços',
   'Processo',
   'Prazo e Investimento',
   'Tecnologia',

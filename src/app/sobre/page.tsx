@@ -169,7 +169,7 @@ export default function SobrePage() {
                 Conte o cenário atual. Nós ajudamos a separar o que deve virar automação, integração, sistema ou apenas melhoria de processo.
               </p>
               <Link href="/envie-sua-dor" className="btn-primary mt-8 px-7 py-3.5 text-[14px]">
-                Enviar minha dor
+                Contar meu problema
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

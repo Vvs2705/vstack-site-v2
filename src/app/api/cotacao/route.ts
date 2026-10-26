@@ -8,10 +8,13 @@ import { trackConversion } from '@/lib/analytics'
 export const runtime = 'nodejs'
 
 const BUDGET_LABELS: Record<string, string> = {
+  'ate-3k': 'Até R$ 3.000',
+  '3k-10k': 'R$ 3.000 – R$ 10.000',
   'ate-10k': 'Até R$ 10.000',
   '10k-50k': 'R$ 10.000 – R$ 50.000',
   '50k-200k': 'R$ 50.000 – R$ 200.000',
   '200k+': 'Acima de R$ 200.000',
+  'nao-sei': 'Ainda não sei',
 }
 
 const TIMELINE_LABELS: Record<string, string> = {
