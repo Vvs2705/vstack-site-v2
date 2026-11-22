@@ -154,7 +154,7 @@ export const seoServicePages: Record<SeoServiceSlug, SeoServicePage> = {
       'Você acompanha por alertas e relatórios, e só age nas exceções.',
     ],
     proof:
-      'Automatizamos rotinas dos nossos próprios produtos, como a conciliação e os alertas do FiscWise. Antes de propor, medimos o tempo gasto hoje para que o ganho possa ser conferido depois.',
+      'Automatizamos rotinas dos nossos próprios produtos, como o calendário de obrigações e os alertas de prazo do FiscWise. Antes de propor, medimos o tempo gasto hoje para que o ganho possa ser conferido depois.',
     primaryCta: 'Falar sobre automação',
     secondaryCta: 'Preencher formulário',
     whatsappTopic: 'AUTOMAÇÃO',
@@ -222,7 +222,7 @@ export const seoServicePages: Record<SeoServiceSlug, SeoServicePage> = {
       'Acompanhamos o fluxo e avisamos antes do problema crescer.',
     ],
     proof:
-      'Integramos bancos via Open Banking, emissão de NFS-e e serviços fiscais nos nossos próprios produtos. Se o sistema que você usa tem API, conseguimos conectar.',
+      'Nos nossos próprios produtos conectamos armazenamento de documentos, login com convite por link e assistente de IA, e o FiscWise já traz pronto o cliente do SERPRO Integra Contador. Se o sistema que você usa tem API, conseguimos conectar.',
     primaryCta: 'Mapear meus sistemas',
     secondaryCta: 'Preencher formulário',
     whatsappTopic: 'AUTOMAÇÃO',
