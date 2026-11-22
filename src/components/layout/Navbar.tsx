@@ -6,21 +6,14 @@ import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import VStackLogo from '@/components/brand/VStackLogo'
 import ThemeToggle from '@/components/ui/ThemeToggle'
-import { SERVICES } from '@/lib/services'
+import { PRODUCT_LINKS, SERVICES } from '@/lib/services'
 import { whatsappLink } from '@/lib/contact'
 
 // Menu fala a língua de quem compra: serviços primeiro, produtos próprios num submenu.
-const NAV_LINKS: { label: string; href: string; accent?: boolean }[] = [
-  ...SERVICES.map((service) => ({ label: service.navLabel, href: service.href })),
-  { label: 'Sobre', href: '/sobre' },
-]
+type NavItem = { label: string; href: string }
 
-const PRODUCT_LINKS = [
-  { label: 'FiscWise', href: '/fiscwise', note: 'Gestão para contabilidade' },
-  { label: 'SessãoInk', href: '/sessaoink', note: 'Gestão para tatuadores' },
-  { label: 'Fretamento Pro', href: '/fretamento-pro', note: 'Gestão de frota' },
-  { label: 'ERP-V', href: '/erp-v', note: 'ERP e motor fiscal' },
-]
+const NAV_LINKS: NavItem[] = SERVICES.map((service) => ({ label: service.navLabel, href: service.href }))
+const ABOUT_LINK: NavItem = { label: 'Sobre', href: '/sobre' }
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,8 +21,31 @@ export default function Navbar() {
   const pathname = usePathname()
   const isProductActive = PRODUCT_LINKS.some((link) => pathname.startsWith(link.href))
 
+  const renderDesktopLink = (link: NavItem) => {
+    const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+    return (
+      <li key={link.href}>
+        <Link
+          href={link.href}
+          aria-current={isActive ? 'page' : undefined}
+          className={`group relative pb-1 text-[14px] font-semibold transition-colors duration-200 ${
+            isActive ? 'text-[var(--text-1)]' : 'text-[var(--text-2)] hover:text-[var(--text-1)]'
+          }`}
+        >
+          {link.label}
+          <span
+            className={`absolute bottom-0 left-0 h-[2px] rounded-full bg-[var(--accent)] transition-all duration-300 ${
+              isActive ? 'w-full' : 'w-0 group-hover:w-full'
+            }`}
+          />
+        </Link>
+      </li>
+    )
+  }
+
   return (
     <nav
+      aria-label="Principal"
       className="fixed inset-x-0 top-0 z-40 border-b border-[var(--border)]"
       style={{ background: 'var(--nav-blur)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)' }}
     >
@@ -39,37 +55,17 @@ export default function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-6 xl:gap-7 lg:flex">
-          {NAV_LINKS.map((link) => {
-            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`group relative pb-1 text-[14px] font-semibold transition-colors duration-200 ${
-                    link.accent
-                      ? isActive
-                        ? 'text-[var(--accent)]'
-                        : 'text-[var(--accent)] hover:text-[var(--accent-light)]'
-                      : isActive
-                        ? 'text-[var(--text-1)]'
-                        : 'text-[var(--text-2)] hover:text-[var(--text-1)]'
-                  }`}
-                >
-                  {link.label}
-                  <span
-                    className={`absolute bottom-0 left-0 h-[2px] rounded-full bg-[var(--accent)] transition-all duration-300 ${
-                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}
-                  />
-                </Link>
-              </li>
-            )
-          })}
+          {NAV_LINKS.map(renderDesktopLink)}
           <li
             className="relative"
             onMouseEnter={() => setProductsOpen(true)}
             onMouseLeave={() => setProductsOpen(false)}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape') setProductsOpen(false)
+            }}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setProductsOpen(false)
+            }}
           >
             <button
               type="button"
@@ -102,6 +98,7 @@ export default function Navbar() {
               </div>
             )}
           </li>
+          {renderDesktopLink(ABOUT_LINK)}
         </ul>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -116,8 +113,9 @@ export default function Navbar() {
           <button
             onClick={() => setIsOpen((value) => !value)}
             className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-1)]"
-            aria-label="Abrir menu"
+            aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={isOpen}
+            aria-controls="menu-mobile"
           >
             {isOpen ?<X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
@@ -125,9 +123,9 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="border-t border-[var(--border)] bg-[var(--bg-card)] px-5 py-5 lg:hidden">
+        <div id="menu-mobile" className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-[var(--border)] bg-[var(--bg-card)] px-5 py-5 lg:hidden">
           <div className="mx-auto max-w-7xl space-y-2">
-            {NAV_LINKS.map((link) => {
+            {[...NAV_LINKS, ABOUT_LINK].map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
               return (
                 <Link

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Container, Section, SectionHeader } from '@/components/primitives/Layout'
-import { FadeInUp, StaggerContainer, StaggerItem } from '@/components/animations'
 
 // Dor (nas palavras do cliente) → o que resolve. Mesmas dores das artes da campanha.
 const PAINS = [
@@ -39,9 +38,9 @@ const PAINS = [
 
 export default function PainsSection() {
   return (
-    <Section spacing="lg" id="dores">
+    <Section tone="deep" spacing="lg" id="dores" className="border-t border-[var(--border)]">
       <Container>
-        <FadeInUp>
+        <div className="reveal-scroll">
           <SectionHeader
             eyebrow="Você se reconhece?"
             title="Problemas que a gente resolve."
@@ -49,11 +48,11 @@ export default function PainsSection() {
             align="center"
             className="mb-12"
           />
-        </FadeInUp>
+        </div>
 
-        <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" delay={0.05}>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PAINS.map(({ pain, fix, href }) => (
-            <StaggerItem key={pain} className="h-full">
+            <li key={pain} className="reveal-scroll">
               <Link
                 href={href}
                 className="group flex h-full flex-col rounded-[var(--radius-card)] border border-[var(--border)] bg-[var(--bg-card)] p-6 transition-colors hover:border-[var(--accent-border)]"
@@ -64,9 +63,9 @@ export default function PainsSection() {
                   {fix}
                 </p>
               </Link>
-            </StaggerItem>
+            </li>
           ))}
-        </StaggerContainer>
+        </ul>
       </Container>
     </Section>
   )

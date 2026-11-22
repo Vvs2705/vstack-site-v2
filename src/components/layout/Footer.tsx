@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { Github, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 import VStackLogo from '@/components/brand/VStackLogo'
 import { Container } from '@/components/primitives/Layout'
-import { WHATSAPP_DISPLAY, whatsappLink } from '@/lib/contact'
+import { CONTACT_EMAIL, WHATSAPP_DISPLAY, whatsappLink } from '@/lib/contact'
+import { PRODUCT_LINKS } from '@/lib/services'
 
 const SOLUTIONS = [
   { label: 'Criação de sites', href: '/criacao-de-sites' },
@@ -11,16 +12,16 @@ const SOLUTIONS = [
   { label: 'Agentes de IA', href: '/agentes-de-ia' },
   { label: 'Integração de sistemas', href: '/integracao-de-sistemas' },
   { label: 'Jogos sob encomenda', href: '/jogos' },
-  { label: 'FiscWise', href: '/fiscwise' },
 ]
 
 const COMPANY = [
   { label: 'Sobre', href: '/sobre' },
-  { label: 'Soluções', href: '/solucoes' },
+  { label: 'Todas as soluções', href: '/solucoes' },
   { label: 'Conteúdos', href: '/conteudos' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contato', href: '/contato' },
-  { label: 'Cotação', href: '/cotacao' },
+  { label: 'Pedir orçamento', href: '/cotacao' },
+  { label: 'Envie sua dor', href: '/envie-sua-dor' },
 ]
 
 const SOCIAL = [
@@ -35,7 +36,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--bg-deep)]">
       <Container>
-        <div className="grid gap-10 py-12 sm:grid-cols-2 md:grid-cols-[1.2fr_1fr_0.8fr_1fr]" role="contentinfo">
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.9fr_0.9fr_1.1fr]">
           <div>
             <Link href="/" className="inline-flex items-center">
               <VStackLogo />
@@ -60,14 +61,15 @@ export default function Footer() {
           </div>
 
           <FooterColumn title="Soluções" links={SOLUTIONS} />
+          <FooterColumn title="Produtos" links={PRODUCT_LINKS.map(({ label, href }) => ({ label, href }))} />
           <FooterColumn title="Empresa" links={COMPANY} />
 
           <div>
             <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--text-3)]">Contato</p>
             <div className="space-y-3 text-[14px] text-[var(--text-2)]">
-              <a href="mailto:vinicius@vstack-solutions.com.br" className="flex items-start gap-3 transition-colors hover:text-[var(--text-1)]">
+              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-start gap-3 transition-colors hover:text-[var(--text-1)]">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
-                <span className="break-all">vinicius@vstack-solutions.com.br</span>
+                <span className="break-all">{CONTACT_EMAIL}</span>
               </a>
               <a href={whatsappLink('DIAGNÓSTICO')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-colors hover:text-[var(--text-1)]">
                 <Phone className="h-4 w-4 text-[var(--accent)]" />
