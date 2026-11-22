@@ -29,7 +29,7 @@ conferido_em: 2026-11-22
 - Detalhes de rotas, SEO e tokens de texto: `README.md` (trechos desatualizados, ver Armadilhas).
 
 ## Em andamento
-- PR #12 `fix/lead-sem-banco`: e-mail como reserva quando o banco está fora (toca as 3 rotas de lead e `src/lib/prisma.ts`); 1 commit à frente, `main` andou 11 commits desde então.
+- PR #12 `fix/lead-sem-banco`: e-mail como reserva quando o banco está fora (toca as 3 rotas de lead e `src/lib/prisma.ts`); aberto desde 2026-10-21 e desatualizado em relação à `main` (precisa de rebase antes de entrar).
 - PR #3 `dependabot/github_actions/actions/checkout-7`: actions/checkout 4 para 7.
 - PR #4 `dependabot/npm_and_yarn/react-hook-form-7.80.0`: react-hook-form 7.76 para 7.80.
 - PR #5 `dependabot/npm_and_yarn/eslint-config-next-16.2.10`: eslint-config-next 16.2.6 para 16.2.10.
