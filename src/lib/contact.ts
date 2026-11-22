@@ -9,3 +9,6 @@ export function whatsappLink(topic: WhatsAppTopic = 'DIAGNÓSTICO') {
   const text = `Olá, V-STACK! Vim pelo site. ${topic}`
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
 }
+
+// E-mail comercial (o mesmo exibido no rodapé e em /contato).
+export const CONTACT_EMAIL = 'vinicius@vstack-solutions.com.br'

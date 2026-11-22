@@ -11,6 +11,9 @@
 
 export type ProofStatus = 'production' | 'developing'
 
+/** Esquema visual do cartão (silhueta genérica da tela, sem dados reais). */
+export type ProofVisual = 'dashboard' | 'agenda' | 'route' | 'modules'
+
 export interface ProofProduct {
   /** Nome do produto SaaS próprio */
   name: string
@@ -22,8 +25,10 @@ export interface ProofProduct {
   status: ProofStatus
   /** Rótulo curto do estágio para o badge */
   statusLabel: string
-  /** Link interno se houver página dedicada (senão undefined) */
-  href?: string
+  /** Link interno da página dedicada do produto */
+  href: string
+  /** Silhueta usada no cartão (TODO: trocar por captura real de cada produto) */
+  visual: ProofVisual
 }
 
 export const PROOF_PRODUCTS: ProofProduct[] = [
@@ -35,6 +40,7 @@ export const PROOF_PRODUCTS: ProofProduct[] = [
     status: 'production',
     statusLabel: 'Em produção',
     href: '/fiscwise',
+    visual: 'dashboard',
   },
   {
     name: 'SessãoInk',
@@ -43,6 +49,8 @@ export const PROOF_PRODUCTS: ProofProduct[] = [
       'Plataforma de gestão de estúdio e agenda para tatuadores: agendamento, controle de sessões e fluxo financeiro num só lugar.',
     status: 'developing',
     statusLabel: 'Em desenvolvimento',
+    href: '/sessaoink',
+    visual: 'agenda',
   },
   {
     name: 'Gestão Fretamento Pro',
@@ -51,6 +59,8 @@ export const PROOF_PRODUCTS: ProofProduct[] = [
       'Operação de frota e fretamento sob controle: roteirização, gestão de viagens e visibilidade da operação para empresas de transporte.',
     status: 'developing',
     statusLabel: 'Em desenvolvimento',
+    href: '/fretamento-pro',
+    visual: 'route',
   },
   {
     name: 'Ecossistema Fiscal (ERP-V)',
@@ -59,6 +69,8 @@ export const PROOF_PRODUCTS: ProofProduct[] = [
       'Espinha dorsal fiscal e de ERP que conecta nota, estoque e financeiro — a base sobre a qual nossos produtos e integrações se apoiam.',
     status: 'developing',
     statusLabel: 'Em desenvolvimento',
+    href: '/erp-v',
+    visual: 'modules',
   },
 ]
 

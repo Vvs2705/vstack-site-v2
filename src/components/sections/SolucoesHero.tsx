@@ -1,39 +1,44 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { Container, Section } from '@/components/primitives/Layout'
+import { SERVICES } from '@/lib/services'
 
 export default function SolucoesHero() {
   return (
     <Section spacing="xl" className="border-b border-[var(--border)]">
       <Container>
         <div className="max-w-3xl">
-          <motion.p
-            className="eyebrow mb-4"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          >
-            O que entregamos
-          </motion.p>
+          <p className="eyebrow reveal mb-4">O que entregamos</p>
 
-          <motion.h1
-            className="text-balance text-[var(--text-1)]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-          >
+          <h1 className="text-balance text-[var(--text-1)]">
             Sites, sistemas, automação e jogos para a sua empresa crescer.
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            className="mt-6 max-w-2xl text-[16px] leading-8 text-[var(--text-2)]"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
-          >
+          <p className="reveal mt-6 max-w-2xl text-[16px] leading-8 text-[var(--text-2)]" style={{ '--reveal-delay': '80ms' } as React.CSSProperties}>
             Do site que traz clientes ao sistema que organiza a operação: escolha a frente que resolve o seu problema hoje e evolua a partir dela.
-          </motion.p>
+          </p>
+
+          <nav aria-label="Ir para" className="reveal mt-8" style={{ '--reveal-delay': '160ms' } as React.CSSProperties}>
+            <ul className="flex flex-wrap gap-2">
+              {SERVICES.map((service) => (
+                <li key={service.id}>
+                  <Link
+                    href={`#solucao-${service.id}`}
+                    className="inline-flex min-h-[44px] items-center rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-4 text-[14px] font-semibold text-[var(--text-2)] transition-colors hover:border-[var(--accent-border)] hover:text-[var(--accent)]"
+                  >
+                    {service.navLabel}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="#produtos"
+                  className="inline-flex min-h-[44px] items-center rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-4 text-[14px] font-semibold text-[var(--text-2)] transition-colors hover:border-[var(--accent-border)] hover:text-[var(--accent)]"
+                >
+                  Produtos próprios
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </Container>
     </Section>

@@ -1,28 +1,104 @@
 'use client'
 
 import { useState } from 'react'
-import { AlertCircle, Check, Loader2 } from 'lucide-react'
+import { Check, Loader2 } from 'lucide-react'
 import { DorSchema, type DorInput } from '@/lib/validations'
 import { trackFormSubmit } from '@/lib/analytics'
+import { cn } from '@/lib/utils'
 import { z } from 'zod'
+
+const INPUT_CLASS =
+  'w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] placeholder:text-[var(--text-3)] focus:border-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]'
+
+const URGENCY_OPTIONS = [
+  { value: 'baixa' as const, label: 'Baixa', hint: 'sem pressa' },
+  { value: 'media' as const, label: 'Média', hint: 'neste trimestre' },
+  { value: 'alta' as const, label: 'Alta', hint: 'neste mês' },
+  { value: 'critica' as const, label: 'Crítica', hint: 'travando a operação' },
+]
+
+const REQUIRED_TOTAL = 4
+
+/** Bloco numerado: um tema por vez, com estado de concluído. Só apresentação. */
+function Block({
+  number,
+  title,
+  hint,
+  done,
+  optional = false,
+  children,
+}: {
+  number: number
+  title: string
+  hint: string
+  done: boolean
+  optional?: boolean
+  children: React.ReactNode
+}) {
+  const headingId = `dor-bloco-${number}`
+  return (
+    <section aria-labelledby={headingId} className="space-y-4">
+      <div className="flex items-start gap-3">
+        <span
+          aria-hidden="true"
+          className={cn(
+            'mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[13px] font-bold transition-colors',
+            done
+              ? 'border-transparent bg-[var(--accent)] text-white'
+              : 'border-[var(--border-strong)] bg-[var(--bg-deep)] text-[var(--text-2)]',
+          )}
+        >
+          {done ? <Check className="h-4 w-4" /> : number}
+        </span>
+        <div>
+          <h3 id={headingId} className="text-[18px] text-[var(--text-1)]">
+            {title}
+            {optional && <span className="ml-2 text-[13px] font-normal text-[var(--text-3)]">(opcional)</span>}
+          </h3>
+          <p className="mt-0.5 text-[13px] leading-6 text-[var(--text-2)]">{hint}</p>
+        </div>
+      </div>
+      <div className="space-y-4 sm:pl-10">{children}</div>
+    </section>
+  )
+}
+
+function FieldError({ id, message }: { id: string; message?: string }) {
+  if (!message) return null
+  return (
+    <p id={id} role="alert" className="mt-1 text-sm text-danger">
+      {message}
+    </p>
+  )
+}
+
+function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
+  return (
+    <label htmlFor={htmlFor} className="mb-2 block text-sm font-medium text-[var(--text-1)]">
+      {children}
+    </label>
+  )
+}
+
+const EMPTY_FORM: Partial<DorInput> = {
+  name: '',
+  email: '',
+  company: '',
+  sector: '',
+  title: '',
+  description: '',
+  impact: '',
+  urgency: undefined,
+  currentSolution: '',
+  isAnonymous: false,
+}
 
 export default function DorForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
-  const [formData, setFormData] = useState<Partial<DorInput>>({
-    name: '',
-    email: '',
-    company: '',
-    sector: '',
-    title: '',
-    description: '',
-    impact: '',
-    urgency: undefined,
-    currentSolution: '',
-    isAnonymous: false,
-  })
+  const [formData, setFormData] = useState<Partial<DorInput>>(EMPTY_FORM)
 
   const updateField = <K extends keyof DorInput>(field: K, value: DorInput[K]) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -73,6 +149,13 @@ export default function DorForm() {
     }
   }
 
+  // Progresso visível: conta só os campos obrigatórios que já passam no schema.
+  const titleOk = (formData.title ?? '').trim().length >= 5
+  const descriptionOk = (formData.description ?? '').trim().length >= 30
+  const impactOk = (formData.impact ?? '').trim().length >= 10
+  const urgencyOk = Boolean(formData.urgency)
+  const requiredDone = [titleOk, descriptionOk, impactOk, urgencyOk].filter(Boolean).length
+
   if (isSuccess) {
     return (
       <div role="status" aria-live="polite" className="card-vstack max-w-2xl mx-auto text-center space-y-6">
@@ -95,18 +178,7 @@ export default function DorForm() {
         <button
           onClick={() => {
             setIsSuccess(false)
-            setFormData({
-              name: '',
-              email: '',
-              company: '',
-              sector: '',
-              title: '',
-              description: '',
-              impact: '',
-              urgency: undefined,
-              currentSolution: '',
-              isAnonymous: false,
-            })
+            setFormData(EMPTY_FORM)
           }}
           className="btn-secondary px-6 py-3"
         >
@@ -117,256 +189,258 @@ export default function DorForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card-vstack max-w-3xl mx-auto space-y-6">
-      <div className="flex items-start gap-4 p-4 rounded-lg bg-[var(--accent-muted)] border border-[var(--accent-border)]">
-        <AlertCircle className="h-6 w-6 text-[var(--accent)] flex-shrink-0 mt-0.5" />
-        <div>
-          <h3 className="font-display text-lg font-semibold text-[var(--text-1)] mb-1">
-            Descreva a dor da operação
-          </h3>
-          <p className="text-sm text-[var(--text-2)]">
-            Quanto mais claro for o problema, mais rápido conseguimos identificar se vale automatizar,
-            integrar sistemas ou criar uma solução sob medida.
-          </p>
+    <form onSubmit={handleSubmit} className="card-vstack mx-auto w-full max-w-3xl space-y-8 p-5 sm:p-8">
+      {/* Progresso */}
+      <div>
+        <div className="flex items-center justify-between gap-3 text-[13px]">
+          <span className="font-semibold text-[var(--text-1)]" id="dor-progress-label">
+            {requiredDone === REQUIRED_TOTAL ? 'Pronto para enviar' : 'Campos obrigatórios'}
+          </span>
+          <span className="font-mono text-[var(--text-2)]">
+            {requiredDone} de {REQUIRED_TOTAL}
+          </span>
+        </div>
+        <div
+          role="progressbar"
+          aria-labelledby="dor-progress-label"
+          aria-valuemin={0}
+          aria-valuemax={REQUIRED_TOTAL}
+          aria-valuenow={requiredDone}
+          aria-valuetext={`${requiredDone} de ${REQUIRED_TOTAL} campos obrigatórios preenchidos`}
+          className="mt-2 h-1.5 overflow-hidden rounded-full bg-[var(--border)]"
+        >
+          <div
+            className="h-full w-full origin-left rounded-full bg-[var(--accent)] transition-transform duration-500 ease-out"
+            style={{ transform: `scaleX(${requiredDone / REQUIRED_TOTAL})` }}
+          />
         </div>
       </div>
 
-      {/* Anonymous Toggle */}
-      <div className="flex items-center gap-3 p-4 rounded-lg bg-[var(--bg-deep)] border border-[var(--border)]">
-        <input
-          type="checkbox"
-          id="isAnonymous"
-          checked={formData.isAnonymous}
-          onChange={(e) => updateField('isAnonymous', e.target.checked)}
-          className="h-5 w-5 rounded border-[var(--border)] bg-[var(--bg-card)] text-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-0"
-        />
-        <label htmlFor="isAnonymous" className="text-sm font-medium text-[var(--text-1)] cursor-pointer">
-          Enviar anonimamente (seus dados não serão compartilhados)
-        </label>
-      </div>
-
-      {/* Contact Info (optional if anonymous) */}
-      {!formData.isAnonymous && (
-        <div className="space-y-4">
-          <h4 className="font-display text-lg font-semibold text-[var(--text-1)]">
-            Informações de Contato (Opcional)
-          </h4>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
-                Seu Nome
-              </label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => updateField('name', e.target.value)}
-                aria-invalid={Boolean(errors.name)}
-                aria-describedby={errors.name ? 'dor-error-name' : undefined}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
-                placeholder="Nome completo"
-              />
-              {errors.name && (
-                <p id="dor-error-name" role="alert" className="mt-1 text-sm text-danger">{errors.name}</p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => updateField('email', e.target.value)}
-                aria-invalid={Boolean(errors.email)}
-                aria-describedby={errors.email ? 'dor-error-email' : undefined}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
-                placeholder="seu@email.com"
-              />
-              {errors.email && (
-                <p id="dor-error-email" role="alert" className="mt-1 text-sm text-danger">{errors.email}</p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
-                Empresa
-              </label>
-              <input
-                type="text"
-                value={formData.company}
-                onChange={(e) => updateField('company', e.target.value)}
-                aria-invalid={Boolean(errors.company)}
-                aria-describedby={errors.company ? 'dor-error-company' : undefined}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
-                placeholder="Nome da empresa"
-              />
-              {errors.company && (
-                <p id="dor-error-company" role="alert" className="mt-1 text-sm text-danger">{errors.company}</p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
-                Setor
-              </label>
-              <input
-                type="text"
-                value={formData.sector}
-                onChange={(e) => updateField('sector', e.target.value)}
-                aria-invalid={Boolean(errors.sector)}
-                aria-describedby={errors.sector ? 'dor-error-sector' : undefined}
-                className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
-                placeholder="Ex: Tecnologia, Varejo..."
-              />
-              {errors.sector && (
-                <p id="dor-error-sector" role="alert" className="mt-1 text-sm text-danger">{errors.sector}</p>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Pain Point Details */}
-      <div className="space-y-4">
-        <h4 className="font-display text-lg font-semibold text-[var(--text-1)]">
-          Detalhes da Dor *
-        </h4>
-
+      {/* 1 · A dor */}
+      <Block
+        number={1}
+        title="Qual é a dor?"
+        hint="Em uma frase e depois com detalhes. Quanto mais claro, mais rápido indicamos o caminho."
+        done={titleOk && descriptionOk}
+      >
         <div>
-          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
-            Título da dor * (mínimo 5 caracteres)
-          </label>
+          <FieldLabel htmlFor="dor-title">Título da dor * (mínimo 5 caracteres)</FieldLabel>
           <input
+            id="dor-title"
             type="text"
             value={formData.title}
             onChange={(e) => updateField('title', e.target.value)}
             aria-invalid={Boolean(errors.title)}
             aria-describedby={errors.title ? 'dor-error-title' : undefined}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none"
+            className={INPUT_CLASS}
             placeholder="Ex: Processos manuais consomem muito tempo"
             required
           />
-          {errors.title && (
-            <p id="dor-error-title" role="alert" className="mt-1 text-sm text-danger">{errors.title}</p>
-          )}
+          <FieldError id="dor-error-title" message={errors.title} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
-            Descrição detalhada * (mínimo 30 caracteres)
-          </label>
+          <FieldLabel htmlFor="dor-description">Descrição detalhada * (mínimo 30 caracteres)</FieldLabel>
           <textarea
+            id="dor-description"
             value={formData.description}
             onChange={(e) => updateField('description', e.target.value)}
             rows={5}
             aria-invalid={Boolean(errors.description)}
             aria-describedby={errors.description ? 'dor-error-description' : undefined}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
+            className={cn(INPUT_CLASS, 'resize-none')}
             placeholder="Descreva em detalhes o problema que você enfrenta..."
             required
           />
-          {errors.description && (
-            <p id="dor-error-description" role="alert" className="mt-1 text-sm text-danger">{errors.description}</p>
-          )}
+          <FieldError id="dor-error-description" message={errors.description} />
         </div>
+      </Block>
 
+      {/* 2 · O impacto */}
+      <Block
+        number={2}
+        title="Qual o impacto?"
+        hint="Custo, tempo, erro ou risco. É isso que define a prioridade."
+        done={impactOk && urgencyOk}
+      >
         <div>
-          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
-            Impacto no Negócio * (mínimo 10 caracteres)
-          </label>
+          <FieldLabel htmlFor="dor-impact">Impacto no negócio * (mínimo 10 caracteres)</FieldLabel>
           <textarea
+            id="dor-impact"
             value={formData.impact}
             onChange={(e) => updateField('impact', e.target.value)}
             rows={3}
             aria-invalid={Boolean(errors.impact)}
             aria-describedby={errors.impact ? 'dor-error-impact' : undefined}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
-            placeholder="Como isso afeta sua empresa?(custos, tempo, produtividade...)"
+            className={cn(INPUT_CLASS, 'resize-none')}
+            placeholder="Como isso afeta sua empresa? (custos, tempo, produtividade...)"
             required
           />
-          {errors.impact && (
-            <p id="dor-error-impact" role="alert" className="mt-1 text-sm text-danger">{errors.impact}</p>
-          )}
+          <FieldError id="dor-error-impact" message={errors.impact} />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
+        <div role="group" aria-labelledby="dor-urgency-label" aria-describedby={errors.urgency ? 'dor-error-urgency' : undefined}>
+          <p id="dor-urgency-label" className="mb-2 text-sm font-medium text-[var(--text-1)]">
             Nível de urgência *
-          </label>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              { value: 'baixa' as const, label: 'Baixa', color: 'bg-info/10 border-info/30 text-info' },
-              { value: 'media' as const, label: 'Média', color: 'bg-warning/10 border-warning/30 text-warning' },
-              { value: 'alta' as const, label: 'Alta', color: 'bg-orange-500/10 border-orange-500/30 text-orange-400' },
-              { value: 'critica' as const, label: 'Crítica', color: 'bg-danger/10 border-danger/30 text-danger' },
-            ].map((option) => (
-              <button
-                key={option.value}
-                type="button"
-                onClick={() => updateField('urgency', option.value)}
-                className={`rounded-lg border px-4 py-3 text-sm font-medium transition-all ${
-                  formData.urgency === option.value
-                    ?option.color
-                    : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-2)] hover:border-[var(--accent-border)]'
-                }`}
-              >
-                {option.label}
-              </button>
-            ))}
+          </p>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            {URGENCY_OPTIONS.map((option) => {
+              const selected = formData.urgency === option.value
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  aria-pressed={selected}
+                  onClick={() => updateField('urgency', option.value)}
+                  className={cn(
+                    'min-h-[56px] rounded-lg border px-3 py-2 text-left transition-colors',
+                    selected
+                      ? 'border-[var(--accent)] bg-[var(--accent-muted)] text-[var(--text-1)]'
+                      : 'border-[var(--border)] bg-[var(--bg-deep)] text-[var(--text-2)] hover:border-[var(--accent-border)]',
+                  )}
+                >
+                  <span className="block text-sm font-semibold">{option.label}</span>
+                  <span className="block text-[12px] text-[var(--text-3)]">{option.hint}</span>
+                </button>
+              )
+            })}
           </div>
-          {errors.urgency && (
-            <p id="dor-error-urgency" role="alert" className="mt-1 text-sm text-danger">{errors.urgency}</p>
-          )}
+          <FieldError id="dor-error-urgency" message={errors.urgency} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--text-1)] mb-2">
-            Solução Atual (se houver)
-          </label>
+          <FieldLabel htmlFor="dor-current">
+            Solução atual <span className="font-normal text-[var(--text-3)]">(se houver)</span>
+          </FieldLabel>
           <textarea
+            id="dor-current"
             value={formData.currentSolution}
             onChange={(e) => updateField('currentSolution', e.target.value)}
             rows={3}
             aria-invalid={Boolean(errors.currentSolution)}
             aria-describedby={errors.currentSolution ? 'dor-error-currentSolution' : undefined}
-            className="w-full rounded-lg bg-[var(--bg-deep)] border border-[var(--border)] px-4 py-3 text-[var(--text-1)] focus:border-[var(--accent)] focus:outline-none resize-none"
-            placeholder="Como você lida com isso hoje?Por que não é suficiente?"
+            className={cn(INPUT_CLASS, 'resize-none')}
+            placeholder="Como você lida com isso hoje? Por que não é suficiente?"
           />
-          {errors.currentSolution && (
-            <p id="dor-error-currentSolution" role="alert" className="mt-1 text-sm text-danger">{errors.currentSolution}</p>
-          )}
+          <FieldError id="dor-error-currentSolution" message={errors.currentSolution} />
         </div>
-      </div>
+      </Block>
+
+      {/* 3 · Contato (opcional) */}
+      <Block
+        number={3}
+        title="Como falamos com você?"
+        hint="Sem contato não conseguimos responder. Se preferir, envie de forma anônima."
+        done={Boolean(formData.isAnonymous) || Boolean(formData.email?.trim())}
+        optional
+      >
+        <div className="flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--bg-deep)] p-4">
+          <input
+            type="checkbox"
+            id="isAnonymous"
+            checked={formData.isAnonymous}
+            onChange={(e) => updateField('isAnonymous', e.target.checked)}
+            className="h-5 w-5 rounded border-[var(--border)] bg-[var(--bg-card)] text-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-0"
+          />
+          <label htmlFor="isAnonymous" className="cursor-pointer text-sm font-medium text-[var(--text-1)]">
+            Enviar anonimamente (seus dados não serão compartilhados)
+          </label>
+        </div>
+
+        {!formData.isAnonymous && (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div>
+              <FieldLabel htmlFor="dor-name">Seu nome</FieldLabel>
+              <input
+                id="dor-name"
+                type="text"
+                autoComplete="name"
+                value={formData.name}
+                onChange={(e) => updateField('name', e.target.value)}
+                aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? 'dor-error-name' : undefined}
+                className={INPUT_CLASS}
+                placeholder="Nome completo"
+              />
+              <FieldError id="dor-error-name" message={errors.name} />
+            </div>
+
+            <div>
+              <FieldLabel htmlFor="dor-email">E-mail</FieldLabel>
+              <input
+                id="dor-email"
+                type="email"
+                autoComplete="email"
+                value={formData.email}
+                onChange={(e) => updateField('email', e.target.value)}
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? 'dor-error-email' : undefined}
+                className={INPUT_CLASS}
+                placeholder="seu@email.com"
+              />
+              <FieldError id="dor-error-email" message={errors.email} />
+            </div>
+
+            <div>
+              <FieldLabel htmlFor="dor-company">Empresa</FieldLabel>
+              <input
+                id="dor-company"
+                type="text"
+                autoComplete="organization"
+                value={formData.company}
+                onChange={(e) => updateField('company', e.target.value)}
+                aria-invalid={Boolean(errors.company)}
+                aria-describedby={errors.company ? 'dor-error-company' : undefined}
+                className={INPUT_CLASS}
+                placeholder="Nome da empresa"
+              />
+              <FieldError id="dor-error-company" message={errors.company} />
+            </div>
+
+            <div>
+              <FieldLabel htmlFor="dor-sector">Setor</FieldLabel>
+              <input
+                id="dor-sector"
+                type="text"
+                value={formData.sector}
+                onChange={(e) => updateField('sector', e.target.value)}
+                aria-invalid={Boolean(errors.sector)}
+                aria-describedby={errors.sector ? 'dor-error-sector' : undefined}
+                className={INPUT_CLASS}
+                placeholder="Ex: Tecnologia, Varejo..."
+              />
+              <FieldError id="dor-error-sector" message={errors.sector} />
+            </div>
+          </div>
+        )}
+      </Block>
 
       {errors.submit && (
-        <div role="alert" className="rounded-lg bg-danger/10 border border-danger/30 px-4 py-3 text-sm text-danger">
+        <div role="alert" className="rounded-lg border border-danger/30 bg-danger/10 px-4 py-3 text-sm text-danger">
           {errors.submit}
         </div>
       )}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full btn-primary px-6 py-4 text-base font-semibold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {isSubmitting ?(
-          <>
-            <Loader2 className="h-5 w-5 animate-spin" />
-            Enviando...
-          </>
-        ) : (
-          <>
-            Enviar para análise
-            <AlertCircle className="h-5 w-5" />
-          </>
-        )}
-      </button>
+      <div className="space-y-3 border-t border-[var(--border)] pt-6">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn-primary flex min-h-[52px] w-full items-center justify-center gap-2 px-6 py-4 text-base font-semibold disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {isSubmitting ? (
+            <>
+              <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
+              Enviando...
+            </>
+          ) : (
+            'Enviar para análise'
+          )}
+        </button>
 
-      <p className="text-xs text-center text-[var(--text-3)]">
-        Ao enviar, você concorda que a V-STACK SOLUTIONS pode entrar em contato para discutir soluções.
-      </p>
+        <p className="text-center text-xs text-[var(--text-3)]">
+          Ao enviar, você concorda que a V-STACK SOLUTIONS pode entrar em contato para discutir soluções.
+        </p>
+      </div>
     </form>
   )
 }

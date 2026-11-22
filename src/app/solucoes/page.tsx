@@ -1,16 +1,13 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import SolucoesHero from '@/components/sections/SolucoesHero'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbList, OG_DEFAULTS } from '@/lib/structured-data'
-import { Container, Section } from '@/components/primitives/Layout'
-
-// Lazy-load heavy sections below the fold
-const SolutionsDetailedSection = dynamic(() => import('@/components/sections/SolutionsDetailedSection'))
-const SolutionsGridSection = dynamic(() => import('@/components/sections/SolutionsGridSection'))
-const CTASection = dynamic(() => import('@/components/sections/CTASection'))
+import SolutionsDetailedSection from '@/components/sections/SolutionsDetailedSection'
+import SocialProofSection from '@/components/sections/SocialProofSection'
+import ProcessSection from '@/components/sections/ProcessSection'
+import CTASection from '@/components/sections/CTASection'
 
 export const metadata: Metadata = {
   title: 'Soluções',
@@ -40,13 +37,10 @@ export default function SolucoesPage() {
       <main className="min-h-screen bg-[var(--bg)] pt-16">
         <SolucoesHero />
 
+        {/* Ordem do mockup 02: serviços → produtos → como funciona → chamada. */}
         <SolutionsDetailedSection />
-
-        <Section className="border-t border-[var(--border)]">
-          <Container>
-            <SolutionsGridSection />
-          </Container>
-        </Section>
+        <SocialProofSection />
+        <ProcessSection />
 
         <CTASection
           headline="Não sabe por onde começar?"

@@ -66,3 +66,11 @@ export const SERVICES: Service[] = [
     whatsappTopic: 'JOGO',
   },
 ]
+
+/** Produtos próprios (páginas dedicadas). Fonte única para menu e rodapé. */
+export const PRODUCT_LINKS = [
+  { label: 'FiscWise', href: '/fiscwise', note: 'Gestão para contabilidade' },
+  { label: 'SessãoInk', href: '/sessaoink', note: 'Gestão para tatuadores' },
+  { label: 'Fretamento Pro', href: '/fretamento-pro', note: 'Gestão de frota' },
+  { label: 'ERP-V', href: '/erp-v', note: 'ERP e motor fiscal' },
+] as const

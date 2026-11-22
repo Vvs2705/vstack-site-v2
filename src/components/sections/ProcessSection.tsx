@@ -1,5 +1,4 @@
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
-import { FadeInUp, StaggerContainer, StaggerItem } from '@/components/animations'
 
 const STEPS = [
   {
@@ -24,7 +23,7 @@ export default function ProcessSection() {
   return (
     <Section tone="deep" spacing="lg" className="border-y border-[var(--border)]">
       <Container>
-        <FadeInUp>
+        <div className="reveal-scroll">
           <SectionHeader
             eyebrow="Como funciona"
             title="Do primeiro “oi” ao projeto no ar."
@@ -32,11 +31,12 @@ export default function ProcessSection() {
             align="center"
             className="mb-12"
           />
-        </FadeInUp>
+        </div>
 
-        <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" delay={0.05}>
+        <div className="rail-grow mb-6 hidden h-0.5 rounded-full bg-[var(--accent)] lg:block" aria-hidden="true" />
+        <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step, index) => (
-            <StaggerItem key={step.title} className="h-full">
+            <li key={step.title} className="reveal-scroll">
               <Surface className="h-full p-6">
                 <span className="text-[32px] font-bold leading-none text-[var(--accent)]">
                   {String(index + 1).padStart(2, '0')}
@@ -44,9 +44,9 @@ export default function ProcessSection() {
                 <h3 className="mt-4 text-[19px] text-[var(--text-1)]">{step.title}</h3>
                 <p className="mt-2 text-[15px] leading-7 text-[var(--text-2)]">{step.text}</p>
               </Surface>
-            </StaggerItem>
+            </li>
           ))}
-        </StaggerContainer>
+        </ol>
       </Container>
     </Section>
   )

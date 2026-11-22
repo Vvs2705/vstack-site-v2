@@ -1,11 +1,8 @@
-'use client'
-
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { SERVICES } from '@/lib/services'
 import { whatsappLink } from '@/lib/contact'
 import { Container, Section, SectionHeader, Surface } from '@/components/primitives/Layout'
-import { FadeInUp, AnimatedSection } from '@/components/animations'
 
 const DIFFERENCES = [
   {
@@ -35,7 +32,7 @@ export default function SolutionsDetailedSection() {
     <>
       <Section>
         <Container>
-          <FadeInUp>
+          <div className="reveal-scroll">
             <SectionHeader
               eyebrow="Como resolvemos"
               title="Cada problema pede uma solução específica."
@@ -43,11 +40,11 @@ export default function SolutionsDetailedSection() {
               align="center"
               className="mb-12"
             />
-          </FadeInUp>
+          </div>
 
           <div className="space-y-6">
             {SERVICES.map((service) => (
-              <AnimatedSection key={service.id} delay={0.05}>
+              <div key={service.id} className="reveal-scroll">
                 <Surface className="scroll-mt-24 p-6 sm:p-8" id={`solucao-${service.id}`}>
                   <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
                     <div>
@@ -89,7 +86,7 @@ export default function SolutionsDetailedSection() {
                     </div>
                   </div>
                 </Surface>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
         </Container>
@@ -97,7 +94,7 @@ export default function SolutionsDetailedSection() {
 
       <Section tone="deep" className="border-y border-[var(--border)]">
         <Container>
-          <FadeInUp>
+          <div className="reveal-scroll">
             <SectionHeader
               eyebrow="Por que somos diferentes"
               title="V-STACK vs. fornecedores genéricos"
@@ -105,9 +102,9 @@ export default function SolutionsDetailedSection() {
               align="center"
               className="mb-10"
             />
-          </FadeInUp>
+          </div>
 
-          <FadeInUp delay={0.1}>
+          <div className="reveal-scroll">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[560px] text-[14px]">
                 <thead>
@@ -128,7 +125,7 @@ export default function SolutionsDetailedSection() {
                 </tbody>
               </table>
             </div>
-          </FadeInUp>
+          </div>
         </Container>
       </Section>
     </>
