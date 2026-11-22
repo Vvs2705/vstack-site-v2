@@ -27,62 +27,58 @@ export const projects: ProjectData[] = [
   {
     slug: 'fiscwise',
     title: 'FiscWise',
-    description: 'Automação financeira para fechar o mês com menos retrabalho e mais controle.',
-    thumbnail: '/images/projects/fiscwise-thumb.png',
+    description: 'Central do escritório contábil: obrigações por cliente, portal do cliente e fechamento mensal com dossiê.',
+    thumbnail: '/og-image.png',
     status: 'active',
-    tags: ['FastAPI', 'PostgreSQL', 'React', 'Open Banking', 'TypeScript', 'Tailwind'],
+    tags: ['FastAPI', 'PostgreSQL', 'React', 'Supabase', 'TypeScript', 'Tailwind'],
 
     problem:
-      'Empresas de pequeno e médio porte ainda fecham o mês com planilhas, conferências manuais e informações espalhadas em vários sistemas. Isso gera atraso, erro humano e pouca visibilidade para decisões financeiras.',
+      'Escritórios de contabilidade controlam prazos, guias e documentos de dezenas de clientes em planilhas, e-mail e WhatsApp. Um vencimento esquecido vira multa para o cliente, e o fechamento do mês depende de caçar arquivo por arquivo.',
 
     solution:
-      'O FiscWise centraliza dados financeiros, automatiza conciliação, organiza lançamentos e entrega indicadores em tempo real. O objetivo é reduzir o esforço operacional e dar clareza para gestores e equipes contábeis.',
+      'O FiscWise organiza a carteira do escritório num lugar só: calcula as obrigações de cada cliente pelo regime, CNAE e município, recebe os documentos pelo portal do cliente e fecha cada competência com um dossiê em PDF.',
 
     features: [
       {
-        icon: 'TrendingUp',
-        title: 'Conciliação automática',
+        icon: 'AlertCircle',
+        title: 'Obrigações por cliente',
         description:
-          'Integração bancária para reduzir conferências manuais e acelerar o fechamento financeiro.',
+          'Calendário calculado por regime, CNAE, município e UF, com recorrência e prazos de cada cliente da carteira.',
       },
       {
-        icon: 'Zap',
-        title: 'Open Banking BR',
+        icon: 'TrendingUp',
+        title: 'Fechamento com dossiê PDF',
         description:
-          'Conexão segura com instituições financeiras brasileiras para manter os dados atualizados.',
+          'Fechamento mensal por competência, com o dossiê em PDF gerado a partir do que foi entregue no mês.',
+      },
+      {
+        icon: 'Smartphone',
+        title: 'Portal do cliente',
+        description:
+          'O cliente final entra por convite, envia documentos e baixa guias sem depender de e-mail ou WhatsApp.',
       },
       {
         icon: 'BarChart3',
-        title: 'Indicadores em tempo real',
+        title: 'Documentos e financeiro',
         description:
-          'Dashboards e relatórios para acompanhar caixa, pendências, entradas, saídas e tendências.',
+          'Arquivos de cada cliente guardados em lugar privado, com contas a receber e controle de inadimplência do escritório.',
       },
       {
-        icon: 'AlertCircle',
-        title: 'Alertas operacionais',
+        icon: 'Zap',
+        title: 'Assistente com IA',
         description:
-          'Notificações para inconsistências, vencimentos, pendências e pontos que precisam de ação.',
+          'Calculadora fiscal e assistente por IA para tirar dúvidas operacionais do dia a dia do escritório.',
       },
       {
         icon: 'Lock',
         title: 'Segurança e LGPD',
         description:
-          'Arquitetura com controle de acesso, criptografia e boas práticas para dados sensíveis.',
-      },
-      {
-        icon: 'Smartphone',
-        title: 'Acesso multiplataforma',
-        description:
-          'Interface responsiva para uso em desktop, tablet e celular sem perder clareza operacional.',
+          'Dados de cada escritório isolados, controle de acesso por responsável e boas práticas para dados sensíveis.',
       },
     ],
 
-    screenshots: [
-      '/images/projects/fiscwise-dashboard.png',
-      '/images/projects/fiscwise-reports.png',
-      '/images/projects/fiscwise-alerts.png',
-      '/images/projects/fiscwise-conciliation.png',
-    ],
+    // Sem capturas até haver telas reais do produto (as antigas eram ilustrações com recursos que o FiscWise não tem).
+    screenshots: [],
 
     links: {
       demo: 'https://demo.contabilidadeflow.com.br',

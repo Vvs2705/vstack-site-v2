@@ -5,8 +5,7 @@ import { cn } from '@/lib/utils'
 
 /**
  * Silhueta genérica da tela do produto (só formas, nenhum número ou dado).
- * TODO: trocar por captura real de cada produto quando houver (a pasta
- * public/images/projects tem apenas placeholders com valores inventados).
+ * TODO: trocar por captura real de cada produto quando houver.
  */
 function ProductSilhouette({ visual }: { visual: ProofVisual }) {
   const line = 'h-1.5 rounded-full bg-[var(--border-strong)]'
