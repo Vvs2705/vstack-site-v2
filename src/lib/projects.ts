@@ -28,7 +28,7 @@ export const projects: ProjectData[] = [
     slug: 'fiscwise',
     title: 'FiscWise',
     description: 'Central do escritório contábil: obrigações por cliente, portal do cliente e fechamento mensal com dossiê.',
-    thumbnail: '/images/projects/fiscwise-thumb.png',
+    thumbnail: '/og-image.png',
     status: 'active',
     tags: ['FastAPI', 'PostgreSQL', 'React', 'Supabase', 'TypeScript', 'Tailwind'],
 
@@ -77,11 +77,8 @@ export const projects: ProjectData[] = [
       },
     ],
 
-    screenshots: [
-      '/images/projects/fiscwise-dashboard.png',
-      '/images/projects/fiscwise-reports.png',
-      '/images/projects/fiscwise-alerts.png',
-    ],
+    // Sem capturas até haver telas reais do produto (as antigas eram ilustrações com recursos que o FiscWise não tem).
+    screenshots: [],
 
     links: {
       demo: 'https://demo.contabilidadeflow.com.br',

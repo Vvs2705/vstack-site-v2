@@ -222,7 +222,7 @@ export const seoServicePages: Record<SeoServiceSlug, SeoServicePage> = {
       'Acompanhamos o fluxo e avisamos antes do problema crescer.',
     ],
     proof:
-      'Nos nossos próprios produtos conectamos armazenamento de documentos, login com convite por link e assistente de IA, e o FiscWise já traz pronto o cliente do SERPRO Integra Contador. Se o sistema que você usa tem API, conseguimos conectar.',
+      'Nos nossos próprios produtos conectamos armazenamento de documentos, login com convite por link e assistente de IA, e o FiscWise já tem o cliente do SERPRO Integra Contador implementado, pronto para ligar quando houver contrato. Se o sistema que você usa tem API, conseguimos conectar.',
     primaryCta: 'Mapear meus sistemas',
     secondaryCta: 'Preencher formulário',
     whatsappTopic: 'AUTOMAÇÃO',
