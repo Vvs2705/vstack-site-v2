@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { prisma, tryDb } from '@/lib/prisma'
 import { sendEmail } from '@/lib/resend'
 import { CotacaoSchema } from '@/lib/validations'
 import { sanitizeObject, extractIp } from '@/lib/security'
@@ -39,12 +39,12 @@ export async function POST(request: NextRequest) {
     const data = sanitizeObject(parsed.data)
     const ip = extractIp(request)
 
-    const cotacao = await prisma.cotacao.create({
+    const cotacao = await tryDb('cotacao', prisma.cotacao.create({
       data: { ...data, ipAddress: ip },
-    })
+    }))
 
     // Notificação interna detalhada
-    await sendEmail('cotacao:interno', {
+    const notified = await sendEmail('cotacao:interno', {
       from:    process.env.RESEND_FROM_EMAIL!,
       to:      process.env.LEADS_EMAIL!,
       subject: `📋 Nova Cotação — ${data.companyName} | ${data.projectType.join(', ')}`,
@@ -68,9 +68,14 @@ export async function POST(request: NextRequest) {
         <blockquote>${data.projectDescription}</blockquote>
         <h3>Principal Desafio</h3>
         <blockquote>${data.mainChallenge}</blockquote>
-        <p><small>ID: ${cotacao.id}</small></p>
+        <p><small>ID: ${cotacao?.id ?? 'não salvo (banco fora do ar)'}</small></p>
       `,
     })
+
+    // Sem banco e sem e-mail o lead se perderia: só aí devolve erro
+    if (!cotacao && !notified) {
+      return NextResponse.json({ error: 'Erro interno' }, { status: 500 })
+    }
 
     // Email de confirmação para o cliente
     await sendEmail('cotacao:cliente', {
@@ -85,9 +90,11 @@ export async function POST(request: NextRequest) {
       `,
     })
 
-    await prisma.auditLog.create({
-      data: { action: 'cotacao_submitted', entityType: 'Cotacao', entityId: cotacao.id, ipAddress: ip },
-    })
+    if (cotacao) {
+      await tryDb('cotacao:audit', prisma.auditLog.create({
+        data: { action: 'cotacao_submitted', entityType: 'Cotacao', entityId: cotacao.id, ipAddress: ip },
+      }))
+    }
 
     await trackConversion('quote_form_submitted', {
       form: 'cotacao',
@@ -97,7 +104,7 @@ export async function POST(request: NextRequest) {
       projectTypeCount: data.projectType.length,
     })
 
-    return NextResponse.json({ success: true, id: cotacao.id }, { status: 201 })
+    return NextResponse.json({ success: true, id: cotacao?.id ?? null }, { status: 201 })
   } catch (error) {
     console.error('[COTACAO API ERROR]', error)
     return NextResponse.json({ error: 'Erro interno' }, { status: 500 })

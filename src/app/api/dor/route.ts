@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { prisma, tryDb } from '@/lib/prisma'
 import { sendEmail } from '@/lib/resend'
 import { DorSchema } from '@/lib/validations'
 import { sanitizeObject, extractIp } from '@/lib/security'
@@ -29,12 +29,12 @@ export async function POST(request: NextRequest) {
     const data = sanitizeObject(parsed.data)
     const ip = extractIp(request)
 
-    const dor = await prisma.dorCliente.create({
+    const dor = await tryDb('dor', prisma.dorCliente.create({
       data: { ...data, ipAddress: ip },
-    })
+    }))
 
     // Notificação interna
-    await sendEmail('dor:interno', {
+    const notified = await sendEmail('dor:interno', {
       from:    process.env.RESEND_FROM_EMAIL!,
       to:      process.env.LEADS_EMAIL!,
       subject: `🩺 Nova Dor do Cliente — ${URGENCY_LABELS[data.urgency]} — ${data.title}`,
@@ -50,9 +50,14 @@ export async function POST(request: NextRequest) {
         <blockquote>${data.impact}</blockquote>
         <h3>Como Resolvem Hoje</h3>
         <blockquote>${data.currentSolution || 'Não resolvem / Não informado'}</blockquote>
-        <p><small>ID: ${dor.id}</small></p>
+        <p><small>ID: ${dor?.id ?? 'não salvo (banco fora do ar)'}</small></p>
       `,
     })
+
+    // Sem banco e sem e-mail o lead se perderia: só aí devolve erro
+    if (!dor && !notified) {
+      return NextResponse.json({ error: 'Erro interno' }, { status: 500 })
+    }
 
     // Email de confirmação (só quando a pessoa se identificou)
     if (!data.isAnonymous && data.email) {
@@ -68,9 +73,11 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    await prisma.auditLog.create({
-      data: { action: 'dor_submitted', entityType: 'DorCliente', entityId: dor.id, ipAddress: ip },
-    })
+    if (dor) {
+      await tryDb('dor:audit', prisma.auditLog.create({
+        data: { action: 'dor_submitted', entityType: 'DorCliente', entityId: dor.id, ipAddress: ip },
+      }))
+    }
 
     await trackConversion('pain_form_submitted', {
       form: 'envie-sua-dor',
@@ -79,7 +86,7 @@ export async function POST(request: NextRequest) {
       hasCompany: Boolean(data.company),
     })
 
-    return NextResponse.json({ success: true, id: dor.id }, { status: 201 })
+    return NextResponse.json({ success: true, id: dor?.id ?? null }, { status: 201 })
   } catch (error) {
     console.error('[DOR API ERROR]', error)
     return NextResponse.json({ error: 'Erro interno' }, { status: 500 })

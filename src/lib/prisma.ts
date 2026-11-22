@@ -9,3 +9,16 @@ export const prisma =
   })
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+
+/**
+ * Banco fora do ar não pode derrubar a captação de lead: loga e devolve null.
+ * A rota segue, e o e-mail interno leva os dados completos.
+ */
+export async function tryDb<T>(tag: string, op: PromiseLike<T>): Promise<T | null> {
+  try {
+    return await op
+  } catch (error) {
+    console.error(`[DB ${tag}]`, error instanceof Error ? error.message : error)
+    return null
+  }
+}
