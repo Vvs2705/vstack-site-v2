@@ -36,7 +36,7 @@ export const PROOF_PRODUCTS: ProofProduct[] = [
     name: 'FiscWise',
     domain: 'Contábil / Fiscal',
     pitch:
-      'Automatiza a operação financeira da empresa — da conciliação bancária via Open Banking ao relatório executivo — e transforma o fechamento mensal num processo previsível.',
+      'Central do escritório contábil: obrigações e prazos por cliente, portal do cliente e fechamento mensal com dossiê em PDF.',
     status: 'production',
     statusLabel: 'Em produção',
     href: '/fiscwise',
